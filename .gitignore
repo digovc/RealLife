@@ -1,0 +1,7 @@
+/.vs
+/GTANetworkServer
+/Principal/*.user
+/Principal/bin
+/Principal/obj
+/RealLife.TypeScript/bin
+/RealLife.TypeScript/obj
