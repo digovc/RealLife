@@ -1,7 +1,12 @@
 /.vs
 /GTANetworkServer
-/Principal/*.user
+*.user
 /Principal/bin
 /Principal/obj
 /RealLife.TypeScript/bin
 /RealLife.TypeScript/obj
+/RealLifeUi/obj
+/RealLifeUi/bin
+/RealLiteUi.TypeScript/bin
+/RealLiteUi.TypeScript/obj
+/RealLifeUi/.vs

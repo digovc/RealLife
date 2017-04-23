@@ -1,12 +1,17 @@
-module RealLife
+ï»¿/// <reference path="../Web.TypeScript/AppWebBase.ts"/>
+
+module RealLifeUi
 {
-    // #region Importações
-    // #endregion Importações
+    // #region ImportaÃ§Ãµes
+
+    import AppWebBase = Web.AppWebBase;
+
+    // #endregion ImportaÃ§Ãµes
 
     // #region Enumerados
     // #endregion Enumerados
 
-    export class AppRealLife
+    export class AppRealLifeUi extends AppWebBase
     {
         // #region Constantes
         // #endregion Constantes
@@ -17,8 +22,8 @@ module RealLife
         // #region Construtores
         // #endregion Construtores
 
-        // #region Métodos
-        // #endregion Métodos
+        // #region MÃ©todos
+        // #endregion MÃ©todos
 
         // #region Eventos
         // #endregion Eventos

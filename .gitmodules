@@ -1,0 +1,15 @@
+[submodule "RealLife.TypeScript/typedefinition/gta-network-typescript"]
+	path = RealLife.TypeScript/typedefinition/gta-network-typescript
+	url = https://github.com/Rene-Sackers/gta-network-typescript.git
+[submodule "DigoFramework"]
+	path = DigoFramework
+	url = https://github.com/digovc/DigoFramework.git
+[submodule "Persistencia"]
+	path = Persistencia
+	url = http://tfs.relatar.com.br:8080/tfs/Relatar/_git/NetZ.Persistencia
+[submodule "Web"]
+	path = Web
+	url = https://github.com/digovc/Web.git
+[submodule "Web.TypeScript"]
+	path = Web.TypeScript
+	url = https://github.com/digovc/Web.TypeScript.git

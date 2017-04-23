@@ -17,8 +17,7 @@
   <vehicle_lagcomp>true</vehicle_lagcomp>
   <onfoot_lagcomp>true</onfoot_lagcomp>
   <refresh_rate>120</refresh_rate>
-  <resource src="real_life_server" />    
-  <resource src="real_life_client" />    
+  <resource src="real_life" />
   <announce_lan>true</announce_lan>
   <upnp>false</upnp>
   <fqdn></fqdn>
