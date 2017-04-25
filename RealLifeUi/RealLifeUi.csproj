@@ -48,6 +48,7 @@
   <ItemGroup>
     <Compile Include="AppRealLife.cs" />
     <Compile Include="ConfigRealLife.cs" />
+    <Compile Include="Html\Pagina\PagInterface.cs" />
     <Compile Include="Html\Pagina\PagLogin.cs" />
     <Compile Include="Html\Pagina\PagRealLifeBase.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

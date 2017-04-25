@@ -48,13 +48,17 @@
     <DebugSymbols>true</DebugSymbols>
   </PropertyGroup>
   <ItemGroup>
-    <TypeScriptCompile Include="Browser.ts" />
+    <TypeScriptCompile Include="evento\OnChatCommandListener.ts" />
+    <TypeScriptCompile Include="evento\OnUpdateListener.ts" />
+    <TypeScriptCompile Include="ScriptManager.ts" />
     <TypeScriptCompile Include="typedefinition\gta-network-typescript\content\types-gtanetwork\index.d.ts" />
+    <TypeScriptCompile Include="Utils.ts" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="tsconfig.json" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="evento\" />
     <Folder Include="typedefinition\" />
     <Folder Include="typedefinition\gta-network-typescript\" />
     <Folder Include="typedefinition\gta-network-typescript\content\" />

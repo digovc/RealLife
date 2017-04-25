@@ -57,7 +57,7 @@
     <Compile Include="DataBase\Tabela\TblRealLifeBase.cs" />
     <Compile Include="Jogador.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="ScriptBoot.cs" />
+    <Compile Include="ScriptManager.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Config\meta.xml">
