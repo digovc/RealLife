@@ -106,6 +106,9 @@ namespace RealLifeUi
             Directory.CreateDirectory(DIR_CLIENT_UI);
 
             this.gerarUiHtml(new PagLogin());
+            this.gerarUiHtml(new PagInterface());
+            this.gerarUiHtml(new PagMissaoAbertura());
+            this.gerarUiHtml(new PagMissaoConclusao());
         }
 
         private void gerarUiHtml(PagRealLifeBase pag)
@@ -124,6 +127,8 @@ namespace RealLifeUi
             {
                 objStreamWriter.Write(strHtml);
             }
+
+            Console.WriteLine("Página {0} gerada ({1}).", pag.strNome, dir);
         }
 
         #endregion Métodos

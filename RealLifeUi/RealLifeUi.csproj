@@ -48,8 +48,27 @@
   <ItemGroup>
     <Compile Include="AppRealLife.cs" />
     <Compile Include="ConfigRealLife.cs" />
+    <Compile Include="Html\Componente\Interface\DivAtalho.cs" />
+    <Compile Include="Html\Componente\Interface\DivAtalhoItem.cs" />
+    <Compile Include="Html\Componente\Interface\DivBanco.cs" />
+    <Compile Include="Html\Componente\Interface\DivCombustivel.cs" />
+    <Compile Include="Html\Componente\Interface\DivInterfaceBase.cs" />
+    <Compile Include="Html\Componente\Interface\DivCarteira.cs" />
+    <Compile Include="Html\Componente\Interface\DivInterfaceProgressBase.cs" />
+    <Compile Include="Html\Componente\Interface\DivInterfaceTextoBase.cs" />
+    <Compile Include="Html\Componente\Interface\DivTimer.cs" />
+    <Compile Include="Html\Componente\Interface\Menu\DivMenuInterativo.cs" />
+    <Compile Include="Html\Componente\Interface\Menu\DivMenuInterativoItem.cs" />
+    <Compile Include="Html\Componente\Missao\DivMissaoBase.cs" />
+    <Compile Include="Html\Componente\Missao\DivMissaoDinheiro.cs" />
+    <Compile Include="Html\Componente\Missao\DivMissaoResultado.cs" />
+    <Compile Include="Html\Componente\Missao\DivMissaoRp.cs" />
+    <Compile Include="Html\Componente\Missao\DivMissaoRpProgresso.cs" />
+    <Compile Include="Html\Componente\Missao\DivMissaoValorBase.cs" />
     <Compile Include="Html\Pagina\PagInterface.cs" />
     <Compile Include="Html\Pagina\PagLogin.cs" />
+    <Compile Include="Html\Pagina\PagMissaoAbertura.cs" />
+    <Compile Include="Html\Pagina\PagMissaoConclusao.cs" />
     <Compile Include="Html\Pagina\PagRealLifeBase.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TemaRealLife.cs" />
@@ -68,6 +87,7 @@
       <Name>NetZ.Web</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <PostBuildEvent>XCOPY "$(SolutionDir)RealLiteUi.TypeScript\bin\js\RealLifeUi.js" "$(SolutionDir)Principal\bin\Server\resources\real_life\ui\res\js\" /Y/D/S

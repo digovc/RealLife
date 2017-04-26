@@ -1,8 +1,6 @@
-﻿using NetZ.Web.Server.Arquivo.Css;
-
-namespace RealLifeUi.Html.Pagina
+﻿namespace RealLifeUi.Html.Componente.Interface
 {
-    internal class PagLogin : PagRealLifeBase
+    internal class DivAtalho : DivInterfaceBase
     {
         #region Constantes
 
@@ -14,27 +12,15 @@ namespace RealLifeUi.Html.Pagina
 
         #region Construtores
 
-        public PagLogin() : base("Login")
-        {
-        }
-
         #endregion Construtores
 
         #region Métodos
 
-        protected override void inicializar()
-        {
-            base.inicializar();
-        }
-
         protected override void montarLayout()
         {
             base.montarLayout();
-        }
 
-        protected override void setCss(CssArquivoBase css)
-        {
-            base.setCss(css);
+            new DivAtalhoItem().setPai(this.divConteudo);
         }
 
         #endregion Métodos

@@ -1,17 +1,17 @@
-﻿/// <reference path="../../../Web.TypeScript/html/pagina/PagMobile.ts"/>
+﻿/// <reference path="../../../../Web.TypeScript/html/componente/ComponenteHtml.ts"/>
 
 module RealLifeUi
 {
     // #region Importações
 
-    import PagMobile = Web.PagMobile;
+    import ComponenteHtml = Web.ComponenteHtml;
 
     // #endregion Importações
 
     // #region Enumerados
     // #endregion Enumerados
 
-    export abstract class PagRealLifeBase extends PagMobile
+    export abstract class DivInterfaceBase extends ComponenteHtml
     {
         // #region Constantes
         // #endregion Constantes

@@ -1,17 +1,14 @@
-﻿/// <reference path="../../../Web.TypeScript/html/pagina/PagMobile.ts"/>
+﻿/// <reference path="DivInterfaceProgressBase.ts"/>
 
 module RealLifeUi
 {
     // #region Importações
-
-    import PagMobile = Web.PagMobile;
-
     // #endregion Importações
 
     // #region Enumerados
     // #endregion Enumerados
 
-    export abstract class PagRealLifeBase extends PagMobile
+    export class DivCombustivel extends DivInterfaceProgressBase
     {
         // #region Constantes
         // #endregion Constantes
@@ -20,6 +17,12 @@ module RealLifeUi
         // #endregion Atributos
 
         // #region Construtores
+
+        constructor()
+        {
+            super(DivCombustivel.name);
+        }
+
         // #endregion Construtores
 
         // #region Métodos

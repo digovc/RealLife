@@ -1,8 +1,6 @@
-﻿using NetZ.Web.Server.Arquivo.Css;
-
-namespace RealLifeUi.Html.Pagina
+﻿namespace RealLifeUi.Html.Componente.Interface
 {
-    internal class PagLogin : PagRealLifeBase
+    internal class DivTimer : DivInterfaceTextoBase
     {
         #region Constantes
 
@@ -14,10 +12,6 @@ namespace RealLifeUi.Html.Pagina
 
         #region Construtores
 
-        public PagLogin() : base("Login")
-        {
-        }
-
         #endregion Construtores
 
         #region Métodos
@@ -25,16 +19,8 @@ namespace RealLifeUi.Html.Pagina
         protected override void inicializar()
         {
             base.inicializar();
-        }
 
-        protected override void montarLayout()
-        {
-            base.montarLayout();
-        }
-
-        protected override void setCss(CssArquivoBase css)
-        {
-            base.setCss(css);
+            this.divValor.strConteudo = "0:00";
         }
 
         #endregion Métodos

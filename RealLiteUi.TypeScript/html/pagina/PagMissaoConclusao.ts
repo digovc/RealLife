@@ -1,22 +1,32 @@
-﻿/// <reference path="../../../Web.TypeScript/html/pagina/PagMobile.ts"/>
-
-module RealLifeUi
+﻿module RealLifeUi
 {
     // #region Importações
-
-    import PagMobile = Web.PagMobile;
-
     // #endregion Importações
 
     // #region Enumerados
     // #endregion Enumerados
 
-    export abstract class PagRealLifeBase extends PagMobile
+    export class PagMissaoConclusao extends PagRealLifeBase
     {
         // #region Constantes
         // #endregion Constantes
 
         // #region Atributos
+
+        private static _i: PagMissaoConclusao;
+
+        public static get i(): PagMissaoConclusao
+        {
+            if (PagMissaoConclusao._i != null)
+            {
+                return PagMissaoConclusao._i;
+            }
+
+            PagMissaoConclusao._i = new PagMissaoConclusao();
+
+            return PagMissaoConclusao._i;
+        }
+
         // #endregion Atributos
 
         // #region Construtores

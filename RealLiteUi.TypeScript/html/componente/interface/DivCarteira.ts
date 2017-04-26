@@ -1,17 +1,15 @@
-﻿/// <reference path="../../../Web.TypeScript/html/pagina/PagMobile.ts"/>
+﻿/// <reference path="DivInterfaceTextoBase.ts"/>
 
 module RealLifeUi
 {
     // #region Importações
-
-    import PagMobile = Web.PagMobile;
 
     // #endregion Importações
 
     // #region Enumerados
     // #endregion Enumerados
 
-    export abstract class PagRealLifeBase extends PagMobile
+    export class DivCarteira extends DivInterfaceTextoBase
     {
         // #region Constantes
         // #endregion Constantes
@@ -20,6 +18,12 @@ module RealLifeUi
         // #endregion Atributos
 
         // #region Construtores
+
+        constructor()
+        {
+            super(DivCarteira.name);
+        }
+
         // #endregion Construtores
 
         // #region Métodos

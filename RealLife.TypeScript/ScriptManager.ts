@@ -1,3 +1,5 @@
+/// <reference path="AppRealLife.ts"/>
+/// <reference path="Objeto.ts"/>
 /// <reference path="typedefinition/gta-network-typescript/content/types-gtanetwork/index.d.ts" />
 
 module RealLife
@@ -8,7 +10,7 @@ module RealLife
     // #region Enumerados
     // #endregion Enumerados
 
-    export class ScriptManager
+    export class ScriptManager extends Objeto
     {
         // #region Constantes
         // #endregion Constantes
@@ -36,18 +38,17 @@ module RealLife
 
         // #region Métodos
 
-        private inicializar(): void
+        protected inicializar(): void
         {
+            super.inicializar();
+
+            AppRealLife.i.iniciar();
         }
 
-        public iniciar(): void
+        protected setEventos(): void
         {
-            this.inicializar();
-            this.setEventos();
-        }
+            super.setEventos();
 
-        private setEventos(): void
-        {
             API.onChatCommand.connect((strComando: string) => { this.dispararEvtOnChatCommandListener(strComando); });
             API.onUpdate.connect(() => { this.dispararEvtOnUpdateListener(); });
         }

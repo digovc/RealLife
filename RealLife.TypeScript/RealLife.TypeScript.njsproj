@@ -48,10 +48,17 @@
     <DebugSymbols>true</DebugSymbols>
   </PropertyGroup>
   <ItemGroup>
+    <TypeScriptCompile Include="AppRealLife.ts" />
     <TypeScriptCompile Include="evento\OnChatCommandListener.ts" />
     <TypeScriptCompile Include="evento\OnUpdateListener.ts" />
+    <TypeScriptCompile Include="Objeto.ts" />
+    <TypeScriptCompile Include="Screen.ts" />
     <TypeScriptCompile Include="ScriptManager.ts" />
+    <TypeScriptCompile Include="Test.ts" />
     <TypeScriptCompile Include="typedefinition\gta-network-typescript\content\types-gtanetwork\index.d.ts" />
+    <TypeScriptCompile Include="ui\Browser.ts" />
+    <TypeScriptCompile Include="ui\pagina\PagLogin.ts" />
+    <TypeScriptCompile Include="ui\pagina\PagRealLifeBase.ts" />
     <TypeScriptCompile Include="Utils.ts" />
   </ItemGroup>
   <ItemGroup>
@@ -59,10 +66,12 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="evento\" />
+    <Folder Include="ui\" />
     <Folder Include="typedefinition\" />
     <Folder Include="typedefinition\gta-network-typescript\" />
     <Folder Include="typedefinition\gta-network-typescript\content\" />
     <Folder Include="typedefinition\gta-network-typescript\content\types-gtanetwork\" />
+    <Folder Include="ui\pagina\" />
   </ItemGroup>
   <!-- Do not delete the following Import Project.  While this appears to do nothing it is a marker for setting TypeScript properties before our import that depends on them. -->
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.targets" Condition="False" />

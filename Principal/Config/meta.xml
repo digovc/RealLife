@@ -10,6 +10,7 @@
   <!--Interface do usuário-->
 
   <!--html-->
+  <file src="ui/pag_interface.html" />
   <file src="ui/pag_login.html" />
 
   <!--css-->
