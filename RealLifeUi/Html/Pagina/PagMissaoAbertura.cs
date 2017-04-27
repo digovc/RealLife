@@ -111,17 +111,17 @@ namespace RealLifeUi.Html.Pagina
             this.addCss(css.setWidth(100, "%"));
 
             this.divConteudo.addCss(css.setBackgroundColor("rgba(0,0,0,0.75)"));
-            this.divConteudo.addCss(css.setHeight(175));
-            this.divConteudo.addCss(css.setMarginBottom(-175));
+            this.divConteudo.addCss(css.setHeight(12, "vw"));
+            this.divConteudo.addCss(css.setMarginBottom(-12, "vw"));
 
             this.divNome.addCss(css.setColor("white"));
-            this.divNome.addCss(css.setFontSize(65));
-            this.divNome.addCss(css.setMarginLeft(100));
-            this.divNome.addCss(css.setMarginTop(-45));
+            this.divNome.addCss(css.setFontSize(5, "vw"));
+            this.divNome.addCss(css.setMarginLeft(7, "vw"));
+            this.divNome.addCss(css.setMarginTop(-4, "vw"));
 
             this.divTextoMissao.addCss(css.setColor("grey"));
-            this.divTextoMissao.addCss(css.setFontSize(100));
-            this.divTextoMissao.addCss(css.setMarginLeft(50));
+            this.divTextoMissao.addCss(css.setFontSize(7, "vw"));
+            this.divTextoMissao.addCss(css.setMarginLeft(5, "vw"));
         }
 
         #endregion Métodos

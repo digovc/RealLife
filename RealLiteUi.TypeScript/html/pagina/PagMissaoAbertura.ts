@@ -81,16 +81,16 @@ module RealLifeUi
 
         public animar(): void
         {
-            this.divConteudo.jq.animate({ "margin-bottom": "0px" }, 350, "swing");
-            this.divNome.jq.animate({ "margin-left": "125px" }, 6000, "swing");
-            this.divTextoMissao.jq.animate({ "margin-left": "25px" }, 6000, "swing");
+            this.divConteudo.jq.animate({ "margin-bottom": "0vw" }, 350, "swing");
+            this.divNome.jq.animate({ "margin-left": "10vw" }, 6000, "swing");
+            this.divTextoMissao.jq.animate({ "margin-left": "3vw" }, 6000, "swing");
 
             window.setTimeout((() => { this.animar2(); }), 5000);
         }
 
         private animar2(): void
         {
-            this.divConteudo.jq.animate({ "margin-bottom": "-175px" }, 150, "swing");
+            this.divConteudo.jq.animate({ "margin-bottom": "-12vw" }, 150, "swing");
         }
 
         protected inicializar(): void
