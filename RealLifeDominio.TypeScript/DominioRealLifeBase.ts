@@ -1,17 +1,17 @@
-﻿/// <reference path="../../../../Web.TypeScript/html/componente/ComponenteHtml.ts"/>
+﻿/// <reference path="../Web.TypeScript/database/dominio/DominioWebBase.ts"/>
 
-module RealLifeUi
+module RealLifeDominio
 {
     // #region Importações
 
-    import ComponenteHtml = Web.ComponenteHtml;
+    import DominioWebBase = Web.DominioWebBase;
 
     // #endregion Importações
 
     // #region Enumerados
     // #endregion Enumerados
 
-    export abstract class DivMissaoBase extends ComponenteHtml
+    export abstract class DominioRealLifeBase
     {
         // #region Constantes
         // #endregion Constantes
@@ -23,14 +23,6 @@ module RealLifeUi
         // #endregion Construtores
 
         // #region Métodos
-
-        protected inicializar(): void
-        {
-            super.inicializar();
-
-            this.jq.css("margin-left", $(document).width());
-        }
-
         // #endregion Métodos
 
         // #region Eventos

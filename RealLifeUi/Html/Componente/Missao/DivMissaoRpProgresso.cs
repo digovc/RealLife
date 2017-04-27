@@ -81,10 +81,11 @@ namespace RealLifeUi.Html.Componente.Missao
         {
             base.montarLayout();
 
-            this.divNivelProximo.setPai(this);
-
-            this.divNivelAtual.setPai(this);
             this.divProgresso.setPai(this);
+
+            this.divNivelProximo.setPai(this);
+            this.divNivelAtual.setPai(this);
+
             new LimiteFloat().setPai(this);
         }
 
@@ -101,6 +102,7 @@ namespace RealLifeUi.Html.Componente.Missao
             this.divNivelAtual.addCss(css.setFontSize(75));
             this.divNivelAtual.addCss(css.setHeight(100));
             this.divNivelAtual.addCss(css.setLineHeight(100));
+            this.divNivelAtual.addCss(css.setMarginTop(-100));
             this.divNivelAtual.addCss(css.setTextAlign("center"));
             this.divNivelAtual.addCss(css.setWidth(100));
 
@@ -112,7 +114,16 @@ namespace RealLifeUi.Html.Componente.Missao
             this.divProgresso.addCss(css.setBackgroundColor("gray"));
             this.divProgresso.addCss(css.setBorderRadius(50));
             this.divProgresso.addCss(css.setHeight(100, "%"));
-            this.divProgresso.addCss(css.setWidth(97, "%"));
+            this.divProgresso.addCss(css.setWidth(10, "%"));
+        }
+
+        protected override void setStrId(string strId)
+        {
+            base.setStrId(strId);
+
+            this.divNivelAtual.strId = (strId + "_divNivelAtual");
+            this.divNivelProximo.strId = (strId + "_divNivelProximo");            
+            this.divProgresso.strId = (strId + "_divProgresso");
         }
 
         #endregion Métodos

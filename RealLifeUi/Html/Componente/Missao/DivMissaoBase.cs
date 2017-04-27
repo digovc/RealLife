@@ -1,4 +1,5 @@
 ﻿using NetZ.Web.Html.Componente;
+using NetZ.Web.Server.Arquivo.Css;
 
 namespace RealLifeUi.Html.Componente.Missao
 {
@@ -23,6 +24,14 @@ namespace RealLifeUi.Html.Componente.Missao
             base.inicializar();
 
             this.strId = this.GetType().Name;
+        }
+
+        protected override void setCss(CssArquivoBase css)
+        {
+            base.setCss(css);
+
+            //this.addCss(css.setDisplay("none"));
+            this.addCss(css.setMarginBottom(50));
         }
 
         #endregion Métodos

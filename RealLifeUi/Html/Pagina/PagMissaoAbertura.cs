@@ -106,6 +106,7 @@ namespace RealLifeUi.Html.Pagina
             base.setCss(css);
 
             this.addCss(css.setBottom(0));
+            this.addCss(css.setOverflow("hidden"));
             this.addCss(css.setPosition("absolute"));
             this.addCss(css.setWidth(100, "%"));
 
@@ -118,7 +119,7 @@ namespace RealLifeUi.Html.Pagina
             this.divNome.addCss(css.setMarginLeft(100));
             this.divNome.addCss(css.setMarginTop(-45));
 
-            this.divTextoMissao.addCss(css.setColor("#bbbbbb"));
+            this.divTextoMissao.addCss(css.setColor("grey"));
             this.divTextoMissao.addCss(css.setFontSize(100));
             this.divTextoMissao.addCss(css.setMarginLeft(50));
         }

@@ -1,4 +1,5 @@
-﻿using NetZ.Web.Server.Arquivo.Css;
+﻿using NetZ.Web.Html;
+using NetZ.Web.Server.Arquivo.Css;
 using RealLifeUi.Html.Componente.Missao;
 
 namespace RealLifeUi.Html.Pagina
@@ -88,14 +89,20 @@ namespace RealLifeUi.Html.Pagina
 
         #region Métodos
 
+        protected override void addJsCodigo(JavaScriptTag tagJs)
+        {
+            base.addJsCodigo(tagJs);
+
+            tagJs.addJs(string.Format("RealLifeUi.{0}.i.iniciar();", this.GetType().Name));
+        }
+
         protected override void montarLayout()
         {
             base.montarLayout();
 
-            //this.divMissaoResultado.setPai(this);
-            //this.divMissaoDinheiro.setPai(this);
-            //this.divMissaoRp.setPai(this);
-
+            this.divMissaoResultado.setPai(this);
+            this.divMissaoDinheiro.setPai(this);
+            this.divMissaoRp.setPai(this);
             this.divMissaoRpProgresso.setPai(this);
         }
 
@@ -103,7 +110,12 @@ namespace RealLifeUi.Html.Pagina
         {
             base.setCss(css);
 
+            this.addCss(css.setBackgroundColor("black"));
             this.addCss(css.setColor("white"));
+            this.addCss(css.setOverflow("hidden"));
+            this.addCss(css.setPaddingLeft(50));
+            this.addCss(css.setPaddingRight(50));
+            this.addCss(css.setPaddingTop(50));
         }
 
         #endregion Métodos

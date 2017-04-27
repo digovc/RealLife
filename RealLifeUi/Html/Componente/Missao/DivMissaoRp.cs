@@ -21,7 +21,7 @@
             return 110;
         }
 
-        protected override string getStrDivCirculoCor()
+        protected override string getStrDivCor()
         {
             return "#2196f3";
         }
@@ -31,7 +31,7 @@
             base.inicializar();
 
             this.divCirculo.strConteudo = "RP";
-            this.divValor.strConteudo = "+ 10 500";
+            this.divValor.strConteudo = "+ 250";
         }
 
         #endregion Métodos

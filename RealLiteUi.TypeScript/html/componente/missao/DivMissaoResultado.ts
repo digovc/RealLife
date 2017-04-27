@@ -15,9 +15,28 @@
         // #endregion Atributos
 
         // #region Construtores
+
+        constructor()
+        {
+            super(DivMissaoResultado.name);
+        }
+
         // #endregion Construtores
 
         // #region Métodos
+
+        public animar(): void
+        {
+            this.booVisivel = true;
+
+            this.jq.animate({ "margin-left": "0px" }, 250, "swing", (() => { this.animar2(); }));
+        }
+
+        private animar2(): void
+        {
+            window.setTimeout((() => { PagMissaoConclusao.i.animar2(); }), 1000);
+        }
+
         // #endregion Métodos
 
         // #region Eventos

@@ -73,12 +73,12 @@ namespace RealLifeUi.Html.Componente.Missao
         {
             base.setCss(css);
 
-            this.addCss(css.setPaddingBottom(200));
-            this.addCss(css.setPaddingTop(200));
-
+            this.divTextoMissao.addCss(css.setColor("grey"));
             this.divTextoMissao.addCss(css.setFontSize(150));
 
             this.divResultado.addCss(css.setFontSize(100));
+            this.divResultado.addCss(css.setMarginTop(-65));
+            this.divResultado.addCss(css.setPaddingLeft(50));
         }
 
         #endregion Métodos

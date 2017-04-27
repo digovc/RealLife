@@ -1,5 +1,4 @@
-﻿using System;
-using NetZ.Web.Html;
+﻿using NetZ.Web.Html;
 using NetZ.Web.Server.Arquivo.Css;
 
 namespace RealLifeUi.Html.Componente.Missao
@@ -58,6 +57,11 @@ namespace RealLifeUi.Html.Componente.Missao
             return 175;
         }
 
+        protected virtual string getStrDivCor()
+        {
+            return "#8bc34a";
+        }
+
         protected override void montarLayout()
         {
             base.montarLayout();
@@ -71,7 +75,7 @@ namespace RealLifeUi.Html.Componente.Missao
         {
             base.setCss(css);
 
-            this.divCirculo.addCss(css.setBackgroundColor(this.getStrDivCirculoCor()));
+            this.divCirculo.addCss(css.setBackgroundColor(this.getStrDivCor()));
             this.divCirculo.addCss(css.setBorderRadius(50, "%"));
             this.divCirculo.addCss(css.setFloat("left"));
             this.divCirculo.addCss(css.setFontSize(this.getIntDivCirculoFontSize()));
@@ -82,13 +86,17 @@ namespace RealLifeUi.Html.Componente.Missao
             this.divCirculo.addCss(css.setTextAlign("center"));
             this.divCirculo.addCss(css.setWidth(150));
 
+            this.divValor.addCss(css.setColor(this.getStrDivCor()));
             this.divValor.addCss(css.setFontSize(100));
             this.divValor.addCss(css.setLineHeight(170));
         }
 
-        protected virtual string getStrDivCirculoCor()
+        protected override void setStrId(string strId)
         {
-            return "#8bc34a";
+            base.setStrId(strId);
+
+            this.divCirculo.strId = (strId + "_divCirculo");
+            this.divValor.strId = (strId + "_divValor");
         }
 
         #endregion Métodos
