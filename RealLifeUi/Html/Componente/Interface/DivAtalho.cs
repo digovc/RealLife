@@ -1,4 +1,6 @@
-﻿namespace RealLifeUi.Html.Componente.Interface
+﻿using NetZ.Web.Server.Arquivo.Css;
+
+namespace RealLifeUi.Html.Componente.Interface
 {
     internal class DivAtalho : DivInterfaceBase
     {
@@ -21,6 +23,13 @@
             base.montarLayout();
 
             new DivAtalhoItem().setPai(this.divConteudo);
+        }
+
+        protected override void setCss(CssArquivoBase css)
+        {
+            base.setCss(css);
+
+            this.addCss(css.setColor("white"));
         }
 
         #endregion Métodos

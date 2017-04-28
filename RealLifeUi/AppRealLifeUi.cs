@@ -10,7 +10,7 @@ using System.Text;
 
 namespace RealLifeUi
 {
-    internal class AppRealLife : AppWebBase
+    internal class AppRealLifeUi : AppWebBase
     {
         #region Constantes
 
@@ -20,11 +20,11 @@ namespace RealLifeUi
 
         #region Atributos
 
-        private static AppRealLife _i;
+        private static AppRealLifeUi _i;
 
         private UTF8Encoding _objUTF8Encoding;
 
-        public new static AppRealLife i
+        public new static AppRealLifeUi i
         {
             get
             {
@@ -33,7 +33,7 @@ namespace RealLifeUi
                     return _i;
                 }
 
-                _i = new AppRealLife();
+                _i = new AppRealLifeUi();
 
                 return _i;
             }
@@ -58,7 +58,7 @@ namespace RealLifeUi
 
         #region Construtores
 
-        private AppRealLife() : base("Real Life UI")
+        private AppRealLifeUi() : base("Real Life UI")
         {
         }
 
@@ -68,12 +68,12 @@ namespace RealLifeUi
 
         protected override ConfigWebBase getObjConfig()
         {
-            return ConfigRealLife.i;
+            return ConfigRealLifeUi.i;
         }
 
         protected override TemaBase getObjTema()
         {
-            return TemaRealLife.i;
+            return TemaRealLifeUi.i;
         }
 
         protected override void inicializarLstSrv(List<ServerBase> lstSrv)

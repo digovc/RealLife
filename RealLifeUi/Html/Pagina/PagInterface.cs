@@ -9,8 +9,6 @@ namespace RealLifeUi.Html.Pagina
     {
         #region Constantes
 
-        private const int INT_ESPACAMENTO = 10;
-
         #endregion Constantes
 
         #region Atributos

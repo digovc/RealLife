@@ -75,7 +75,7 @@ namespace RealLifeUi.Html.Componente.Interface
 
             this.divControle.strConteudo = "X";
             this.divTecla.strConteudo = "Enter";
-            this.divNome.strConteudo = "Comprar";
+            this.divNome.strConteudo = "Ação";
         }
 
         protected override void montarLayout()
@@ -86,38 +86,37 @@ namespace RealLifeUi.Html.Componente.Interface
             this.divTecla.setPai(this);
             this.divNome.setPai(this);
 
-            new LimiteFloat().setPai(this);
+            //new LimiteFloat().setPai(this);
         }
 
         protected override void setCss(CssArquivoBase css)
         {
             base.setCss(css);
 
-            this.divControle.addCss(css.setBackgroundColor("#252525"));
-            this.divControle.addCss(css.setBorderRadius(15));
-            this.divControle.addCss(css.setColor("#2196F3"));
+            this.addCss(css.setHeight(100, "%"));
+
+            this.divControle.addCss(css.setBorderBottom(1, "solid", "grey"));
+            this.divControle.addCss(css.setBorderRadius(2, "px"));
+            this.divControle.addCss(css.setBorderTop(1, "solid", "grey"));
             this.divControle.addCss(css.setFloat("left"));
-            this.divControle.addCss(css.setHeight(21));
-            this.divControle.addCss(css.setLineHeight(20));
-            this.divControle.addCss(css.setMarginRight(5));
-            this.divControle.addCss(css.setMarginTop(2));
+            this.divControle.addCss(css.setHeight(90, "%"));
+            this.divControle.addCss(css.setLineHeight(3.7m, "vh"));
+            this.divControle.addCss(css.setMarginRight(0.5m, "vw"));
+            this.divControle.addCss(css.setPaddingLeft(1, "vw"));
+            this.divControle.addCss(css.setPaddingRight(1, "vw"));
             this.divControle.addCss(css.setTextAlign("center"));
-            this.divControle.addCss(css.setWidth(20));
+
+            this.divTecla.addCss(this.divControle);
 
             this.divTecla.addCss(css.setBackgroundColor("white"));
-            this.divTecla.addCss(css.setBorderRadius(5));
             this.divTecla.addCss(css.setColor("black"));
             this.divTecla.addCss(css.setFloat("left"));
-            this.divTecla.addCss(css.setHeight(21));
-            this.divTecla.addCss(css.setLineHeight(20));
-            this.divTecla.addCss(css.setMarginRight(5));
-            this.divTecla.addCss(css.setMarginTop(2));
-            this.divTecla.addCss(css.setPaddingLeft(2));
-            this.divTecla.addCss(css.setPaddingRight(2));
-            this.divTecla.addCss(css.setTextAlign("center"));
+
+            this.divControle.addCss(css.setBackgroundColor("#444444"));
+            this.divControle.addCss(css.setColor("#2196F3"));
 
             this.divNome.addCss(css.setFloat("left"));
-            this.divNome.addCss(css.setMarginRight(25));
+            this.divNome.addCss(css.setLineHeight(4, "vh"));
         }
 
         #endregion Métodos

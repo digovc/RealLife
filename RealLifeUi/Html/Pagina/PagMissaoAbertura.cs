@@ -72,13 +72,6 @@ namespace RealLifeUi.Html.Pagina
 
         #region Métodos
 
-        protected override void addJsCodigo(JavaScriptTag tagJs)
-        {
-            base.addJsCodigo(tagJs);
-
-            tagJs.addJs(string.Format("RealLifeUi.{0}.i.iniciar();", this.GetType().Name));
-        }
-
         protected override void inicializar()
         {
             base.inicializar();
@@ -106,7 +99,6 @@ namespace RealLifeUi.Html.Pagina
             base.setCss(css);
 
             this.addCss(css.setBottom(0));
-            this.addCss(css.setOverflow("hidden"));
             this.addCss(css.setPosition("absolute"));
             this.addCss(css.setWidth(100, "%"));
 

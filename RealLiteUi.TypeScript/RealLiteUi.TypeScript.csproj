@@ -68,6 +68,7 @@
   </ItemGroup>
   <ItemGroup>
     <TypeScriptCompile Include="AppRealLifeUi.ts" />
+    <TypeScriptCompile Include="Client.ts" />
     <TypeScriptCompile Include="html\componente\interface\DivAtalho.ts" />
     <TypeScriptCompile Include="html\componente\interface\DivAtalhoItem.ts" />
     <TypeScriptCompile Include="html\componente\interface\DivBanco.ts" />
@@ -79,6 +80,12 @@
     <TypeScriptCompile Include="html\componente\interface\DivTimer.ts" />
     <TypeScriptCompile Include="html\componente\interface\menu\DivMenuInterativo.ts" />
     <TypeScriptCompile Include="html\componente\interface\menu\DivMenuInterativoItem.ts" />
+    <TypeScriptCompile Include="html\componente\CampoRealLifeUi.ts" />
+    <TypeScriptCompile Include="html\componente\login\DivLoginBase.ts" />
+    <TypeScriptCompile Include="html\componente\login\DivLoginCabecalho.ts" />
+    <TypeScriptCompile Include="html\componente\login\DivLoginContaCadastro.ts" />
+    <TypeScriptCompile Include="html\componente\login\DivLoginEntrar.ts" />
+    <TypeScriptCompile Include="html\componente\login\DivLoginTab.ts" />
     <TypeScriptCompile Include="html\componente\missao\DivMissaoBase.ts" />
     <TypeScriptCompile Include="html\componente\missao\DivMissaoDinheiro.ts" />
     <TypeScriptCompile Include="html\componente\missao\DivMissaoResultado.ts" />
@@ -89,7 +96,7 @@
     <TypeScriptCompile Include="html\pagina\PagLogin.ts" />
     <TypeScriptCompile Include="html\pagina\PagMissaoAbertura.ts" />
     <TypeScriptCompile Include="html\pagina\PagMissaoConclusao.ts" />
-    <TypeScriptCompile Include="html\pagina\PagRealLifeBase.ts" />
+    <TypeScriptCompile Include="html\pagina\PagRealLifeUiBase.ts" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />

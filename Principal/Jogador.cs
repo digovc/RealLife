@@ -1,5 +1,6 @@
 ﻿using GTANetworkServer;
-using GTANetworkShared;
+using RealLife.DataBase.Dominio;
+using System.Threading;
 
 namespace RealLife
 {
@@ -7,28 +8,15 @@ namespace RealLife
     {
         #region Constantes
 
+        private const string STR_METODO_ENTRAR = "STR_METODO_ENTRAR";
+        private const string STR_METODO_ENTRAR_SUCESSO = "STR_METODO_ENTRAR_SUCESSO";
+
         #endregion Constantes
 
         #region Atributos
 
-        private static Jogador _i;
-
         private Client _objClient;
-
-        public static Jogador i
-        {
-            get
-            {
-                if (_i != null)
-                {
-                    return _i;
-                }
-
-                _i = new Jogador();
-
-                return _i;
-            }
-        }
+        private JogadorDominio _objJogador;
 
         public Client objClient
         {
@@ -39,14 +27,20 @@ namespace RealLife
 
             set
             {
-                if (_objClient == value)
-                {
-                    return;
-                }
-
                 _objClient = value;
+            }
+        }
 
-                this.setObjClient(_objClient);
+        private JogadorDominio objJogador
+        {
+            get
+            {
+                return _objJogador;
+            }
+
+            set
+            {
+                _objJogador = value;
             }
         }
 
@@ -54,29 +48,74 @@ namespace RealLife
 
         #region Construtores
 
-        private Jogador()
-        {
-        }
-
         #endregion Construtores
 
         #region Métodos
 
-        private void setObjClient(Client objClient)
+        internal void iniciar()
         {
-            this.test();
+            this.setEventos();
         }
 
-        private void test()
+        private void entrar(object[] arrObjArg)
         {
-            //AppRealLife.i.api.createVehicle(VehicleHash.Kuruma2, new Vector3(), new Vector3(), 0, 0);
-            //AppRealLife.i.api.givePlayerWeapon(objClient, WeaponHash.Minigun, int.MaxValue, false, true);
-            //AppRealLife.i.api.setEntityPosition(objClient.handle, new Vector3());
+            // TODO: Implementar a leitura dos argumentos.
+
+            this.objJogador = new JogadorDominio();
+
+            // TODO: Validar dados do jogador.
+
+            this.entrarSucesso();
+        }
+
+        private void entrarSucesso()
+        {
+            ClientRealLife.i.executarJson(this.objClient, this.GetType().Name, "entrarSucesso", this.objJogador);
+        }
+
+        private void processarOnClientEventTrigger(string strMetodo, object[] arrObjArg)
+        {
+            switch (strMetodo)
+            {
+                case STR_METODO_ENTRAR:
+                    this.entrar(arrObjArg);
+                    return;
+            }
+        }
+
+        private void setEventos()
+        {
+            AppRealLife.i.api.onClientEventTrigger += this.onClientEventTrigger;
         }
 
         #endregion Métodos
 
         #region Eventos
+
+        private void onClientEventTrigger(Client objClient, string strMetodo, object[] arrObjArg)
+        {
+            new Thread(() => this.onClientEventTriggerLocal(objClient, strMetodo, arrObjArg)).Start();
+        }
+
+        private void onClientEventTriggerLocal(Client objClient, string strMetodo, object[] arrObjArg)
+        {
+            if (this.objClient == null)
+            {
+                return;
+            }
+
+            if (!this.objClient.Equals(objClient))
+            {
+                return;
+            }
+
+            if (string.IsNullOrEmpty(strMetodo))
+            {
+                return;
+            }
+
+            this.processarOnClientEventTrigger(strMetodo, arrObjArg);
+        }
 
         #endregion Eventos
     }

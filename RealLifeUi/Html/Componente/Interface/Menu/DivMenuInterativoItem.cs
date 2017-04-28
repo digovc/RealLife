@@ -13,9 +13,7 @@ namespace RealLifeUi.Html.Componente.Interface.Menu
         #region Atributos
 
         private Div _divIcone;
-
         private Div _divNome;
-
         private Div _divValor;
 
         private Div divIcone

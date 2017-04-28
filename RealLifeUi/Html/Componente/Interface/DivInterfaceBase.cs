@@ -75,17 +75,17 @@ namespace RealLifeUi.Html.Componente.Interface
         {
             base.setCss(css);
 
-            this.addCss(css.setMarginTop(5));
+            this.addCss(css.setMarginTop(1, "vh"));
             this.addCss(css.setPosition("relative"));
             this.addCss(css.setTextAlign("right"));
 
             this.divConteudo.addCss(css.setBackgroundColor("rgba(0,0,0,0.5)"));
             this.divConteudo.addCss(css.setBorderRadius(50));
             this.divConteudo.addCss(css.setFloat("right"));
-            this.divConteudo.addCss(css.setHeight(25));
-            this.divConteudo.addCss(css.setLineHeight(25));
-            this.divConteudo.addCss(css.setPaddingLeft(30));
-            this.divConteudo.addCss(css.setPaddingRight(10));
+            this.divConteudo.addCss(css.setHeight(4, "vh"));
+            this.divConteudo.addCss(css.setLineHeight(2, "vh"));
+            this.divConteudo.addCss(css.setPaddingLeft(3, "vw"));
+            this.divConteudo.addCss(css.setPaddingRight(2, "vw"));
             this.divConteudo.addCss(css.setPosition("relative"));
 
             this.divIcone.addCss(css.setBackgroundColor("rgba(0,0,0,0.25)"));
@@ -93,7 +93,7 @@ namespace RealLifeUi.Html.Componente.Interface
             this.divIcone.addCss(css.setHeight(100, "%"));
             this.divIcone.addCss(css.setLeft(0));
             this.divIcone.addCss(css.setPosition("absolute"));
-            this.divIcone.addCss(css.setWidth(25));
+            this.divIcone.addCss(css.setWidth(4, "vh"));
         }
 
         protected override void setStrId(string strId)

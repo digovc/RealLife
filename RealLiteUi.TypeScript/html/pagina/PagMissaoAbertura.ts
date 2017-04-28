@@ -11,7 +11,7 @@ module RealLifeUi
     // #region Enumerados
     // #endregion Enumerados
 
-    export class PagMissaoAbertura extends PagRealLifeBase
+    export class PagMissaoAbertura extends PagRealLifeUiBase
     {
         // #region Constantes
         // #endregion Constantes

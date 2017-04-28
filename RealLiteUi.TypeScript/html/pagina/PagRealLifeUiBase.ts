@@ -1,13 +1,17 @@
-﻿module RealLifeDominio
+﻿/// <reference path="../../../Web.TypeScript/html/pagina/PagMobile.ts"/>
+
+module RealLifeUi
 {
     // #region Importações
+
+    import PagMobile = Web.PagMobile;
 
     // #endregion Importações
 
     // #region Enumerados
     // #endregion Enumerados
 
-    export abstract class DominioRealLifeBase
+    export abstract class PagRealLifeUiBase extends PagMobile
     {
         // #region Constantes
         // #endregion Constantes
@@ -19,22 +23,6 @@
         // #endregion Construtores
 
         // #region Métodos
-
-        public copiarDados(jsn: string): void
-        {
-            if (jsn == null)
-            {
-                return;
-            }
-
-            var obj = JSON.parse(jsn);
-
-            for (var objPropriedade in obj)
-            {
-                (<any>this)[objPropriedade] = obj[objPropriedade];
-            }
-        }
-
         // #endregion Métodos
 
         // #region Eventos

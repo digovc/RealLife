@@ -1,13 +1,17 @@
-﻿module RealLifeDominio
+﻿/// <reference path="../../../../Web.TypeScript/html/componente/ComponenteHtml.ts"/>
+
+module RealLifeUi
 {
     // #region Importações
+
+    import ComponenteHtml = Web.ComponenteHtml;
 
     // #endregion Importações
 
     // #region Enumerados
     // #endregion Enumerados
 
-    export abstract class DominioRealLifeBase
+    export abstract class DivLoginBase extends ComponenteHtml
     {
         // #region Constantes
         // #endregion Constantes
@@ -19,22 +23,6 @@
         // #endregion Construtores
 
         // #region Métodos
-
-        public copiarDados(jsn: string): void
-        {
-            if (jsn == null)
-            {
-                return;
-            }
-
-            var obj = JSON.parse(jsn);
-
-            for (var objPropriedade in obj)
-            {
-                (<any>this)[objPropriedade] = obj[objPropriedade];
-            }
-        }
-
         // #endregion Métodos
 
         // #region Eventos

@@ -18,6 +18,7 @@
 
   <!--javascript-->
   <file src="ui/res/js/lib/jquery-3.1.0.min.js" />
+  <file src="ui/res/js/lib/md5.min.js" />
   <file src="ui/res/js/RealLifeUi.js" />
 
   <!--web_typescript-->

@@ -6,7 +6,7 @@ module RealLife
     // #region Enumerados
     // #endregion Enumerados
 
-    export abstract class Utils
+    export abstract class UtilsRealLife
     {
         // #region Constantes
 
@@ -24,7 +24,7 @@ module RealLife
 
         public static getBooStrVazia(str: string): boolean
         {
-            return ((str == null) || (str == Utils.STR_VAZIA));
+            return ((str == null) || (str == UtilsRealLife.STR_VAZIA));
         }
 
         // #endregion Métodos

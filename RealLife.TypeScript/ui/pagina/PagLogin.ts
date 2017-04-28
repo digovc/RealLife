@@ -1,8 +1,14 @@
+/// <reference path="../../../RealLifeDominio.TypeScript/JogadorDominio.ts"/>
+/// <reference path="../../typedefinition/gta-network-typescript/content/types-gtanetwork/index.d.ts" />
+/// <reference path="../../UtilsRealLife.ts"/>
 /// <reference path="PagRealLifeBase.ts"/>
 
 module RealLife
 {
     // #region Importações
+
+    import JogadorDominio = RealLifeDominio.JogadorDominio;
+
     // #endregion Importações
 
     // #region Enumerados
@@ -36,9 +42,37 @@ module RealLife
 
         // #region Métodos
 
+        public abrir(): void
+        {
+            super.abrir();
+
+            Screen.i.booMostrarMouse = true;
+        }
+
         protected getUrl(): string
         {
             return "ui/pag_login.html";
+        }
+
+        public entrar(jsnJogador: string): void
+        {
+            if (UtilsRealLife.getBooStrVazia(jsnJogador))
+            {
+                return;
+            }
+
+            var objJogador = new JogadorDominio();
+
+            objJogador.copiarDados(jsnJogador);
+
+            Jogador.i.entrar(objJogador);
+        }
+
+        public entrarSucesso(): void
+        {
+            this.objBrowserRealLife.destruir();
+
+            Screen.i.booMostrarMouse = false;
         }
 
         // #endregion Métodos

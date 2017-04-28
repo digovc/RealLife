@@ -1,8 +1,9 @@
-﻿using GTANetworkServer;
+﻿using DigoFramework;
+using GTANetworkServer;
 
 namespace RealLife
 {
-    internal class AppRealLife
+    internal class AppRealLife : Objeto
     {
         #region Constantes
 
@@ -50,30 +51,25 @@ namespace RealLife
         {
         }
 
-        public void iniciar(API api)
-        {
-            this.api = api;
-
-            this.setEventos();
-        }
-
-        private void setEventos()
-        {
-            this.api.onPlayerConnected += this.api_onPlayerConnected;
-        }
-
         #endregion Construtores
 
         #region Métodos
 
+        public void iniciar(API api)
+        {
+            this.api = api;
+
+            this.inicializar();
+        }
+
+        private void inicializar()
+        {
+            JogadorManager.i.iniciar();
+        }
+
         #endregion Métodos
 
         #region Eventos
-
-        private void api_onPlayerConnected(Client objClient)
-        {
-            Jogador.i.objClient = objClient;
-        }
 
         #endregion Eventos
     }

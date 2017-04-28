@@ -27,7 +27,25 @@ module RealLife
             return Screen._i;
         }
 
+        private _booMostrarMouse: boolean;
         private _objResolucao: System.Drawing.Size;
+
+        public get booMostrarMouse(): boolean
+        {
+            return this._booMostrarMouse;
+        }
+
+        public set booMostrarMouse(booMostrarMouse: boolean)
+        {
+            if (this._booMostrarMouse == booMostrarMouse)
+            {
+                return;
+            }
+
+            this._booMostrarMouse = booMostrarMouse;
+
+            this.setBooMostrarMouse(this._booMostrarMouse);
+        }
 
         public get objResolucao(): System.Drawing.Size
         {
@@ -47,6 +65,22 @@ module RealLife
         // #endregion Construtores
 
         // #region Métodos
+
+        public notificar(strNotificacao: string): void
+        {
+            if (UtilsRealLife.getBooStrVazia(strNotificacao))
+            {
+                return;
+            }
+
+            API.sendNotification(strNotificacao);
+        }
+
+        private setBooMostrarMouse(booMostrarMouse: boolean): void
+        {
+            API.showCursor(booMostrarMouse);
+        }
+
         // #endregion Métodos
 
         // #region Eventos

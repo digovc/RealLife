@@ -1,4 +1,4 @@
-﻿/// <reference path="PagRealLifeBase.ts"/>
+﻿/// <reference path="PagRealLifeUiBase.ts"/>
 
 module RealLifeUi
 {
@@ -8,7 +8,7 @@ module RealLifeUi
     // #region Enumerados
     // #endregion Enumerados
 
-    export class PagInterface extends PagRealLifeBase
+    export class PagInterface extends PagRealLifeUiBase
     {
         // #region Constantes
         // #endregion Constantes

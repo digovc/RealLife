@@ -51,6 +51,7 @@ module RealLife
 
             API.onChatCommand.connect((strComando: string) => { this.dispararEvtOnChatCommandListener(strComando); });
             API.onUpdate.connect(() => { this.dispararEvtOnUpdateListener(); });
+            API.onKeyUp.connect((objSender: any, arg: any) => { this.dispararEvtOnKeyUpListener(objSender, arg); });
         }
 
         // #endregion Métodos
@@ -90,7 +91,7 @@ module RealLife
 
         private dispararEvtOnChatCommandListener(strComando: string): void
         {
-            if (Utils.getBooStrVazia(strComando))
+            if (UtilsRealLife.getBooStrVazia(strComando))
             {
                 return;
             }
@@ -127,6 +128,82 @@ module RealLife
         }
 
         // #endregion OnChatCommandListener
+
+        // #region OnKeyUpListener
+
+        private _arrEvtOnKeyUpListener: Array<OnKeyUpListener>;
+
+        private get arrEvtOnKeyUpListener(): Array<OnKeyUpListener>
+        {
+            if (this._arrEvtOnKeyUpListener != null)
+            {
+                return this._arrEvtOnKeyUpListener;
+            }
+
+            this._arrEvtOnKeyUpListener = new Array<OnKeyUpListener>();
+
+            return this._arrEvtOnKeyUpListener;
+        }
+
+        public addEvtOnKeyUpListener(evtOnKeyUpListener: OnKeyUpListener): void
+        {
+            if (evtOnKeyUpListener == null)
+            {
+                return;
+            }
+
+            if (this.arrEvtOnKeyUpListener.indexOf(evtOnKeyUpListener) > -1)
+            {
+                return;
+            }
+
+            this.arrEvtOnKeyUpListener.push(evtOnKeyUpListener);
+        }
+
+        private dispararEvtOnKeyUpListener(objSender: Object, arg: System.Windows.Forms.KeyEventArgs): void
+        {
+            if (objSender == null)
+            {
+                return;
+            }
+
+            if (arg == null)
+            {
+                return;
+            }
+
+            if (this.arrEvtOnKeyUpListener.length == 0)
+            {
+                return;
+            }
+
+            this.arrEvtOnKeyUpListener.forEach((evt) =>
+            {
+                if (evt == null)
+                {
+                    return;
+                }
+
+                evt.onKeyUp(objSender, arg);
+            });
+        }
+
+        public removerEvtOnKeyUpListener(evt: OnKeyUpListener): void
+        {
+            if (evt == null)
+            {
+                return;
+            }
+
+            if (this.arrEvtOnKeyUpListener.indexOf(evt) == -1)
+            {
+                return;
+            }
+
+            this.arrEvtOnKeyUpListener.splice(this.arrEvtOnKeyUpListener.indexOf(evt), 1);
+        }
+
+        // #endregion OnKeyUpListener
 
         // #region OnUpdateListener
 

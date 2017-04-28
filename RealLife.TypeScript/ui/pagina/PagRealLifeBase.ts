@@ -15,23 +15,23 @@ module RealLife
 
         // #region Atributos
 
-        private _objBrowser: Browser;
+        private _objBrowserRealLife: BrowserRealLife;
 
-        protected get objBrowser(): Browser
+        protected get objBrowserRealLife(): BrowserRealLife
         {
-            if (this._objBrowser != null)
+            if (this._objBrowserRealLife != null)
             {
-                return this._objBrowser;
+                return this._objBrowserRealLife;
             }
 
-            this._objBrowser = this.getObjBrowser();
+            this._objBrowserRealLife = this.getobjBrowserRealLife();
 
-            return this._objBrowser;
+            return this._objBrowserRealLife;
         }
 
-        protected set objBrowser(objBrowser: Browser)
+        protected set objBrowserRealLife(objBrowserRealLife: BrowserRealLife)
         {
-            this._objBrowser = objBrowser;
+            this._objBrowserRealLife = objBrowserRealLife;
         }
 
         // #endregion Atributos
@@ -43,17 +43,16 @@ module RealLife
 
         public abrir(): void
         {
-            this.objBrowser.abrir();
+            this.objBrowserRealLife.abrir();
         }
 
-        private getObjBrowser(): Browser
+        private getobjBrowserRealLife(): BrowserRealLife
         {
-            var objBrowserResultado = new Browser();
+            var objBrowserRealLifeResultado = new BrowserRealLife();
 
-            objBrowserResultado.objResolucao = Screen.i.objResolucao;
-            objBrowserResultado.url = this.getUrl();
+            objBrowserRealLifeResultado.url = this.getUrl();
 
-            return objBrowserResultado;
+            return objBrowserRealLifeResultado;
         }
 
         protected abstract getUrl(): string;

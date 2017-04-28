@@ -50,16 +50,18 @@
   <ItemGroup>
     <TypeScriptCompile Include="AppRealLife.ts" />
     <TypeScriptCompile Include="evento\OnChatCommandListener.ts" />
+    <TypeScriptCompile Include="evento\OnKeyUpListener.ts" />
     <TypeScriptCompile Include="evento\OnUpdateListener.ts" />
+    <TypeScriptCompile Include="Jogador.ts" />
     <TypeScriptCompile Include="Objeto.ts" />
     <TypeScriptCompile Include="Screen.ts" />
     <TypeScriptCompile Include="ScriptManager.ts" />
-    <TypeScriptCompile Include="Test.ts" />
+    <TypeScriptCompile Include="Server.ts" />
     <TypeScriptCompile Include="typedefinition\gta-network-typescript\content\types-gtanetwork\index.d.ts" />
-    <TypeScriptCompile Include="ui\Browser.ts" />
+    <TypeScriptCompile Include="ui\BrowserRealLife.ts" />
     <TypeScriptCompile Include="ui\pagina\PagLogin.ts" />
     <TypeScriptCompile Include="ui\pagina\PagRealLifeBase.ts" />
-    <TypeScriptCompile Include="Utils.ts" />
+    <TypeScriptCompile Include="UtilsRealLife.ts" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="tsconfig.json" />

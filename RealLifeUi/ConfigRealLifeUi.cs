@@ -1,8 +1,8 @@
-﻿using DigoFramework;
+﻿using NetZ.Web;
 
 namespace RealLifeUi
 {
-    internal class TemaRealLife : TemaBase
+    internal class ConfigRealLifeUi : ConfigWebBase
     {
         #region Constantes
 
@@ -10,9 +10,9 @@ namespace RealLifeUi
 
         #region Atributos
 
-        private static TemaRealLife _i;
+        private static ConfigRealLifeUi _i;
 
-        public static TemaRealLife i
+        public static ConfigRealLifeUi i
         {
             get
             {
@@ -21,7 +21,7 @@ namespace RealLifeUi
                     return _i;
                 }
 
-                _i = new TemaRealLife();
+                _i = new ConfigRealLifeUi();
 
                 return _i;
             }
@@ -31,7 +31,7 @@ namespace RealLifeUi
 
         #region Construtores
 
-        private TemaRealLife()
+        private ConfigRealLifeUi()
         {
         }
 

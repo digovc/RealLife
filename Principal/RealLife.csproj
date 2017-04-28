@@ -52,10 +52,14 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AppRealLife.cs" />
+    <Compile Include="ClientRealLife.cs" />
     <Compile Include="DataBase\DbeRealLife.cs" />
+    <Compile Include="DataBase\Dominio\DominioRealLifeBase.cs" />
+    <Compile Include="DataBase\Dominio\JogadorDominio.cs" />
     <Compile Include="DataBase\Tabela\TblJogador.cs" />
     <Compile Include="DataBase\Tabela\TblRealLifeBase.cs" />
     <Compile Include="Jogador.cs" />
+    <Compile Include="JogadorManager.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ScriptManager.cs" />
   </ItemGroup>
@@ -73,10 +77,6 @@
     <ProjectReference Include="..\Persistencia\NetZ.Persistencia.csproj">
       <Project>{5fdebacf-1812-47a0-8fba-25db3ad2b31c}</Project>
       <Name>NetZ.Persistencia</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Web\NetZ.Web.csproj">
-      <Project>{bf12701f-12d8-41d0-9269-d8921568aa82}</Project>
-      <Name>NetZ.Web</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup />
