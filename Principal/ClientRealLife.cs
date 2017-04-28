@@ -1,4 +1,5 @@
-﻿using GTANetworkServer;
+﻿using DigoFramework.Json;
+using GTANetworkServer;
 using RealLife.DataBase.Dominio;
 
 namespace RealLife
@@ -40,7 +41,7 @@ namespace RealLife
 
         #region Métodos
 
-        public void executarJson(Client objClient, string strClassName, string strMetodoNome, DominioRealLifeBase objDominio)
+        public void executar(Client objClient, string strClassName, string strMetodoNome, DominioRealLifeBase objDominio = null)
         {
             if (objClient == null)
             {
@@ -62,7 +63,14 @@ namespace RealLife
             strCodigo = strCodigo.Replace("_class_name", strClassName);
             strCodigo = strCodigo.Replace("_method_name", strMetodoNome);
 
-            AppRealLife.i.api.triggerClientEvent(objClient, strCodigo, objDominio);
+            if (objDominio == null)
+            {
+                AppRealLife.i.api.triggerClientEvent(objClient, strCodigo);
+            }
+            else
+            {
+                AppRealLife.i.api.triggerClientEvent(objClient, strCodigo, Json.i.toJson(objDominio));
+            }
         }
 
         #endregion Métodos

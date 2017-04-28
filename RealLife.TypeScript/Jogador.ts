@@ -1,9 +1,11 @@
+/// <reference path="../RealLifeDominio.TypeScript/ErroDominio.ts"/>
 /// <reference path="../RealLifeDominio.TypeScript/JogadorDominio.ts"/>
 
 module RealLife
 {
     // #region Importações
 
+    import ErroDominio = RealLifeDominio.ErroDominio;
     import JogadorDominio = RealLifeDominio.JogadorDominio;
 
     // #endregion Importações
@@ -64,21 +66,14 @@ module RealLife
 
             this.objJogador = objJogador;
 
-            Server.i.executarJson(Jogador.name, Jogador.STR_METODO_CRIAR_CONTA, objJogador);
+            ServerRealLife.i.executarJson(Jogador.name, Jogador.STR_METODO_CRIAR_CONTA, objJogador);
         }
 
-        public criarContaSucesso(objJogador: JogadorDominio): void
+        public criarContaSucesso(): void
         {
-            if (objJogador == null)
-            {
-                return;
-            }
-
-            this.objJogador = objJogador;
-
             PagLogin.i.criarContaSucesso();
 
-            this.entrarSucessoNotificar();
+            this.criarContaSucessoNotificar();
         }
 
         private criarContaSucessoNotificar(): void
@@ -107,17 +102,19 @@ module RealLife
 
             this.objJogador = objJogador;
 
-            Server.i.executarJson(Jogador.name, Jogador.STR_METODO_ENTRAR, objJogador);
+            ServerRealLife.i.executarJson(Jogador.name, Jogador.STR_METODO_ENTRAR, objJogador);
         }
 
-        public entrarSucesso(objJogador: JogadorDominio): void
+        public entrarSucesso(jsnJogador: string): void
         {
-            if (objJogador == null)
+            if (UtilsRealLife.getBooStrVazia(jsnJogador))
             {
                 return;
             }
 
-            this.objJogador = objJogador;
+            this.objJogador = new JogadorDominio();
+
+            this.objJogador.copiarDados(jsnJogador);
 
             PagLogin.i.entrarSucesso();
 
@@ -139,6 +136,20 @@ module RealLife
             var strNotificacao = "Seja bem vindo _player_gametag!".replace("_player_gametag", this.objJogador.strGametag);
 
             Screen.i.notificar(strNotificacao);
+        }
+
+        public processarErro(jsnErro: string): void
+        {
+            if (UtilsRealLife.getBooStrVazia(jsnErro))
+            {
+                return;
+            }
+
+            var objErro = new ErroDominio();
+
+            objErro.copiarDados(jsnErro);
+
+            Screen.i.notificarErro(objErro);
         }
 
         // #endregion Métodos

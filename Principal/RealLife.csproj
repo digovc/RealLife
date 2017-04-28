@@ -56,6 +56,7 @@
     <Compile Include="DataBase\DbeRealLife.cs" />
     <Compile Include="DataBase\Dominio\DominioRealLifeBase.cs" />
     <Compile Include="DataBase\Dominio\JogadorDominio.cs" />
+    <Compile Include="DataBase\Dominio\ErroDominio.cs" />
     <Compile Include="DataBase\Tabela\TblJogador.cs" />
     <Compile Include="DataBase\Tabela\TblRealLifeBase.cs" />
     <Compile Include="Jogador.cs" />

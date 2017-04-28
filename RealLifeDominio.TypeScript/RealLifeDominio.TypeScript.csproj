@@ -66,6 +66,7 @@
   </ItemGroup>
   <ItemGroup>
     <TypeScriptCompile Include="DominioRealLifeBase.ts" />
+    <TypeScriptCompile Include="ErroDominio.ts" />
     <TypeScriptCompile Include="MissaoConclusaoDominio.ts" />
   </ItemGroup>
   <ItemGroup>

@@ -1,5 +1,7 @@
 ﻿using GTANetworkServer;
 using RealLife.DataBase.Dominio;
+using RealLife.DataBase.Tabela;
+using System;
 using System.Threading;
 
 namespace RealLife
@@ -64,14 +66,14 @@ namespace RealLife
 
             this.objJogador = new JogadorDominio();
 
-            // TODO: Validar dados do jogador.
+            TblJogador.i.criarConta(this.objJogador);
 
             this.criarContaSucesso();
         }
 
         private void criarContaSucesso()
         {
-            ClientRealLife.i.executarJson(this.objClient, this.GetType().Name, "criarContaSucesso", this.objJogador);
+            ClientRealLife.i.executar(this.objClient, this.GetType().Name, "criarContaSucesso");
         }
 
         private void entrar(object[] arrObjArg)
@@ -87,7 +89,21 @@ namespace RealLife
 
         private void entrarSucesso()
         {
-            ClientRealLife.i.executarJson(this.objClient, this.GetType().Name, "entrarSucesso", this.objJogador);
+            ClientRealLife.i.executar(this.objClient, this.GetType().Name, "entrarSucesso", this.objJogador);
+        }
+
+        private void processarErro(Exception ex)
+        {
+            if (ex == null)
+            {
+                return;
+            }
+
+            var objErro = new ErroDominio();
+
+            objErro.strMensagem = ex.Message;
+
+            ClientRealLife.i.executar(this.objClient, this.GetType().Name, "processarErro", objErro);
         }
 
         private void processarOnClientEventTrigger(string strMetodo, object[] arrObjArg)
@@ -135,7 +151,14 @@ namespace RealLife
                 return;
             }
 
-            this.processarOnClientEventTrigger(strMetodo, arrObjArg);
+            try
+            {
+                this.processarOnClientEventTrigger(strMetodo, arrObjArg);
+            }
+            catch (Exception ex)
+            {
+                this.processarErro(ex);
+            }
         }
 
         #endregion Eventos

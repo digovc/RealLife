@@ -1,6 +1,11 @@
+/// <reference path="../RealLifeDominio.TypeScript/ErroDominio.ts"/>
+
 module RealLife
 {
     // #region Importações
+
+    import ErroDominio = RealLifeDominio.ErroDominio;
+
     // #endregion Importações
 
     // #region Enumerados
@@ -74,6 +79,16 @@ module RealLife
             }
 
             API.sendNotification(strNotificacao);
+        }
+
+        public notificarErro(objErro: ErroDominio): void
+        {
+            if (objErro == null)
+            {
+                return;
+            }
+
+            API.sendNotification("~r~" + objErro.strMensagem);
         }
 
         private setBooMostrarMouse(booMostrarMouse: boolean): void

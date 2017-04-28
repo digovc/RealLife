@@ -56,7 +56,7 @@
     <TypeScriptCompile Include="Objeto.ts" />
     <TypeScriptCompile Include="Screen.ts" />
     <TypeScriptCompile Include="ScriptManager.ts" />
-    <TypeScriptCompile Include="Server.ts" />
+    <TypeScriptCompile Include="ServerRealLife.ts" />
     <TypeScriptCompile Include="typedefinition\gta-network-typescript\content\types-gtanetwork\index.d.ts" />
     <TypeScriptCompile Include="ui\BrowserRealLife.ts" />
     <TypeScriptCompile Include="ui\pagina\PagLogin.ts" />
