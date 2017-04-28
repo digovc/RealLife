@@ -115,6 +115,30 @@ module RealLifeUi
 
         // #region Métodos
 
+        private criarConta(): void
+        {
+            if (!this.criarContaValidar())
+            {
+                return;
+            }
+
+            var objJogador = new JogadorDominio();
+
+            this.divLoginContaCadastro.carregarDados(objJogador);
+
+            Client.i.executarJson(PagLogin.name, "criarConta", objJogador);
+        }
+
+        private criarContaValidar(): boolean
+        {
+            if (!this.divLoginContaCadastro.criarContaValidar())
+            {
+                return false;
+            }
+
+            return true;
+        }
+
         private entrar(): void
         {
             if (!this.entrarValidar())
@@ -131,7 +155,7 @@ module RealLifeUi
 
         private entrarValidar(): boolean
         {
-            if (!this.divLoginEntrar.validarEntrar())
+            if (!this.divLoginEntrar.entrarValidar())
             {
                 Mensagem.mostrar("Erro", "Dados inválidos.", Web.Mensagem_EnmTipo.NEGATIVA);
                 return;
@@ -185,12 +209,7 @@ module RealLifeUi
                 return;
             }
 
-            this.salvar();
-        }
-
-        private salvar(): void
-        {
-            throw "Não implementado.";
+            this.criarConta();
         }
 
         // #endregion Métodos

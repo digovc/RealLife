@@ -101,6 +101,15 @@
             this.cmpStrSenhaRepetir.setPai(this.divConteudo);
         }
 
+        protected override void setStrId(string strId)
+        {
+            base.setStrId(strId);
+
+            this.cmpStrEmail.strId = (strId + "_cmpStrEmail");
+            this.cmpStrGameTag.strId = (strId + "_cmpStrGameTag");
+            this.cmpStrSenha.strId = (strId + "_cmpStrSenha");
+            this.cmpStrSenhaRepetir.strId = (strId + "_cmpStrSenhaRepetir");
+        }
         #endregion Métodos
 
         #region Eventos

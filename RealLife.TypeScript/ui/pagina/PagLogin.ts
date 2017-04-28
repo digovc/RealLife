@@ -49,6 +49,27 @@ module RealLife
             Screen.i.booMostrarMouse = true;
         }
 
+        public criarConta(jsnJogador: string): void
+        {
+            if (UtilsRealLife.getBooStrVazia(jsnJogador))
+            {
+                return;
+            }
+
+            var objJogador = new JogadorDominio();
+
+            objJogador.copiarDados(jsnJogador);
+
+            Jogador.i.criarConta(objJogador);
+        }
+
+        public criarContaSucesso(): void
+        {
+            this.objBrowserRealLife.destruir();
+
+            Screen.i.booMostrarMouse = false;
+        }
+
         protected getUrl(): string
         {
             return "ui/pag_login.html";

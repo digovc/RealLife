@@ -15,6 +15,7 @@ module RealLife
     {
         // #region Constantes
 
+        private static get STR_METODO_CRIAR_CONTA(): string { return "STR_METODO_CRIAR_CONTA" };
         private static get STR_METODO_ENTRAR(): string { return "STR_METODO_ENTRAR" };
 
         // #endregion Constantes
@@ -53,6 +54,49 @@ module RealLife
         // #endregion Construtores
 
         // #region Métodos
+
+        public criarConta(objJogador: JogadorDominio): void
+        {
+            if (objJogador == null)
+            {
+                return;
+            }
+
+            this.objJogador = objJogador;
+
+            Server.i.executarJson(Jogador.name, Jogador.STR_METODO_CRIAR_CONTA, objJogador);
+        }
+
+        public criarContaSucesso(objJogador: JogadorDominio): void
+        {
+            if (objJogador == null)
+            {
+                return;
+            }
+
+            this.objJogador = objJogador;
+
+            PagLogin.i.criarContaSucesso();
+
+            this.entrarSucessoNotificar();
+        }
+
+        private criarContaSucessoNotificar(): void
+        {
+            if (this.objJogador == null)
+            {
+                return;
+            }
+
+            if (UtilsRealLife.getBooStrVazia(this.objJogador.strGametag))
+            {
+                return;
+            }
+
+            var strNotificacao = "Sua conta foi criada com sucesso _player_gametag!".replace("_player_gametag", this.objJogador.strGametag);
+
+            Screen.i.notificar(strNotificacao);
+        }
 
         public entrar(objJogador: JogadorDominio): void
         {

@@ -63,7 +63,7 @@ namespace RealLife
             this.setEventos();
         }
 
-        private void processarOnPlayerConnected(ClientRealLife objClient)
+        private void processarOnPlayerConnected(Client objClient)
         {
             if (objClient == null)
             {
@@ -88,7 +88,7 @@ namespace RealLife
 
         #region Eventos
 
-        private void onPlayerConnected(ClientRealLife objClient)
+        private void onPlayerConnected(Client objClient)
         {
             this.processarOnPlayerConnected(objClient);
         }

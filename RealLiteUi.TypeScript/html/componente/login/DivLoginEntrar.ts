@@ -1,5 +1,4 @@
 ﻿/// <reference path="../../../../RealLifeDominio.TypeScript/JogadorDominio.ts"/>
-/// <reference path="../../../../web.typescript/typedefinition/md5.d.ts" />
 /// <reference path="../../../../Web.TypeScript/Utils.ts"/>
 
 module RealLifeUi
@@ -77,36 +76,10 @@ module RealLifeUi
                 objJogador.strGametag = this.cmpStrLogin.txt.strValor;
             }
 
-            objJogador.strSenha = this.getStrSenhaEncriptada();
+            objJogador.strSenha = this.encriptar(this.cmpStrSenha.txt.strValor);
         }
 
-        private getStrSenhaEncriptada(): string
-        {
-            if (Utils.getBooStrVazia(this.cmpStrLogin.txt.strValor))
-            {
-                return null;
-            }
-
-            var strSenhaResultado = "GTA_Real_Life__senha";
-
-            strSenhaResultado = strSenhaResultado.replace("_senha", this.cmpStrLogin.txt.strValor);
-
-            strSenhaResultado = md5(strSenhaResultado);
-
-            return strSenhaResultado;
-        }
-
-        protected inicializar(): void
-        {
-            super.inicializar();
-
-            this.cmpStrLogin.iniciar();
-            this.cmpStrSenha.iniciar();
-
-            window.setTimeout((() => { this.cmpStrLogin.txt.receberFoco(); }), 350);
-        }
-
-        public validarEntrar(): boolean
+        public entrarValidar(): boolean
         {
             if (Utils.getBooStrVazia(this.cmpStrLogin.txt.strValor))
             {
@@ -133,6 +106,16 @@ module RealLifeUi
             }
 
             return true;
+        }
+
+        protected inicializar(): void
+        {
+            super.inicializar();
+
+            this.cmpStrLogin.iniciar();
+            this.cmpStrSenha.iniciar();
+
+            window.setTimeout((() => { this.cmpStrLogin.txt.receberFoco(); }), 350);
         }
 
         // #endregion Métodos

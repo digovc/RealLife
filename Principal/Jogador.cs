@@ -8,6 +8,7 @@ namespace RealLife
     {
         #region Constantes
 
+        private const string STR_METODO_CRIAR_CONTA = "STR_METODO_CRIAR_CONTA";
         private const string STR_METODO_ENTRAR = "STR_METODO_ENTRAR";
         private const string STR_METODO_ENTRAR_SUCESSO = "STR_METODO_ENTRAR_SUCESSO";
 
@@ -57,6 +58,22 @@ namespace RealLife
             this.setEventos();
         }
 
+        private void criarConta(object[] arrObjArg)
+        {
+            // TODO: Implementar a leitura dos argumentos.
+
+            this.objJogador = new JogadorDominio();
+
+            // TODO: Validar dados do jogador.
+
+            this.criarContaSucesso();
+        }
+
+        private void criarContaSucesso()
+        {
+            ClientRealLife.i.executarJson(this.objClient, this.GetType().Name, "criarContaSucesso", this.objJogador);
+        }
+
         private void entrar(object[] arrObjArg)
         {
             // TODO: Implementar a leitura dos argumentos.
@@ -77,6 +94,10 @@ namespace RealLife
         {
             switch (strMetodo)
             {
+                case STR_METODO_CRIAR_CONTA:
+                    this.criarConta(arrObjArg);
+                    return;
+
                 case STR_METODO_ENTRAR:
                     this.entrar(arrObjArg);
                     return;
