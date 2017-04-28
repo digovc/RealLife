@@ -1,6 +1,7 @@
 ﻿using NetZ.Persistencia;
 using RealLife.DataBase.Dominio;
 using System;
+using System.Collections.Generic;
 
 namespace RealLife.DataBase.Tabela
 {
@@ -97,8 +98,56 @@ namespace RealLife.DataBase.Tabela
                 this.bloquearThread();
 
                 this.criarContaValidar(objJogador);
+                this.criarContaPreparar(objJogador);
 
                 this.salvar(objJogador);
+            }
+            finally
+            {
+                this.liberarThread();
+            }
+        }
+
+        internal void entrar(JogadorDominio objJogador)
+        {
+            try
+            {
+                this.bloquearThread();
+
+                if (objJogador == null)
+                {
+                    throw new NullReferenceException("O objeto jogador não pode estar nulo.");
+                }
+
+                if (string.IsNullOrEmpty(objJogador.strEmail) && string.IsNullOrEmpty(objJogador.strGametag))
+                {
+                    throw new ArgumentException("Um email ou gametag válido deve ser informado.");
+                }
+
+                if (string.IsNullOrEmpty(objJogador.strSenha))
+                {
+                    throw new ArgumentException("A senha deve ser informada.");
+                }
+
+                var lstFil = new List<Filtro>();
+
+                if (!string.IsNullOrEmpty(objJogador.strEmail))
+                {
+                    lstFil.Add(new Filtro(this.clnStrEmail, objJogador.strEmail.ToLower()));
+                }
+                else
+                {
+                    lstFil.Add(new Filtro(this.clnStrGametag, objJogador.strGametag));
+                }
+
+                lstFil.Add(new Filtro(this.clnStrSenha, objJogador.strSenha));
+
+                this.recuperar(lstFil);
+
+                if (this.clnIntId.intValor < 1)
+                {
+                    throw new Exception("Dados inválidos.");
+                }
             }
             finally
             {
@@ -115,6 +164,11 @@ namespace RealLife.DataBase.Tabela
             this.clnStrSenha.intOrdem += intOrdem;
 
             return intOrdem;
+        }
+
+        private void criarContaPreparar(JogadorDominio objJogador)
+        {
+            objJogador.strEmail = objJogador.strEmail.ToLower();
         }
 
         private void criarContaValidar(JogadorDominio objJogador)

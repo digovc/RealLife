@@ -87,19 +87,7 @@ module RealLifeUi
                 return false;
             }
 
-            if ((this.cmpStrLogin.txt.strValor != "digovc") && (this.cmpStrLogin.txt.strValor != "lia"))
-            {
-                this.cmpStrLogin.txt.receberFoco();
-                return false;
-            }
-
             if (Utils.getBooStrVazia(this.cmpStrSenha.txt.strValor))
-            {
-                this.cmpStrSenha.txt.receberFoco();
-                return false;
-            }
-
-            if (this.cmpStrSenha.txt.strValor != "183729")
             {
                 this.cmpStrSenha.txt.receberFoco();
                 return false;

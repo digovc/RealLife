@@ -66,7 +66,7 @@ module RealLife
 
             this.objJogador = objJogador;
 
-            ServerRealLife.i.executarJson(Jogador.name, Jogador.STR_METODO_CRIAR_CONTA, objJogador);
+            ServerRealLife.i.executarJson(Jogador.name, Jogador.STR_METODO_CRIAR_CONTA, this.objJogador);
         }
 
         public criarContaSucesso(): void
@@ -102,7 +102,7 @@ module RealLife
 
             this.objJogador = objJogador;
 
-            ServerRealLife.i.executarJson(Jogador.name, Jogador.STR_METODO_ENTRAR, objJogador);
+            ServerRealLife.i.executarJson(Jogador.name, Jogador.STR_METODO_ENTRAR, this.objJogador);
         }
 
         public entrarSucesso(jsnJogador: string): void

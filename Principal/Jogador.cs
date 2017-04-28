@@ -1,4 +1,5 @@
-﻿using GTANetworkServer;
+﻿using DigoFramework.Json;
+using GTANetworkServer;
 using RealLife.DataBase.Dominio;
 using RealLife.DataBase.Tabela;
 using System;
@@ -78,11 +79,24 @@ namespace RealLife
 
         private void entrar(object[] arrObjArg)
         {
-            // TODO: Implementar a leitura dos argumentos.
+            if (arrObjArg == null)
+            {
+                return;
+            }
 
-            this.objJogador = new JogadorDominio();
+            if (arrObjArg.Length < 1)
+            {
+                return;
+            }
 
-            // TODO: Validar dados do jogador.
+            if (arrObjArg[0] == null)
+            {
+                return;
+            }
+
+            this.objJogador = Json.i.fromJson<JogadorDominio>(arrObjArg[0].ToString());
+
+            TblJogador.i.entrar(this.objJogador);
 
             this.entrarSucesso();
         }
