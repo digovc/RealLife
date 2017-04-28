@@ -47,6 +47,8 @@ module RealLife
         {
             super.inicializar();
 
+            Jogador.i.iniciar();
+
             PagLogin.i.iniciar();
         }
 

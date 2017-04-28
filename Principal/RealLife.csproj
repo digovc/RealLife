@@ -41,6 +41,9 @@
       <HintPath>..\GTANetworkServer\GTANetworkShared.dll</HintPath>
       <Private>False</Private>
     </Reference>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>..\DigoFramework\Lib\Newtonsoft.Json\4.5\Newtonsoft.Json.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />

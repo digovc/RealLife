@@ -12,8 +12,10 @@ namespace RealLife
         #region Constantes
 
         private const string STR_METODO_CRIAR_CONTA = "STR_METODO_CRIAR_CONTA";
+        private const string STR_METODO_CRIAR_CONTA_SUCESSO = "STR_METODO_CRIAR_CONTA_SUCESSO";
         private const string STR_METODO_ENTRAR = "STR_METODO_ENTRAR";
         private const string STR_METODO_ENTRAR_SUCESSO = "STR_METODO_ENTRAR_SUCESSO";
+        private const string STR_METODO_ERRO = "STR_METODO_ERRO";
 
         #endregion Constantes
 
@@ -63,9 +65,22 @@ namespace RealLife
 
         private void criarConta(object[] arrObjArg)
         {
-            // TODO: Implementar a leitura dos argumentos.
+            if (arrObjArg == null)
+            {
+                return;
+            }
 
-            this.objJogador = new JogadorDominio();
+            if (arrObjArg.Length < 1)
+            {
+                return;
+            }
+
+            if (arrObjArg[0] == null)
+            {
+                return;
+            }
+
+            this.objJogador = Json.i.fromJson<JogadorDominio>(arrObjArg[0].ToString());
 
             TblJogador.i.criarConta(this.objJogador);
 
@@ -74,7 +89,7 @@ namespace RealLife
 
         private void criarContaSucesso()
         {
-            ClientRealLife.i.executar(this.objClient, this.GetType().Name, "criarContaSucesso");
+            ClientRealLife.i.executar(this.objClient, STR_METODO_CRIAR_CONTA_SUCESSO);
         }
 
         private void entrar(object[] arrObjArg)
@@ -103,7 +118,7 @@ namespace RealLife
 
         private void entrarSucesso()
         {
-            ClientRealLife.i.executar(this.objClient, this.GetType().Name, "entrarSucesso", this.objJogador);
+            ClientRealLife.i.executar(this.objClient, STR_METODO_ENTRAR_SUCESSO, this.objJogador);
         }
 
         private void processarErro(Exception ex)
@@ -117,7 +132,7 @@ namespace RealLife
 
             objErro.strMensagem = ex.Message;
 
-            ClientRealLife.i.executar(this.objClient, this.GetType().Name, "processarErro", objErro);
+            ClientRealLife.i.executar(this.objClient, STR_METODO_ERRO, objErro);
         }
 
         private void processarOnClientEventTrigger(string strMetodo, object[] arrObjArg)

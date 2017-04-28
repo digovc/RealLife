@@ -116,7 +116,7 @@ module RealLifeUi
                 return false;
             }
 
-            if (!Utils.getBooStrVazia(this.cmpStrGameTag.txt.strValor))
+            if (Utils.getBooStrVazia(this.cmpStrGameTag.txt.strValor))
             {
                 Mensagem.mostrar("Erro", "A gametag deve ser informada.", Web.Mensagem_EnmTipo.NEGATIVA);
                 this.cmpStrGameTag.txt.receberFoco();
@@ -129,14 +129,14 @@ module RealLifeUi
                 return false;
             }
 
-            if (!Utils.getBooStrVazia(this.cmpStrSenha.txt.strValor))
+            if (Utils.getBooStrVazia(this.cmpStrSenha.txt.strValor))
             {
                 Mensagem.mostrar("Erro", "A senha deve ser informada.", Web.Mensagem_EnmTipo.NEGATIVA);
                 this.cmpStrSenha.txt.receberFoco();
                 return false;
             }
 
-            if (!Utils.getBooStrVazia(this.cmpStrSenhaRepetir.txt.strValor))
+            if (Utils.getBooStrVazia(this.cmpStrSenhaRepetir.txt.strValor))
             {
                 Mensagem.mostrar("Erro", "A senha deve ser informada.", Web.Mensagem_EnmTipo.NEGATIVA);
                 this.cmpStrSenhaRepetir.txt.receberFoco();

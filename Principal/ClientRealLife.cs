@@ -41,14 +41,9 @@ namespace RealLife
 
         #region Métodos
 
-        public void executar(Client objClient, string strClassName, string strMetodoNome, DominioRealLifeBase objDominio = null)
+        public void executar(Client objClient, string strMetodoNome, DominioRealLifeBase objDominio = null)
         {
             if (objClient == null)
-            {
-                return;
-            }
-
-            if (string.IsNullOrEmpty(strClassName))
             {
                 return;
             }
@@ -58,18 +53,13 @@ namespace RealLife
                 return;
             }
 
-            var strCodigo = "RealLife._class_name.i._method_name";
-
-            strCodigo = strCodigo.Replace("_class_name", strClassName);
-            strCodigo = strCodigo.Replace("_method_name", strMetodoNome);
-
             if (objDominio == null)
             {
-                AppRealLife.i.api.triggerClientEvent(objClient, strCodigo);
+                AppRealLife.i.api.triggerClientEvent(objClient, strMetodoNome);
             }
             else
             {
-                AppRealLife.i.api.triggerClientEvent(objClient, strCodigo, Json.i.toJson(objDominio));
+                AppRealLife.i.api.triggerClientEvent(objClient, strMetodoNome, Json.i.toJson(objDominio));
             }
         }
 

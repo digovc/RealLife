@@ -88,7 +88,7 @@ module RealLife
                 return;
             }
 
-            API.sendNotification("~r~" + objErro.strMensagem);
+            API.sendNotification("~r~Erro: ~s~" + objErro.strMensagem);
         }
 
         private setBooMostrarMouse(booMostrarMouse: boolean): void

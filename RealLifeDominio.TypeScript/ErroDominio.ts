@@ -1,4 +1,6 @@
-﻿module RealLifeDominio
+﻿/// <reference path="DominioRealLifeBase.ts"/>
+
+module RealLifeDominio
 {
     // #region Importações
     // #endregion Importações

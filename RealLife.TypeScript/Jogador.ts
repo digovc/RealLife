@@ -1,5 +1,6 @@
 /// <reference path="../RealLifeDominio.TypeScript/ErroDominio.ts"/>
 /// <reference path="../RealLifeDominio.TypeScript/JogadorDominio.ts"/>
+/// <reference path="Objeto.ts"/>
 
 module RealLife
 {
@@ -13,12 +14,15 @@ module RealLife
     // #region Enumerados
     // #endregion Enumerados
 
-    export class Jogador
+    export class Jogador extends Objeto
     {
         // #region Constantes
 
         private static get STR_METODO_CRIAR_CONTA(): string { return "STR_METODO_CRIAR_CONTA" };
+        private static get STR_METODO_CRIAR_CONTA_SUCESSO(): string { return "STR_METODO_CRIAR_CONTA_SUCESSO" };
         private static get STR_METODO_ENTRAR(): string { return "STR_METODO_ENTRAR" };
+        private static get STR_METODO_ENTRAR_SUCESSO(): string { return "STR_METODO_ENTRAR_SUCESSO" };
+        private static get STR_METODO_ERRO(): string { return "STR_METODO_ERRO" };
 
         // #endregion Constantes
 
@@ -66,10 +70,10 @@ module RealLife
 
             this.objJogador = objJogador;
 
-            ServerRealLife.i.executarJson(Jogador.name, Jogador.STR_METODO_CRIAR_CONTA, this.objJogador);
+            ServerRealLife.i.executarJson(Jogador.STR_METODO_CRIAR_CONTA, this.objJogador);
         }
 
-        public criarContaSucesso(): void
+        private criarContaSucesso(): void
         {
             PagLogin.i.criarContaSucesso();
 
@@ -102,11 +106,13 @@ module RealLife
 
             this.objJogador = objJogador;
 
-            ServerRealLife.i.executarJson(Jogador.name, Jogador.STR_METODO_ENTRAR, this.objJogador);
+            ServerRealLife.i.executarJson(Jogador.STR_METODO_ENTRAR, this.objJogador);
         }
 
-        public entrarSucesso(jsnJogador: string): void
+        private entrarSucesso(arrObjArg: System.Array<any>): void
         {
+            var jsnJogador = this.getJsn(arrObjArg);
+
             if (UtilsRealLife.getBooStrVazia(jsnJogador))
             {
                 return;
@@ -138,8 +144,32 @@ module RealLife
             Screen.i.notificar(strNotificacao);
         }
 
-        public processarErro(jsnErro: string): void
+        private getJsn(arrObjArg: System.Array<any>): string
         {
+            if (arrObjArg == null)
+            {
+                return null;
+            }
+
+            if (arrObjArg.Length < 1)
+            {
+                return null;
+            }
+
+            return arrObjArg[0];
+        }
+
+        protected setEventos(): void
+        {
+            super.setEventos();
+
+            API.onServerEventTrigger.connect((strMetodoNome: string, arrObjArg: System.Array<any>) => { this.onServerEventTrigger(strMetodoNome, arrObjArg); });
+        }
+
+        private processarErro(arrObjArg: System.Array<any>): void
+        {
+            var jsnErro = this.getJsn(arrObjArg);
+
             if (UtilsRealLife.getBooStrVazia(jsnErro))
             {
                 return;
@@ -152,9 +182,38 @@ module RealLife
             Screen.i.notificarErro(objErro);
         }
 
+        private processarOnServerEventTrigger(strMetodoNome: string, arrObjArg: System.Array<any>): void
+        {
+            if (UtilsRealLife.getBooStrVazia(strMetodoNome))
+            {
+                return;
+            }
+
+            switch (strMetodoNome)
+            {
+                case Jogador.STR_METODO_CRIAR_CONTA_SUCESSO:
+                    this.criarContaSucesso();
+                    return;
+
+                case Jogador.STR_METODO_ENTRAR_SUCESSO:
+                    this.entrarSucesso(arrObjArg);
+                    return;
+
+                case Jogador.STR_METODO_ERRO:
+                    this.processarErro(arrObjArg);
+                    return;
+            }
+        }
+
         // #endregion Métodos
 
         // #region Eventos
+
+        private onServerEventTrigger(strMetodoNome: string, arrObjArg: System.Array<any>): void
+        {
+            this.processarOnServerEventTrigger(strMetodoNome, arrObjArg);
+        }
+
         // #endregion Eventos
     }
 }

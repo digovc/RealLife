@@ -39,24 +39,14 @@ module RealLife
 
         // #region Métodos
 
-        public executarJson(strClassName: string, strMetodoNome: string, objDominio: DominioRealLifeBase): void
+        public executarJson(strMetodoNome: string, objDominio: DominioRealLifeBase): void
         {
-            if (UtilsRealLife.getBooStrVazia(strClassName))
-            {
-                return;
-            }
-
             if (UtilsRealLife.getBooStrVazia(strMetodoNome))
             {
                 return;
             }
 
-            var strCodigo = "_class_name._method_name";
-
-            strCodigo = strCodigo.replace("_class_name", strClassName);
-            strCodigo = strCodigo.replace("_method_name", strMetodoNome);
-
-            API.triggerServerEvent(strCodigo, JSON.stringify(objDominio));
+            API.triggerServerEvent(strMetodoNome, JSON.stringify(objDominio));
         }
 
         // #endregion Métodos
