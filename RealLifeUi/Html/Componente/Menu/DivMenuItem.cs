@@ -2,9 +2,9 @@
 using NetZ.Web.Html.Componente;
 using NetZ.Web.Server.Arquivo.Css;
 
-namespace RealLifeUi.Html.Componente.Interface.Menu
+namespace RealLifeUi.Html.Componente.Menu
 {
-    internal class DivMenuInterativoItem : ComponenteHtml
+    internal class DivMenuItem : ComponenteHtml
     {
         #region Constantes
 
@@ -69,42 +69,47 @@ namespace RealLifeUi.Html.Componente.Interface.Menu
 
         #region Métodos
 
-        protected override void montarLayout()
-        {
-            base.montarLayout();
-
-            this.divIcone.setPai(this);
-            this.divNome.setPai(this);
-            this.divValor.setPai(this);
-        }
-
         protected override void inicializar()
         {
             base.inicializar();
 
-            this.divNome.strConteudo = "GPS";
+            this.strId = "_div_menu_item_id";
 
-            this.divValor.strConteudo = "Casa (Eclipse Tower)";
+            this.divNome.strConteudo = "_div_nome_conteudo";
+            this.divNome.strId = "_div_nome_id";
+
+            this.divValor.strId = "_div_valor_id";
+        }
+
+        protected override void montarLayout()
+        {
+            base.montarLayout();
+
+            //this.divIcone.setPai(this);
+            this.divNome.setPai(this);
+            this.divValor.setPai(this);
         }
 
         protected override void setCss(CssArquivoBase css)
         {
             base.setCss(css);
 
-            this.addCss(css.setHeight(35));
+            this.addCss(css.setHeight(4, "vh"));
+            this.addCss(css.setBackgroundColor("rgba(0,0,0,.15)"));
 
-            this.divIcone.addCss(css.setFloat("left"));
-            this.divIcone.addCss(css.setHeight(100, "%"));
-            this.divIcone.addCss(css.setWidth(35));
+            //this.divIcone.addCss(css.setFloat("left"));
+            //this.divIcone.addCss(css.setHeight(100, "%"));
+            //this.divIcone.addCss(css.setWidth(35));
 
             this.divNome.addCss(css.setFloat("left"));
-            this.divNome.addCss(css.setLineHeight(35));
+            this.divNome.addCss(css.setLineHeight(4, "vh"));
+            this.divNome.addCss(css.setMarginLeft(1, "vw"));
             this.divNome.addCss(css.setOverflow("hidden"));
 
             this.divValor.addCss(css.setFloat("right"));
-            this.divValor.addCss(css.setLineHeight(35));
+            this.divValor.addCss(css.setLineHeight(4, "vh"));
             this.divValor.addCss(css.setOverflow("hidden"));
-            this.divValor.addCss(css.setPaddingRight(10));
+            this.divValor.addCss(css.setPaddingRight(1, "vw"));
         }
 
         #endregion Métodos

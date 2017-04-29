@@ -42,9 +42,9 @@ module RealLife
 
         // #region Métodos
 
-        public abrir(): void
+        public iniciar(): void
         {
-            super.abrir();
+            super.iniciar();
 
             Screen.i.booMostrarMouse = true;
         }

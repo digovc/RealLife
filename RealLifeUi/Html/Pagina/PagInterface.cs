@@ -1,11 +1,10 @@
 ﻿using NetZ.Web.Html;
 using NetZ.Web.Server.Arquivo.Css;
 using RealLifeUi.Html.Componente.Interface;
-using RealLifeUi.Html.Componente.Interface.Menu;
 
 namespace RealLifeUi.Html.Pagina
 {
-    internal class PagInterface : PagRealLifeBase
+    internal class PagInterface : PagRealLifeUiBase
     {
         #region Constantes
 

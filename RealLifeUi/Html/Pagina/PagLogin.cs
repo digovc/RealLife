@@ -4,7 +4,7 @@ using RealLifeUi.Html.Componente.Login;
 
 namespace RealLifeUi.Html.Pagina
 {
-    internal class PagLogin : PagRealLifeBase
+    internal class PagLogin : PagRealLifeUiBase
     {
         #region Constantes
 
@@ -176,7 +176,6 @@ namespace RealLifeUi.Html.Pagina
 
             this.addCss(css.setAlignItems("center"));
             this.addCss(css.setDisplay("flex"));
-            this.addCss(css.setFontSize(1.5m, "vw"));
             this.addCss(css.setHeight(100, "vh"));
             this.addCss(css.setJustifyContent("center"));
 

@@ -40,7 +40,7 @@ module RealLife
         {
             super.finalizar();
 
-            PagLogin.i.abrir();
+            PagLogin.i.iniciar();
         }
 
         protected inicializar(): void
@@ -49,7 +49,9 @@ module RealLife
 
             Jogador.i.iniciar();
 
-            PagLogin.i.iniciar();
+            PagDev.i.iniciar();
+
+            //PagLogin.i.iniciar();
         }
 
         // #endregion Métodos

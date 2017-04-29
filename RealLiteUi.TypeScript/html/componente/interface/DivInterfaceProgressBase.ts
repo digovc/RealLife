@@ -1,4 +1,6 @@
-﻿module RealLifeUi
+﻿/// <reference path="DivInterfaceBase.ts"/>
+
+module RealLifeUi
 {
     // #region Importações
     // #endregion Importações

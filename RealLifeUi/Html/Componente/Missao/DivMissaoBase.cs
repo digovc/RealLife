@@ -31,7 +31,7 @@ namespace RealLifeUi.Html.Componente.Missao
             base.setCss(css);
 
             //this.addCss(css.setDisplay("none"));
-            this.addCss(css.setMarginBottom(50));
+            this.addCss(css.setMarginBottom(5, "vh"));
         }
 
         #endregion Métodos

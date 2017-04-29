@@ -13,25 +13,25 @@ module RealLifeUi
     // #region Enumerados
     // #endregion Enumerados
 
-    export class Client
+    export class ClientRealLife
     {
         // #region Constantes
         // #endregion Constantes
 
         // #region Atributos
 
-        private static _i: Client;
+        private static _i: ClientRealLife;
 
-        public static get i(): Client
+        public static get i(): ClientRealLife
         {
-            if (Client._i != null)
+            if (ClientRealLife._i != null)
             {
-                return Client._i;
+                return ClientRealLife._i;
             }
 
-            Client._i = new Client();
+            ClientRealLife._i = new ClientRealLife();
 
-            return Client._i;
+            return ClientRealLife._i;
         }
 
         // #endregion Atributos

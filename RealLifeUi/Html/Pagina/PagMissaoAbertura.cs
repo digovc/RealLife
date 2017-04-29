@@ -3,7 +3,7 @@ using NetZ.Web.Server.Arquivo.Css;
 
 namespace RealLifeUi.Html.Pagina
 {
-    internal class PagMissaoAbertura : PagRealLifeBase
+    internal class PagMissaoAbertura : PagRealLifeUiBase
     {
         #region Constantes
 

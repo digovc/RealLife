@@ -1,6 +1,8 @@
-﻿namespace RealLifeUi.Html.Componente.Missao
+﻿using RealLifeUi.Html.Componente.Menu;
+
+namespace RealLifeUi.Html.Componente.Dev
 {
-    internal class DivMissaoRp : DivMissaoValorBase
+    internal class DivMenuDev : DivMenuBase
     {
         #region Constantes
 
@@ -16,22 +18,13 @@
 
         #region Métodos
 
-        protected override int getIntDivCirculoFontSize()
-        {
-            return 5;
-        }
-
-        protected override string getStrDivCor()
-        {
-            return "#2196f3";
-        }
-
         protected override void inicializar()
         {
             base.inicializar();
 
-            this.divCirculo.strConteudo = "RP";
-            this.divValor.strConteudo = "+ 250";
+            this.strId = this.GetType().Name;
+
+            this.divCabecalho.strConteudo = "Desenvolvimento";
         }
 
         #endregion Métodos

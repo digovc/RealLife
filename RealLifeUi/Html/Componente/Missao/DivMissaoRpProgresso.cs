@@ -94,17 +94,16 @@ namespace RealLifeUi.Html.Componente.Missao
             base.setCss(css);
 
             this.addCss(css.setBackgroundColor("lightgrey"));
-            this.addCss(css.setBorderRadius(50));
-            this.addCss(css.setHeight(100));
+            this.addCss(css.setBorderRadius(1, "vw"));
+            this.addCss(css.setHeight(5, "vh"));
 
             this.divNivelAtual.addCss(css.setBackgroundColor("rgba(95,95,95,0.5)"));
             this.divNivelAtual.addCss(css.setBorderRadius(50, "%"));
-            this.divNivelAtual.addCss(css.setFontSize(75));
-            this.divNivelAtual.addCss(css.setHeight(100));
-            this.divNivelAtual.addCss(css.setLineHeight(100));
-            this.divNivelAtual.addCss(css.setMarginTop(-100));
+            this.divNivelAtual.addCss(css.setFontSize(3, "vw"));
+            this.divNivelAtual.addCss(css.setHeight(5, "vw"));
+            this.divNivelAtual.addCss(css.setLineHeight(5, "vw"));
             this.divNivelAtual.addCss(css.setTextAlign("center"));
-            this.divNivelAtual.addCss(css.setWidth(100));
+            this.divNivelAtual.addCss(css.setWidth(5, "vw"));
 
             this.divNivelProximo.addCss(this.divNivelAtual);
 
@@ -112,8 +111,9 @@ namespace RealLifeUi.Html.Componente.Missao
             this.divNivelProximo.addCss(css.setFloat("right"));
 
             this.divProgresso.addCss(css.setBackgroundColor("gray"));
-            this.divProgresso.addCss(css.setBorderRadius(50));
+            this.divProgresso.addCss(css.setBorderRadius(1, "vw"));
             this.divProgresso.addCss(css.setHeight(100, "%"));
+            this.divProgresso.addCss(css.setMarginBottom(2, "vh"));
             this.divProgresso.addCss(css.setWidth(10, "%"));
         }
 

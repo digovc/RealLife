@@ -50,20 +50,6 @@ module RealLife
 
         // #region Métodos
 
-        public abrir(): void
-        {
-            if (UtilsRealLife.getBooStrVazia(this.url))
-            {
-                throw "A URL do browser não foi definida.";
-            }
-
-            API.waitUntilCefBrowserInit(this.objBrowser);
-
-            API.setCefBrowserPosition(this.objBrowser, 0, 0);
-
-            API.loadPageCefBrowser(this.objBrowser, this.url);
-        }
-
         public destruir(): void
         {
             this.destruirObjBrowser();
@@ -79,6 +65,27 @@ module RealLife
             API.destroyCefBrowser(this.objBrowser);
 
             this.objBrowser = null;
+        }
+
+        public iniciar(): void
+        {
+            super.iniciar();
+
+            if (UtilsRealLife.getBooStrVazia(this.url))
+            {
+                throw "A URL do browser não foi definida.";
+            }
+
+            if (API.isCefBrowserInitialized(this.objBrowser))
+            {
+                return;
+            }
+
+            API.waitUntilCefBrowserInit(this.objBrowser);
+
+            API.setCefBrowserPosition(this.objBrowser, 0, 0);
+
+            API.loadPageCefBrowser(this.objBrowser, this.url);
         }
 
         // #endregion Métodos

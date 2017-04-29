@@ -41,11 +41,6 @@ module RealLife
 
         // #region Métodos
 
-        public abrir(): void
-        {
-            this.objBrowserRealLife.abrir();
-        }
-
         private getobjBrowserRealLife(): BrowserRealLife
         {
             var objBrowserRealLifeResultado = new BrowserRealLife();
@@ -56,6 +51,13 @@ module RealLife
         }
 
         protected abstract getUrl(): string;
+
+        public iniciar(): void
+        {
+            super.iniciar();
+
+            this.objBrowserRealLife.iniciar();
+        }
 
         // #endregion Métodos
 

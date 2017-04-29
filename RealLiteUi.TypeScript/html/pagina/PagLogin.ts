@@ -126,7 +126,7 @@ module RealLifeUi
 
             this.divLoginContaCadastro.carregarDados(objJogador);
 
-            Client.i.executarJson(PagLogin.name, "criarConta", objJogador);
+            ClientRealLife.i.executarJson(PagLogin.name, "criarConta", objJogador);
         }
 
         private criarContaValidar(): boolean
@@ -150,7 +150,7 @@ module RealLifeUi
 
             this.divLoginEntrar.carregarDados(objJogador);
 
-            Client.i.executarJson(PagLogin.name, "entrar", objJogador);
+            ClientRealLife.i.executarJson(PagLogin.name, "entrar", objJogador);
         }
 
         private entrarValidar(): boolean

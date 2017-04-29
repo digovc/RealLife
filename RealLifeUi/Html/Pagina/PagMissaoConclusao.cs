@@ -4,7 +4,7 @@ using RealLifeUi.Html.Componente.Missao;
 
 namespace RealLifeUi.Html.Pagina
 {
-    internal class PagMissaoConclusao : PagRealLifeBase
+    internal class PagMissaoConclusao : PagRealLifeUiBase
     {
         #region Constantes
 
@@ -105,9 +105,9 @@ namespace RealLifeUi.Html.Pagina
 
             this.addCss(css.setBackgroundColor("black"));
             this.addCss(css.setColor("white"));
-            this.addCss(css.setPaddingLeft(50));
-            this.addCss(css.setPaddingRight(50));
-            this.addCss(css.setPaddingTop(50));
+            this.addCss(css.setPaddingLeft(3, "vw"));
+            this.addCss(css.setPaddingRight(3, "vw"));
+            this.addCss(css.setPaddingTop(5, "vh"));
         }
 
         #endregion Métodos

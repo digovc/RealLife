@@ -4,7 +4,7 @@ using NetZ.Web.Server.Arquivo.Css;
 
 namespace RealLifeUi.Html.Pagina
 {
-    internal abstract class PagRealLifeBase : PagMobile
+    internal abstract class PagRealLifeUiBase : PagMobile
     {
         #region Constantes
 
@@ -18,7 +18,7 @@ namespace RealLifeUi.Html.Pagina
 
         #region Construtores
 
-        protected PagRealLifeBase(string strNome) : base(strNome)
+        protected PagRealLifeUiBase(string strNome) : base(strNome)
         {
         }
 
@@ -53,6 +53,7 @@ namespace RealLifeUi.Html.Pagina
         {
             base.setCss(css);
 
+            this.addCss(css.setFontSize(1, "vw"));
             this.addCss(css.setOverflow("hidden"));
         }
 

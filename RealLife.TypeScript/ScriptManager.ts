@@ -50,8 +50,9 @@ module RealLife
             super.setEventos();
 
             API.onChatCommand.connect((strComando: string) => { this.dispararEvtOnChatCommandListener(strComando); });
-            API.onUpdate.connect(() => { this.dispararEvtOnUpdateListener(); });
             API.onKeyUp.connect((objSender: any, arg: any) => { this.dispararEvtOnKeyUpListener(objSender, arg); });
+            API.onServerEventTrigger.connect((strMetodoNome: string, arrObjArg: System.Array<any>) => { this.dispararEvtOnServerEventTriggerListener(strMetodoNome, arrObjArg); });
+            API.onUpdate.connect(() => { this.dispararEvtOnUpdateListener(); });
         }
 
         // #endregion Métodos
@@ -204,6 +205,72 @@ module RealLife
         }
 
         // #endregion OnKeyUpListener
+
+        // #region OnServerEventTriggerListener
+
+        private _arrEvtOnServerEventTriggerListener: Array<OnServerEventTriggerListener>;
+
+        private get arrEvtOnServerEventTriggerListener(): Array<OnServerEventTriggerListener>
+        {
+            if (this._arrEvtOnServerEventTriggerListener != null)
+            {
+                return this._arrEvtOnServerEventTriggerListener;
+            }
+
+            this._arrEvtOnServerEventTriggerListener = new Array<OnServerEventTriggerListener>();
+
+            return this._arrEvtOnServerEventTriggerListener;
+        }
+
+        public addEvtOnServerEventTriggerListener(evtOnServerEventTriggerListener: OnServerEventTriggerListener): void
+        {
+            if (evtOnServerEventTriggerListener == null)
+            {
+                return;
+            }
+
+            if (this.arrEvtOnServerEventTriggerListener.indexOf(evtOnServerEventTriggerListener) > -1)
+            {
+                return;
+            }
+
+            this.arrEvtOnServerEventTriggerListener.push(evtOnServerEventTriggerListener);
+        }
+
+        private dispararEvtOnServerEventTriggerListener(strMetodoNome: string, arrObjArg: System.Array<any>): void
+        {
+            if (this.arrEvtOnServerEventTriggerListener.length == 0)
+            {
+                return;
+            }
+
+            this.arrEvtOnServerEventTriggerListener.forEach((evt) =>
+            {
+                if (evt == null)
+                {
+                    return;
+                }
+
+                evt.onServerEventTrigger(strMetodoNome, arrObjArg);
+            });
+        }
+
+        public removerEvtOnServerEventTriggerListener(evt: OnServerEventTriggerListener): void
+        {
+            if (evt == null)
+            {
+                return;
+            }
+
+            if (this.arrEvtOnServerEventTriggerListener.indexOf(evt) == -1)
+            {
+                return;
+            }
+
+            this.arrEvtOnServerEventTriggerListener.splice(this.arrEvtOnServerEventTriggerListener.indexOf(evt), 1);
+        }
+
+        // #endregion OnServerEventTriggerListener
 
         // #region OnUpdateListener
 

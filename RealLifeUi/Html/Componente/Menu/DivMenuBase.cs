@@ -2,9 +2,9 @@
 using NetZ.Web.Html.Componente;
 using NetZ.Web.Server.Arquivo.Css;
 
-namespace RealLifeUi.Html.Componente.Interface.Menu
+namespace RealLifeUi.Html.Componente.Menu
 {
-    internal class DivMenuInterativo : ComponenteHtml
+    internal abstract class DivMenuBase : ComponenteHtml
     {
         #region Constantes
 
@@ -19,7 +19,7 @@ namespace RealLifeUi.Html.Componente.Interface.Menu
         private Div _divMostradorAcima;
         private Div _divNome;
 
-        private Div divCabecalho
+        protected Div divCabecalho
         {
             get
             {
@@ -31,6 +31,21 @@ namespace RealLifeUi.Html.Componente.Interface.Menu
                 _divCabecalho = new Div();
 
                 return _divCabecalho;
+            }
+        }
+
+        protected Div divNome
+        {
+            get
+            {
+                if (_divNome != null)
+                {
+                    return _divNome;
+                }
+
+                _divNome = new Div();
+
+                return _divNome;
             }
         }
 
@@ -94,21 +109,6 @@ namespace RealLifeUi.Html.Componente.Interface.Menu
             }
         }
 
-        private Div divNome
-        {
-            get
-            {
-                if (_divNome != null)
-                {
-                    return _divNome;
-                }
-
-                _divNome = new Div();
-
-                return _divNome;
-            }
-        }
-
         #endregion Atributos
 
         #region Construtores
@@ -117,12 +117,18 @@ namespace RealLifeUi.Html.Componente.Interface.Menu
 
         #region Métodos
 
+        protected override void addLayoutFixo(JavaScriptTag tagJs)
+        {
+            base.addLayoutFixo(tagJs);
+
+            tagJs.addLayoutFixo(typeof(DivMenuItem));
+        }
+
         protected override void inicializar()
         {
             base.inicializar();
 
-            this.divCabecalho.strConteudo = "gametag";
-            this.divContagem.strConteudo = "2/20";
+            this.divContagem.strConteudo = "0/0";
             this.divNome.strConteudo = "Menu de interação";
         }
 
@@ -136,8 +142,6 @@ namespace RealLifeUi.Html.Componente.Interface.Menu
             this.divMostradorAcima.setPai(this);
             this.divConteudo.setPai(this);
             this.divMostradorAbaixo.setPai(this);
-
-            new DivMenuInterativoItem().setPai(this.divConteudo);
         }
 
         protected override void setCss(CssArquivoBase css)
@@ -146,33 +150,43 @@ namespace RealLifeUi.Html.Componente.Interface.Menu
 
             var strBackgroundColor = css.setBackgroundColor("rgba(0,0,0,0.5)");
 
-            this.addCss(css.setLeft(50));
+            this.addCss(css.setColor("white"));
+            this.addCss(css.setLeft(5, "vw"));
             this.addCss(css.setPosition("absolute"));
-            this.addCss(css.setTop(50));
-            this.addCss(css.setWidth(250));
+            this.addCss(css.setTop(8, "vh"));
+            this.addCss(css.setWidth(18, "vw"));
 
             this.divCabecalho.addCss(css.setBackgroundColor("rgba(3,169,244,0.75)"));
-            this.divCabecalho.addCss(css.setFontSize(20));
             this.divCabecalho.addCss(css.setOverflow("hidden"));
-            this.divCabecalho.addCss(css.setPadding(10));
-            this.divCabecalho.addCss(css.setPaddingBottom(20));
-            this.divCabecalho.addCss(css.setPaddingTop(20));
+            this.divCabecalho.addCss(css.setPadding(1, "vw"));
+            this.divCabecalho.addCss(css.setPaddingBottom(2, "vh"));
+            this.divCabecalho.addCss(css.setPaddingTop(2, "vh"));
 
             this.divContagem.addCss(css.setFloat("right"));
 
-            this.divConteudo.addCss(css.setHeight(300));
+            this.divConteudo.addCss(css.setHeight(40, "vh"));
             this.divConteudo.addCss(strBackgroundColor);
 
-            this.divMostradorAbaixo.addCss(css.setHeight(10));
+            this.divMostradorAbaixo.addCss(css.setHeight(1, "vh"));
             this.divMostradorAbaixo.addCss(strBackgroundColor);
 
             this.divMostradorAcima.addCss(this.divMostradorAcima);
 
-            this.divNome.addCss(css.setMarginTop(10));
+            this.divNome.addCss(css.setMarginTop(1, "vh"));
             this.divNome.addCss(css.setOverflow("hidden"));
-            this.divNome.addCss(css.setPadding(5));
-            this.divNome.addCss(css.setPaddingLeft(10));
+            this.divNome.addCss(css.setPaddingBottom(1, "vh"));
+            this.divNome.addCss(css.setPaddingLeft(1, "vw"));
+            this.divNome.addCss(css.setPaddingRight(1, "vw"));
+            this.divNome.addCss(css.setPaddingTop(1, "vh"));
             this.divNome.addCss(strBackgroundColor);
+        }
+
+        protected override void setStrId(string strId)
+        {
+            base.setStrId(strId);
+
+            this.divContagem.strId = (strId + "_divContagem");
+            this.divConteudo.strId = (strId + "_divConteudo");
         }
 
         #endregion Métodos

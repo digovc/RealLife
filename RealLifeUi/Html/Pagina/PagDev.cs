@@ -1,8 +1,8 @@
-﻿using RealLifeUi.Html.Componente.Interface.Menu;
+﻿using RealLifeUi.Html.Componente.Dev;
 
 namespace RealLifeUi.Html.Pagina
 {
-    internal class PagDev : PagRealLifeBase
+    internal class PagDev : PagRealLifeUiBase
     {
         #region Constantes
 
@@ -10,20 +10,20 @@ namespace RealLifeUi.Html.Pagina
 
         #region Atributos
 
-        private DivMenuInterativo _divMenuInterativo;
+        private DivMenuDev _divMenuDev;
 
-        private DivMenuInterativo divMenuInterativo
+        private DivMenuDev divMenuDev
         {
             get
             {
-                if (_divMenuInterativo != null)
+                if (_divMenuDev != null)
                 {
-                    return _divMenuInterativo;
+                    return _divMenuDev;
                 }
 
-                _divMenuInterativo = new DivMenuInterativo();
+                _divMenuDev = new DivMenuDev();
 
-                return _divMenuInterativo;
+                return _divMenuDev;
             }
         }
 
@@ -38,6 +38,18 @@ namespace RealLifeUi.Html.Pagina
         #endregion Construtores
 
         #region Métodos
+
+        protected override void inicializar()
+        {
+            base.inicializar();
+        }
+
+        protected override void montarLayout()
+        {
+            base.montarLayout();
+
+            this.divMenuDev.setPai(this);
+        }
 
         #endregion Métodos
 

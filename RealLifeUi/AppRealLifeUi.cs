@@ -105,13 +105,14 @@ namespace RealLifeUi
         {
             Directory.CreateDirectory(DIR_CLIENT_UI);
 
-            this.gerarUiHtml(new PagLogin());
+            this.gerarUiHtml(new PagDev());
             this.gerarUiHtml(new PagInterface());
+            this.gerarUiHtml(new PagLogin());
             this.gerarUiHtml(new PagMissaoAbertura());
             this.gerarUiHtml(new PagMissaoConclusao());
         }
 
-        private void gerarUiHtml(PagRealLifeBase pag)
+        private void gerarUiHtml(PagRealLifeUiBase pag)
         {
             if (pag == null)
             {

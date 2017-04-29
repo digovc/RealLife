@@ -56,9 +56,9 @@ namespace RealLifeUi.Html.Componente.Missao
         {
             base.inicializar();
 
-            this.divResultado.strConteudo = "CONCLUÍDA";
+            this.divResultado.strConteudo = "Concluída";
 
-            this.divTextoMissao.strConteudo = "MISSÃO";
+            this.divTextoMissao.strConteudo = "Missão";
         }
 
         protected override void montarLayout()
@@ -74,11 +74,11 @@ namespace RealLifeUi.Html.Componente.Missao
             base.setCss(css);
 
             this.divTextoMissao.addCss(css.setColor("grey"));
-            this.divTextoMissao.addCss(css.setFontSize(150));
+            this.divTextoMissao.addCss(css.setFontSize(5, "vw"));
 
-            this.divResultado.addCss(css.setFontSize(100));
-            this.divResultado.addCss(css.setMarginTop(-65));
-            this.divResultado.addCss(css.setPaddingLeft(50));
+            this.divResultado.addCss(css.setFontSize(7, "vw"));
+            this.divResultado.addCss(css.setMarginTop(-5, "vh"));
+            this.divResultado.addCss(css.setPaddingLeft(5, "vw"));
         }
 
         #endregion Métodos

@@ -1,5 +1,7 @@
 /// <reference path="../RealLifeDominio.TypeScript/ErroDominio.ts"/>
 /// <reference path="../RealLifeDominio.TypeScript/JogadorDominio.ts"/>
+/// <reference path="evento/OnChatCommandListener.ts"/>
+/// <reference path="evento/OnServerEventTriggerListener.ts"/>
 /// <reference path="Objeto.ts"/>
 
 module RealLife
@@ -14,9 +16,11 @@ module RealLife
     // #region Enumerados
     // #endregion Enumerados
 
-    export class Jogador extends Objeto
+    export class Jogador extends Objeto implements OnChatCommandListener, OnServerEventTriggerListener
     {
         // #region Constantes
+
+        private static get STR_COMANDO_DEV(): string { return "/devmode" };
 
         private static get STR_METODO_CRIAR_CONTA(): string { return "STR_METODO_CRIAR_CONTA" };
         private static get STR_METODO_CRIAR_CONTA_SUCESSO(): string { return "STR_METODO_CRIAR_CONTA_SUCESSO" };
@@ -163,7 +167,8 @@ module RealLife
         {
             super.setEventos();
 
-            API.onServerEventTrigger.connect((strMetodoNome: string, arrObjArg: System.Array<any>) => { this.onServerEventTrigger(strMetodoNome, arrObjArg); });
+            ScriptManager.i.addEvtOnChatCommandListener(this);
+            ScriptManager.i.addEvtOnServerEventTriggerListener(this);
         }
 
         private processarErro(arrObjArg: System.Array<any>): void
@@ -180,6 +185,21 @@ module RealLife
             objErro.copiarDados(jsnErro);
 
             Screen.i.notificarErro(objErro);
+        }
+
+        private processarOnChatCommand(strComando: string): void
+        {
+            if (UtilsRealLife.getBooStrVazia(strComando))
+            {
+                return;
+            }
+
+            switch (strComando)
+            {
+                case Jogador.STR_COMANDO_DEV:
+                    PagDev.i.iniciar();
+                    return;
+            }
         }
 
         private processarOnServerEventTrigger(strMetodoNome: string, arrObjArg: System.Array<any>): void
@@ -209,7 +229,12 @@ module RealLife
 
         // #region Eventos
 
-        private onServerEventTrigger(strMetodoNome: string, arrObjArg: System.Array<any>): void
+        public onChatCommand(strComando: string): void
+        {
+            this.processarOnChatCommand(strComando);
+        }
+
+        public onServerEventTrigger(strMetodoNome: string, arrObjArg: System.Array<any>): void
         {
             this.processarOnServerEventTrigger(strMetodoNome, arrObjArg);
         }

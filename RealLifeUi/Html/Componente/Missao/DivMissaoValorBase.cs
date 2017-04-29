@@ -54,7 +54,7 @@ namespace RealLifeUi.Html.Componente.Missao
 
         protected virtual int getIntDivCirculoFontSize()
         {
-            return 175;
+            return 5;
         }
 
         protected virtual string getStrDivCor()
@@ -78,17 +78,17 @@ namespace RealLifeUi.Html.Componente.Missao
             this.divCirculo.addCss(css.setBackgroundColor(this.getStrDivCor()));
             this.divCirculo.addCss(css.setBorderRadius(50, "%"));
             this.divCirculo.addCss(css.setFloat("left"));
-            this.divCirculo.addCss(css.setFontSize(this.getIntDivCirculoFontSize()));
-            this.divCirculo.addCss(css.setHeight(150));
-            this.divCirculo.addCss(css.setLineHeight(150));
-            this.divCirculo.addCss(css.setMarginRight(25));
-            this.divCirculo.addCss(css.setPadding(10));
+            this.divCirculo.addCss(css.setFontSize(this.getIntDivCirculoFontSize(), "vw"));
+            this.divCirculo.addCss(css.setHeight(8, "vw"));
+            this.divCirculo.addCss(css.setLineHeight(8, "vw"));
+            this.divCirculo.addCss(css.setMarginRight(5, "vw"));
+            //this.divCirculo.addCss(css.setPadding(10));
             this.divCirculo.addCss(css.setTextAlign("center"));
-            this.divCirculo.addCss(css.setWidth(150));
+            this.divCirculo.addCss(css.setWidth(8, "vw"));
 
             this.divValor.addCss(css.setColor(this.getStrDivCor()));
-            this.divValor.addCss(css.setFontSize(100));
-            this.divValor.addCss(css.setLineHeight(170));
+            this.divValor.addCss(css.setFontSize(8, "vw"));
+            this.divValor.addCss(css.setLineHeight(8, "vw"));
         }
 
         protected override void setStrId(string strId)
