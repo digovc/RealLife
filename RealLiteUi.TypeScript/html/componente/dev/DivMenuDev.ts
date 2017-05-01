@@ -8,7 +8,7 @@ module RealLifeUi
     // #region Enumerados
     // #endregion Enumerados
 
-    export class DivMenuDev extends DivMenuBase
+    export class DivMenuDev extends DivMenuBase implements OnItemSelecionadoListener
     {
         // #region Constantes
         // #endregion Constantes
@@ -24,7 +24,7 @@ module RealLifeUi
                 return this._divMenuItemCameraLivre;
             }
 
-            this._divMenuItemCameraLivre = new DivMenuItem(0, "Câmera livre");
+            this._divMenuItemCameraLivre = this.getDivMenuItemCameraLivre();
 
             return this._divMenuItemCameraLivre;
         }
@@ -42,14 +42,72 @@ module RealLifeUi
 
         // #region Métodos
 
+        private desligarCameraLivre(): void
+        {
+            this.divMenuItemCameraLivre.divValor.strConteudo = "Desligada";
+        }
+
+        private getDivMenuItemCameraLivre(): DivMenuItem
+        {
+            var divMenuItemCameraLivreResultado = new DivMenuItem(0, "Câmera livre")
+
+            divMenuItemCameraLivreResultado.divValor.strConteudo = "Desligada";
+
+            return divMenuItemCameraLivreResultado;
+        }
+
         protected inicializarArrDivMenuItem(arrDivMenuItem: Array<DivMenuItem>): void
         {
             arrDivMenuItem.push(this.divMenuItemCameraLivre);
         }
 
+        private ligarCameraLivre(): void
+        {
+            this.divMenuItemCameraLivre.divValor.strConteudo = "Ligada";
+
+            ClientRealLife.i.executar(PagDev.name, "ligarCameraLivre");
+        }
+
+        private ligarDesligarCameraLivre(): void
+        {
+            if (this.divMenuItemCameraLivre.divValor.strConteudo == "Ligada")
+            {
+                this.desligarCameraLivre();
+            }
+            else
+            {
+                this.ligarCameraLivre();
+            }
+
+            this.esconder();
+        }
+
+        private processarOnItemSelecionado(divMenuItem: DivMenuItem): void
+        {
+            switch (divMenuItem)
+            {
+                case this.divMenuItemCameraLivre:
+                    this.ligarDesligarCameraLivre();
+                    return;
+            }
+        }
+
+        protected setEventos(): void
+        {
+            super.setEventos();
+
+            this.divMenuItemCameraLivre.addEvtOnItemSelecionadoListener(this);
+        }
+
         // #endregion Métodos
 
         // #region Eventos
+
+        public onItemSelecionado(divMenuItem: DivMenuItem): void
+        {
+            this.processarOnItemSelecionado(divMenuItem);
+        }
+
         // #endregion Eventos
     }
 }

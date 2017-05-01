@@ -16,6 +16,7 @@ module RealLife
         // #region Atributos
 
         private _objBrowserRealLife: BrowserRealLife;
+        private _url: string;
 
         protected get objBrowserRealLife(): BrowserRealLife
         {
@@ -24,7 +25,7 @@ module RealLife
                 return this._objBrowserRealLife;
             }
 
-            this._objBrowserRealLife = this.getobjBrowserRealLife();
+            this._objBrowserRealLife = new BrowserRealLife(this);
 
             return this._objBrowserRealLife;
         }
@@ -34,21 +35,24 @@ module RealLife
             this._objBrowserRealLife = objBrowserRealLife;
         }
 
+        public get url(): string
+        {
+            if (this._url != null)
+            {
+                return this._url;
+            }
+
+            this._url = this.getUrl();
+
+            return this._url;
+        }
+
         // #endregion Atributos
 
         // #region Construtores
         // #endregion Construtores
 
         // #region Métodos
-
-        private getobjBrowserRealLife(): BrowserRealLife
-        {
-            var objBrowserRealLifeResultado = new BrowserRealLife();
-
-            objBrowserRealLifeResultado.url = this.getUrl();
-
-            return objBrowserRealLifeResultado;
-        }
 
         protected abstract getUrl(): string;
 

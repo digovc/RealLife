@@ -38,9 +38,9 @@ module RealLife
 
         // #region Métodos
 
-        protected inicializar(): void
+        protected finalizar(): void
         {
-            super.inicializar();
+            super.finalizar();
 
             AppRealLife.i.iniciar();
         }
@@ -317,7 +317,7 @@ module RealLife
                     return;
                 }
 
-                evt.onUpdate();
+                evt.onUpdate(0);
             });
         }
 

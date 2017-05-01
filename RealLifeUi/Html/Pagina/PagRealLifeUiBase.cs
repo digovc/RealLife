@@ -53,7 +53,8 @@ namespace RealLifeUi.Html.Pagina
         {
             base.setCss(css);
 
-            this.addCss(css.setFontSize(1, "vw"));
+            this.addCss(css.setFontFamily("monospace"));
+            this.addCss(css.setFontSize(1.5m, "vw"));
             this.addCss(css.setOverflow("hidden"));
         }
 

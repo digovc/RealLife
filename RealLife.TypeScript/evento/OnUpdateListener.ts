@@ -2,6 +2,6 @@ module RealLife
 {
     export interface OnUpdateListener
     {
-        onUpdate(): void;
+        onUpdate(fltDelta: number): void;
     }
 }

@@ -14,7 +14,6 @@ module RealLife
         // #region Atributos
 
         private _objBrowser: GTANetwork.GUI.Browser;
-        private _url: string;
 
         private get objBrowser(): GTANetwork.GUI.Browser
         {
@@ -33,19 +32,29 @@ module RealLife
             this._objBrowser = objBrowser;
         }
 
-        public get url(): string
+        private _pag: PagRealLifeBase;
+
+        private get pag(): PagRealLifeBase
         {
-            return this._url;
+            return this._pag;
         }
 
-        public set url(url: string)
+        private set pag(pag: PagRealLifeBase)
         {
-            this._url = url;
+            this._pag = pag;
         }
 
         // #endregion Atributos
 
         // #region Construtores
+
+        constructor(pag: PagRealLifeBase)
+        {
+            super();
+
+            this.pag = pag;
+        }
+
         // #endregion Construtores
 
         // #region Métodos
@@ -67,16 +76,38 @@ module RealLife
             this.objBrowser = null;
         }
 
+        public executarJs(strMetodoNome: string): void
+        {
+            if (UtilsRealLife.getBooStrVazia(strMetodoNome))
+            {
+                return;
+            }
+
+            if (this.objBrowser == null)
+            {
+                return;
+            }
+
+            var strCodigo = "RealLifeUi._class_name.i._method_name";
+
+            strCodigo = strCodigo.replace("_class_name", this.pag.constructor.name);
+            strCodigo = strCodigo.replace("_method_name", strMetodoNome);
+
+            this.objBrowser.call(strCodigo);
+
+            Log.i.debug("JavaScript enviado para CEF: {0}.", strCodigo);
+        }
+
         public iniciar(): void
         {
             super.iniciar();
 
-            if (UtilsRealLife.getBooStrVazia(this.url))
+            if (this.pag == null)
             {
-                throw "A URL do browser não foi definida.";
+                return;
             }
 
-            if (API.isCefBrowserInitialized(this.objBrowser))
+            if (UtilsRealLife.getBooStrVazia(this.pag.url))
             {
                 return;
             }
@@ -85,7 +116,7 @@ module RealLife
 
             API.setCefBrowserPosition(this.objBrowser, 0, 0);
 
-            API.loadPageCefBrowser(this.objBrowser, this.url);
+            API.loadPageCefBrowser(this.objBrowser, this.pag.url);
         }
 
         // #endregion Métodos

@@ -29,6 +29,20 @@ module RealLife
             return AppRealLife._i;
         }
 
+        private _booDebug: boolean;
+
+        public get booDebug(): boolean
+        {
+            if (this._booDebug != null)
+            {
+                return this._booDebug;
+            }
+
+            this._booDebug = true;
+
+            return this._booDebug;
+        }
+
         // #endregion Atributos
 
         // #region Construtores
@@ -40,12 +54,8 @@ module RealLife
         {
             super.finalizar();
 
-            PagLogin.i.iniciar();
-        }
-
-        protected inicializar(): void
-        {
-            super.inicializar();
+            KeyBoard.i.iniciar();
+            Screen.i.iniciar();
 
             Jogador.i.iniciar();
 

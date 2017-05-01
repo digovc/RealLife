@@ -148,15 +148,16 @@ namespace RealLifeUi.Html.Componente.Menu
         {
             base.setCss(css);
 
-            var strBackgroundColor = css.setBackgroundColor("rgba(0,0,0,0.5)");
+            var strBackgroundColor = css.setBackgroundColor("rgba(0,0,0,.9)");
 
             this.addCss(css.setColor("white"));
-            this.addCss(css.setLeft(5, "vw"));
+            this.addCss(css.setDisplay("none"));
+            this.addCss(css.setLeft(1, "vw"));
             this.addCss(css.setPosition("absolute"));
             this.addCss(css.setTop(8, "vh"));
-            this.addCss(css.setWidth(18, "vw"));
+            this.addCss(css.setWidth(20, "vw"));
 
-            this.divCabecalho.addCss(css.setBackgroundColor("rgba(3,169,244,0.75)"));
+            this.divCabecalho.addCss(css.setBackgroundColor("rgba(3,169,244,.9)"));
             this.divCabecalho.addCss(css.setOverflow("hidden"));
             this.divCabecalho.addCss(css.setPadding(1, "vw"));
             this.divCabecalho.addCss(css.setPaddingBottom(2, "vh"));

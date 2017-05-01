@@ -23,6 +23,7 @@ module RealLifeUi
         private _arrDivMenuItem: Array<DivMenuItem>;
         private _divContagem: Div;
         private _divConteudo: Div;
+        private _divMenuItemSelecionado: DivMenuItem;
 
         private get arrDivMenuItem(): Array<DivMenuItem>
         {
@@ -60,6 +61,16 @@ module RealLifeUi
             return this._divConteudo;
         }
 
+        public get divMenuItemSelecionado(): DivMenuItem
+        {
+            return this._divMenuItemSelecionado;
+        }
+
+        public set divMenuItemSelecionado(divMenuItemSelecionado: DivMenuItem)
+        {
+            this._divMenuItemSelecionado = divMenuItemSelecionado;
+        }
+
         // #endregion Atributos
 
         // #region Construtores
@@ -67,6 +78,13 @@ module RealLifeUi
         // #endregion Construtores
 
         // #region Métodos
+
+        public esconder(enmAnimacaoTipo: Web.Tag_EnmAnimacaoTipo = Web.Tag_EnmAnimacaoTipo.IMEDIATAMENTE): void
+        {
+            super.esconder(enmAnimacaoTipo);
+
+            this.divMenuItemSelecionado = null;
+        }
 
         protected finalizar(): void
         {
@@ -107,6 +125,18 @@ module RealLifeUi
             this.divContagem.strConteudo = strConteudo;
         }
 
+        public mostrar(enmAnimacaoTipo: Web.Tag_EnmAnimacaoTipo = Web.Tag_EnmAnimacaoTipo.IMEDIATAMENTE)
+        {
+            super.mostrar(Web.Tag_EnmAnimacaoTipo.IMEDIATAMENTE);
+
+            if (this.arrDivMenuItem.length < 1)
+            {
+                return;
+            }
+
+            this.arrDivMenuItem[0].receberFoco();
+        }
+
         protected montarLayout(): void
         {
             super.montarLayout();
@@ -117,6 +147,21 @@ module RealLifeUi
         private montarLayoutArrDivMenuItem(): void
         {
             this.arrDivMenuItem.forEach((divMenuItem: DivMenuItem) => { this.divConteudo.jq.append(divMenuItem.strLayoutFixo); });
+        }
+
+        public selecionar(): void
+        {
+            if (!this.booVisivel)
+            {
+                return;
+            }
+
+            if (this.divMenuItemSelecionado == null)
+            {
+                return;
+            }
+
+            this.divMenuItemSelecionado.selecionar();
         }
 
         // #endregion Métodos

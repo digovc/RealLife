@@ -47,6 +47,7 @@ module RealLife
         }
 
         private _objJogador: JogadorDominio;
+        private _ped: Ped;
 
         private get objJogador(): JogadorDominio
         {
@@ -56,6 +57,18 @@ module RealLife
         private set objJogador(objJogador: JogadorDominio)
         {
             this._objJogador = objJogador;
+        }
+
+        public get ped(): Ped
+        {
+            if (this._ped != null)
+            {
+                return this._ped;
+            }
+
+            this._ped = this.getPed();
+
+            return this._ped;
         }
 
         // #endregion Atributos
@@ -161,6 +174,15 @@ module RealLife
             }
 
             return arrObjArg[0];
+        }
+
+        private getPed(): Ped
+        {
+            var pedResultado = new Ped();
+
+            pedResultado.intHandle = API.returnNative("GET_PLAYER_PED", Enums.NativeReturnTypes.Handle);
+
+            return pedResultado;
         }
 
         protected setEventos(): void

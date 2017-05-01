@@ -44,3 +44,12 @@
 
 ### Menu de contexto
 
+## Desafios
+
+### Ir até um ponto
+
+### Localizar um ativo
+
+### Destruir um ativo
+
+### Transportar um ativo

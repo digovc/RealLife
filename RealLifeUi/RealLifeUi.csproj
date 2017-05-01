@@ -92,6 +92,10 @@
       <Project>{5fdebacf-1812-47a0-8fba-25db3ad2b31c}</Project>
       <Name>NetZ.Persistencia</Name>
     </ProjectReference>
+    <ProjectReference Include="..\RealLiteUi.TypeScript\RealLiteUi.TypeScript.csproj">
+      <Project>{403ddf43-6d9d-44c7-a559-b832843acce6}</Project>
+      <Name>RealLiteUi.TypeScript</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Web\NetZ.Web.csproj">
       <Project>{bf12701f-12d8-41d0-9269-d8921568aa82}</Project>
       <Name>NetZ.Web</Name>

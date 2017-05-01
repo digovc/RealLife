@@ -72,7 +72,7 @@ module RealLifeUi
             return this._divNome;
         }
 
-        private get divValor(): Div
+        public get divValor(): Div
         {
             if (this._divValor != null)
             {
@@ -105,7 +105,11 @@ module RealLifeUi
 
             this.inicializarArrDivMenuItem(arrDivMenuItemResultado);
 
-            arrDivMenuItemResultado.forEach((divMenuItem: DivMenuItem) => { divMenuItem.divMenuItemPai = this; });
+            arrDivMenuItemResultado.forEach((divMenuItem: DivMenuItem) =>
+            {
+                divMenuItem.divMenuItemPai = this;
+                divMenuItem.divMenuPai = this.divMenuPai;
+            });
 
             return arrDivMenuItemResultado;
         }
@@ -132,6 +136,8 @@ module RealLifeUi
 
             this.jq.css("background-color", Utils.STR_VAZIA);
             this.jq.css("color", Utils.STR_VAZIA);
+
+            this.divMenuPai.divMenuItemSelecionado = null;
         }
 
         public receberFoco(): void
@@ -140,11 +146,91 @@ module RealLifeUi
 
             this.jq.css("background-color", "white");
             this.jq.css("color", "black");
+
+            this.divMenuPai.divMenuItemSelecionado = this;
+        }
+
+        public selecionar(): void
+        {
+            if (this.arrDivMenuItem.length > 0)
+            {
+                // TODO: Montar menu filho;
+                return;
+            }
+
+            this.dispararEvtOnItemSelecionadoListener();
         }
 
         // #endregion Métodos
 
         // #region Eventos
+
+        // #region OnItemSelecionadoListener
+
+        private _arrEvtOnItemSelecionadoListener: Array<OnItemSelecionadoListener>;
+
+        private get arrEvtOnItemSelecionadoListener(): Array<OnItemSelecionadoListener>
+        {
+            if (this._arrEvtOnItemSelecionadoListener != null)
+            {
+                return this._arrEvtOnItemSelecionadoListener;
+            }
+
+            this._arrEvtOnItemSelecionadoListener = new Array<OnItemSelecionadoListener>();
+
+            return this._arrEvtOnItemSelecionadoListener;
+        }
+
+        public addEvtOnItemSelecionadoListener(evtOnItemSelecionadoListener: OnItemSelecionadoListener): void
+        {
+            if (evtOnItemSelecionadoListener == null)
+            {
+                return;
+            }
+
+            if (this.arrEvtOnItemSelecionadoListener.indexOf(evtOnItemSelecionadoListener) > -1)
+            {
+                return;
+            }
+
+            this.arrEvtOnItemSelecionadoListener.push(evtOnItemSelecionadoListener);
+        }
+
+        private dispararEvtOnItemSelecionadoListener(): void
+        {
+            if (this.arrEvtOnItemSelecionadoListener.length == 0)
+            {
+                return;
+            }
+
+            this.arrEvtOnItemSelecionadoListener.forEach((evt) =>
+            {
+                if (evt == null)
+                {
+                    return;
+                }
+
+                evt.onItemSelecionado(this);
+            });
+        }
+
+        public removerEvtOnItemSelecionadoListener(evt: OnItemSelecionadoListener): void
+        {
+            if (evt == null)
+            {
+                return;
+            }
+
+            if (this.arrEvtOnItemSelecionadoListener.indexOf(evt) == -1)
+            {
+                return;
+            }
+
+            this.arrEvtOnItemSelecionadoListener.splice(this.arrEvtOnItemSelecionadoListener.indexOf(evt), 1);
+        }
+
+        // #endregion OnItemSelecionadoListener
+
         // #endregion Eventos
     }
 }

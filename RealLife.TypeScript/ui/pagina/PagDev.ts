@@ -8,7 +8,7 @@ module RealLife
     // #region Enumerados
     // #endregion Enumerados
 
-    export class PagDev extends PagRealLifeBase
+    export class PagDev extends PagRealLifeBase implements OnKeySelecionarListener, OnKeyMenuListener
     {
         // #region Constantes
         // #endregion Constantes
@@ -29,6 +29,20 @@ module RealLife
             return PagDev._i;
         }
 
+        private _camLivre: CameraLivre;
+
+        private get camLivre(): CameraLivre
+        {
+            if (this._camLivre != null)
+            {
+                return this._camLivre;
+            }
+
+            this._camLivre = new CameraLivre();
+
+            return this._camLivre;
+        }
+
         // #endregion Atributos
 
         // #region Construtores
@@ -41,9 +55,43 @@ module RealLife
             return "ui/pag_desenvolvimento.html";
         }
 
+        public ligarCameraLivre(): void
+        {
+            this.camLivre.ativar();
+        }
+
+        private processarOnKeySelecionar(): void
+        {
+            this.objBrowserRealLife.executarJs("processarOnKeySelecionar");
+        }
+
+        private processarOnKeyMenu(): void
+        {
+            this.objBrowserRealLife.executarJs("processarOnKeyMenu");
+        }
+
+        protected setEventos(): void
+        {
+            super.setEventos();
+
+            KeyBoard.i.addEvtOnKeyMenuListener(this);
+            KeyBoard.i.addEvtOnKeySelecionarListener(this);
+        }
+
         // #endregion Métodos
 
         // #region Eventos
+
+        public onKeySelecionar(): void
+        {
+            this.processarOnKeySelecionar();
+        }
+
+        public onKeyMenu(): void
+        {
+            this.processarOnKeyMenu();
+        }
+
         // #endregion Eventos
     }
 }

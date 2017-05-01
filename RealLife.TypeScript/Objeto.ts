@@ -12,6 +12,7 @@ module RealLife
         // #endregion Constantes
 
         // #region Atributos
+
         // #endregion Atributos
 
         // #region Construtores
@@ -19,12 +20,18 @@ module RealLife
 
         // #region Métodos
 
+        public destruir(): void
+        {
+        }
+
         protected finalizar(): void
         {
+            Log.i.debug("Finalizando inicializacao: {0}.", this.constructor.name);
         }
 
         protected inicializar(): void
         {
+            Log.i.debug("Inicializando: {0}.", this.constructor.name);
         }
 
         public iniciar(): void
@@ -36,6 +43,7 @@ module RealLife
 
         protected setEventos(): void
         {
+            Log.i.debug("Configurando os eventos {0}.", this.constructor.name);
         }
 
         // #endregion Métodos

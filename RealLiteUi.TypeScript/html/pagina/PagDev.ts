@@ -58,6 +58,22 @@ module RealLifeUi
             this.divMenuDev.iniciar();
         }
 
+        public processarOnKeyMenu(): void
+        {
+            if (!this.divMenuDev.booVisivel)
+            {
+                this.divMenuDev.mostrar();
+                return;
+            }
+
+            this.divMenuDev.esconder();
+        }
+
+        public processarOnKeySelecionar(): void
+        {
+            this.divMenuDev.selecionar();
+        }
+
         // #endregion Métodos
 
         // #region Eventos

@@ -41,7 +41,7 @@ module RealLifeUi
 
         // #region Métodos
 
-        public executarJson(strClassName: string, strMetodoNome: string, objDominio: DominioRealLifeBase): void
+        public executar(strClassName: string, strMetodoNome: string, objDominio: DominioRealLifeBase = null): void
         {
             if (resourceCall == null)
             {
@@ -63,7 +63,14 @@ module RealLifeUi
             strCodigo = strCodigo.replace("_class_name", strClassName);
             strCodigo = strCodigo.replace("_method_name", strMetodoNome);
 
-            resourceCall(strCodigo, JSON.stringify(objDominio));
+            if (objDominio == null)
+            {
+                resourceCall(strCodigo);
+            }
+            else
+            {
+                resourceCall(strCodigo, JSON.stringify(objDominio));
+            }
         }
 
         // #endregion Métodos
