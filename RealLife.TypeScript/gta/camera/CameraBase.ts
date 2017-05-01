@@ -40,6 +40,8 @@ module RealLife
 
         public get vctPosicao(): Vector3
         {
+            this._vctPosicao = this.getVctPosicao();
+
             return this._vctPosicao;
         }
 
@@ -57,12 +59,21 @@ module RealLife
 
         public get vctRotacao(): Vector3
         {
+            this._vctRotacao = this.getVctRotacao();
+
             return this._vctRotacao;
         }
 
         public set vctRotacao(vctRotacao: Vector3)
         {
+            if (UtilsRealLife.getBooVctIgual(this._vctRotacao, vctRotacao))
+            {
+                return;
+            }
+
             this._vctRotacao = vctRotacao;
+
+            this.setVctRotacao(this._vctRotacao);
         }
 
         private get objGlobalCamera(): GTANetwork.Javascript.GlobalCamera
@@ -107,6 +118,26 @@ module RealLife
             this.objGlobalCamera = API.createCamera(this.vctPosicao, this.vctRotacao);
         }
 
+        private getVctPosicao(): Vector3
+        {
+            if (this.objGlobalCamera == null)
+            {
+                return null;
+            }
+
+            return API.getCameraPosition(this.objGlobalCamera);
+        }
+
+        private getVctRotacao(): Vector3
+        {
+            if (this.objGlobalCamera == null)
+            {
+                return null;
+            }
+
+            return API.getCameraRotation(this.objGlobalCamera);
+        }
+
         private setVctPosicao(vctPosicao: Vector3): void
         {
             if (this.objGlobalCamera == null)
@@ -117,6 +148,18 @@ module RealLife
             API.setCameraPosition(this.objGlobalCamera, vctPosicao);
 
             Log.i.debug("Posicao da camera {0}: {1}, {1}, {2}.", this.strNome, vctPosicao.X, vctPosicao.Y, vctPosicao.Z);
+        }
+
+        private setVctRotacao(vctRotacao: Vector3): void
+        {
+            if (this.objGlobalCamera == null)
+            {
+                return;
+            }
+
+            API.setCameraRotation(this.objGlobalCamera, vctRotacao);
+
+            Log.i.debug("Rotacao da camera {0}: {1}, {1}, {2}.", this.strNome, vctRotacao.X, vctRotacao.Y, vctRotacao.Z);
         }
 
         // #endregion Métodos
