@@ -1,10 +1,10 @@
-﻿/// <reference path="../../../RealLifeDominio.TypeScript/MissaoConclusaoDominio.ts"/>
+﻿/// <reference path="../../../RealLifeShared.TypeScript/dominio/MissaoConclusaoDominio.ts"/>
 
 module RealLifeUi
 {
     // #region Importações
 
-    import MissaoConclusaoDominio = RealLifeDominio.MissaoConclusaoDominio;
+    import MissaoConclusaoDominio = RealLifeShared.MissaoConclusaoDominio;
 
     // #endregion Importações
 

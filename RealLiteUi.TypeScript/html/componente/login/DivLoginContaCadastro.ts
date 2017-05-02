@@ -1,4 +1,4 @@
-﻿/// <reference path="../../../../RealLifeDominio.TypeScript/JogadorDominio.ts"/>
+﻿/// <reference path="../../../../RealLifeShared.TypeScript/dominio/JogadorDominio.ts"/>
 /// <reference path="../../../../Web.TypeScript/html/componente/Mensagem.ts"/>
 /// <reference path="../../../../Web.TypeScript/Utils.ts"/>
 
@@ -6,7 +6,7 @@ module RealLifeUi
 {
     // #region Importações
 
-    import JogadorDominio = RealLifeDominio.JogadorDominio;
+    import JogadorDominio = RealLifeShared.JogadorDominio;
     import Mensagem = Web.Mensagem;
     import Utils = Web.Utils;
 

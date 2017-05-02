@@ -1,5 +1,4 @@
-﻿/// <reference path="../../../RealLifeDominio.TypeScript/JogadorDominio.ts"/>
-/// <reference path="../../../Web.TypeScript/erro/Erro.ts"/>
+﻿/// <reference path="../../../RealLifeShared.TypeScript/dominio/JogadorDominio.ts"/>
 /// <reference path="../../../Web.TypeScript/html/componente/Mensagem.ts"/>
 /// <reference path="../../../Web.TypeScript/html/Div.ts"/>
 /// <reference path="../../../Web.TypeScript/Keys.ts"/>
@@ -10,8 +9,7 @@ module RealLifeUi
     // #region Importações
 
     import Div = Web.Div;
-    import Erro = Web.Erro;
-    import JogadorDominio = RealLifeDominio.JogadorDominio;
+    import JogadorDominio = RealLifeShared.JogadorDominio;
     import Keys = Web.Keys;
     import Mensagem = Web.Mensagem;
     import OnKeyPressListener = Web.OnKeyPressListener;
@@ -168,10 +166,6 @@ module RealLifeUi
         {
             super.inicializar();
 
-            AppRealLifeUi.i.pag = this;
-
-            AppRealLifeUi.i.iniciar();
-
             this.divLoginCabecalho.iniciar();
             this.divLoginContaCadastro.iniciar();
             this.divLoginEntrar.iniciar();
@@ -218,18 +212,11 @@ module RealLifeUi
 
         public onKeyPress(objSender: Object, arg: JQueryKeyEventObject): void
         {
-            try
+            switch (arg.keyCode)
             {
-                switch (arg.keyCode)
-                {
-                    case Keys.ENTER:
-                        this.processarOnKeyPressEnter();
-                        return;
-                }
-            }
-            catch (ex)
-            {
-                new Erro("Erro desconhecido.", ex);
+                case Keys.ENTER:
+                    this.processarOnKeyPressEnter();
+                    return;
             }
         }
 

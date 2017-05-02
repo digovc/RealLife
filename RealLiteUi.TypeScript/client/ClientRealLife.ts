@@ -1,11 +1,11 @@
-﻿/// <reference path="../RealLifeDominio.TypeScript/DominioRealLifeBase.ts"/>
-/// <reference path="../Web.TypeScript/Utils.ts"/>
+﻿/// <reference path="../../RealLifeShared.TypeScript/dominio/DominioRealLifeBase.ts"/>
+/// <reference path="../../Web.TypeScript/Utils.ts"/>
 
 module RealLifeUi
 {
     // #region Importações
 
-    import DominioRealLifeBase = RealLifeDominio.DominioRealLifeBase;
+    import DominioRealLifeBase = RealLifeShared.DominioRealLifeBase;
     import Utils = Web.Utils;
 
     // #endregion Importações
@@ -43,7 +43,7 @@ module RealLifeUi
 
         public executar(strClassName: string, strMetodoNome: string, objDominio: DominioRealLifeBase = null): void
         {
-            if (resourceCall == null)
+            if (!AppRealLifeUi.i.booGame)
             {
                 return;
             }

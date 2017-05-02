@@ -66,15 +66,17 @@
     <Folder Include="Properties\" />
   </ItemGroup>
   <ItemGroup>
-    <TypeScriptCompile Include="DominioRealLifeBase.ts" />
-    <TypeScriptCompile Include="ErroDominio.ts" />
-    <TypeScriptCompile Include="MissaoConclusaoDominio.ts" />
+    <TypeScriptCompile Include="dominio\DominioRealLifeBase.ts" />
+    <TypeScriptCompile Include="dominio\ErroDominio.ts" />
+    <TypeScriptCompile Include="dominio\MissaoConclusaoDominio.ts" />
+    <TypeScriptCompile Include="enumerado\EnmKey.ts" />
+    <TypeScriptCompile Include="evento\OnGameKeyListener.ts" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />
   </ItemGroup>
   <ItemGroup>
-    <TypeScriptCompile Include="JogadorDominio.ts" />
+    <TypeScriptCompile Include="dominio\JogadorDominio.ts" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.targets" Condition="Exists('$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.targets')" />

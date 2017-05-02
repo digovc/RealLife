@@ -18,11 +18,6 @@ module RealLifeUi
 
         // #region Construtores
 
-        constructor()
-        {
-            super(DivMenuInterativo.name);
-        }
-
         // #endregion Construtores
 
         // #region Métodos

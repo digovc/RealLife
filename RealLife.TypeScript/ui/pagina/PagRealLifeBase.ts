@@ -1,14 +1,20 @@
+/// <reference path="../../../RealLifeShared.TypeScript/enumerado/EnmKey.ts"/>
+/// <reference path="../../../RealLifeShared.TypeScript/evento/OnGameKeyListener.ts"/>
 /// <reference path="../../Objeto.ts"/>
 
 module RealLife
 {
     // #region Importações
+
+    import EnmKey = RealLifeShared.EnmKey;
+    import OnGameKeyListener = RealLifeShared.OnGameKeyListener;
+
     // #endregion Importações
 
     // #region Enumerados
     // #endregion Enumerados
 
-    export abstract class PagRealLifeBase extends Objeto
+    export abstract class PagRealLifeBase extends Objeto implements OnGameKeyListener
     {
         // #region Constantes
         // #endregion Constantes
@@ -18,7 +24,7 @@ module RealLife
         private _objBrowserRealLife: BrowserRealLife;
         private _url: string;
 
-        protected get objBrowserRealLife(): BrowserRealLife
+        public get objBrowserRealLife(): BrowserRealLife
         {
             if (this._objBrowserRealLife != null)
             {
@@ -30,7 +36,7 @@ module RealLife
             return this._objBrowserRealLife;
         }
 
-        protected set objBrowserRealLife(objBrowserRealLife: BrowserRealLife)
+        public set objBrowserRealLife(objBrowserRealLife: BrowserRealLife)
         {
             this._objBrowserRealLife = objBrowserRealLife;
         }
@@ -54,6 +60,13 @@ module RealLife
 
         // #region Métodos
 
+        protected enviarCefKeyGame(enmKey: EnmKey): void
+        {
+            KeyBoard.i.enviarCefKeyGame(this, enmKey);
+        }
+
+        protected abstract getBooEnviarTecla(enmKey: EnmKey): boolean;
+
         protected abstract getUrl(): string;
 
         public iniciar(): void
@@ -63,9 +76,32 @@ module RealLife
             this.objBrowserRealLife.iniciar();
         }
 
+        private processarOnGameKey(enmKey: EnmKey): void
+        {
+            if (!this.getBooEnviarTecla(enmKey))
+            {
+                return;
+            }
+
+            this.enviarCefKeyGame(enmKey);
+        }
+
+        protected setEventos(): void
+        {
+            super.setEventos();
+
+            KeyBoard.i.addEvtOnGameKeyListener(this);
+        }
+
         // #endregion Métodos
 
         // #region Eventos
+
+        public onGameKey(enmKey: EnmKey): void
+        {
+            this.processarOnGameKey(enmKey);
+        }
+
         // #endregion Eventos
     }
 }

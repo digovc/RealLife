@@ -1,6 +1,4 @@
-﻿/// <reference path="../RealLifeDominio.TypeScript/DominioRealLifeBase.ts"/>
-/// <reference path="../RealLifeDominio.TypeScript/JogadorDominio.ts"/>
-/// <reference path="../Web.TypeScript/AppWebBase.ts"/>
+﻿/// <reference path="../Web.TypeScript/AppWebBase.ts"/>
 /// <reference path="../Web.TypeScript/html/componente/Mensagem.ts"/>
 /// <reference path="../Web.TypeScript/Utils.ts"/>
 
@@ -11,8 +9,6 @@ module RealLifeUi
     // #region Importações
 
     import AppWebBase = Web.AppWebBase;
-    import DominioRealLifeBase = RealLifeDominio.DominioRealLifeBase;
-    import JogadorDominio = RealLifeDominio.JogadorDominio;
     import Mensagem = Web.Mensagem;
     import Utils = Web.Utils;
 
@@ -40,6 +36,20 @@ module RealLifeUi
             AppRealLifeUi._i = new AppRealLifeUi();
 
             return AppRealLifeUi._i;
+        }
+
+        private _booGame: boolean;
+
+        public get booGame(): boolean
+        {
+            if (this._booGame != null)
+            {
+                return this._booGame;
+            }
+
+            this._booGame = (resourceCall != null);
+
+            return this._booGame;
         }
 
         // #endregion Atributos

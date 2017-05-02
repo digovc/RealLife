@@ -17,7 +17,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RealLifeUi", "RealLifeUi\Re
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NetZ.Web", "Web\NetZ.Web.csproj", "{BF12701F-12D8-41D0-9269-D8921568AA82}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RealLifeDominio.TypeScript", "RealLifeDominio.TypeScript\RealLifeDominio.TypeScript.csproj", "{54555420-76B7-4FCE-BC96-E5370C4C3A20}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RealLifeShared.TypeScript", "RealLifeShared.TypeScript\RealLifeShared.TypeScript.csproj", "{54555420-76B7-4FCE-BC96-E5370C4C3A20}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

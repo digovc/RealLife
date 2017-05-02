@@ -1,5 +1,5 @@
-/// <reference path="../RealLifeDominio.TypeScript/ErroDominio.ts"/>
-/// <reference path="../RealLifeDominio.TypeScript/JogadorDominio.ts"/>
+/// <reference path="../RealLifeShared.TypeScript/dominio/ErroDominio.ts"/>
+/// <reference path="../RealLifeShared.TypeScript/dominio/JogadorDominio.ts"/>
 /// <reference path="evento/OnChatCommandListener.ts"/>
 /// <reference path="evento/OnServerEventTriggerListener.ts"/>
 /// <reference path="Objeto.ts"/>
@@ -8,8 +8,8 @@ module RealLife
 {
     // #region Importações
 
-    import ErroDominio = RealLifeDominio.ErroDominio;
-    import JogadorDominio = RealLifeDominio.JogadorDominio;
+    import ErroDominio = RealLifeShared.ErroDominio;
+    import JogadorDominio = RealLifeShared.JogadorDominio;
 
     // #endregion Importações
 

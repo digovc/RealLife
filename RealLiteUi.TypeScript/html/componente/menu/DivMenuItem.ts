@@ -23,12 +23,12 @@ module RealLifeUi
         // #region Atributos
 
         private _arrDivMenuItem: Array<DivMenuItem>;
+        private _divMenu: DivMenuBase;
         private _divMenuItemPai: DivMenuItem;
-        private _divMenuPai: DivMenuBase;
         private _divNome: Div;
         private _divValor: Div;
 
-        private get arrDivMenuItem(): Array<DivMenuItem>
+        public get arrDivMenuItem(): Array<DivMenuItem>
         {
             if (this._arrDivMenuItem != null)
             {
@@ -40,6 +40,16 @@ module RealLifeUi
             return this._arrDivMenuItem;
         }
 
+        public get divMenu(): DivMenuBase
+        {
+            return this._divMenu;
+        }
+
+        public set divMenu(divMenu: DivMenuBase)
+        {
+            this._divMenu = divMenu;
+        }
+
         public get divMenuItemPai(): DivMenuItem
         {
             return this._divMenuItemPai;
@@ -48,16 +58,6 @@ module RealLifeUi
         public set divMenuItemPai(divMenuItemPai: DivMenuItem)
         {
             this._divMenuItemPai = divMenuItemPai;
-        }
-
-        public get divMenuPai(): DivMenuBase
-        {
-            return this._divMenuPai;
-        }
-
-        public set divMenuPai(divMenuPai: DivMenuBase)
-        {
-            this._divMenuPai = divMenuPai;
         }
 
         private get divNome(): Div
@@ -88,11 +88,14 @@ module RealLifeUi
 
         // #region Construtores
 
-        constructor(intIndex: number, strNome: string)
+        constructor(strNome: string, strValor: string = null)
         {
-            super(DivMenuItem.name + "_" + intIndex.toString());
+            super(null);
 
+            this.strId = (DivMenuItem.name + "_" + this.intObjetoId);
             this.strNome = strNome;
+
+            this.divValor.strConteudo = strValor;
         }
 
         // #endregion Construtores
@@ -108,10 +111,17 @@ module RealLifeUi
             arrDivMenuItemResultado.forEach((divMenuItem: DivMenuItem) =>
             {
                 divMenuItem.divMenuItemPai = this;
-                divMenuItem.divMenuPai = this.divMenuPai;
+                divMenuItem.divMenu = this.divMenu;
             });
 
             return arrDivMenuItemResultado;
+        }
+
+        protected getStrConstanteLayoutFixoNome(): string
+        {
+            //return super.getStrConstanteLayoutFixoNome();
+
+            return (DivMenuItem.name + "_layoutFixo");
         }
 
         protected inicializarArrDivMenuItem(arrDivMenuItem: Array<DivMenuItem>): void
@@ -124,7 +134,10 @@ module RealLifeUi
 
             strLayoutFixo = strLayoutFixo.replace("_div_menu_item_id", this.strId);
             strLayoutFixo = strLayoutFixo.replace("_div_nome_conteudo", this.strNome);
+
             strLayoutFixo = strLayoutFixo.replace("_div_nome_id", this.divNome.strId);
+
+            strLayoutFixo = strLayoutFixo.replace("_div_valor_conteudo", (!Utils.getBooStrVazia(this.divValor.strConteudo) ? this.divValor.strConteudo : Utils.STR_VAZIA));
             strLayoutFixo = strLayoutFixo.replace("_div_valor_id", this.divValor.strId);
 
             return strLayoutFixo;
@@ -136,8 +149,6 @@ module RealLifeUi
 
             this.jq.css("background-color", Utils.STR_VAZIA);
             this.jq.css("color", Utils.STR_VAZIA);
-
-            this.divMenuPai.divMenuItemSelecionado = null;
         }
 
         public receberFoco(): void
@@ -147,14 +158,14 @@ module RealLifeUi
             this.jq.css("background-color", "white");
             this.jq.css("color", "black");
 
-            this.divMenuPai.divMenuItemSelecionado = this;
+            this.divMenu.divMenuItemFocado = this;
         }
 
         public selecionar(): void
         {
             if (this.arrDivMenuItem.length > 0)
             {
-                // TODO: Montar menu filho;
+                this.divMenu.montarMenu(this.arrDivMenuItem);
                 return;
             }
 

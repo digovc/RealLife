@@ -1,5 +1,4 @@
-﻿/// <reference path="../../../../Web.TypeScript/erro/Erro.ts"/>
-/// <reference path="../../../../Web.TypeScript/html/componente/ComponenteHtml.ts"/>
+﻿/// <reference path="../../../../Web.TypeScript/html/componente/ComponenteHtml.ts"/>
 /// <reference path="../../../../Web.TypeScript/html/Div.ts"/>
 /// <reference path="../../../../Web.TypeScript/OnClickListener.ts"/>
 /// <reference path="../../../../Web.TypeScript/Utils.ts"/>
@@ -10,7 +9,6 @@ module RealLifeUi
 
     import ComponenteHtml = Web.ComponenteHtml;
     import Div = Web.Div;
-    import Erro = Web.Erro;
     import OnClickListener = Web.OnClickListener;
     import Utils = Web.Utils;
 
@@ -96,22 +94,15 @@ module RealLifeUi
 
         public onClick(objSender: Object, arg: JQueryEventObject): void
         {
-            try
+            switch (objSender)
             {
-                switch (objSender)
-                {
-                    case this.divTabContaCadastro:
-                        this.mostrarDivLoginContaCadastro();
-                        return;
+                case this.divTabContaCadastro:
+                    this.mostrarDivLoginContaCadastro();
+                    return;
 
-                    case this.divTabLoginEntrar:
-                        this.mostrarDivLoginEntrar();
-                        return;
-                }
-            }
-            catch (ex)
-            {
-                new Erro("Erro desconhecido.", ex);
+                case this.divTabLoginEntrar:
+                    this.mostrarDivLoginEntrar();
+                    return;
             }
         }
 

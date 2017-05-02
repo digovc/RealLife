@@ -64,12 +64,16 @@
     <RunPostBuildEvent>OnBuildSuccess</RunPostBuildEvent>
   </PropertyGroup>
   <ItemGroup>
+    <Folder Include="evento\" />
     <Folder Include="Properties\" />
   </ItemGroup>
   <ItemGroup>
     <TypeScriptCompile Include="AppRealLifeUi.ts" />
-    <TypeScriptCompile Include="ClientRealLife.ts" />
+    <TypeScriptCompile Include="client\ClientRealLife.ts" />
+    <TypeScriptCompile Include="client\Keyboard.ts" />
+    <TypeScriptCompile Include="html\componente\dev\audio\DivMenuItemAudioItem.ts" />
     <TypeScriptCompile Include="html\componente\dev\DivMenuDev.ts" />
+    <TypeScriptCompile Include="html\componente\dev\audio\DivMenuItemAudio.ts" />
     <TypeScriptCompile Include="html\componente\interface\DivAtalho.ts" />
     <TypeScriptCompile Include="html\componente\interface\DivAtalhoItem.ts" />
     <TypeScriptCompile Include="html\componente\interface\DivBanco.ts" />

@@ -76,7 +76,7 @@ module RealLife
             this.objBrowser = null;
         }
 
-        public executarJs(strMetodoNome: string): void
+        public executarJs(strClassNome: string, strMetodoNome: string, objArg: any): void
         {
             if (UtilsRealLife.getBooStrVazia(strMetodoNome))
             {
@@ -90,12 +90,12 @@ module RealLife
 
             var strCodigo = "RealLifeUi._class_name.i._method_name";
 
-            strCodigo = strCodigo.replace("_class_name", this.pag.constructor.name);
+            strCodigo = strCodigo.replace("_class_name", strClassNome);
             strCodigo = strCodigo.replace("_method_name", strMetodoNome);
 
             this.objBrowser.call(strCodigo);
 
-            Log.i.debug("JavaScript enviado para CEF: {0}.", strCodigo);
+            Log.i.debug("JavaScript enviado para CEF: {0}.", objArg);
         }
 
         public iniciar(): void

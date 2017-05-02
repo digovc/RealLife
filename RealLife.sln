@@ -11,9 +11,9 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NetZ.Persistencia", "Persis
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "TypeScript", "TypeScript", "{A8C60A5C-F141-433D-98E9-B7B82BC6BEA4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RealLifeDominio.TypeScript", "RealLifeDominio.TypeScript\RealLifeDominio.TypeScript.csproj", "{54555420-76B7-4FCE-BC96-E5370C4C3A20}"
-EndProject
 Project("{9092AA53-FB77-4645-B42D-1CCCA6BD08BD}") = "RealLife.TypeScript", "RealLife.TypeScript\RealLife.TypeScript.njsproj", "{78CE2194-DF9A-499C-9395-FFF092340DA5}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RealLifeShared.TypeScript", "RealLifeShared.TypeScript\RealLifeShared.TypeScript.csproj", "{54555420-76B7-4FCE-BC96-E5370C4C3A20}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -75,22 +75,6 @@ Global
 		{5FDEBACF-1812-47A0-8FBA-25DB3AD2B31C}.Server|Any CPU.Build.0 = Release|Any CPU
 		{5FDEBACF-1812-47A0-8FBA-25DB3AD2B31C}.Server|x86.ActiveCfg = Release|Any CPU
 		{5FDEBACF-1812-47A0-8FBA-25DB3AD2B31C}.Server|x86.Build.0 = Release|Any CPU
-		{54555420-76B7-4FCE-BC96-E5370C4C3A20}.Debug (Cliente)|Any CPU.ActiveCfg = Debug|Any CPU
-		{54555420-76B7-4FCE-BC96-E5370C4C3A20}.Debug (Cliente)|Any CPU.Build.0 = Debug|Any CPU
-		{54555420-76B7-4FCE-BC96-E5370C4C3A20}.Debug (Cliente)|x86.ActiveCfg = Debug|Any CPU
-		{54555420-76B7-4FCE-BC96-E5370C4C3A20}.Debug (Cliente)|x86.Build.0 = Debug|Any CPU
-		{54555420-76B7-4FCE-BC96-E5370C4C3A20}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{54555420-76B7-4FCE-BC96-E5370C4C3A20}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{54555420-76B7-4FCE-BC96-E5370C4C3A20}.Debug|x86.ActiveCfg = Debug|Any CPU
-		{54555420-76B7-4FCE-BC96-E5370C4C3A20}.Debug|x86.Build.0 = Debug|Any CPU
-		{54555420-76B7-4FCE-BC96-E5370C4C3A20}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{54555420-76B7-4FCE-BC96-E5370C4C3A20}.Release|Any CPU.Build.0 = Release|Any CPU
-		{54555420-76B7-4FCE-BC96-E5370C4C3A20}.Release|x86.ActiveCfg = Release|Any CPU
-		{54555420-76B7-4FCE-BC96-E5370C4C3A20}.Release|x86.Build.0 = Release|Any CPU
-		{54555420-76B7-4FCE-BC96-E5370C4C3A20}.Server|Any CPU.ActiveCfg = Release|Any CPU
-		{54555420-76B7-4FCE-BC96-E5370C4C3A20}.Server|Any CPU.Build.0 = Release|Any CPU
-		{54555420-76B7-4FCE-BC96-E5370C4C3A20}.Server|x86.ActiveCfg = Release|Any CPU
-		{54555420-76B7-4FCE-BC96-E5370C4C3A20}.Server|x86.Build.0 = Release|Any CPU
 		{78CE2194-DF9A-499C-9395-FFF092340DA5}.Debug (Cliente)|Any CPU.ActiveCfg = Debug|Any CPU
 		{78CE2194-DF9A-499C-9395-FFF092340DA5}.Debug (Cliente)|Any CPU.Build.0 = Debug|Any CPU
 		{78CE2194-DF9A-499C-9395-FFF092340DA5}.Debug (Cliente)|x86.ActiveCfg = Debug|Any CPU
@@ -107,12 +91,28 @@ Global
 		{78CE2194-DF9A-499C-9395-FFF092340DA5}.Server|Any CPU.Build.0 = Release|Any CPU
 		{78CE2194-DF9A-499C-9395-FFF092340DA5}.Server|x86.ActiveCfg = Release|Any CPU
 		{78CE2194-DF9A-499C-9395-FFF092340DA5}.Server|x86.Build.0 = Release|Any CPU
+		{54555420-76B7-4FCE-BC96-E5370C4C3A20}.Debug (Cliente)|Any CPU.ActiveCfg = Debug|Any CPU
+		{54555420-76B7-4FCE-BC96-E5370C4C3A20}.Debug (Cliente)|Any CPU.Build.0 = Debug|Any CPU
+		{54555420-76B7-4FCE-BC96-E5370C4C3A20}.Debug (Cliente)|x86.ActiveCfg = Debug|Any CPU
+		{54555420-76B7-4FCE-BC96-E5370C4C3A20}.Debug (Cliente)|x86.Build.0 = Debug|Any CPU
+		{54555420-76B7-4FCE-BC96-E5370C4C3A20}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{54555420-76B7-4FCE-BC96-E5370C4C3A20}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{54555420-76B7-4FCE-BC96-E5370C4C3A20}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{54555420-76B7-4FCE-BC96-E5370C4C3A20}.Debug|x86.Build.0 = Debug|Any CPU
+		{54555420-76B7-4FCE-BC96-E5370C4C3A20}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{54555420-76B7-4FCE-BC96-E5370C4C3A20}.Release|Any CPU.Build.0 = Release|Any CPU
+		{54555420-76B7-4FCE-BC96-E5370C4C3A20}.Release|x86.ActiveCfg = Release|Any CPU
+		{54555420-76B7-4FCE-BC96-E5370C4C3A20}.Release|x86.Build.0 = Release|Any CPU
+		{54555420-76B7-4FCE-BC96-E5370C4C3A20}.Server|Any CPU.ActiveCfg = Release|Any CPU
+		{54555420-76B7-4FCE-BC96-E5370C4C3A20}.Server|Any CPU.Build.0 = Release|Any CPU
+		{54555420-76B7-4FCE-BC96-E5370C4C3A20}.Server|x86.ActiveCfg = Release|Any CPU
+		{54555420-76B7-4FCE-BC96-E5370C4C3A20}.Server|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
-		{54555420-76B7-4FCE-BC96-E5370C4C3A20} = {A8C60A5C-F141-433D-98E9-B7B82BC6BEA4}
 		{78CE2194-DF9A-499C-9395-FFF092340DA5} = {A8C60A5C-F141-433D-98E9-B7B82BC6BEA4}
+		{54555420-76B7-4FCE-BC96-E5370C4C3A20} = {A8C60A5C-F141-433D-98E9-B7B82BC6BEA4}
 	EndGlobalSection
 EndGlobal

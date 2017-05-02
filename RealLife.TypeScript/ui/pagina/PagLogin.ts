@@ -1,4 +1,4 @@
-/// <reference path="../../../RealLifeDominio.TypeScript/JogadorDominio.ts"/>
+/// <reference path="../../../RealLifeShared.TypeScript/dominio/JogadorDominio.ts"/>
 /// <reference path="../../typedefinition/gta-network-typescript/content/types-gtanetwork/index.d.ts" />
 /// <reference path="../../UtilsRealLife.ts"/>
 /// <reference path="PagRealLifeBase.ts"/>
@@ -7,7 +7,7 @@ module RealLife
 {
     // #region Importações
 
-    import JogadorDominio = RealLifeDominio.JogadorDominio;
+    import JogadorDominio = RealLifeShared.JogadorDominio;
 
     // #endregion Importações
 

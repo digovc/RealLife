@@ -78,6 +78,7 @@ namespace RealLifeUi.Html.Componente.Menu
             this.divNome.strConteudo = "_div_nome_conteudo";
             this.divNome.strId = "_div_nome_id";
 
+            this.divValor.strConteudo = "_div_valor_conteudo";
             this.divValor.strId = "_div_valor_id";
         }
 
@@ -94,8 +95,9 @@ namespace RealLifeUi.Html.Componente.Menu
         {
             base.setCss(css);
 
-            this.addCss(css.setHeight(4, "vh"));
             this.addCss(css.setBackgroundColor("rgba(0,0,0,.15)"));
+            this.addCss(css.setHeight(4, "vh"));
+            this.addCss(css.setOverflow("hidden"));
 
             //this.divIcone.addCss(css.setFloat("left"));
             //this.divIcone.addCss(css.setHeight(100, "%"));

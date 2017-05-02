@@ -4,6 +4,7 @@
 module RealLifeUi
 {
     // #region Importações
+
     // #endregion Importações
 
     // #region Enumerados
@@ -12,6 +13,7 @@ module RealLifeUi
     export class PagDev extends PagRealLifeUiBase
     {
         // #region Constantes
+
         // #endregion Constantes
 
         // #region Atributos
@@ -58,25 +60,10 @@ module RealLifeUi
             this.divMenuDev.iniciar();
         }
 
-        public processarOnKeyMenu(): void
-        {
-            if (!this.divMenuDev.booVisivel)
-            {
-                this.divMenuDev.mostrar();
-                return;
-            }
-
-            this.divMenuDev.esconder();
-        }
-
-        public processarOnKeySelecionar(): void
-        {
-            this.divMenuDev.selecionar();
-        }
-
         // #endregion Métodos
 
         // #region Eventos
+
         // #endregion Eventos
     }
 }

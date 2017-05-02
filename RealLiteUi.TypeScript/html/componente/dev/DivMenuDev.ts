@@ -1,8 +1,12 @@
-﻿/// <reference path="../menu/DivMenuBase.ts"/>
+﻿/// <reference path="../../../../RealLifeShared.TypeScript/enumerado/EnmKey.ts"/>
+/// <reference path="../menu/DivMenuBase.ts"/>
 
 module RealLifeUi
 {
     // #region Importações
+
+    import EnmKey = RealLifeShared.EnmKey;
+
     // #endregion Importações
 
     // #region Enumerados
@@ -15,7 +19,20 @@ module RealLifeUi
 
         // #region Atributos
 
+        private _divMenuItemAudio: DivMenuItemAudio;
         private _divMenuItemCameraLivre: DivMenuItem;
+
+        private get divMenuItemAudio(): DivMenuItemAudio
+        {
+            if (this._divMenuItemAudio != null)
+            {
+                return this._divMenuItemAudio;
+            }
+
+            this._divMenuItemAudio = new DivMenuItemAudio();
+
+            return this._divMenuItemAudio;
+        }
 
         private get divMenuItemCameraLivre(): DivMenuItem
         {
@@ -24,7 +41,7 @@ module RealLifeUi
                 return this._divMenuItemCameraLivre;
             }
 
-            this._divMenuItemCameraLivre = this.getDivMenuItemCameraLivre();
+            this._divMenuItemCameraLivre = new DivMenuItem("Câmera livre", "Desligada");
 
             return this._divMenuItemCameraLivre;
         }
@@ -32,11 +49,6 @@ module RealLifeUi
         // #endregion Atributos
 
         // #region Construtores
-
-        constructor()
-        {
-            super(DivMenuDev.name);
-        }
 
         // #endregion Construtores
 
@@ -47,18 +59,10 @@ module RealLifeUi
             this.divMenuItemCameraLivre.divValor.strConteudo = "Desligada";
         }
 
-        private getDivMenuItemCameraLivre(): DivMenuItem
-        {
-            var divMenuItemCameraLivreResultado = new DivMenuItem(0, "Câmera livre")
-
-            divMenuItemCameraLivreResultado.divValor.strConteudo = "Desligada";
-
-            return divMenuItemCameraLivreResultado;
-        }
-
         protected inicializarArrDivMenuItem(arrDivMenuItem: Array<DivMenuItem>): void
         {
             arrDivMenuItem.push(this.divMenuItemCameraLivre);
+            arrDivMenuItem.push(this.divMenuItemAudio);
         }
 
         private ligarCameraLivre(): void

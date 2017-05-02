@@ -1,9 +1,17 @@
+/// <reference path="../RealLifeShared.TypeScript/enumerado/EnmKey.ts"/>
+/// <reference path="../RealLifeShared.TypeScript/evento/OnGameKeyListener.ts"/>
+
 module RealLife
 {
     // #region Importações
+
+    import EnmKey = RealLifeShared.EnmKey;
+    import OnGameKeyListener = RealLifeShared.OnGameKeyListener;
+
     // #endregion Importações
 
     // #region Enumerados
+
     // #endregion Enumerados
 
     export class KeyBoard extends Objeto implements OnKeyUpListener, OnUpdateListener
@@ -53,6 +61,16 @@ module RealLife
 
         // #region Métodos
 
+        public enviarCefKeyGame(pag: PagRealLifeBase, enmKey: EnmKey): void
+        {
+            if (pag == null)
+            {
+                return;
+            }
+
+            pag.objBrowserRealLife.executarJs(this.constructor.name, "dispararEvtOnGameKeyListener", enmKey);
+        }
+
         public getBooControleAcionado(enmKey: Enums.Controls): boolean
         {
             return API.returnNative("IS_CONTROL_PRESSED", Enums.NativeReturnTypes.Bool, 0, enmKey);
@@ -67,28 +85,28 @@ module RealLife
             switch (arg.KeyCode)
             {
                 case Keys.A:
-                    this.dispararEvtOnKeyMoverEsquerdaListener();
+                    this.dispararEvtOnGameKeyListener(EnmKey.MOVER_ESQUERDA);
                     return;
 
                 case Keys.D:
-                    this.dispararEvtOnKeyMoverDireitaListener();
+                    this.dispararEvtOnGameKeyListener(EnmKey.MOVER_DIREITA);
                     return;
 
                 case Keys.Enter:
                 case Keys.Right:
-                    this.dispararEvtOnKeySelecionarListener();
+                    this.dispararEvtOnGameKeyListener(EnmKey.SELECIONAR);
                     return;
 
                 case Keys.M:
-                    this.dispararEvtOnKeyMenuListener();
+                    this.dispararEvtOnGameKeyListener(EnmKey.MENU);
                     return;
 
                 case Keys.S:
-                    this.dispararEvtOnKeyMoverTrasListener();
+                    this.dispararEvtOnGameKeyListener(EnmKey.MOVER_TRAS);
                     return;
 
                 case Keys.W:
-                    this.dispararEvtOnKeyMoverFrenteListener();
+                    this.dispararEvtOnGameKeyListener(EnmKey.MOVER_FRENTE);
                     return;
             }
         }
@@ -140,403 +158,71 @@ module RealLife
             this.processarOnUpdate();
         }
 
-        // #region OnKeyMenuListener
+        // #region OnGameKeyListener
 
-        private _arrEvtOnKeyMenuListener: Array<OnKeyMenuListener>;
+        private _arrEvtOnGameKeyListener: Array<OnGameKeyListener>;
 
-        private get arrEvtOnKeyMenuListener(): Array<OnKeyMenuListener>
+        private get arrEvtOnGameKeyListener(): Array<OnGameKeyListener>
         {
-            if (this._arrEvtOnKeyMenuListener != null)
+            if (this._arrEvtOnGameKeyListener != null)
             {
-                return this._arrEvtOnKeyMenuListener;
+                return this._arrEvtOnGameKeyListener;
             }
 
-            this._arrEvtOnKeyMenuListener = new Array<OnKeyMenuListener>();
+            this._arrEvtOnGameKeyListener = new Array<OnGameKeyListener>();
 
-            return this._arrEvtOnKeyMenuListener;
+            return this._arrEvtOnGameKeyListener;
         }
 
-        public addEvtOnKeyMenuListener(evtOnKeyMenuListener: OnKeyMenuListener): void
+        public addEvtOnGameKeyListener(evtOnGameKeyListener: OnGameKeyListener): void
         {
-            if (evtOnKeyMenuListener == null)
+            if (evtOnGameKeyListener == null)
             {
                 return;
             }
 
-            if (this.arrEvtOnKeyMenuListener.indexOf(evtOnKeyMenuListener) > -1)
+            if (this.arrEvtOnGameKeyListener.indexOf(evtOnGameKeyListener) > -1)
             {
                 return;
             }
 
-            this.arrEvtOnKeyMenuListener.push(evtOnKeyMenuListener);
+            this.arrEvtOnGameKeyListener.push(evtOnGameKeyListener);
         }
 
-        private dispararEvtOnKeyMenuListener(): void
+        private dispararEvtOnGameKeyListener(enmKey: EnmKey): void
         {
-            Log.i.debug("Tecla acionada (Menu).");
-
-            if (this.arrEvtOnKeyMenuListener.length == 0)
+            if (this.arrEvtOnGameKeyListener.length == 0)
             {
                 return;
             }
 
-            this.arrEvtOnKeyMenuListener.forEach((evt) =>
+            this.arrEvtOnGameKeyListener.forEach((evt) =>
             {
                 if (evt == null)
                 {
                     return;
                 }
 
-                evt.onKeyMenu();
+                evt.onGameKey(enmKey);
             });
         }
 
-        public removerEvtOnKeyMenuListener(evt: OnKeyMenuListener): void
+        public removerEvtOnGameKeyListener(evt: OnGameKeyListener): void
         {
             if (evt == null)
             {
                 return;
             }
 
-            if (this.arrEvtOnKeyMenuListener.indexOf(evt) == -1)
+            if (this.arrEvtOnGameKeyListener.indexOf(evt) == -1)
             {
                 return;
             }
 
-            this.arrEvtOnKeyMenuListener.splice(this.arrEvtOnKeyMenuListener.indexOf(evt), 1);
+            this.arrEvtOnGameKeyListener.splice(this.arrEvtOnGameKeyListener.indexOf(evt), 1);
         }
 
-        // #endregion OnKeyMenuListener
-
-        // #region OnKeyMoverDireitaListener
-
-        private _arrEvtOnKeyMoverDireitaListener: Array<OnKeyMoverDireitaListener>;
-
-        private get arrEvtOnKeyMoverDireitaListener(): Array<OnKeyMoverDireitaListener>
-        {
-            if (this._arrEvtOnKeyMoverDireitaListener != null)
-            {
-                return this._arrEvtOnKeyMoverDireitaListener;
-            }
-
-            this._arrEvtOnKeyMoverDireitaListener = new Array<OnKeyMoverDireitaListener>();
-
-            return this._arrEvtOnKeyMoverDireitaListener;
-        }
-
-        public addEvtOnKeyMoverDireitaListener(evtOnKeyMoverDireitaListener: OnKeyMoverDireitaListener): void
-        {
-            if (evtOnKeyMoverDireitaListener == null)
-            {
-                return;
-            }
-
-            if (this.arrEvtOnKeyMoverDireitaListener.indexOf(evtOnKeyMoverDireitaListener) > -1)
-            {
-                return;
-            }
-
-            this.arrEvtOnKeyMoverDireitaListener.push(evtOnKeyMoverDireitaListener);
-        }
-
-        private dispararEvtOnKeyMoverDireitaListener(): void
-        {
-            if (this.arrEvtOnKeyMoverDireitaListener.length == 0)
-            {
-                return;
-            }
-
-            this.arrEvtOnKeyMoverDireitaListener.forEach((evt) =>
-            {
-                if (evt == null)
-                {
-                    return;
-                }
-
-                evt.onKeyMoverDireita();
-            });
-        }
-
-        public removerEvtOnKeyMoverDireitaListener(evt: OnKeyMoverDireitaListener): void
-        {
-            if (evt == null)
-            {
-                return;
-            }
-
-            if (this.arrEvtOnKeyMoverDireitaListener.indexOf(evt) == -1)
-            {
-                return;
-            }
-
-            this.arrEvtOnKeyMoverDireitaListener.splice(this.arrEvtOnKeyMoverDireitaListener.indexOf(evt), 1);
-        }
-
-        // #endregion OnKeyMoverDireitaListener
-
-        // #region OnKeyMoverEsquerdaListener
-
-        private _arrEvtOnKeyMoverEsquerdaListener: Array<OnKeyMoverEsquerdaListener>;
-
-        private get arrEvtOnKeyMoverEsquerdaListener(): Array<OnKeyMoverEsquerdaListener>
-        {
-            if (this._arrEvtOnKeyMoverEsquerdaListener != null)
-            {
-                return this._arrEvtOnKeyMoverEsquerdaListener;
-            }
-
-            this._arrEvtOnKeyMoverEsquerdaListener = new Array<OnKeyMoverEsquerdaListener>();
-
-            return this._arrEvtOnKeyMoverEsquerdaListener;
-        }
-
-        public addEvtOnKeyMoverEsquerdaListener(evtOnKeyMoverEsquerdaListener: OnKeyMoverEsquerdaListener): void
-        {
-            if (evtOnKeyMoverEsquerdaListener == null)
-            {
-                return;
-            }
-
-            if (this.arrEvtOnKeyMoverEsquerdaListener.indexOf(evtOnKeyMoverEsquerdaListener) > -1)
-            {
-                return;
-            }
-
-            this.arrEvtOnKeyMoverEsquerdaListener.push(evtOnKeyMoverEsquerdaListener);
-        }
-
-        private dispararEvtOnKeyMoverEsquerdaListener(): void
-        {
-            if (this.arrEvtOnKeyMoverEsquerdaListener.length == 0)
-            {
-                return;
-            }
-
-            this.arrEvtOnKeyMoverEsquerdaListener.forEach((evt) =>
-            {
-                if (evt == null)
-                {
-                    return;
-                }
-
-                evt.onKeyMoverEsquerda();
-            });
-        }
-
-        public removerEvtOnKeyMoverEsquerdaListener(evt: OnKeyMoverEsquerdaListener): void
-        {
-            if (evt == null)
-            {
-                return;
-            }
-
-            if (this.arrEvtOnKeyMoverEsquerdaListener.indexOf(evt) == -1)
-            {
-                return;
-            }
-
-            this.arrEvtOnKeyMoverEsquerdaListener.splice(this.arrEvtOnKeyMoverEsquerdaListener.indexOf(evt), 1);
-        }
-
-        // #endregion OnKeyMoverEsquerdaListener
-
-        // #region OnKeyMoverFrenteListener
-
-        private _arrEvtOnKeyMoverFrenteListener: Array<OnKeyMoverFrenteListener>;
-
-        private get arrEvtOnKeyMoverFrenteListener(): Array<OnKeyMoverFrenteListener>
-        {
-            if (this._arrEvtOnKeyMoverFrenteListener != null)
-            {
-                return this._arrEvtOnKeyMoverFrenteListener;
-            }
-
-            this._arrEvtOnKeyMoverFrenteListener = new Array<OnKeyMoverFrenteListener>();
-
-            return this._arrEvtOnKeyMoverFrenteListener;
-        }
-
-        public addEvtOnKeyMoverFrenteListener(evtOnKeyMoverFrenteListener: OnKeyMoverFrenteListener): void
-        {
-            if (evtOnKeyMoverFrenteListener == null)
-            {
-                return;
-            }
-
-            if (this.arrEvtOnKeyMoverFrenteListener.indexOf(evtOnKeyMoverFrenteListener) > -1)
-            {
-                return;
-            }
-
-            this.arrEvtOnKeyMoverFrenteListener.push(evtOnKeyMoverFrenteListener);
-        }
-
-        private dispararEvtOnKeyMoverFrenteListener(): void
-        {
-            if (this.arrEvtOnKeyMoverFrenteListener.length == 0)
-            {
-                return;
-            }
-
-            this.arrEvtOnKeyMoverFrenteListener.forEach((evt) =>
-            {
-                if (evt == null)
-                {
-                    return;
-                }
-
-                evt.onKeyMoverFrente();
-            });
-        }
-
-        public removerEvtOnKeyMoverFrenteListener(evt: OnKeyMoverFrenteListener): void
-        {
-            if (evt == null)
-            {
-                return;
-            }
-
-            if (this.arrEvtOnKeyMoverFrenteListener.indexOf(evt) == -1)
-            {
-                return;
-            }
-
-            this.arrEvtOnKeyMoverFrenteListener.splice(this.arrEvtOnKeyMoverFrenteListener.indexOf(evt), 1);
-        }
-
-        // #endregion OnKeyMoverFrenteListener
-
-        // #region OnKeyMoverTrasListener
-
-        private _arrEvtOnKeyMoverTrasListener: Array<OnKeyMoverTrasListener>;
-
-        private get arrEvtOnKeyMoverTrasListener(): Array<OnKeyMoverTrasListener>
-        {
-            if (this._arrEvtOnKeyMoverTrasListener != null)
-            {
-                return this._arrEvtOnKeyMoverTrasListener;
-            }
-
-            this._arrEvtOnKeyMoverTrasListener = new Array<OnKeyMoverTrasListener>();
-
-            return this._arrEvtOnKeyMoverTrasListener;
-        }
-
-        public addEvtOnKeyMoverTrasListener(evtOnKeyMoverTrasListener: OnKeyMoverTrasListener): void
-        {
-            if (evtOnKeyMoverTrasListener == null)
-            {
-                return;
-            }
-
-            if (this.arrEvtOnKeyMoverTrasListener.indexOf(evtOnKeyMoverTrasListener) > -1)
-            {
-                return;
-            }
-
-            this.arrEvtOnKeyMoverTrasListener.push(evtOnKeyMoverTrasListener);
-        }
-
-        private dispararEvtOnKeyMoverTrasListener(): void
-        {
-            if (this.arrEvtOnKeyMoverTrasListener.length == 0)
-            {
-                return;
-            }
-
-            this.arrEvtOnKeyMoverTrasListener.forEach((evt) =>
-            {
-                if (evt == null)
-                {
-                    return;
-                }
-
-                evt.onKeyMoverTras();
-            });
-        }
-
-        public removerEvtOnKeyMoverTrasListener(evt: OnKeyMoverTrasListener): void
-        {
-            if (evt == null)
-            {
-                return;
-            }
-
-            if (this.arrEvtOnKeyMoverTrasListener.indexOf(evt) == -1)
-            {
-                return;
-            }
-
-            this.arrEvtOnKeyMoverTrasListener.splice(this.arrEvtOnKeyMoverTrasListener.indexOf(evt), 1);
-        }
-
-        // #endregion OnKeyMoverTrasListener
-
-        // #region OnKeySelecionarListener
-
-        private _arrEvtOnKeySelecionarListener: Array<OnKeySelecionarListener>;
-
-        private get arrEvtOnKeySelecionarListener(): Array<OnKeySelecionarListener>
-        {
-            if (this._arrEvtOnKeySelecionarListener != null)
-            {
-                return this._arrEvtOnKeySelecionarListener;
-            }
-
-            this._arrEvtOnKeySelecionarListener = new Array<OnKeySelecionarListener>();
-
-            return this._arrEvtOnKeySelecionarListener;
-        }
-
-        public addEvtOnKeySelecionarListener(evtOnKeySelecionarListener: OnKeySelecionarListener): void
-        {
-            if (evtOnKeySelecionarListener == null)
-            {
-                return;
-            }
-
-            if (this.arrEvtOnKeySelecionarListener.indexOf(evtOnKeySelecionarListener) > -1)
-            {
-                return;
-            }
-
-            this.arrEvtOnKeySelecionarListener.push(evtOnKeySelecionarListener);
-        }
-
-        private dispararEvtOnKeySelecionarListener(): void
-        {
-            if (this.arrEvtOnKeySelecionarListener.length == 0)
-            {
-                return;
-            }
-
-            this.arrEvtOnKeySelecionarListener.forEach((evt) =>
-            {
-                if (evt == null)
-                {
-                    return;
-                }
-
-                evt.onKeySelecionar();
-            });
-        }
-
-        public removerEvtOnKeySelecionarListener(evt: OnKeySelecionarListener): void
-        {
-            if (evt == null)
-            {
-                return;
-            }
-
-            if (this.arrEvtOnKeySelecionarListener.indexOf(evt) == -1)
-            {
-                return;
-            }
-
-            this.arrEvtOnKeySelecionarListener.splice(this.arrEvtOnKeySelecionarListener.indexOf(evt), 1);
-        }
-
-        // #endregion OnKeySelecionarListener
+        // #endregion OnGameKeyListener
 
         // #region OnKeyUpListener
 

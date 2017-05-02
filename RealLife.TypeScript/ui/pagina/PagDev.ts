@@ -1,14 +1,18 @@
+/// <reference path="../../../RealLifeShared.TypeScript/enumerado/EnmKey.ts"/>
 /// <reference path="PagRealLifeBase.ts"/>
 
 module RealLife
 {
     // #region Importações
+
+    import EnmKey = RealLifeShared.EnmKey;
+
     // #endregion Importações
 
     // #region Enumerados
     // #endregion Enumerados
 
-    export class PagDev extends PagRealLifeBase implements OnKeySelecionarListener, OnKeyMenuListener
+    export class PagDev extends PagRealLifeBase
     {
         // #region Constantes
         // #endregion Constantes
@@ -50,6 +54,22 @@ module RealLife
 
         // #region Métodos
 
+        protected getBooEnviarTecla(enmKey: EnmKey): boolean
+        {
+            switch (enmKey)
+            {
+                case EnmKey.MENU:
+                case EnmKey.MENU_ALTO:
+                case EnmKey.MENU_BAIXO:
+                case EnmKey.MENU_SELECIONAR:
+                case EnmKey.MENU_VOLTAR:
+                    return true;
+
+                default:
+                    return false;
+            }
+        }
+
         protected getUrl(): string
         {
             return "ui/pag_desenvolvimento.html";
@@ -60,37 +80,9 @@ module RealLife
             this.camLivre.ativar();
         }
 
-        private processarOnKeySelecionar(): void
-        {
-            this.objBrowserRealLife.executarJs("processarOnKeySelecionar");
-        }
-
-        private processarOnKeyMenu(): void
-        {
-            this.objBrowserRealLife.executarJs("processarOnKeyMenu");
-        }
-
-        protected setEventos(): void
-        {
-            super.setEventos();
-
-            KeyBoard.i.addEvtOnKeyMenuListener(this);
-            KeyBoard.i.addEvtOnKeySelecionarListener(this);
-        }
-
         // #endregion Métodos
 
         // #region Eventos
-
-        public onKeySelecionar(): void
-        {
-            this.processarOnKeySelecionar();
-        }
-
-        public onKeyMenu(): void
-        {
-            this.processarOnKeyMenu();
-        }
 
         // #endregion Eventos
     }

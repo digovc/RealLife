@@ -128,6 +128,8 @@ namespace RealLifeUi.Html.Componente.Menu
         {
             base.inicializar();
 
+            this.strId = "DivMenuInterativo";
+
             this.divContagem.strConteudo = "0/0";
             this.divNome.strConteudo = "Menu de interação";
         }
@@ -166,6 +168,7 @@ namespace RealLifeUi.Html.Componente.Menu
             this.divContagem.addCss(css.setFloat("right"));
 
             this.divConteudo.addCss(css.setHeight(40, "vh"));
+            this.divConteudo.addCss(css.setOverflow("hidden"));
             this.divConteudo.addCss(strBackgroundColor);
 
             this.divMostradorAbaixo.addCss(css.setHeight(1, "vh"));

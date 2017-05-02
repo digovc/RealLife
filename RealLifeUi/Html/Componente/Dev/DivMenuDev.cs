@@ -22,8 +22,6 @@ namespace RealLifeUi.Html.Componente.Dev
         {
             base.inicializar();
 
-            this.strId = this.GetType().Name;
-
             this.divCabecalho.strConteudo = "Desenvolvimento";
         }
 

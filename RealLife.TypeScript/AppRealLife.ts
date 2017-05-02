@@ -55,6 +55,7 @@ module RealLife
             super.finalizar();
 
             KeyBoard.i.iniciar();
+
             Screen.i.iniciar();
 
             Jogador.i.iniciar();

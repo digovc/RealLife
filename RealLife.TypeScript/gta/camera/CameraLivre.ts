@@ -1,8 +1,3 @@
-/// <reference path="../../evento/keyboard/OnKeyMoverDireitaListener.ts"/>
-/// <reference path="../../evento/keyboard/OnKeyMoverEsquerdaListener.ts"/>
-/// <reference path="../../evento/keyboard/OnKeyMoverFrenteListener.ts"/>
-/// <reference path="../../evento/keyboard/OnKeyMoverTrasListener.ts"/>
-/// <reference path="../../evento/keyboard/OnKeyUpListener.ts"/>
 /// <reference path="CameraBase.ts"/>
 
 module RealLife

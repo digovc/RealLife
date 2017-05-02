@@ -1,10 +1,10 @@
-/// <reference path="../RealLifeDominio.TypeScript/ErroDominio.ts"/>
+/// <reference path="../RealLifeShared.TypeScript/dominio/ErroDominio.ts"/>
 
 module RealLife
 {
     // #region Importações
 
-    import ErroDominio = RealLifeDominio.ErroDominio;
+    import ErroDominio = RealLifeShared.ErroDominio;
 
     // #endregion Importações
 

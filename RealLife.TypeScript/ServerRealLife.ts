@@ -1,10 +1,10 @@
-/// <reference path="../RealLifeDominio.TypeScript/DominioRealLifeBase.ts"/>
+/// <reference path="../RealLifeShared.TypeScript/dominio/DominioRealLifeBase.ts"/>
 
 module RealLife
 {
     // #region Importações
 
-    import DominioRealLifeBase = RealLifeDominio.DominioRealLifeBase;
+    import DominioRealLifeBase = RealLifeShared.DominioRealLifeBase;
 
     // #endregion Importações
 
