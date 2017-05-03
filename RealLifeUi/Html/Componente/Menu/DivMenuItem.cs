@@ -12,24 +12,8 @@ namespace RealLifeUi.Html.Componente.Menu
 
         #region Atributos
 
-        private Div _divIcone;
         private Div _divNome;
         private Div _divValor;
-
-        private Div divIcone
-        {
-            get
-            {
-                if (_divIcone != null)
-                {
-                    return _divIcone;
-                }
-
-                _divIcone = new Div();
-
-                return _divIcone;
-            }
-        }
 
         private Div divNome
         {
@@ -86,7 +70,6 @@ namespace RealLifeUi.Html.Componente.Menu
         {
             base.montarLayout();
 
-            //this.divIcone.setPai(this);
             this.divNome.setPai(this);
             this.divValor.setPai(this);
         }
@@ -95,13 +78,8 @@ namespace RealLifeUi.Html.Componente.Menu
         {
             base.setCss(css);
 
-            this.addCss(css.setBackgroundColor("rgba(0,0,0,.15)"));
             this.addCss(css.setHeight(4, "vh"));
             this.addCss(css.setOverflow("hidden"));
-
-            //this.divIcone.addCss(css.setFloat("left"));
-            //this.divIcone.addCss(css.setHeight(100, "%"));
-            //this.divIcone.addCss(css.setWidth(35));
 
             this.divNome.addCss(css.setFloat("left"));
             this.divNome.addCss(css.setLineHeight(4, "vh"));

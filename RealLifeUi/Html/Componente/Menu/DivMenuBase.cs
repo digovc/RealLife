@@ -157,7 +157,7 @@ namespace RealLifeUi.Html.Componente.Menu
             this.addCss(css.setLeft(1, "vw"));
             this.addCss(css.setPosition("absolute"));
             this.addCss(css.setTop(8, "vh"));
-            this.addCss(css.setWidth(20, "vw"));
+            this.addCss(css.setWidth(18, "vw"));
 
             this.divCabecalho.addCss(css.setBackgroundColor("rgba(3,169,244,.9)"));
             this.divCabecalho.addCss(css.setOverflow("hidden"));

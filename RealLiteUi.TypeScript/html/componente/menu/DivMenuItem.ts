@@ -155,7 +155,7 @@ module RealLifeUi
         {
             super.receberFoco();
 
-            this.jq.css("background-color", "white");
+            this.jq.css("background-color", "rgba(255,255,255,.85)");
             this.jq.css("color", "black");
 
             this.divMenu.divMenuItemFocado = this;
