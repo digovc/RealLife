@@ -74,11 +74,13 @@
     <Compile Include="Html\Componente\Missao\DivMissaoRp.cs" />
     <Compile Include="Html\Componente\Missao\DivMissaoRpProgresso.cs" />
     <Compile Include="Html\Componente\Missao\DivMissaoValorBase.cs" />
+    <Compile Include="Html\Componente\Editor\Personagem\DivMenuPersonagemEditor.cs" />
     <Compile Include="Html\Pagina\PagDev.cs" />
     <Compile Include="Html\Pagina\PagInterface.cs" />
     <Compile Include="Html\Pagina\PagLogin.cs" />
     <Compile Include="Html\Pagina\PagMissaoAbertura.cs" />
     <Compile Include="Html\Pagina\PagMissaoConclusao.cs" />
+    <Compile Include="Html\Pagina\PagPersonagemEditor.cs" />
     <Compile Include="Html\Pagina\PagRealLifeUiBase.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TemaRealLifeUi.cs" />
