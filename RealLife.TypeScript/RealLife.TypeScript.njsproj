@@ -73,8 +73,14 @@
     <TypeScriptCompile Include="script\editor\personagem\_002_EtapaEdicaoPersonagemEditor.ts" />
     <TypeScriptCompile Include="script\editor\personagem\ScriptPersonagemEditor.ts" />
     <TypeScriptCompile Include="script\editor\personagem\_003_EtapaConclusaoPersonagemEditor.ts" />
+    <TypeScriptCompile Include="script\missao\profissao\ScriptEntregadorBase.ts" />
+    <TypeScriptCompile Include="script\missao\profissao\ScriptPescadorBase.ts" />
+    <TypeScriptCompile Include="script\missao\profissao\ScriptTaxistaBase.ts" />
+    <TypeScriptCompile Include="script\missao\profissao\ScriptCaminhoneiroBase.ts" />
     <TypeScriptCompile Include="script\missao\EtapaDestruirBase.ts" />
     <TypeScriptCompile Include="script\missao\EtapaLocalizarBase.ts" />
+    <TypeScriptCompile Include="script\missao\EtapaTrajetoBase.ts" />
+    <TypeScriptCompile Include="script\missao\profissao\ScriptProfissaoBase.ts" />
     <TypeScriptCompile Include="script\missao\_001_EtapaMissaoAbertura.ts" />
     <TypeScriptCompile Include="script\missao\EtapaMissaoBase.ts" />
     <TypeScriptCompile Include="script\missao\_998_EtapaMissaoConclusao.ts" />
@@ -105,6 +111,7 @@
     <Folder Include="script\editor\" />
     <Folder Include="script\editor\personagem\" />
     <Folder Include="script\missao\" />
+    <Folder Include="script\missao\profissao\" />
     <Folder Include="ui\" />
     <Folder Include="typedefinition\" />
     <Folder Include="typedefinition\gta-network-typescript\" />
