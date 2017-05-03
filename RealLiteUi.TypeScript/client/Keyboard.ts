@@ -1,5 +1,6 @@
 ﻿/// <reference path="../../RealLifeShared.TypeScript/enumerado/EnmKey.ts"/>
 /// <reference path="../../RealLifeShared.TypeScript/evento/OnGameKeyListener.ts"/>
+/// <reference path="../../Web.TypeScript/html/componente/Mensagem.ts"/>
 /// <reference path="../../Web.TypeScript/Utils.ts"/>
 
 module RealLifeUi
@@ -7,6 +8,7 @@ module RealLifeUi
     // #region Importações
 
     import EnmKey = RealLifeShared.EnmKey;
+    import Mensagem = Web.Mensagem;
     import OnGameKeyListener = RealLifeShared.OnGameKeyListener;
     import Utils = Web.Utils;
 

@@ -71,7 +71,8 @@
     <TypeScriptCompile Include="AppRealLifeUi.ts" />
     <TypeScriptCompile Include="client\ClientRealLife.ts" />
     <TypeScriptCompile Include="client\Keyboard.ts" />
-    <TypeScriptCompile Include="html\componente\dev\audio\DivMenuItemAudioItem.ts" />
+    <TypeScriptCompile Include="html\componente\dev\audio\DivMenuItemAudioSet.ts" />
+    <TypeScriptCompile Include="html\componente\dev\audio\DivMenuItemAudioSong.ts" />
     <TypeScriptCompile Include="html\componente\dev\DivMenuDev.ts" />
     <TypeScriptCompile Include="html\componente\dev\audio\DivMenuItemAudio.ts" />
     <TypeScriptCompile Include="html\componente\interface\DivAtalho.ts" />

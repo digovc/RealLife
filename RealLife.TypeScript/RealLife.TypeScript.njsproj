@@ -49,6 +49,7 @@
   </PropertyGroup>
   <ItemGroup>
     <TypeScriptCompile Include="AppRealLife.ts" />
+    <TypeScriptCompile Include="gta\audio\AudioManager.ts" />
     <TypeScriptCompile Include="gta\camera\CameraBase.ts" />
     <TypeScriptCompile Include="gta\camera\CameraGamePlay.ts" />
     <TypeScriptCompile Include="gta\camera\CameraLivre.ts" />
@@ -63,7 +64,7 @@
     <TypeScriptCompile Include="gta\ObjetoGtaBase.ts" />
     <TypeScriptCompile Include="gta\Ped.ts" />
     <TypeScriptCompile Include="Jogador.ts" />
-    <TypeScriptCompile Include="KeyBoard.ts" />
+    <TypeScriptCompile Include="Keyboard.ts" />
     <TypeScriptCompile Include="Log.ts" />
     <TypeScriptCompile Include="Objeto.ts" />
     <TypeScriptCompile Include="Screen.ts" />
@@ -84,6 +85,7 @@
     <Folder Include="gta\" />
     <Folder Include="gta\camera\" />
     <Folder Include="gta\native\" />
+    <Folder Include="gta\audio\" />
     <Folder Include="ui\" />
     <Folder Include="typedefinition\" />
     <Folder Include="typedefinition\gta-network-typescript\" />

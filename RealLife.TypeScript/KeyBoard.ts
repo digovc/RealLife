@@ -14,25 +14,25 @@ module RealLife
 
     // #endregion Enumerados
 
-    export class KeyBoard extends Objeto implements OnKeyUpListener, OnUpdateListener
+    export class Keyboard extends Objeto implements OnKeyUpListener, OnUpdateListener
     {
         // #region Constantes
         // #endregion Constantes
 
         // #region Atributos
 
-        private static _i: KeyBoard;
+        private static _i: Keyboard;
 
-        public static get i(): KeyBoard
+        public static get i(): Keyboard
         {
-            if (KeyBoard._i != null)
+            if (Keyboard._i != null)
             {
-                return KeyBoard._i;
+                return Keyboard._i;
             }
 
-            KeyBoard._i = new KeyBoard();
+            Keyboard._i = new Keyboard();
 
-            return KeyBoard._i;
+            return Keyboard._i;
         }
 
         private _booLigado: boolean = true;
@@ -85,16 +85,25 @@ module RealLife
             switch (arg.KeyCode)
             {
                 case Keys.A:
-                    this.dispararEvtOnGameKeyListener(EnmKey.MOVER_ESQUERDA);
+                    this.dispararEvtOnGameKeyListener(EnmKey.GAMEPLAY_MOVER_ESQUERDA);
+                    return;
+
+                case Keys.Back:
+                case Keys.Left:
+                    this.dispararEvtOnGameKeyListener(EnmKey.MENU_VOLTAR);
                     return;
 
                 case Keys.D:
-                    this.dispararEvtOnGameKeyListener(EnmKey.MOVER_DIREITA);
+                    this.dispararEvtOnGameKeyListener(EnmKey.GAMEPLAY_MOVER_DIREITA);
+                    return;
+
+                case Keys.Down:
+                    this.dispararEvtOnGameKeyListener(EnmKey.MENU_BAIXO);
                     return;
 
                 case Keys.Enter:
                 case Keys.Right:
-                    this.dispararEvtOnGameKeyListener(EnmKey.SELECIONAR);
+                    this.dispararEvtOnGameKeyListener(EnmKey.MENU_SELECIONAR);
                     return;
 
                 case Keys.M:
@@ -102,11 +111,15 @@ module RealLife
                     return;
 
                 case Keys.S:
-                    this.dispararEvtOnGameKeyListener(EnmKey.MOVER_TRAS);
+                    this.dispararEvtOnGameKeyListener(EnmKey.GAMEPLAY_MOVER_TRAS);
+                    return;
+
+                case Keys.Up:
+                    this.dispararEvtOnGameKeyListener(EnmKey.MENU_ALTO);
                     return;
 
                 case Keys.W:
-                    this.dispararEvtOnGameKeyListener(EnmKey.MOVER_FRENTE);
+                    this.dispararEvtOnGameKeyListener(EnmKey.GAMEPLAY_MOVER_FRENTE);
                     return;
             }
         }

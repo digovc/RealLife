@@ -61,7 +61,7 @@ module RealLife
         {
             super.ativar();
 
-            KeyBoard.i.booLigado = false;
+            Keyboard.i.booLigado = false;
             Screen.i.addEvtOnUpdateListener(this);
         }
 

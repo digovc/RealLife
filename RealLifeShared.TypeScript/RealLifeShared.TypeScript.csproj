@@ -66,6 +66,7 @@
     <Folder Include="Properties\" />
   </ItemGroup>
   <ItemGroup>
+    <TypeScriptCompile Include="dominio\AudioDominio.ts" />
     <TypeScriptCompile Include="dominio\DominioRealLifeBase.ts" />
     <TypeScriptCompile Include="dominio\ErroDominio.ts" />
     <TypeScriptCompile Include="dominio\MissaoConclusaoDominio.ts" />

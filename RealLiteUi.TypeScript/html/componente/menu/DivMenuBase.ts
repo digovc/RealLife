@@ -120,7 +120,7 @@ module RealLifeUi
 
             var intIndex = this.arrDivMenuItemAtual.indexOf(this.divMenuItemFocado);
 
-            var intScrollTop = (intIndex * Math.floor(this.divMenuItemFocado.jq.height()));
+            var intScrollTop = (intIndex * this.divMenuItemFocado.jq.height());
 
             this.divConteudo.jq.scrollTop(intScrollTop);
         }

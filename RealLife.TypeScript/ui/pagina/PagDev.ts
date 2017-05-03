@@ -1,3 +1,4 @@
+/// <reference path="../../../RealLifeShared.TypeScript/dominio/AudioDominio.ts"/>
 /// <reference path="../../../RealLifeShared.TypeScript/enumerado/EnmKey.ts"/>
 /// <reference path="PagRealLifeBase.ts"/>
 
@@ -5,6 +6,7 @@ module RealLife
 {
     // #region Importações
 
+    import AudioDominio = RealLifeShared.AudioDominio;
     import EnmKey = RealLifeShared.EnmKey;
 
     // #endregion Importações
@@ -53,6 +55,20 @@ module RealLife
         // #endregion Construtores
 
         // #region Métodos
+
+        public executarAudio(jsnAudio: string): void
+        {
+            if (UtilsRealLife.getBooStrVazia(jsnAudio))
+            {
+                return;
+            }
+
+            var objAudio = new AudioDominio();
+
+            objAudio.copiarDados(jsnAudio);
+
+            AudioManager.i.executar(objAudio);
+        }
 
         protected getBooEnviarTecla(enmKey: EnmKey): boolean
         {

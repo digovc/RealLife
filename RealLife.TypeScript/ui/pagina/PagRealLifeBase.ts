@@ -62,7 +62,7 @@ module RealLife
 
         protected enviarCefKeyGame(enmKey: EnmKey): void
         {
-            KeyBoard.i.enviarCefKeyGame(this, enmKey);
+            Keyboard.i.enviarCefKeyGame(this, enmKey);
         }
 
         protected abstract getBooEnviarTecla(enmKey: EnmKey): boolean;
@@ -90,7 +90,7 @@ module RealLife
         {
             super.setEventos();
 
-            KeyBoard.i.addEvtOnGameKeyListener(this);
+            Keyboard.i.addEvtOnGameKeyListener(this);
         }
 
         // #endregion Métodos

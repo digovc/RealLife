@@ -46,7 +46,7 @@ module RealLifeUi
         {
             var arrStrSetResultado = new Array<string>();
 
-            arrStrSetResultado.push("0");
+            //arrStrSetResultado.push("0");
             arrStrSetResultado.push("APT_BvS_Soundset");
             arrStrSetResultado.push("ASSASSINATION_MULTI");
             arrStrSetResultado.push("ATM_SOUNDS");
@@ -143,7 +143,7 @@ module RealLifeUi
         {
             super.inicializarArrDivMenuItem(arrDivMenuItem);
 
-            this.arrStrSet.forEach((strSet: string) => { arrDivMenuItem.push(new DivMenuItemAudioItem(strSet)); });
+            this.arrStrSet.forEach((strSet: string) => { arrDivMenuItem.push(new DivMenuItemAudioSet(strSet)); });
         }
 
         // #endregion Métodos

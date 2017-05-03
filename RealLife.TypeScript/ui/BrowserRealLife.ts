@@ -93,9 +93,16 @@ module RealLife
             strCodigo = strCodigo.replace("_class_name", strClassNome);
             strCodigo = strCodigo.replace("_method_name", strMetodoNome);
 
-            this.objBrowser.call(strCodigo);
-
-            Log.i.debug("JavaScript enviado para CEF: {0}.", objArg);
+            if (objArg != null)
+            {
+                this.objBrowser.call(strCodigo, objArg);
+                Log.i.debug("JS CEF: {0} {1}.", strCodigo, JSON.stringify(objArg));
+            }
+            else
+            {
+                this.objBrowser.call(strCodigo);
+                Log.i.debug("JS CEF: {0}.", strCodigo);
+            }
         }
 
         public iniciar(): void

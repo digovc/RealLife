@@ -54,7 +54,9 @@ module RealLife
         {
             super.finalizar();
 
-            KeyBoard.i.iniciar();
+            AudioManager.i.iniciar();
+
+            Keyboard.i.iniciar();
 
             Screen.i.iniciar();
 

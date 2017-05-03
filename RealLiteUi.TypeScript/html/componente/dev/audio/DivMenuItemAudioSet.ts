@@ -3,12 +3,13 @@
 module RealLifeUi
 {
     // #region Importações
+
     // #endregion Importações
 
     // #region Enumerados
     // #endregion Enumerados
 
-    export class DivMenuItemAudioItem extends DivMenuItem
+    export class DivMenuItemAudioSet extends DivMenuItem
     {
         // #region Constantes
         // #endregion Constantes
@@ -425,7 +426,9 @@ module RealLifeUi
                 return;
             }
 
-            arrDivMenuItem.push(new DivMenuItem(strSound));
+            var strSoundNome = strSound.substr(strSound.indexOf(".") + 1);
+
+            arrDivMenuItem.push(new DivMenuItemAudioSong(strSoundNome));
         }
 
         // #endregion Métodos

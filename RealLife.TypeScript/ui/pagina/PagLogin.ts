@@ -1,4 +1,5 @@
 /// <reference path="../../../RealLifeShared.TypeScript/dominio/JogadorDominio.ts"/>
+/// <reference path="../../../RealLifeShared.TypeScript/enumerado/EnmKey.ts"/>
 /// <reference path="../../typedefinition/gta-network-typescript/content/types-gtanetwork/index.d.ts" />
 /// <reference path="../../UtilsRealLife.ts"/>
 /// <reference path="PagRealLifeBase.ts"/>
@@ -7,6 +8,7 @@ module RealLife
 {
     // #region Importações
 
+    import EnmKey = RealLifeShared.EnmKey;
     import JogadorDominio = RealLifeShared.JogadorDominio;
 
     // #endregion Importações
@@ -68,6 +70,11 @@ module RealLife
             this.objBrowserRealLife.destruir();
 
             Screen.i.booMostrarMouse = false;
+        }
+
+        protected getBooEnviarTecla(enmKey: EnmKey): boolean
+        {
+            return false;
         }
 
         protected getUrl(): string

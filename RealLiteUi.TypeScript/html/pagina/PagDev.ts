@@ -1,9 +1,12 @@
-﻿/// <reference path="../componente/dev/DivMenuDev.ts"/>
+﻿/// <reference path="../../../RealLifeShared.TypeScript/dominio/AudioDominio.ts"/>
+/// <reference path="../componente/dev/DivMenuDev.ts"/>
 /// <reference path="PagRealLifeUiBase.ts"/>
 
 module RealLifeUi
 {
     // #region Importações
+
+    import AudioDominio = RealLifeShared.AudioDominio;
 
     // #endregion Importações
 
@@ -52,6 +55,16 @@ module RealLifeUi
         // #endregion Construtores
 
         // #region Métodos
+
+        public executarAudio(objAudio: AudioDominio): void
+        {
+            if (objAudio == null)
+            {
+                return;
+            }
+
+            ClientRealLife.i.executar(this.strClassNome, "executarAudio", objAudio);
+        }
 
         protected inicializar(): void
         {
