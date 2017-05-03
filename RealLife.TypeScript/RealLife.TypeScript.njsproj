@@ -49,7 +49,7 @@
   </PropertyGroup>
   <ItemGroup>
     <TypeScriptCompile Include="AppRealLife.ts" />
-    <TypeScriptCompile Include="gta\audio\AudioManager.ts" />
+    <TypeScriptCompile Include="Audio.ts" />
     <TypeScriptCompile Include="gta\camera\CameraBase.ts" />
     <TypeScriptCompile Include="gta\camera\CameraGamePlay.ts" />
     <TypeScriptCompile Include="gta\camera\CameraLivre.ts" />
@@ -69,11 +69,19 @@
     <TypeScriptCompile Include="Objeto.ts" />
     <TypeScriptCompile Include="Screen.ts" />
     <TypeScriptCompile Include="ScriptManager.ts" />
+    <TypeScriptCompile Include="script\editor\personagem\_001_EtapaAberturaPersonagemEditor.ts" />
+    <TypeScriptCompile Include="script\editor\personagem\_002_EtapaEdicaoPersonagemEditor.ts" />
+    <TypeScriptCompile Include="script\editor\personagem\ScriptPersonagemEditor.ts" />
+    <TypeScriptCompile Include="script\editor\personagem\_003_EtapaFechamentoPersonagemEditor.ts" />
+    <TypeScriptCompile Include="script\ScriptBase.ts" />
+    <TypeScriptCompile Include="script\EtapaBase.ts" />
     <TypeScriptCompile Include="ServerRealLife.ts" />
+    <TypeScriptCompile Include="Timer.ts" />
     <TypeScriptCompile Include="typedefinition\gta-network-typescript\content\types-gtanetwork\index.d.ts" />
     <TypeScriptCompile Include="ui\BrowserRealLife.ts" />
     <TypeScriptCompile Include="ui\pagina\PagDev.ts" />
     <TypeScriptCompile Include="ui\pagina\PagLogin.ts" />
+    <TypeScriptCompile Include="ui\pagina\PagPersonagemEditor.ts" />
     <TypeScriptCompile Include="ui\pagina\PagRealLifeBase.ts" />
     <TypeScriptCompile Include="UtilsRealLife.ts" />
   </ItemGroup>
@@ -85,7 +93,9 @@
     <Folder Include="gta\" />
     <Folder Include="gta\camera\" />
     <Folder Include="gta\native\" />
-    <Folder Include="gta\audio\" />
+    <Folder Include="script\" />
+    <Folder Include="script\editor\" />
+    <Folder Include="script\editor\personagem\" />
     <Folder Include="ui\" />
     <Folder Include="typedefinition\" />
     <Folder Include="typedefinition\gta-network-typescript\" />

@@ -217,12 +217,17 @@ module RealLifeUi
 
         public montarMenu(arrDivMenuItem: Array<DivMenuItem>): void
         {
-            this.divConteudo.strConteudo = null;
-
             if (arrDivMenuItem == null)
             {
                 return;
             }
+
+            if (arrDivMenuItem.length < 1)
+            {
+                return;
+            }
+
+            this.divConteudo.strConteudo = null;
 
             this.arrDivMenuItemAtual = arrDivMenuItem;
 

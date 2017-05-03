@@ -54,7 +54,7 @@ module RealLife
         {
             super.finalizar();
 
-            AudioManager.i.iniciar();
+            Audio.i.iniciar();
 
             Keyboard.i.iniciar();
 
@@ -62,9 +62,7 @@ module RealLife
 
             Jogador.i.iniciar();
 
-            PagDev.i.iniciar();
-
-            //PagLogin.i.iniciar();
+            new ScriptPersonagemEditor().iniciar();
         }
 
         // #endregion Métodos

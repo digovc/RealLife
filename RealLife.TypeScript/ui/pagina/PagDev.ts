@@ -67,7 +67,7 @@ module RealLife
 
             objAudio.copiarDados(jsnAudio);
 
-            AudioManager.i.executar(objAudio);
+            Audio.i.executarObjAudio(objAudio);
         }
 
         protected getBooEnviarTecla(enmKey: EnmKey): boolean

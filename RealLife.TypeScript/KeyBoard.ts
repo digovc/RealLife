@@ -136,6 +136,10 @@ module RealLife
 
         private setBooLigado(booLigado: boolean): void
         {
+            // TODO: Tentar usar o método da API:
+            // API.requestControlOfPlayer
+            // API.stopControlOfPlayer
+
             if (booLigado)
             {
                 Log.i.debug("Ligando o controle.");

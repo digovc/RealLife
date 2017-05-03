@@ -163,11 +163,7 @@ module RealLifeUi
 
         public selecionar(): void
         {
-            if (this.arrDivMenuItem.length > 0)
-            {
-                this.divMenu.montarMenu(this.arrDivMenuItem);
-                return;
-            }
+            this.divMenu.montarMenu(this.arrDivMenuItem);
 
             this.dispararEvtOnItemSelecionadoListener();
         }

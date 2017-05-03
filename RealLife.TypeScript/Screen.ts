@@ -82,6 +82,16 @@ module RealLife
 
         // #region Métodos
 
+        public fadeIn(intDuracao: number): void
+        {
+            API.callNative("DO_SCREEN_FADE_IN", intDuracao);
+        }
+
+        public fadeOut(intDuracao: number): void
+        {
+            API.callNative("DO_SCREEN_FADE_OUT", intDuracao);
+        }
+
         public notificar(strNotificacao: string): void
         {
             if (UtilsRealLife.getBooStrVazia(strNotificacao))
