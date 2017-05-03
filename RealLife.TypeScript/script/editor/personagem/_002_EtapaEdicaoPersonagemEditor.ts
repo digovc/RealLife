@@ -36,7 +36,7 @@ module RealLife
 
         protected getObjEtapaProxima(objScript: ScriptBase): EtapaBase
         {
-            return new _003_EtapaFechamentoPersonagemEditor(objScript);
+            return new _003_EtapaConclusaoPersonagemEditor(objScript);
         }
 
         protected _001_comecar(): void
