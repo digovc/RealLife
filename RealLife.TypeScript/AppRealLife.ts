@@ -62,7 +62,7 @@ module RealLife
 
             Jogador.i.iniciar();
 
-            new ScriptPersonagemEditor().iniciar();
+            PagDev.i.iniciar();
         }
 
         // #endregion Métodos

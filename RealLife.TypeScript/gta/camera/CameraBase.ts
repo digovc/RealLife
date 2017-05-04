@@ -76,12 +76,12 @@ module RealLife
             this.setVctRotacao(this._vctRotacao);
         }
 
-        private get objGlobalCamera(): GTANetwork.Javascript.GlobalCamera
+        protected get objGlobalCamera(): GTANetwork.Javascript.GlobalCamera
         {
             return this._objGlobalCamera;
         }
 
-        private set objGlobalCamera(objGlobalCamera: GTANetwork.Javascript.GlobalCamera)
+        protected set objGlobalCamera(objGlobalCamera: GTANetwork.Javascript.GlobalCamera)
         {
             this._objGlobalCamera = objGlobalCamera;
         }
@@ -147,7 +147,7 @@ module RealLife
 
             API.setCameraPosition(this.objGlobalCamera, vctPosicao);
 
-            Log.i.debug("Posicao da camera {0}: {1}, {1}, {2}.", this.strNome, vctPosicao.X, vctPosicao.Y, vctPosicao.Z);
+            Log.i.debug("Posicao (camera): {0}, {1}, {2}.", vctPosicao.X, vctPosicao.Y, vctPosicao.Z);
         }
 
         private setVctRotacao(vctRotacao: Vector3): void
@@ -159,7 +159,7 @@ module RealLife
 
             API.setCameraRotation(this.objGlobalCamera, vctRotacao);
 
-            Log.i.debug("Rotacao da camera {0}: {1}, {1}, {2}.", this.strNome, vctRotacao.X, vctRotacao.Y, vctRotacao.Z);
+            Log.i.debug("Rotacao (camera): {0}, {1}, {2}.", vctRotacao.X, vctRotacao.Y, vctRotacao.Z);
         }
 
         // #endregion Métodos

@@ -17,6 +17,7 @@ module RealLife
         // #region Atributos
 
         private _fltVelocidade: number = 10;
+        private _objEntityAncora: Entity;
         private _vctGirar: Vector3 = new Vector3();
         private _vctMover: Vector3 = new Vector3();
 
@@ -28,6 +29,18 @@ module RealLife
         private set fltVelocidade(fltVelocidade: number)
         {
             this._fltVelocidade = fltVelocidade;
+        }
+
+        private get objEntityAncora(): Entity
+        {
+            if (this._objEntityAncora != null)
+            {
+                return this._objEntityAncora;
+            }
+
+            this._objEntityAncora = this.getObjEntityAncora();
+
+            return this._objEntityAncora;
         }
 
         private get vctGirar(): Vector3
@@ -63,6 +76,21 @@ module RealLife
 
             Keyboard.i.booLigado = false;
             Screen.i.addEvtOnUpdateListener(this);
+
+            Jogador.i.ped.booVisivel = false;
+
+            this.objEntityAncora.criar();
+
+            API.attachCameraToEntity(this.objGlobalCamera, <any>this.objEntityAncora.intHandle, new Vector3(0, 0, 0));
+        }
+
+        private getObjEntityAncora(): Entity
+        {
+            var objEntityAncoraResultado = new Entity();
+
+            objEntityAncoraResultado.intHash = 656641197;
+
+            return objEntityAncoraResultado;
         }
 
         protected inicializar(): void
@@ -101,14 +129,14 @@ module RealLife
                 {
                     this.fltVelocidade = (this.fltVelocidade - (50 * fltDelta));
 
-                    Log.i.debug("Velocidade alterada: {0}.", this.fltVelocidade);
+                    Log.i.debug("Velocidade: {0}.", this.fltVelocidade);
                 }
 
                 if (API.isControlPressed(Enums.Controls.Cover))
                 {
                     this.fltVelocidade = (this.fltVelocidade + (50 * fltDelta));
 
-                    Log.i.debug("Velocidade alterada: {0}.", this.fltVelocidade);
+                    Log.i.debug("Velocidade: {0}.", this.fltVelocidade);
                 }
             }
             finally
@@ -200,24 +228,24 @@ module RealLife
         {
             var intGirarVelocidade = 25;
 
-            var vct = UtilsRealLife.copiarVct(this.vctRotacao);
+            var vctRotacao = UtilsRealLife.copiarVct(this.objEntityAncora.vctRotacao);
 
-            vct.X = (((intGirarVelocidade * fltDelta) * this.vctGirar.X) + vct.X);
-            vct.Y = (((intGirarVelocidade * fltDelta) * this.vctGirar.Y) + vct.Y);
-            vct.Z = (((intGirarVelocidade * fltDelta) * this.vctGirar.Z) + vct.Z);
+            vctRotacao.X = (((intGirarVelocidade * fltDelta) * this.vctGirar.X) + vctRotacao.X);
+            vctRotacao.Y = (((intGirarVelocidade * fltDelta) * this.vctGirar.Y) + vctRotacao.Y);
+            vctRotacao.Z = (((intGirarVelocidade * fltDelta) * this.vctGirar.Z) + vctRotacao.Z);
 
-            this.vctRotacao = vct;
+            this.objEntityAncora.vctRotacao = vctRotacao;
         }
 
         private processarOnUpdateAtualizarMover(fltDelta: number): void
         {
-            var vct = UtilsRealLife.copiarVct(this.vctPosicao);
+            var vctPosicao = UtilsRealLife.copiarVct(this.objEntityAncora.vctPosicao);
 
-            vct.X = (((this.fltVelocidade * fltDelta) * this.vctMover.X) + vct.X);
-            vct.Y = (((this.fltVelocidade * fltDelta) * this.vctMover.Y) + vct.Y);
-            vct.Z = (((this.fltVelocidade * fltDelta) * this.vctMover.Z) + vct.Z);
+            vctPosicao.X = (((this.fltVelocidade * fltDelta) * this.vctMover.X) + vctPosicao.X);
+            vctPosicao.Y = (((this.fltVelocidade * fltDelta) * this.vctMover.Y) + vctPosicao.Y);
+            vctPosicao.Z = (((this.fltVelocidade * fltDelta) * this.vctMover.Z) + vctPosicao.Z);
 
-            this.vctPosicao = vct;
+            this.objEntityAncora.vctPosicao = vctPosicao;
         }
 
         // #endregion Métodos

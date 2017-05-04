@@ -50,6 +50,7 @@
   <ItemGroup>
     <TypeScriptCompile Include="AppRealLife.ts" />
     <TypeScriptCompile Include="Audio.ts" />
+    <TypeScriptCompile Include="gta\blip\Blip.ts" />
     <TypeScriptCompile Include="gta\camera\CameraBase.ts" />
     <TypeScriptCompile Include="gta\camera\CameraGamePlay.ts" />
     <TypeScriptCompile Include="gta\camera\CameraLivre.ts" />
@@ -61,7 +62,6 @@
     <TypeScriptCompile Include="gta\native\Native.ts" />
     <TypeScriptCompile Include="gta\native\NativeArgumento.ts" />
     <TypeScriptCompile Include="gta\native\NativeMethod.ts" />
-    <TypeScriptCompile Include="gta\ObjetoGtaBase.ts" />
     <TypeScriptCompile Include="gta\Ped.ts" />
     <TypeScriptCompile Include="Jogador.ts" />
     <TypeScriptCompile Include="Keyboard.ts" />
@@ -107,6 +107,7 @@
     <Folder Include="gta\" />
     <Folder Include="gta\camera\" />
     <Folder Include="gta\native\" />
+    <Folder Include="gta\blip\" />
     <Folder Include="script\" />
     <Folder Include="script\editor\" />
     <Folder Include="script\editor\personagem\" />
