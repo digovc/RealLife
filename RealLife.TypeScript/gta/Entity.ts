@@ -97,6 +97,7 @@ module RealLife
         // #endregion Atributos
 
         // #region Construtores
+
         // #endregion Construtores
 
         // #region Métodos
@@ -108,10 +109,7 @@ module RealLife
                 return;
             }
 
-            if (this.intHash < 1)
-            {
-                throw 'A propriedade "intHash" não pode estar vazia.';
-            }
+            // TODO: Criar um enumerado com os objetos disponíveis.
 
             this.intHandle = API.returnNative("CREATE_OBJECT", Enums.NativeReturnTypes.Handle, this.intHash, 0, 0, 0, false, false, false);
 

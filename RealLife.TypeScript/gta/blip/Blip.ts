@@ -412,7 +412,19 @@ module RealLife
                 return;
             }
 
-            this.objHandle = API.createBlip(this.vctPosicao);
+            this.objHandle = API.createBlip(new Vector3());
+        }
+
+        public destruir(): void
+        {
+            super.destruir();
+
+            if (this.objHandle == null)
+            {
+                return;
+            }
+
+            API.callNative("REMOVE_BLIP", this.objHandle);
         }
 
         private getBooAlcancePequeno(): boolean
