@@ -20,6 +20,7 @@ module RealLife
         // #endregion Construtores
 
         // #region Métodos
+
         // #endregion Métodos
 
         // #region Eventos

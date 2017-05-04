@@ -180,7 +180,7 @@ module RealLife
         {
             var pedResultado = new Ped();
 
-            pedResultado.intHandle = API.returnNative("GET_PLAYER_PED", Enums.NativeReturnTypes.Handle);
+            pedResultado.objHandle = API.returnNative("GET_PLAYER_PED", Enums.NativeReturnTypes.Handle);
 
             return pedResultado;
         }

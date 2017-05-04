@@ -121,11 +121,25 @@ module RealLife
                 return;
             }
 
+            // TODO: Confirmar se precisa ser desenhado a cada update.
+
             var corTemp = new System.Drawing.Color();
             var vctDirecaoTemp = new Vector3();
             var vctEscalaTemp = new Vector3(1, 1, 1);
 
             this.objHandle = API.createMarker(Enums.MarkerType.VerticalCylinder, vctPosicao, vctDirecaoTemp, vctRotacao, vctEscalaTemp, corTemp.R, corTemp.G, corTemp.B, corTemp.A);
+        }
+
+        public destruir(): void
+        {
+            super.destruir();
+
+            if (this.objHandle == null)
+            {
+                return;
+            }
+
+
         }
 
         private getCor(): System.Drawing.Color

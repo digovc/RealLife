@@ -81,7 +81,7 @@ module RealLife
 
             this.objEntityAncora.criar();
 
-            API.attachCameraToEntity(this.objGlobalCamera, <any>this.objEntityAncora.intHandle, new Vector3(0, 0, 0));
+            API.attachCameraToEntity(this.objGlobalCamera, this.objEntityAncora.objHandle, new Vector3(0, 0, 0));
         }
 
         private getObjEntityAncora(): Entity

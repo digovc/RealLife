@@ -252,6 +252,7 @@ module RealLife
         // #region Atributos
 
         private _booAlcancePequeno: boolean;
+        private _booRota: boolean = false;
         private _enmCor: Blip_EnmCor;
         private _enmTipo: Blip_EnmTipo;
         private _fltAlpha: number;
@@ -272,6 +273,23 @@ module RealLife
             this._booAlcancePequeno = booAlcancePequeno;
 
             this.setBooAlcancePequeno(this._booAlcancePequeno);
+        }
+
+        public get booRota(): boolean
+        {
+            return this._booRota;
+        }
+
+        public set booRota(booRota: boolean)
+        {
+            if (this._booRota == booRota)
+            {
+                return;
+            }
+
+            this._booRota = booRota;
+
+            this.setBooRota(this._booRota);
         }
 
         public get enmCor(): Blip_EnmCor
@@ -505,6 +523,21 @@ module RealLife
             }
 
             API.setBlipShortRange(this.objHandle, booAlcancePequeno);
+        }
+
+        private setBooRota(booRota: boolean): void
+        {
+            if (this.objHandle == null)
+            {
+                return;
+            }
+
+            API.callNative("SET_BLIP_ROUTE", this.objHandle, booRota);
+
+            if (booRota)
+            {
+                API.callNative("SET_BLIP_ROUTE_COLOUR", this.objHandle, this.enmCor);
+            }
         }
 
         private setEnmCor(enmCor: Blip_EnmCor): void
