@@ -86,9 +86,9 @@ module RealLife
             Screen.i.removerEvtOnUpdateListener(this);
         }
 
-        private processarOnUpdate(fltDelta: number): void
+        private processarOnUpdate(): void
         {
-            this.fltAguardando = (this.fltAguardando + fltDelta);
+            this.fltAguardando = (this.fltAguardando + Screen.i.fltDelta);
 
             if (this.fltAguardando < this.fltDuracao)
             {
@@ -117,9 +117,9 @@ module RealLife
 
         // #region Eventos
 
-        public onUpdate(fltDelta: number): void
+        public onUpdate(): void
         {
-            this.processarOnUpdate(fltDelta);
+            this.processarOnUpdate();
         }
 
         // #endregion Eventos

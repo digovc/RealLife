@@ -50,17 +50,18 @@ module RealLife
 
         // #region Métodos
 
-        protected finalizar(): void
+        protected inicializar(): void
         {
-            super.finalizar();
+            super.inicializar();
 
             Audio.i.iniciar();
-
-            Keyboard.i.iniciar();
-
-            Screen.i.iniciar();
-
+            CameraGamePlay.i.iniciar();
+            Chat.i.iniciar();
             Jogador.i.iniciar();
+            Keyboard.i.iniciar();
+            Log.i.iniciar();
+            Screen.i.iniciar();
+            Server.i.iniciar();
 
             PagDev.i.iniciar();
         }

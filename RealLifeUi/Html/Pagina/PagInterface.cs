@@ -199,7 +199,6 @@ namespace RealLifeUi.Html.Pagina
             //this.addCss(css.setBackgroundImage("url(http://media.gtanet.com/gta-5/images/content/gta-v-facts-4.jpg)"));
             //this.addCss(css.setBackgroundRepeat("no-repeat"));
             this.addCss(css.setColor("white"));
-            this.addCss(css.setFontFamily("monospace"));
             //this.addCss(css.setFontSize(20));
             this.addCss(css.setFontWeight("bold"));
 

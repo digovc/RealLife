@@ -27,6 +27,7 @@ module RealLifeUi
         private _divMenuItemPai: DivMenuItem;
         private _divNome: Div;
         private _divValor: Div;
+        private _fncSelecionar: Function;
 
         public get arrDivMenuItem(): Array<DivMenuItem>
         {
@@ -84,14 +85,25 @@ module RealLifeUi
             return this._divValor;
         }
 
+        private get fncSelecionar(): Function
+        {
+            return this._fncSelecionar;
+        }
+
+        private set fncSelecionar(fncSelecionar: Function)
+        {
+            this._fncSelecionar = fncSelecionar;
+        }
+
         // #endregion Atributos
 
         // #region Construtores
 
-        constructor(strNome: string, strValor: string = null)
+        constructor(strNome: string, fncSelecionar: Function = null, strValor: string = null)
         {
             super(null);
 
+            this.fncSelecionar = fncSelecionar;
             this.strId = (DivMenuItem.name + "_" + this.intObjetoId);
             this.strNome = strNome;
 
@@ -165,78 +177,15 @@ module RealLifeUi
         {
             this.divMenu.montarMenu(this.arrDivMenuItem);
 
-            this.dispararEvtOnItemSelecionadoListener();
+            if (this.fncSelecionar != null)
+            {
+                this.fncSelecionar(this);
+            }
         }
 
         // #endregion Métodos
 
         // #region Eventos
-
-        // #region OnItemSelecionadoListener
-
-        private _arrEvtOnItemSelecionadoListener: Array<OnItemSelecionadoListener>;
-
-        private get arrEvtOnItemSelecionadoListener(): Array<OnItemSelecionadoListener>
-        {
-            if (this._arrEvtOnItemSelecionadoListener != null)
-            {
-                return this._arrEvtOnItemSelecionadoListener;
-            }
-
-            this._arrEvtOnItemSelecionadoListener = new Array<OnItemSelecionadoListener>();
-
-            return this._arrEvtOnItemSelecionadoListener;
-        }
-
-        public addEvtOnItemSelecionadoListener(evtOnItemSelecionadoListener: OnItemSelecionadoListener): void
-        {
-            if (evtOnItemSelecionadoListener == null)
-            {
-                return;
-            }
-
-            if (this.arrEvtOnItemSelecionadoListener.indexOf(evtOnItemSelecionadoListener) > -1)
-            {
-                return;
-            }
-
-            this.arrEvtOnItemSelecionadoListener.push(evtOnItemSelecionadoListener);
-        }
-
-        private dispararEvtOnItemSelecionadoListener(): void
-        {
-            if (this.arrEvtOnItemSelecionadoListener.length == 0)
-            {
-                return;
-            }
-
-            this.arrEvtOnItemSelecionadoListener.forEach((evt) =>
-            {
-                if (evt == null)
-                {
-                    return;
-                }
-
-                evt.onItemSelecionado(this);
-            });
-        }
-
-        public removerEvtOnItemSelecionadoListener(evt: OnItemSelecionadoListener): void
-        {
-            if (evt == null)
-            {
-                return;
-            }
-
-            if (this.arrEvtOnItemSelecionadoListener.indexOf(evt) == -1)
-            {
-                return;
-            }
-
-            this.arrEvtOnItemSelecionadoListener.splice(this.arrEvtOnItemSelecionadoListener.indexOf(evt), 1);
-        }
-
-        // #endregion OnItemSelecionadoListener
 
         // #endregion Eventos
     }

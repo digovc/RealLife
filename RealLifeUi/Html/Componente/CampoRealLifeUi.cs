@@ -112,7 +112,7 @@ namespace RealLifeUi.Html.Componente
 
             this.divInputContainer.addCss(css.setBorderTop());
 
-            this.divNome.addCss(css.setPaddingLeft(1, "vw"));
+            this.divNome.addCss(css.setPaddingLeft(1, "vh"));
 
             this.txt.addCss(css.setBorder(0));
             this.txt.addCss(css.setOutline("none"));

@@ -11,7 +11,7 @@ module RealLife
     // #region Enumerados
     // #endregion Enumerados
 
-    export class Screen extends Objeto implements OnUpdateListener
+    export class Screen extends Objeto
     {
         // #region Constantes
         // #endregion Constantes
@@ -63,6 +63,20 @@ module RealLife
             this._dttUltimoFrame = dttUltimoFrame;
         }
 
+        private _fltDelta: number;
+
+        public get fltDelta(): number
+        {
+            if (this._fltDelta != null)
+            {
+                return this._fltDelta;
+            }
+
+            this._fltDelta = this.getFltDelta();
+
+            return this._fltDelta;
+        }
+
         public get objResolucao(): System.Drawing.Size
         {
             if (this._objResolucao != null)
@@ -92,6 +106,11 @@ module RealLife
             API.callNative("DO_SCREEN_FADE_OUT", intDuracao);
         }
 
+        private getFltDelta(): number
+        {
+            return API.returnNative("GET_FRAME_TIME", Enums.NativeReturnTypes.Float);
+        }
+
         public notificar(strNotificacao: string): void
         {
             if (UtilsRealLife.getBooStrVazia(strNotificacao))
@@ -114,25 +133,12 @@ module RealLife
 
         private processarOnUpdate(): void
         {
-            var dttNow = new Date();
-
-            var fltDelta = ((dttNow.getTime() - this.dttUltimoFrame.getTime()) / 1000);
-
-            this.dispararEvtOnUpdateListener(fltDelta);
-
-            this.dttUltimoFrame = dttNow;
+            this._fltDelta = null;
         }
 
         private setBooMostrarMouse(booMostrarMouse: boolean): void
         {
             API.showCursor(booMostrarMouse);
-        }
-
-        protected setEventos(): void
-        {
-            super.setEventos();
-
-            ScriptManager.i.addEvtOnUpdateListener(this);
         }
 
         // #endregion Métodos
@@ -175,8 +181,10 @@ module RealLife
             this.arrEvtOnUpdateListener.push(evtOnUpdateListener);
         }
 
-        private dispararEvtOnUpdateListener(fltDelta: number): void
+        public dispararEvtOnUpdateListener(): void
         {
+            this.processarOnUpdate();
+
             if (this.arrEvtOnUpdateListener.length == 0)
             {
                 return;
@@ -189,7 +197,7 @@ module RealLife
                     return;
                 }
 
-                evt.onUpdate(fltDelta);
+                evt.onUpdate();
             });
         }
 

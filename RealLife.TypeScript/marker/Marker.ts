@@ -1,4 +1,4 @@
-/// <reference path="../../Objeto.ts"/>
+/// <reference path="../Objeto.ts"/>
 
 module RealLife
 {
@@ -139,7 +139,7 @@ module RealLife
                 return;
             }
 
-
+            // TODO: Implementar.
         }
 
         private getCor(): System.Drawing.Color

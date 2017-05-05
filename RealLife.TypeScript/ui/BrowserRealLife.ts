@@ -13,7 +13,16 @@ module RealLife
 
         // #region Atributos
 
+        private _booInicializado: boolean;
         private _objBrowser: GTANetwork.GUI.Browser;
+        private _pag: PagRealLifeBase;
+
+        public get booInicializado(): boolean
+        {
+            this._booInicializado = this.getBooInicializado();
+
+            return this._booInicializado;
+        }
 
         private get objBrowser(): GTANetwork.GUI.Browser
         {
@@ -31,8 +40,6 @@ module RealLife
         {
             this._objBrowser = objBrowser;
         }
-
-        private _pag: PagRealLifeBase;
 
         private get pag(): PagRealLifeBase
         {
@@ -60,11 +67,6 @@ module RealLife
         // #region Métodos
 
         public destruir(): void
-        {
-            this.destruirObjBrowser();
-        }
-
-        private destruirObjBrowser(): void
         {
             if (this.objBrowser == null)
             {
@@ -103,6 +105,16 @@ module RealLife
                 this.objBrowser.call(strCodigo);
                 Log.i.debug("JS CEF: {0}.", strCodigo);
             }
+        }
+
+        private getBooInicializado(): boolean
+        {
+            if (this.objBrowser == null)
+            {
+                return;
+            }
+
+            return API.isCefBrowserInitialized(this.objBrowser);
         }
 
         public iniciar(): void

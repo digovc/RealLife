@@ -14,7 +14,7 @@ module RealLife
 
     // #endregion Enumerados
 
-    export class Keyboard extends Objeto implements OnKeyUpListener, OnUpdateListener
+    export class Keyboard extends Objeto implements OnKeyUpListener
     {
         // #region Constantes
         // #endregion Constantes
@@ -33,25 +33,6 @@ module RealLife
             Keyboard._i = new Keyboard();
 
             return Keyboard._i;
-        }
-
-        private _booLigado: boolean = true;
-
-        public get booLigado(): boolean
-        {
-            return this._booLigado;
-        }
-
-        public set booLigado(booLigado: boolean)
-        {
-            if (this._booLigado == booLigado)
-            {
-                return;
-            }
-
-            this._booLigado = booLigado;
-
-            this.setBooLigado(this._booLigado);
         }
 
         // #endregion Atributos
@@ -124,43 +105,6 @@ module RealLife
             }
         }
 
-        private processarOnUpdate(): void
-        {
-            if (this.booLigado)
-            {
-                return;
-            }
-
-            API.disableAllControlsThisFrame();
-        }
-
-        private setBooLigado(booLigado: boolean): void
-        {
-            // TODO: Tentar usar o método da API:
-            // API.requestControlOfPlayer
-            // API.stopControlOfPlayer
-
-            if (booLigado)
-            {
-                Log.i.debug("Ligando o controle.");
-
-                Screen.i.removerEvtOnUpdateListener(this);
-            }
-            else
-            {
-                Log.i.debug("Desligando o controle.");
-
-                Screen.i.addEvtOnUpdateListener(this);
-            }
-        }
-
-        protected setEventos(): void
-        {
-            super.setEventos();
-
-            ScriptManager.i.addEvtOnKeyUpListener(this);
-        }
-
         // #endregion Métodos
 
         // #region Eventos
@@ -168,11 +112,6 @@ module RealLife
         public onKeyUp(objSender: Object, arg: System.Windows.Forms.KeyEventArgs): void
         {
             this.processarOnKeyUp(arg);
-        }
-
-        public onUpdate(fltDelta: number): void
-        {
-            this.processarOnUpdate();
         }
 
         // #region OnGameKeyListener
@@ -272,8 +211,10 @@ module RealLife
             this.arrEvtOnKeyUpListener.push(evtOnKeyUpListener);
         }
 
-        private dispararEvtOnKeyUpListener(objSender: Object, arg: System.Windows.Forms.KeyEventArgs): void
+        public dispararEvtOnKeyUpListener(objSender: Object, arg: System.Windows.Forms.KeyEventArgs): void
         {
+            this.processarOnKeyUp(arg);
+
             if (this.arrEvtOnKeyUpListener.length == 0)
             {
                 return;

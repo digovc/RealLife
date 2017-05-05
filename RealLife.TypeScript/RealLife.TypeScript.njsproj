@@ -50,26 +50,28 @@
   <ItemGroup>
     <TypeScriptCompile Include="AppRealLife.ts" />
     <TypeScriptCompile Include="Audio.ts" />
-    <TypeScriptCompile Include="gta\blip\Blip.ts" />
-    <TypeScriptCompile Include="gta\camera\CameraBase.ts" />
-    <TypeScriptCompile Include="gta\camera\CameraGamePlay.ts" />
-    <TypeScriptCompile Include="gta\camera\CameraLivre.ts" />
-    <TypeScriptCompile Include="gta\Entity.ts" />
+    <TypeScriptCompile Include="Chat.ts" />
+    <TypeScriptCompile Include="blip\Blip.ts" />
+    <TypeScriptCompile Include="camera\CameraBase.ts" />
+    <TypeScriptCompile Include="camera\CameraGamePlay.ts" />
+    <TypeScriptCompile Include="camera\CameraLivre.ts" />
+    <TypeScriptCompile Include="Entity.ts" />
     <TypeScriptCompile Include="evento\OnChatCommandListener.ts" />
     <TypeScriptCompile Include="evento\OnKeyUpListener.ts" />
     <TypeScriptCompile Include="evento\OnServerEventTriggerListener.ts" />
     <TypeScriptCompile Include="evento\OnUpdateListener.ts" />
-    <TypeScriptCompile Include="gta\marker\Marker.ts" />
-    <TypeScriptCompile Include="gta\native\Native.ts" />
-    <TypeScriptCompile Include="gta\native\NativeArgumento.ts" />
-    <TypeScriptCompile Include="gta\native\NativeMethod.ts" />
-    <TypeScriptCompile Include="gta\Ped.ts" />
+    <TypeScriptCompile Include="EntityControlador.ts" />
+    <TypeScriptCompile Include="marker\Marker.ts" />
+    <TypeScriptCompile Include="native\Native.ts" />
+    <TypeScriptCompile Include="native\NativeArgumento.ts" />
+    <TypeScriptCompile Include="native\NativeMethod.ts" />
+    <TypeScriptCompile Include="Ped.ts" />
     <TypeScriptCompile Include="Jogador.ts" />
     <TypeScriptCompile Include="Keyboard.ts" />
     <TypeScriptCompile Include="Log.ts" />
     <TypeScriptCompile Include="Objeto.ts" />
     <TypeScriptCompile Include="Screen.ts" />
-    <TypeScriptCompile Include="ScriptManager.ts" />
+    <TypeScriptCompile Include="ScriptBoot.ts" />
     <TypeScriptCompile Include="script\editor\personagem\_001_EtapaAberturaPersonagemEditor.ts" />
     <TypeScriptCompile Include="script\editor\personagem\_002_EtapaEdicaoPersonagemEditor.ts" />
     <TypeScriptCompile Include="script\editor\personagem\ScriptPersonagemEditor.ts" />
@@ -90,7 +92,7 @@
     <TypeScriptCompile Include="script\missao\ScriptMissaoBase.ts" />
     <TypeScriptCompile Include="script\ScriptBase.ts" />
     <TypeScriptCompile Include="script\EtapaBase.ts" />
-    <TypeScriptCompile Include="ServerRealLife.ts" />
+    <TypeScriptCompile Include="Server.ts" />
     <TypeScriptCompile Include="Timer.ts" />
     <TypeScriptCompile Include="typedefinition\gta-network-typescript\content\types-gtanetwork\index.d.ts" />
     <TypeScriptCompile Include="ui\BrowserRealLife.ts" />
@@ -105,11 +107,10 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="evento\" />
-    <Folder Include="gta\" />
-    <Folder Include="gta\camera\" />
-    <Folder Include="gta\native\" />
-    <Folder Include="gta\blip\" />
-    <Folder Include="gta\marker\" />
+    <Folder Include="camera\" />
+    <Folder Include="native\" />
+    <Folder Include="blip\" />
+    <Folder Include="marker\" />
     <Folder Include="script\" />
     <Folder Include="script\editor\" />
     <Folder Include="script\editor\personagem\" />

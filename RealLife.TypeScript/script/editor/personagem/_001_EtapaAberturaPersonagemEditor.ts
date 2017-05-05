@@ -28,7 +28,7 @@ module RealLife
 
         protected _001_comecar(): void
         {
-            Keyboard.i.booLigado = false;
+            Jogador.i.booControlavel = false;
 
             Screen.i.fadeOut(1000);
 

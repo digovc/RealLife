@@ -2,7 +2,7 @@
 
 namespace RealLife
 {
-    internal class ScriptManager : Script
+    internal class ScriptBoot : Script
     {
         #region Constantes
 
@@ -14,7 +14,7 @@ namespace RealLife
 
         #region Construtores
 
-        public ScriptManager()
+        public ScriptBoot()
         {
             AppRealLife.i.iniciar(this.API);
         }

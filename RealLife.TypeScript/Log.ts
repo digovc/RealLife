@@ -1,3 +1,5 @@
+/// <reference path="Objeto.ts"/>
+
 module RealLife
 {
     // #region Importações
@@ -6,7 +8,7 @@ module RealLife
     // #region Enumerados
     // #endregion Enumerados
 
-    export class Log
+    export class Log extends Objeto
     {
         // #region Constantes
         // #endregion Constantes

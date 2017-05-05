@@ -68,6 +68,7 @@
   <ItemGroup>
     <TypeScriptCompile Include="dominio\AudioDominio.ts" />
     <TypeScriptCompile Include="dominio\DominioRealLifeBase.ts" />
+    <TypeScriptCompile Include="dominio\EntityDominio.ts" />
     <TypeScriptCompile Include="dominio\ErroDominio.ts" />
     <TypeScriptCompile Include="dominio\MissaoConclusaoDominio.ts" />
     <TypeScriptCompile Include="enumerado\EnmKey.ts" />

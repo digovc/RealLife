@@ -1,4 +1,4 @@
-/// <reference path="../../Objeto.ts"/>
+/// <reference path="../Objeto.ts"/>
 
 module RealLife
 {

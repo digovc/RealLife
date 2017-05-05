@@ -12,39 +12,12 @@ module RealLifeUi
     // #region Enumerados
     // #endregion Enumerados
 
-    export class DivMenuDev extends DivMenuBase implements OnItemSelecionadoListener
+    export class DivMenuDev extends DivMenuBase
     {
         // #region Constantes
         // #endregion Constantes
 
         // #region Atributos
-
-        private _divMenuItemAudio: DivMenuItemAudio;
-        private _divMenuItemCameraLivre: DivMenuItem;
-
-        private get divMenuItemAudio(): DivMenuItemAudio
-        {
-            if (this._divMenuItemAudio != null)
-            {
-                return this._divMenuItemAudio;
-            }
-
-            this._divMenuItemAudio = new DivMenuItemAudio();
-
-            return this._divMenuItemAudio;
-        }
-
-        private get divMenuItemCameraLivre(): DivMenuItem
-        {
-            if (this._divMenuItemCameraLivre != null)
-            {
-                return this._divMenuItemCameraLivre;
-            }
-
-            this._divMenuItemCameraLivre = new DivMenuItem("Câmera livre", "Desligada");
-
-            return this._divMenuItemCameraLivre;
-        }
 
         // #endregion Atributos
 
@@ -54,63 +27,27 @@ module RealLifeUi
 
         // #region Métodos
 
-        private desligarCameraLivre(): void
+        private addMarca(): void
         {
-            this.divMenuItemCameraLivre.divValor.strConteudo = "Desligada";
+            ClientRealLife.i.executar(PagDev.name, "addMarca");
         }
 
         protected inicializarArrDivMenuItem(arrDivMenuItem: Array<DivMenuItem>): void
         {
-            arrDivMenuItem.push(this.divMenuItemCameraLivre);
-            arrDivMenuItem.push(this.divMenuItemAudio);
+            arrDivMenuItem.push(new DivMenuItem("Camera livre", (() => { this.ligarCameraLivre(); })));
+            arrDivMenuItem.push(new DivMenuItemObjeto());
+            arrDivMenuItem.push(new DivMenuItem("Marca", (() => { this.addMarca(); })));
+            arrDivMenuItem.push(new DivMenuItemAudio());
         }
 
         private ligarCameraLivre(): void
         {
-            this.divMenuItemCameraLivre.divValor.strConteudo = "Ligada";
-
             ClientRealLife.i.executar(PagDev.name, "ligarCameraLivre");
-        }
-
-        private ligarDesligarCameraLivre(): void
-        {
-            if (this.divMenuItemCameraLivre.divValor.strConteudo == "Ligada")
-            {
-                this.desligarCameraLivre();
-            }
-            else
-            {
-                this.ligarCameraLivre();
-            }
-
-            this.esconder();
-        }
-
-        private processarOnItemSelecionado(divMenuItem: DivMenuItem): void
-        {
-            switch (divMenuItem)
-            {
-                case this.divMenuItemCameraLivre:
-                    this.ligarDesligarCameraLivre();
-                    return;
-            }
-        }
-
-        protected setEventos(): void
-        {
-            super.setEventos();
-
-            this.divMenuItemCameraLivre.addEvtOnItemSelecionadoListener(this);
         }
 
         // #endregion Métodos
 
         // #region Eventos
-
-        public onItemSelecionado(divMenuItem: DivMenuItem): void
-        {
-            this.processarOnItemSelecionado(divMenuItem);
-        }
 
         // #endregion Eventos
     }

@@ -75,6 +75,7 @@
     <TypeScriptCompile Include="html\componente\dev\audio\DivMenuItemAudioSong.ts" />
     <TypeScriptCompile Include="html\componente\dev\DivMenuDev.ts" />
     <TypeScriptCompile Include="html\componente\dev\audio\DivMenuItemAudio.ts" />
+    <TypeScriptCompile Include="html\componente\dev\objeto\DivMenuItemObjeto.ts" />
     <TypeScriptCompile Include="html\componente\editor\personagem\cabeca\DivMenuItemCabelo.ts" />
     <TypeScriptCompile Include="html\componente\editor\personagem\cabeca\DivMenuItemCabeloCor.ts" />
     <TypeScriptCompile Include="html\componente\editor\personagem\cabeca\DivMenuItemOlhoCor.ts" />
@@ -105,7 +106,6 @@
     <TypeScriptCompile Include="html\componente\login\DivLoginContaCadastro.ts" />
     <TypeScriptCompile Include="html\componente\login\DivLoginEntrar.ts" />
     <TypeScriptCompile Include="html\componente\login\DivLoginTab.ts" />
-    <TypeScriptCompile Include="html\componente\menu\OnItemSelecionadoListener.ts" />
     <TypeScriptCompile Include="html\componente\missao\DivMissaoBase.ts" />
     <TypeScriptCompile Include="html\componente\missao\DivMissaoDinheiro.ts" />
     <TypeScriptCompile Include="html\componente\missao\DivMissaoResultado.ts" />

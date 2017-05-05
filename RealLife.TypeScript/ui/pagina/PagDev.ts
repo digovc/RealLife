@@ -36,6 +36,7 @@ module RealLife
         }
 
         private _camLivre: CameraLivre;
+        private _objMarca: Marker;
 
         private get camLivre(): CameraLivre
         {
@@ -49,12 +50,29 @@ module RealLife
             return this._camLivre;
         }
 
+        private get objMarca(): Marker
+        {
+            if (this._objMarca != null)
+            {
+                return this._objMarca;
+            }
+
+            this._objMarca = new Marker();
+
+            return this._objMarca;
+        }
+
         // #endregion Atributos
 
         // #region Construtores
         // #endregion Construtores
 
         // #region Métodos
+
+        public addMarca(): void
+        {
+            // TODO: Implementar.
+        }
 
         public executarAudio(jsnAudio: string): void
         {
@@ -93,7 +111,14 @@ module RealLife
 
         public ligarCameraLivre(): void
         {
-            this.camLivre.ativar();
+            if (!this.camLivre.booAtiva)
+            {
+                this.camLivre.ativar();
+            }
+            else
+            {
+                // TODO: Ativar câmera do gameplay.
+            }
         }
 
         // #endregion Métodos
