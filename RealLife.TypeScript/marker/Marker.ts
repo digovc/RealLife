@@ -30,11 +30,6 @@ module RealLife
 
         public set cor(cor: System.Drawing.Color)
         {
-            if (this._cor == cor)
-            {
-                return;
-            }
-
             this._cor = cor;
 
             this.setCor(this._cor);
@@ -49,11 +44,6 @@ module RealLife
 
         public set enmTipo(enmTipo: Enums.MarkerType)
         {
-            if (this._enmTipo == enmTipo)
-            {
-                return;
-            }
-
             this._enmTipo = enmTipo;
 
             this.setEnmTipo(this._enmTipo);

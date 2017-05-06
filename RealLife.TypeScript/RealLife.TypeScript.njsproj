@@ -55,6 +55,7 @@
     <TypeScriptCompile Include="camera\CameraBase.ts" />
     <TypeScriptCompile Include="camera\CameraGamePlay.ts" />
     <TypeScriptCompile Include="camera\CameraLivre.ts" />
+    <TypeScriptCompile Include="Cor.ts" />
     <TypeScriptCompile Include="Entity.ts" />
     <TypeScriptCompile Include="evento\OnChatCommandListener.ts" />
     <TypeScriptCompile Include="evento\OnKeyUpListener.ts" />
@@ -62,9 +63,6 @@
     <TypeScriptCompile Include="evento\OnUpdateListener.ts" />
     <TypeScriptCompile Include="EntityControlador.ts" />
     <TypeScriptCompile Include="marker\Marker.ts" />
-    <TypeScriptCompile Include="native\Native.ts" />
-    <TypeScriptCompile Include="native\NativeArgumento.ts" />
-    <TypeScriptCompile Include="native\NativeMethod.ts" />
     <TypeScriptCompile Include="Ped.ts" />
     <TypeScriptCompile Include="Jogador.ts" />
     <TypeScriptCompile Include="Keyboard.ts" />
@@ -96,11 +94,18 @@
     <TypeScriptCompile Include="Timer.ts" />
     <TypeScriptCompile Include="typedefinition\gta-network-typescript\content\types-gtanetwork\index.d.ts" />
     <TypeScriptCompile Include="ui\BrowserRealLife.ts" />
+    <TypeScriptCompile Include="ui\menu\MenuBase.ts" />
+    <TypeScriptCompile Include="ui\menu\MenuItem.ts" />
+    <TypeScriptCompile Include="ui\menu\MenuItemBase.ts" />
+    <TypeScriptCompile Include="ui\menu\MenuItemCheckBox.ts" />
+    <TypeScriptCompile Include="ui\menu\MenuItemList.ts" />
+    <TypeScriptCompile Include="ui\menu\MenuPrincipal.ts" />
     <TypeScriptCompile Include="ui\pagina\PagDev.ts" />
     <TypeScriptCompile Include="ui\pagina\PagLogin.ts" />
     <TypeScriptCompile Include="ui\pagina\PagPersonagemEditor.ts" />
     <TypeScriptCompile Include="ui\pagina\PagRealLifeBase.ts" />
     <TypeScriptCompile Include="UtilsRealLife.ts" />
+    <TypeScriptCompile Include="Vehicle.ts" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="tsconfig.json" />
@@ -108,7 +113,6 @@
   <ItemGroup>
     <Folder Include="evento\" />
     <Folder Include="camera\" />
-    <Folder Include="native\" />
     <Folder Include="blip\" />
     <Folder Include="marker\" />
     <Folder Include="script\" />
@@ -121,6 +125,7 @@
     <Folder Include="typedefinition\gta-network-typescript\" />
     <Folder Include="typedefinition\gta-network-typescript\content\" />
     <Folder Include="typedefinition\gta-network-typescript\content\types-gtanetwork\" />
+    <Folder Include="ui\menu\" />
     <Folder Include="ui\pagina\" />
   </ItemGroup>
   <!-- Do not delete the following Import Project.  While this appears to do nothing it is a marker for setting TypeScript properties before our import that depends on them. -->

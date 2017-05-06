@@ -34,6 +34,8 @@ module RealLife
 
         private _booMostrarMouse: boolean;
         private _dttUltimoFrame: Date = new Date();
+        private _fltDelta: number;
+        private _objMenuPool: NativeUI.MenuPool;
         private _objResolucao: System.Drawing.Size;
 
         public get booMostrarMouse(): boolean
@@ -43,11 +45,6 @@ module RealLife
 
         public set booMostrarMouse(booMostrarMouse: boolean)
         {
-            if (this._booMostrarMouse == booMostrarMouse)
-            {
-                return;
-            }
-
             this._booMostrarMouse = booMostrarMouse;
 
             this.setBooMostrarMouse(this._booMostrarMouse);
@@ -63,8 +60,6 @@ module RealLife
             this._dttUltimoFrame = dttUltimoFrame;
         }
 
-        private _fltDelta: number;
-
         public get fltDelta(): number
         {
             if (this._fltDelta != null)
@@ -75,6 +70,18 @@ module RealLife
             this._fltDelta = this.getFltDelta();
 
             return this._fltDelta;
+        }
+
+        private get objMenuPool(): NativeUI.MenuPool
+        {
+            if (this._objMenuPool != null)
+            {
+                return this._objMenuPool;
+            }
+
+            this._objMenuPool = API.getMenuPool();
+
+            return this._objMenuPool;
         }
 
         public get objResolucao(): System.Drawing.Size
@@ -134,6 +141,13 @@ module RealLife
         private processarOnUpdate(): void
         {
             this._fltDelta = null;
+
+            this.processarOnUpdateObjMenuPool();
+        }
+
+        private processarOnUpdateObjMenuPool(): void
+        {
+            this.objMenuPool.ProcessMenus();
         }
 
         private setBooMostrarMouse(booMostrarMouse: boolean): void

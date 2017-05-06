@@ -1,18 +1,20 @@
 {
-    "compilerOptions": {
+    "compilerOptions":
+    {
         "alwaysStrict": false,
-        "noImplicitAny": false,
+        "module": "system",
         "noEmitOnError": true,
+        "noImplicitAny": false,
+        "outFile": "../Principal/bin/Server/resources/real_life/RealLifeClient.js",
         "removeComments": true,
         "sourceMap": false,
-        "target": "esnext",
-        "outFile": "../Principal/bin/Server/resources/real_life/RealLifeClient.js",
-        "module": "system"
+        "target": "esnext"
     },
 
     "compileOnSave": false,
 
-    "exclude": [
+    "exclude":
+    [
         "typedefinition"
     ]
 }

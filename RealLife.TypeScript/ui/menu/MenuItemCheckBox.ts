@@ -6,7 +6,7 @@ module RealLife
     // #region Enumerados
     // #endregion Enumerados
 
-    export class Native extends Objeto
+    export class MenuItemCheckBox extends MenuItemBase
     {
         // #region Constantes
         // #endregion Constantes
@@ -18,9 +18,6 @@ module RealLife
         // #endregion Construtores
 
         // #region Métodos
-
-
-
         // #endregion Métodos
 
         // #region Eventos

@@ -111,14 +111,7 @@ module RealLife
 
         public ligarCameraLivre(): void
         {
-            if (!this.camLivre.booAtiva)
-            {
-                this.camLivre.ativar();
-            }
-            else
-            {
-                // TODO: Ativar câmera do gameplay.
-            }
+            this.camLivre.booAtiva = !this.camLivre.booAtiva;
         }
 
         // #endregion Métodos

@@ -39,11 +39,6 @@ module RealLife
 
         public set booAtivo(booAtivo: boolean)
         {
-            if (this._booAtivo == booAtivo)
-            {
-                return;
-            }
-
             this._booAtivo = booAtivo;
 
             API.setCanOpenChat(this._booAtivo);
@@ -58,11 +53,6 @@ module RealLife
 
         public set booVisivel(booVisivel: boolean)
         {
-            if (this._booVisivel == booVisivel)
-            {
-                return;
-            }
-
             this._booVisivel = booVisivel;
 
             API.setChatVisible(this._booVisivel);

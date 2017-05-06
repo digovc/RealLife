@@ -61,8 +61,6 @@ module RealLife
         {
             Log.i.debug("Tecla {0} acionada.", arg.KeyValue.toString());
 
-            this.dispararEvtOnKeyUpListener(this, arg);
-
             switch (arg.KeyCode)
             {
                 case Keys.A:

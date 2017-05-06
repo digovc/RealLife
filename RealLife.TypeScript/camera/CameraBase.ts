@@ -59,11 +59,6 @@ module RealLife
 
         public set fltFov(fltFov: number)
         {
-            if (this._fltFov == fltFov)
-            {
-                return;
-            }
-
             this._fltFov = fltFov;
 
             this.setFltFov(this._fltFov);

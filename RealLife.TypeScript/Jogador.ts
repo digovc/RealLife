@@ -59,11 +59,6 @@ module RealLife
 
         public set booControlavel(booControlavel: boolean)
         {
-            if (this._booControlavel == booControlavel)
-            {
-                return;
-            }
-
             this._booControlavel = booControlavel;
 
             this.setBooControlavel(this._booControlavel);
@@ -110,11 +105,6 @@ module RealLife
 
         private set strGametag(strGametag: string)
         {
-            if (this._strGametag == strGametag)
-            {
-                return;
-            }
-
             this._strGametag = strGametag;
 
             API.setPlayerNametag(this.ped.objHandle, this._strGametag);

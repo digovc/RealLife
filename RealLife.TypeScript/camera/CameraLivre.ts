@@ -37,20 +37,6 @@ module RealLife
 
         // #region Métodos
 
-        public ativar(): void
-        {
-            super.ativar();
-
-            Jogador.i.booControlavel = false;
-            Jogador.i.ped.booVisivel = false;
-
-            this.objEntityAncora.criar();
-
-            this.objEntityAncora.booControlavel = true;
-
-            this.anexarEntity(this.objEntityAncora);
-        }
-
         protected inicializar(): void
         {
             super.inicializar();

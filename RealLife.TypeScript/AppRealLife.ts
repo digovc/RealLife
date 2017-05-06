@@ -63,7 +63,16 @@ module RealLife
             Screen.i.iniciar();
             Server.i.iniciar();
 
-            PagDev.i.iniciar();
+            //PagDev.i.iniciar();
+
+            this.testarMenu();
+        }
+
+        private testarMenu(): void
+        {
+            MenuPrincipal.i.iniciar();
+
+            MenuPrincipal.i.booVisivel = true;
         }
 
         // #endregion Métodos

@@ -10,17 +10,17 @@
   <!--Interface do usuário-->
 
   <!--html-->
-  <file src="ui/pag_desenvolvimento.html" />
+  <!--<file src="ui/pag_desenvolvimento.html" />
   <file src="ui/pag_interface.html" />
-  <file src="ui/pag_login.html" />
+  <file src="ui/pag_login.html" />-->
 
   <!--css-->
-  <file src="ui/res/css/main.css" />
+  <!--<file src="ui/res/css/main.css" />-->
 
   <!--javascript-->
-  <file src="ui/res/js/lib/jquery-3.1.0.min.js" />
+  <!--<file src="ui/res/js/lib/jquery-3.1.0.min.js" />
   <file src="ui/res/js/lib/md5.min.js" />
-  <file src="ui/res/js/RealLifeUi.js" />
+  <file src="ui/res/js/RealLifeUi.js" />-->
 
   <!--web_typescript-->
   <!--TODO-->

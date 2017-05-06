@@ -24,6 +24,7 @@ module RealLife
         private _intAlpha: number;
         private _intDimensao: number;
         private _intHash: number = 656641197;
+        private _intSaude: number;
         private _intSaudeMaxima: number;
         private _objHandle: LocalHandle;
         private _vctPosicao: Vector3;
@@ -39,11 +40,6 @@ module RealLife
 
         public set booCongelado(booCongelado: boolean)
         {
-            if (this._booCongelado == booCongelado)
-            {
-                return;
-            }
-
             this._booCongelado = booCongelado;
 
             this.setBooCongelado(this._booCongelado);
@@ -58,11 +54,6 @@ module RealLife
 
         public set booDinamico(booDinamico: boolean)
         {
-            if (this._booDinamico == booDinamico)
-            {
-                return;
-            }
-
             this._booDinamico = booDinamico;
 
             this.setBooDinamico(this._booDinamico);
@@ -84,11 +75,6 @@ module RealLife
 
         public set booInvencivel(booInvencivel: boolean)
         {
-            if (this._booInvencivel == booInvencivel)
-            {
-                return;
-            }
-
             this._booInvencivel = booInvencivel;
 
             this.setBooInvencivel(this._booInvencivel);
@@ -103,11 +89,6 @@ module RealLife
 
         public set booVisivel(booVisivel: boolean)
         {
-            if (this._booVisivel == booVisivel)
-            {
-                return;
-            }
-
             this._booVisivel = booVisivel;
 
             this.setBooVisivel(this._booVisivel);
@@ -134,11 +115,6 @@ module RealLife
 
         public set intAlpha(intAlpha: number)
         {
-            if (this._intAlpha == intAlpha)
-            {
-                return;
-            }
-
             this._intAlpha = intAlpha;
 
             this.setIntAlpha(this._intAlpha);
@@ -153,11 +129,6 @@ module RealLife
 
         public set intDimensao(intDimensao: number)
         {
-            if (this._intDimensao == intDimensao)
-            {
-                return;
-            }
-
             this._intDimensao = intDimensao;
 
             this.setIntDimensao(this._intDimensao);
@@ -166,6 +137,20 @@ module RealLife
         public get intHash(): number
         {
             return this._intHash;
+        }
+
+        public get intSaude(): number
+        {
+            this._intSaude = this.getIntSaude();
+
+            return this._intSaude;
+        }
+
+        public set intSaude(intSaude: number)
+        {
+            this._intSaude = intSaude;
+
+            this.setIntSaude(this._intSaude);
         }
 
         public get intSaudeMaxima(): number
@@ -177,11 +162,6 @@ module RealLife
 
         public set intSaudeMaxima(intSaudeMaxima: number)
         {
-            if (this._intSaudeMaxima == intSaudeMaxima)
-            {
-                return;
-            }
-
             this._intSaudeMaxima = intSaudeMaxima;
 
             this.setIntSaudeMaxima(this._intSaudeMaxima);
@@ -404,6 +384,16 @@ module RealLife
             return API.getEntityDimension(this.objHandle);
         }
 
+        private getIntSaude(): number
+        {
+            if (this.objHandle == null)
+            {
+                return null;
+            }
+
+            return API.returnNative("GET_ENTITY_HEALTH", Enums.NativeReturnTypes.Int, this.objHandle);
+        }
+
         private getIntSaudeMaxima(): number
         {
             if (this.objHandle == null)
@@ -512,6 +502,21 @@ module RealLife
             }
 
             API.setEntityDimension(this.objHandle, intDimensao);
+        }
+
+        private setIntSaude(intSaude: number): void
+        {
+            if (this.objHandle == null)
+            {
+                return;
+            }
+
+            if (intSaude < 0)
+            {
+                intSaude = 0;
+            }
+
+            API.callNative("SET_ENTITY_HEALTH", this.objHandle, intSaude);
         }
 
         private setIntSaudeMaxima(intSaudeMaxima: number): void

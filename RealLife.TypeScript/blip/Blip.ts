@@ -282,11 +282,6 @@ module RealLife
 
         public set booRota(booRota: boolean)
         {
-            if (this._booRota == booRota)
-            {
-                return;
-            }
-
             this._booRota = booRota;
 
             this.setBooRota(this._booRota);
@@ -301,11 +296,6 @@ module RealLife
 
         public set enmCor(enmCor: Blip_EnmCor)
         {
-            if (this._enmCor == enmCor)
-            {
-                return;
-            }
-
             this._enmCor = enmCor;
 
             this.setEnmCor(this._enmCor);
@@ -320,11 +310,6 @@ module RealLife
 
         public set enmTipo(enmTipo: Blip_EnmTipo)
         {
-            if (this._enmTipo == enmTipo)
-            {
-                return;
-            }
-
             this._enmTipo = enmTipo;
 
             this.setEnmTipo(this._enmTipo);
@@ -339,11 +324,6 @@ module RealLife
 
         public set fltAlpha(fltAlpha: number)
         {
-            if (this._fltAlpha == fltAlpha)
-            {
-                return;
-            }
-
             this._fltAlpha = fltAlpha;
 
             this.setFltAlpha(this._fltAlpha);
@@ -358,11 +338,6 @@ module RealLife
 
         public set fltEscala(fltEscala: number)
         {
-            if (this._fltEscala = fltEscala)
-            {
-                return;
-            }
-
             this._fltEscala = fltEscala;
 
             this.setFltEscala(this._fltEscala);
@@ -387,11 +362,6 @@ module RealLife
 
         public set strNome(strNome: string)
         {
-            if (this._strNome == strNome)
-            {
-                return;
-            }
-
             this._strNome = strNome;
 
             this.setStrNome(this._strNome);
