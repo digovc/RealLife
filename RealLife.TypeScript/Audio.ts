@@ -1,10 +1,10 @@
 module RealLife
 {
-    // #region Importações
+    // #region ImportaÃ§Ãµes
 
     import AudioDominio = RealLifeShared.AudioDominio;
 
-    // #endregion Importações
+    // #endregion ImportaÃ§Ãµes
 
     // #region Enumerados
     // #endregion Enumerados
@@ -35,7 +35,7 @@ module RealLife
         // #region Construtores
         // #endregion Construtores
 
-        // #region Métodos
+        // #region MÃ©todos
 
         private executar(strNome: string, strSetNome: string): void
         {
@@ -69,7 +69,7 @@ module RealLife
             this.executar("FocusIn", "HintCamSounds");
         }
 
-        // #endregion Métodos
+        // #endregion MÃ©todos
 
         // #region Eventos
         // #endregion Eventos

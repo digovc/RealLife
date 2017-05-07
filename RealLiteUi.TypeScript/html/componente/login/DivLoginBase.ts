@@ -1,4 +1,4 @@
-﻿/// <reference path="../../../../Web.TypeScript/html/componente/ComponenteHtml.ts"/>
+/// <reference path="../../../../Web.TypeScript/html/componente/ComponenteHtml.ts"/>
 /// <reference path="../../../../web.typescript/typedefinition/md5.d.ts" />
 /// <reference path="../../../../Web.TypeScript/Utils.ts"/>
 

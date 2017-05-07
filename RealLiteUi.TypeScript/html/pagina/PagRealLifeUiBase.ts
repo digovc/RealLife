@@ -1,4 +1,4 @@
-﻿/// <reference path="../../../Web.TypeScript/html/pagina/PagMobile.ts"/>
+/// <reference path="../../../Web.TypeScript/html/pagina/PagMobile.ts"/>
 /// <reference path="../../../Web.TypeScript/Utils.ts"/>
 
 module RealLifeUi

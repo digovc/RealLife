@@ -1,4 +1,4 @@
-﻿/// <reference path="DominioRealLifeBase.ts"/>
+/// <reference path="DominioRealLifeBase.ts"/>
 
 module RealLifeShared
 {

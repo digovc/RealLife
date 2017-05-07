@@ -1,7 +1,7 @@
 module RealLife
 {
-    // #region Importações
-    // #endregion Importações
+    // #region ImportaÃ§Ãµes
+    // #endregion ImportaÃ§Ãµes
 
     // #region Enumerados
     // #endregion Enumerados
@@ -63,7 +63,7 @@ module RealLife
         // #region Construtores
         // #endregion Construtores
 
-        // #region Métodos
+        // #region MÃ©todos
 
         public enviar(strMensagem: string): void
         {
@@ -75,7 +75,7 @@ module RealLife
             API.sendChatMessage(strMensagem);
         }
 
-        // #endregion Métodos
+        // #endregion MÃ©todos
 
         // #region Eventos
 

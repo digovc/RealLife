@@ -1,4 +1,4 @@
-﻿/// <reference path="../../../../RealLifeShared.TypeScript/dominio/JogadorDominio.ts"/>
+/// <reference path="../../../../RealLifeShared.TypeScript/dominio/JogadorDominio.ts"/>
 /// <reference path="../../../../Web.TypeScript/html/componente/Mensagem.ts"/>
 /// <reference path="../../../../Web.TypeScript/Utils.ts"/>
 

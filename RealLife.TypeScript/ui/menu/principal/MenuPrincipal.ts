@@ -1,7 +1,9 @@
+/// <reference path="../MenuBase.ts"/>
+
 module RealLife
 {
-    // #region Importações
-    // #endregion Importações
+    // #region ImportaÃ§Ãµes
+    // #endregion ImportaÃ§Ãµes
 
     // #region Enumerados
     // #endregion Enumerados
@@ -32,7 +34,7 @@ module RealLife
         // #region Construtores
         // #endregion Construtores
 
-        // #region Métodos
+        // #region MÃ©todos
 
         protected inicializar(): void
         {
@@ -42,7 +44,13 @@ module RealLife
             this.strTitulo = "Menu principal";
         }
 
-        // #endregion Métodos
+        protected inicializarArrObjMenuItem(arrObjMenuItem: Array<MenuItemBase>): void
+        {
+            arrObjMenuItem.push(new MenuItemVeiculo(null, "OpÃ§Ã£o"));
+            arrObjMenuItem.push(new MenuItemVeiculo(null, "OpÃ§Ã£o"));
+        }
+
+        // #endregion MÃ©todos
 
         // #region Eventos
         // #endregion Eventos

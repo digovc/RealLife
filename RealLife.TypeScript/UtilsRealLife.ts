@@ -1,7 +1,7 @@
 module RealLife
 {
-    // #region Importações
-    // #endregion Importações
+    // #region ImportaÃ§Ãµes
+    // #endregion ImportaÃ§Ãµes
 
     // #region Enumerados
     // #endregion Enumerados
@@ -20,7 +20,7 @@ module RealLife
         // #region Construtores
         // #endregion Construtores
 
-        // #region Métodos
+        // #region MÃ©todos
 
         public static copiarVct(vct: Vector3): Vector3
         {
@@ -67,7 +67,7 @@ module RealLife
             return true;
         }
 
-        // #endregion Métodos
+        // #endregion MÃ©todos
 
         // #region Eventos
         // #endregion Eventos

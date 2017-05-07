@@ -2,11 +2,11 @@
 
 module RealLife
 {
-    // #region Importações
+    // #region ImportaÃ§Ãµes
 
     import DominioRealLifeBase = RealLifeShared.DominioRealLifeBase;
 
-    // #endregion Importações
+    // #endregion ImportaÃ§Ãµes
 
     // #region Enumerados
     // #endregion Enumerados
@@ -37,7 +37,7 @@ module RealLife
         // #region Construtores
         // #endregion Construtores
 
-        // #region Métodos
+        // #region MÃ©todos
 
         public executarJson(strMetodoNome: string, objDominio: DominioRealLifeBase): void
         {
@@ -49,7 +49,7 @@ module RealLife
             API.triggerServerEvent(strMetodoNome, JSON.stringify(objDominio));
         }
 
-        // #endregion Métodos
+        // #endregion MÃ©todos
 
         // #region Eventos
 

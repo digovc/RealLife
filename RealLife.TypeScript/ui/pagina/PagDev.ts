@@ -4,12 +4,12 @@
 
 module RealLife
 {
-    // #region Importações
+    // #region ImportaÃ§Ãµes
 
     import AudioDominio = RealLifeShared.AudioDominio;
     import EnmKey = RealLifeShared.EnmKey;
 
-    // #endregion Importações
+    // #endregion ImportaÃ§Ãµes
 
     // #region Enumerados
     // #endregion Enumerados
@@ -67,7 +67,7 @@ module RealLife
         // #region Construtores
         // #endregion Construtores
 
-        // #region Métodos
+        // #region MÃ©todos
 
         public addMarca(): void
         {
@@ -114,7 +114,7 @@ module RealLife
             this.camLivre.booAtiva = !this.camLivre.booAtiva;
         }
 
-        // #endregion Métodos
+        // #endregion MÃ©todos
 
         // #region Eventos
 

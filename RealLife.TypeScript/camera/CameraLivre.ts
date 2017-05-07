@@ -2,8 +2,8 @@
 
 module RealLife
 {
-    // #region Importações
-    // #endregion Importações
+    // #region ImportaÃ§Ãµes
+    // #endregion ImportaÃ§Ãµes
 
     // #region Enumerados
     // #endregion Enumerados
@@ -35,7 +35,7 @@ module RealLife
         // #region Construtores
         // #endregion Construtores
 
-        // #region Métodos
+        // #region MÃ©todos
 
         protected inicializar(): void
         {
@@ -50,7 +50,7 @@ module RealLife
             this.vctRotacao = UtilsRealLife.copiarVct(Jogador.i.ped.vctRotacao);
         }
 
-        // #endregion Métodos
+        // #endregion MÃ©todos
 
         // #region Eventos
 

@@ -6,12 +6,12 @@
 
 module RealLife
 {
-    // #region Importações
+    // #region ImportaÃ§Ãµes
 
     import EnmKey = RealLifeShared.EnmKey;
     import JogadorDominio = RealLifeShared.JogadorDominio;
 
-    // #endregion Importações
+    // #endregion ImportaÃ§Ãµes
 
     // #region Enumerados
     // #endregion Enumerados
@@ -42,7 +42,7 @@ module RealLife
         // #region Construtores
         // #endregion Construtores
 
-        // #region Métodos
+        // #region MÃ©todos
 
         public iniciar(): void
         {
@@ -103,7 +103,7 @@ module RealLife
             Screen.i.booMostrarMouse = false;
         }
 
-        // #endregion Métodos
+        // #endregion MÃ©todos
 
         // #region Eventos
         // #endregion Eventos

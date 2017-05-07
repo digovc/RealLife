@@ -3,12 +3,12 @@
 
 module RealLife
 {
-    // #region Importações
+    // #region ImportaÃ§Ãµes
 
     import EnmKey = RealLifeShared.EnmKey;
     import OnGameKeyListener = RealLifeShared.OnGameKeyListener;
 
-    // #endregion Importações
+    // #endregion ImportaÃ§Ãµes
 
     // #region Enumerados
 
@@ -40,7 +40,7 @@ module RealLife
         // #region Construtores
         // #endregion Construtores
 
-        // #region Métodos
+        // #region MÃ©todos
 
         public enviarCefKeyGame(pag: PagRealLifeBase, enmKey: EnmKey): void
         {
@@ -103,7 +103,7 @@ module RealLife
             }
         }
 
-        // #endregion Métodos
+        // #endregion MÃ©todos
 
         // #region Eventos
 

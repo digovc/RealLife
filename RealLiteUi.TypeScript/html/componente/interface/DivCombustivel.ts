@@ -1,4 +1,4 @@
-﻿/// <reference path="DivInterfaceProgressBase.ts"/>
+/// <reference path="DivInterfaceProgressBase.ts"/>
 
 module RealLifeUi
 {

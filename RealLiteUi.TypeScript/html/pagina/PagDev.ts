@@ -1,4 +1,4 @@
-﻿/// <reference path="../../../RealLifeShared.TypeScript/dominio/AudioDominio.ts"/>
+/// <reference path="../../../RealLifeShared.TypeScript/dominio/AudioDominio.ts"/>
 /// <reference path="../componente/dev/DivMenuDev.ts"/>
 /// <reference path="PagRealLifeUiBase.ts"/>
 

@@ -2,8 +2,8 @@
 
 module RealLife
 {
-    // #region Importações
-    // #endregion Importações
+    // #region ImportaÃ§Ãµes
+    // #endregion ImportaÃ§Ãµes
 
     // #region Enumerados
     // #endregion Enumerados
@@ -77,7 +77,7 @@ module RealLife
 
         // #endregion Construtores
 
-        // #region Métodos
+        // #region MÃ©todos
 
         public destruir(): void
         {
@@ -113,7 +113,7 @@ module RealLife
             Screen.i.addEvtOnUpdateListener(this);
         }
 
-        // #endregion Métodos
+        // #endregion MÃ©todos
 
         // #region Eventos
 

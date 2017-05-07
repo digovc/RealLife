@@ -99,7 +99,8 @@
     <TypeScriptCompile Include="ui\menu\MenuItemBase.ts" />
     <TypeScriptCompile Include="ui\menu\MenuItemCheckBox.ts" />
     <TypeScriptCompile Include="ui\menu\MenuItemList.ts" />
-    <TypeScriptCompile Include="ui\menu\MenuPrincipal.ts" />
+    <TypeScriptCompile Include="ui\menu\principal\MenuItemVeiculo.ts" />
+    <TypeScriptCompile Include="ui\menu\principal\MenuPrincipal.ts" />
     <TypeScriptCompile Include="ui\pagina\PagDev.ts" />
     <TypeScriptCompile Include="ui\pagina\PagLogin.ts" />
     <TypeScriptCompile Include="ui\pagina\PagPersonagemEditor.ts" />
@@ -126,6 +127,7 @@
     <Folder Include="typedefinition\gta-network-typescript\content\" />
     <Folder Include="typedefinition\gta-network-typescript\content\types-gtanetwork\" />
     <Folder Include="ui\menu\" />
+    <Folder Include="ui\menu\principal\" />
     <Folder Include="ui\pagina\" />
   </ItemGroup>
   <!-- Do not delete the following Import Project.  While this appears to do nothing it is a marker for setting TypeScript properties before our import that depends on them. -->

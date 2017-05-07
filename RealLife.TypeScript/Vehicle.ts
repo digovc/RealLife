@@ -2,8 +2,8 @@
 
 module RealLife
 {
-    // #region Importações
-    // #endregion Importações
+    // #region ImportaÃ§Ãµes
+    // #endregion ImportaÃ§Ãµes
 
     // #region Enumerados
     // #endregion Enumerados
@@ -83,7 +83,7 @@ module RealLife
         // #region Construtores
         // #endregion Construtores
 
-        // #region Métodos
+        // #region MÃ©todos
 
         public alterarJanelaCondicao(intJanela: number, booQuebrada: true): void
         {
@@ -239,7 +239,7 @@ module RealLife
             API.setVehicleNumberPlate(this.objHandle, strPlaca);
         }
 
-        // #endregion Métodos
+        // #endregion MÃ©todos
 
         // #region Eventos
         // #endregion Eventos

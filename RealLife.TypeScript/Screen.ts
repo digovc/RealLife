@@ -2,11 +2,11 @@
 
 module RealLife
 {
-    // #region Importações
+    // #region ImportaÃ§Ãµes
 
     import ErroDominio = RealLifeShared.ErroDominio;
 
-    // #endregion Importações
+    // #endregion ImportaÃ§Ãµes
 
     // #region Enumerados
     // #endregion Enumerados
@@ -35,8 +35,8 @@ module RealLife
         private _booMostrarMouse: boolean;
         private _dttUltimoFrame: Date = new Date();
         private _fltDelta: number;
-        private _objMenuPool: NativeUI.MenuPool;
         private _objResolucao: System.Drawing.Size;
+        private _strLegenda: string;
 
         public get booMostrarMouse(): boolean
         {
@@ -72,18 +72,6 @@ module RealLife
             return this._fltDelta;
         }
 
-        private get objMenuPool(): NativeUI.MenuPool
-        {
-            if (this._objMenuPool != null)
-            {
-                return this._objMenuPool;
-            }
-
-            this._objMenuPool = API.getMenuPool();
-
-            return this._objMenuPool;
-        }
-
         public get objResolucao(): System.Drawing.Size
         {
             if (this._objResolucao != null)
@@ -96,12 +84,22 @@ module RealLife
             return this._objResolucao;
         }
 
+        public get strLegenda(): string
+        {
+            return this._strLegenda;
+        }
+
+        public set strLegenda(strLegenda: string)
+        {
+            this._strLegenda = strLegenda;
+        }
+
         // #endregion Atributos
 
         // #region Construtores
         // #endregion Construtores
 
-        // #region Métodos
+        // #region MÃ©todos
 
         public fadeIn(intDuracao: number): void
         {
@@ -142,12 +140,17 @@ module RealLife
         {
             this._fltDelta = null;
 
-            this.processarOnUpdateObjMenuPool();
+            this.processarOnUpdateStrLegenda();
         }
 
-        private processarOnUpdateObjMenuPool(): void
+        private processarOnUpdateStrLegenda(): void
         {
-            this.objMenuPool.ProcessMenus();
+            if (UtilsRealLife.getBooStrVazia(this.strLegenda))
+            {
+                return;
+            }
+
+            API.displaySubtitle(this.strLegenda);
         }
 
         private setBooMostrarMouse(booMostrarMouse: boolean): void
@@ -155,7 +158,7 @@ module RealLife
             API.showCursor(booMostrarMouse);
         }
 
-        // #endregion Métodos
+        // #endregion MÃ©todos
 
         // #region Eventos
 

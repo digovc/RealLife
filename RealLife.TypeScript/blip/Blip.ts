@@ -2,8 +2,8 @@
 
 module RealLife
 {
-    // #region Importações
-    // #endregion Importações
+    // #region ImportaÃ§Ãµes
+    // #endregion ImportaÃ§Ãµes
 
     // #region Enumerados
 
@@ -391,7 +391,7 @@ module RealLife
         // #region Construtores
         // #endregion Construtores
 
-        // #region Métodos
+        // #region MÃ©todos
 
         public criar(): void
         {
@@ -570,7 +570,7 @@ module RealLife
             API.setBlipPosition(this.objHandle, vctPosicao);
         }
 
-        // #endregion Métodos
+        // #endregion MÃ©todos
 
         // #region Eventos
         // #endregion Eventos

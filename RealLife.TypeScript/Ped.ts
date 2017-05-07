@@ -2,8 +2,8 @@
 
 module RealLife
 {
-    // #region Importações
-    // #endregion Importações
+    // #region ImportaÃ§Ãµes
+    // #endregion ImportaÃ§Ãµes
 
     // #region Enumerados
     // #endregion Enumerados
@@ -15,7 +15,7 @@ module RealLife
 
         // #region Atributos
 
-        // TODO: Confirmar se métodos direrionados para o player funcionam com qualquer ped.
+        // TODO: Confirmar se mÃ©todos direrionados para o player funcionam com qualquer ped.
 
         private _booAtirando: boolean;
         private _booDirigindo: boolean;
@@ -111,7 +111,7 @@ module RealLife
         // #region Construtores
         // #endregion Construtores
 
-        // #region Métodos
+        // #region MÃ©todos
 
         public criar(): void
         {
@@ -237,7 +237,7 @@ module RealLife
             return API.getPlayerAimingPoint(this.objHandle);
         }
 
-        // #endregion Métodos
+        // #endregion MÃ©todos
 
         // #region Eventos
         // #endregion Eventos

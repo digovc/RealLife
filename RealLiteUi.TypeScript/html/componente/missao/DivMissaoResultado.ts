@@ -1,4 +1,4 @@
-﻿/// <reference path="DivMissaoBase.ts"/>
+/// <reference path="DivMissaoBase.ts"/>
 
 module RealLifeUi
 {

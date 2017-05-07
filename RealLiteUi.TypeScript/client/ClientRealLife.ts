@@ -1,4 +1,4 @@
-﻿/// <reference path="../../RealLifeShared.TypeScript/dominio/DominioRealLifeBase.ts"/>
+/// <reference path="../../RealLifeShared.TypeScript/dominio/DominioRealLifeBase.ts"/>
 /// <reference path="../../Web.TypeScript/Utils.ts"/>
 
 module RealLifeUi

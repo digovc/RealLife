@@ -2,8 +2,8 @@
 
 module RealLife
 {
-    // #region Importações
-    // #endregion Importações
+    // #region ImportaÃ§Ãµes
+    // #endregion ImportaÃ§Ãµes
 
     // #region Enumerados
     // #endregion Enumerados
@@ -247,7 +247,7 @@ module RealLife
 
         // #endregion Construtores
 
-        // #region Métodos
+        // #region MÃ©todos
 
         public anexarEntityBone(objEntity: Entity, intBone: number, vctOffSet: Vector3 = new Vector3(), vctRotacaoOffset: Vector3 = new Vector3()): void
         {
@@ -276,7 +276,7 @@ module RealLife
                 return;
             }
 
-            // TODO: Criar um enumerado com os objetos disponíveis.
+            // TODO: Criar um enumerado com os objetos disponÃ­veis.
             this.objHandle = API.returnNative("CREATE_OBJECT", Enums.NativeReturnTypes.Handle, this.intHash, 0, 0, 0, false, false, false);
 
             Log.i.debug("Criando objeto {0}.", this.intHash.toString());
@@ -574,7 +574,7 @@ module RealLife
             API.setEntityVelocity(this.objHandle, vctVelocidade);
         }
 
-        // #endregion Métodos
+        // #endregion MÃ©todos
 
         // #region Eventos
         // #endregion Eventos

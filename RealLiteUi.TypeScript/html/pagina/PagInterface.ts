@@ -1,4 +1,4 @@
-﻿/// <reference path="PagRealLifeUiBase.ts"/>
+/// <reference path="PagRealLifeUiBase.ts"/>
 
 module RealLifeUi
 {

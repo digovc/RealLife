@@ -1,4 +1,4 @@
-﻿/// <reference path="../../../Web.TypeScript/html/Div.ts"/>
+/// <reference path="../../../Web.TypeScript/html/Div.ts"/>
 
 module RealLifeUi
 {

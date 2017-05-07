@@ -1,4 +1,4 @@
-﻿/// <reference path="../../RealLifeShared.TypeScript/enumerado/EnmKey.ts"/>
+/// <reference path="../../RealLifeShared.TypeScript/enumerado/EnmKey.ts"/>
 /// <reference path="../../RealLifeShared.TypeScript/evento/OnGameKeyListener.ts"/>
 /// <reference path="../../Web.TypeScript/html/componente/Mensagem.ts"/>
 /// <reference path="../../Web.TypeScript/Utils.ts"/>

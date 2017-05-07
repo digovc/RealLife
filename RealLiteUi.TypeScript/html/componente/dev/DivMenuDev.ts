@@ -1,4 +1,4 @@
-﻿/// <reference path="../../../../RealLifeShared.TypeScript/enumerado/EnmKey.ts"/>
+/// <reference path="../../../../RealLifeShared.TypeScript/enumerado/EnmKey.ts"/>
 /// <reference path="../menu/DivMenuBase.ts"/>
 
 module RealLifeUi

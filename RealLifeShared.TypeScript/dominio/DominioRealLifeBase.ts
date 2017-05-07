@@ -1,4 +1,4 @@
-﻿module RealLifeShared
+module RealLifeShared
 {
     // #region Importações
 

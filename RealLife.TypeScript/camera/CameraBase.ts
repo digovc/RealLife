@@ -2,8 +2,8 @@
 
 module RealLife
 {
-    // #region Importações
-    // #endregion Importações
+    // #region ImportaÃ§Ãµes
+    // #endregion ImportaÃ§Ãµes
 
     // #region Enumerados
 
@@ -118,7 +118,7 @@ module RealLife
 
         // #endregion Construtores
 
-        // #region Métodos
+        // #region MÃ©todos
 
         public anexarEntity(objEntity: Entity, vctOffSet: Vector3 = new Vector3()): void
         {
@@ -406,7 +406,7 @@ module RealLife
             API.stopCameraShake(this.objGlobalCamera);
         }
 
-        // #endregion Métodos
+        // #endregion MÃ©todos
 
         // #region Eventos
         // #endregion Eventos

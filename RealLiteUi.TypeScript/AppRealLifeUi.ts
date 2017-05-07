@@ -1,4 +1,4 @@
-﻿/// <reference path="../Web.TypeScript/AppWebBase.ts"/>
+/// <reference path="../Web.TypeScript/AppWebBase.ts"/>
 /// <reference path="../Web.TypeScript/html/componente/Mensagem.ts"/>
 /// <reference path="../Web.TypeScript/Utils.ts"/>
 

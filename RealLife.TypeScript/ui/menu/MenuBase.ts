@@ -1,29 +1,60 @@
+/// <reference path="../../../RealLifeShared.TypeScript/enumerado/EnmKey.ts"/>
+/// <reference path="../../../RealLifeShared.TypeScript/evento/OnGameKeyListener.ts"/>
 /// <reference path="../../evento/OnUpdateListener.ts"/>
 
 module RealLife
 {
-    // #region Importações
-    // #endregion Importações
+    // #region ImportaÃ§Ãµes
+
+    import EnmKey = RealLifeShared.EnmKey;
+    import OnGameKeyListener = RealLifeShared.OnGameKeyListener;
+
+    // #endregion ImportaÃ§Ãµes
 
     // #region Enumerados
 
     // #endregion Enumerados
 
-    export abstract class MenuBase extends Objeto implements OnUpdateListener
+    export abstract class MenuBase extends Objeto implements OnGameKeyListener, OnUpdateListener
     {
         // #region Constantes
         // #endregion Constantes
 
         // #region Atributos
 
+        private _arrObjMenuItem: Array<MenuItemBase>;
+        private _arrObjMenuItemAtual: Array<MenuItemBase>;
         private _booVisivel: boolean;
         private _cor: Cor = new Cor();
         private _enmAncora: Enums.MenuAnchor = Enums.MenuAnchor.TopLeft;
         private _intXOffset: number = 50;
         private _intYOffset: number = 50;
+        private _objMenuItemSelecionado: MenuItem;
         private _objUiMenu: NativeUI.UIMenu;
         private _strSubTitulo: string;
         private _strTitulo: string = "Desconhecido";
+
+        private get arrObjMenuItem(): Array<MenuItemBase>
+        {
+            if (this._arrObjMenuItem != null)
+            {
+                return this._arrObjMenuItem;
+            }
+
+            this._arrObjMenuItem = this.getArrObjMenuItem();
+
+            return this._arrObjMenuItem;
+        }
+
+        private get arrObjMenuItemAtual(): Array<MenuItemBase>
+        {
+            return this._arrObjMenuItemAtual;
+        }
+
+        private set arrObjMenuItemAtual(arrObjMenuItemAtual: Array<MenuItemBase>)
+        {
+            this._arrObjMenuItemAtual = arrObjMenuItemAtual;
+        }
 
         public get booVisivel(): boolean
         {
@@ -84,6 +115,16 @@ module RealLife
             this._intYOffset = intYOffset;
         }
 
+        public get objMenuItemSelecionado(): MenuItem
+        {
+            return this._objMenuItemSelecionado;
+        }
+
+        public set objMenuItemSelecionado(objMenuItemSelecionado: MenuItem)
+        {
+            this._objMenuItemSelecionado = objMenuItemSelecionado;
+        }
+
         private get objUiMenu(): NativeUI.UIMenu
         {
             if (this._objUiMenu != null)
@@ -92,7 +133,7 @@ module RealLife
             }
 
             //this._objUiMenu = API.createMenu(this.strTitulo, this.strSubTitulo, this.intXOffset, this.intYOffset, this.enmAncora);
-            this._objUiMenu = API.createMenu("Teste", "SubTítulo", this.intXOffset, this.intYOffset, this.enmAncora);
+            this._objUiMenu = API.createMenu("Teste", "SubTÃ­tulo", this.intXOffset, this.intYOffset, this.enmAncora);
 
             return this._objUiMenu;
         }
@@ -136,13 +177,70 @@ module RealLife
         // #region Construtores
         // #endregion Construtores
 
-        // #region Métodos
+        // #region MÃ©todos
+
+        private getArrObjMenuItem(): Array<MenuItemBase>
+        {
+            var arrObjMenuItemResultado = new Array<MenuItemBase>();
+
+            this.inicializarArrObjMenuItem(arrObjMenuItemResultado);
+
+            return arrObjMenuItemResultado;
+        }
 
         protected inicializar(): void
         {
             super.inicializar();
 
-            this.objUiMenu.AddItem(API.createMenuItem("Opção 1", "Teste..."));
+            this.objUiMenu.ResetKey(menuControl.Back);
+        }
+
+        protected abstract inicializarArrObjMenuItem(arrObjMenuItem: Array<MenuItemBase>): void;
+
+        public montarMenu(arrObjMenuItem: Array<MenuItemBase>): void
+        {
+            this.arrObjMenuItemAtual = arrObjMenuItem;
+
+            this.objUiMenu.Clear();
+
+            if (this.arrObjMenuItemAtual == null)
+            {
+                return;
+            }
+
+            this.arrObjMenuItemAtual.forEach((objMenuItem: MenuItemBase) => { objMenuItem.montarMenu(this.objUiMenu); });
+
+            this.objUiMenu.RefreshIndex();
+        }
+
+        private processarOnItemSelecionado(objUiMenuItemSelecionado: NativeUI.UIMenuItem): void
+        {
+            if (this.arrObjMenuItemAtual == null)
+            {
+                return;
+            }
+
+            for (var i = 0; i < this.arrObjMenuItemAtual.length; i++)
+            {
+                if (this.arrObjMenuItemAtual[i].processarOnItemSelecionado(this, objUiMenuItemSelecionado))
+                {
+                    return;
+                }
+            }
+        }
+
+        private processarOnGameKey(enmKey: EnmKey): void
+        {
+            switch (enmKey)
+            {
+                case EnmKey.MENU:
+                    this.booVisivel = !this.booVisivel;
+                    return;
+
+                case EnmKey.MENU_VOLTAR:
+                    this.voltar();
+                    return;
+            }
         }
 
         private processarOnUpdate(): void
@@ -165,6 +263,8 @@ module RealLife
 
             if (booVisivel)
             {
+                this.montarMenu(this.arrObjMenuItem);
+
                 Screen.i.addEvtOnUpdateListener(this);
             }
             else
@@ -181,6 +281,16 @@ module RealLife
             }
 
             API.setMenuBannerRectangle(this.objUiMenu, cor.a, cor.r, cor.g, cor.b);
+        }
+
+        protected setEventos(): void
+        {
+            super.setEventos();
+
+            this.objUiMenu.OnCheckboxChange.connect((objUiMenuSender: NativeUI.UIMenu, objUiMenuItem: NativeUI.UIMenuCheckboxItem, booMarcado: boolean) => { this.processarOnItemSelecionado(objUiMenuItem); });
+            this.objUiMenu.OnItemSelect.connect((objUiMenuSender: NativeUI.UIMenu, objUiMenuItem: NativeUI.UIMenuItem, intIndex: number) => { this.processarOnItemSelecionado(objUiMenuItem); });
+
+            Keyboard.i.addEvtOnGameKeyListener(this);
         }
 
         private setStrSubTitulo(strSubTitulo: string): void
@@ -203,9 +313,31 @@ module RealLife
             API.setMenuTitle(this.objUiMenu, strTitulo);
         }
 
-        // #endregion Métodos
+        private voltar(): void
+        {
+            if (this.arrObjMenuItem == this.arrObjMenuItemAtual)
+            {
+                this.booVisivel = false;
+                return;
+            }
+
+            if (this.objMenuItemSelecionado.objMenuItemPai == null)
+            {
+                this.montarMenu(this.arrObjMenuItem);
+                return;
+            }
+
+            this.montarMenu(this.objMenuItemSelecionado.objMenuItemPai.arrObjMenuItem);
+        }
+
+        // #endregion MÃ©todos
 
         // #region Eventos
+
+        public onGameKey(enmKey: EnmKey): void
+        {
+            this.processarOnGameKey(enmKey);
+        }
 
         public onUpdate(): void
         {

@@ -3,11 +3,11 @@
 
 module RealLife
 {
-    // #region Importações
+    // #region ImportaÃ§Ãµes
 
     import EnmKey = RealLifeShared.EnmKey;
 
-    // #endregion Importações
+    // #endregion ImportaÃ§Ãµes
 
     // #region Enumerados
     // #endregion Enumerados
@@ -23,7 +23,7 @@ module RealLife
         // #region Construtores
         // #endregion Construtores
 
-        // #region Métodos
+        // #region MÃ©todos
 
         protected getBooEnviarTecla(enmKey: EnmKey): boolean
         {
@@ -35,7 +35,7 @@ module RealLife
             return "ui/pag_personagem_editor.html";
         }
 
-        // #endregion Métodos
+        // #endregion MÃ©todos
 
         // #region Eventos
         // #endregion Eventos
