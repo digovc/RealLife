@@ -33,7 +33,6 @@ module RealLifeUi
         private _divBanco: DivBanco;
         private _divCarteira: DivCarteira;
         private _divCombustivel: DivCombustivel;
-        private _divMenuInterativo: DivMenuInterativo;
         private _divTimer: DivTimer;
 
         private get divAtalho(): DivAtalho
@@ -82,18 +81,6 @@ module RealLifeUi
             this._divCombustivel = new DivCombustivel();
 
             return this._divCombustivel;
-        }
-
-        private get divMenuInterativo(): DivMenuInterativo
-        {
-            if (this._divMenuInterativo != null)
-            {
-                return this._divMenuInterativo;
-            }
-
-            this._divMenuInterativo = new DivMenuInterativo();
-
-            return this._divMenuInterativo;
         }
 
         private get divTimer(): DivTimer

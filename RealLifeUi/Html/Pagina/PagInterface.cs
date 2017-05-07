@@ -12,30 +12,13 @@ namespace RealLifeUi.Html.Pagina
 
         #region Atributos
 
-        private DivAtalho _divAtalho;
         private DivBanco _divBanco;
         private Div _divCantoInferiorDireito;
         private Div _divCantoSuperiorDireito;
         private DivCarteira _divCarteira;
         private DivCombustivel _divCombustivel;
         private Div _divConteudo;
-        private DivMenuInterativo _divMenuInterativo;
         private DivTimer _divTimer;
-
-        private DivAtalho divAtalho
-        {
-            get
-            {
-                if (_divAtalho != null)
-                {
-                    return _divAtalho;
-                }
-
-                _divAtalho = new DivAtalho();
-
-                return _divAtalho;
-            }
-        }
 
         private DivBanco divBanco
         {
@@ -127,21 +110,6 @@ namespace RealLifeUi.Html.Pagina
             }
         }
 
-        private DivMenuInterativo divMenuInterativo
-        {
-            get
-            {
-                if (_divMenuInterativo != null)
-                {
-                    return _divMenuInterativo;
-                }
-
-                _divMenuInterativo = new DivMenuInterativo();
-
-                return _divMenuInterativo;
-            }
-        }
-
         private DivTimer divTimer
         {
             get
@@ -188,8 +156,6 @@ namespace RealLifeUi.Html.Pagina
             //this.divCombustivel.setPai(this.divCantoInferiorDireito);
 
             //this.divTimer.setPai(this.divCantoInferiorDireito);
-
-            this.divAtalho.setPai(this.divCantoInferiorDireito);
         }
 
         protected override void setCss(CssArquivoBase css)

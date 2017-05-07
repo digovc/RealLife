@@ -13,20 +13,6 @@ module RealLife
 
         // #region Atributos
 
-        private _pagPersonagemEditor: PagPersonagemEditor;
-
-        private get pagPersonagemEditor(): PagPersonagemEditor
-        {
-            if (this._pagPersonagemEditor != null)
-            {
-                return this._pagPersonagemEditor;
-            }
-
-            this._pagPersonagemEditor = new PagPersonagemEditor();
-
-            return this._pagPersonagemEditor;
-        }
-
         // #endregion Atributos
 
         // #region Construtores
@@ -41,7 +27,6 @@ module RealLife
 
         protected _001_comecar(): void
         {
-            this.pagPersonagemEditor.iniciar();
         }
 
         // #endregion Métodos

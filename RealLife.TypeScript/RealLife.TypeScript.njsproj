@@ -74,6 +74,10 @@
     <TypeScriptCompile Include="script\editor\personagem\_002_EtapaEdicaoPersonagemEditor.ts" />
     <TypeScriptCompile Include="script\editor\personagem\ScriptPersonagemEditor.ts" />
     <TypeScriptCompile Include="script\editor\personagem\_003_EtapaConclusaoPersonagemEditor.ts" />
+    <TypeScriptCompile Include="script\login\ScriptLogin.ts" />
+    <TypeScriptCompile Include="script\login\_001_EtapaLoginPreparacao.ts" />
+    <TypeScriptCompile Include="script\login\_003_EtapaLogin.ts" />
+    <TypeScriptCompile Include="script\login\_002_EtapaLoginLoopCamera.ts" />
     <TypeScriptCompile Include="script\missao\profissao\ScriptEntregadorBase.ts" />
     <TypeScriptCompile Include="script\missao\profissao\ScriptPescadorBase.ts" />
     <TypeScriptCompile Include="script\missao\profissao\ScriptTaxistaBase.ts" />
@@ -101,9 +105,7 @@
     <TypeScriptCompile Include="ui\menu\MenuItemList.ts" />
     <TypeScriptCompile Include="ui\menu\principal\MenuItemVeiculo.ts" />
     <TypeScriptCompile Include="ui\menu\principal\MenuPrincipal.ts" />
-    <TypeScriptCompile Include="ui\pagina\PagDev.ts" />
     <TypeScriptCompile Include="ui\pagina\PagLogin.ts" />
-    <TypeScriptCompile Include="ui\pagina\PagPersonagemEditor.ts" />
     <TypeScriptCompile Include="ui\pagina\PagRealLifeBase.ts" />
     <TypeScriptCompile Include="UtilsRealLife.ts" />
     <TypeScriptCompile Include="Vehicle.ts" />
@@ -121,6 +123,7 @@
     <Folder Include="script\editor\personagem\" />
     <Folder Include="script\missao\" />
     <Folder Include="script\missao\profissao\" />
+    <Folder Include="script\login\" />
     <Folder Include="ui\" />
     <Folder Include="typedefinition\" />
     <Folder Include="typedefinition\gta-network-typescript\" />

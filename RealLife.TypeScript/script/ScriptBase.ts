@@ -15,18 +15,18 @@ module RealLife
 
         // #region Atributos
 
-        private _objEtapaInicial: EtapaBase;
+        private _arrObjEtapa: Array<EtapaBase>;
 
-        private get objEtapaInicial(): EtapaBase
+        private get arrObjEtapa(): Array<EtapaBase>
         {
-            if (this._objEtapaInicial != null)
+            if (this._arrObjEtapa != null)
             {
-                return this._objEtapaInicial;
+                return this._arrObjEtapa;
             }
 
-            this._objEtapaInicial = this.getObjEtapaInicial();
+            this._arrObjEtapa = new Array<EtapaBase>();
 
-            return this._objEtapaInicial;
+            return this._arrObjEtapa;
         }
 
         // #endregion Atributos
@@ -36,14 +36,30 @@ module RealLife
 
         // #region Métodos
 
-        protected finalizar(): void
+        public addEtapa(objEtapa: EtapaBase): void
         {
-            super.finalizar();
+            if (objEtapa == null)
+            {
+                return;
+            }
 
-            this.objEtapaInicial.iniciar();
+            if (this.arrObjEtapa.indexOf(objEtapa) > -1)
+            {
+                return;
+            }
+
+            this.arrObjEtapa.push(objEtapa);
         }
 
-        protected abstract getObjEtapaInicial(): EtapaBase;
+        public destruir(): void
+        {
+            super.destruir();
+
+            for (var i = 0; i < this.arrObjEtapa.length; i++)
+            {
+                this.arrObjEtapa[i].destruir();
+            }
+        }
 
         // #endregion Métodos
 

@@ -101,14 +101,14 @@ module RealLife
 
         // #region Métodos
 
-        public fadeIn(intDuracao: number): void
+        public fadeIn(intDuracaoMilisegundo: number = 1000): void
         {
-            API.callNative("DO_SCREEN_FADE_IN", intDuracao);
+            API.callNative("DO_SCREEN_FADE_IN", intDuracaoMilisegundo);
         }
 
-        public fadeOut(intDuracao: number): void
+        public fadeOut(intDuracaoMilisegundo: number = 1000): void
         {
-            API.callNative("DO_SCREEN_FADE_OUT", intDuracao);
+            API.callNative("DO_SCREEN_FADE_OUT", intDuracaoMilisegundo);
         }
 
         private getFltDelta(): number

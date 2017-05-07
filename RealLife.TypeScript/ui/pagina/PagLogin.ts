@@ -23,23 +23,29 @@ module RealLife
 
         // #region Atributos
 
-        private static _i: PagLogin;
+        private _objEtapaLogin: _003_EtapaLogin;
 
-        public static get i(): PagLogin
+        private get objEtapaLogin(): _003_EtapaLogin
         {
-            if (PagLogin._i != null)
-            {
-                return PagLogin._i;
-            }
+            return this._objEtapaLogin;
+        }
 
-            PagLogin._i = new PagLogin();
-
-            return PagLogin._i;
+        private set objEtapaLogin(objEtapaLogin: _003_EtapaLogin)
+        {
+            this._objEtapaLogin = objEtapaLogin;
         }
 
         // #endregion Atributos
 
         // #region Construtores
+
+        constructor(objEtapaLogin: _003_EtapaLogin)
+        {
+            super();
+
+            this.objEtapaLogin = objEtapaLogin;
+        }
+
         // #endregion Construtores
 
         // #region Métodos
@@ -67,9 +73,7 @@ module RealLife
 
         public criarContaSucesso(): void
         {
-            this.objBrowserRealLife.destruir();
-
-            Screen.i.booMostrarMouse = false;
+            this.objEtapaLogin.criarContaSucesso();
         }
 
         protected getBooEnviarTecla(enmKey: EnmKey): boolean
@@ -98,9 +102,7 @@ module RealLife
 
         public entrarSucesso(): void
         {
-            this.objBrowserRealLife.destruir();
-
-            Screen.i.booMostrarMouse = false;
+            this.objEtapaLogin.entrarSucesso();
         }
 
         // #endregion Métodos

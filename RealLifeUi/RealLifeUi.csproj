@@ -48,21 +48,14 @@
   <ItemGroup>
     <Compile Include="AppRealLifeUi.cs" />
     <Compile Include="ConfigRealLifeUi.cs" />
-    <Compile Include="Html\Componente\Dev\DivMenuDev.cs" />
-    <Compile Include="Html\Componente\Interface\DivAtalho.cs" />
-    <Compile Include="Html\Componente\Interface\DivAtalhoItem.cs" />
     <Compile Include="Html\Componente\Interface\DivBanco.cs" />
     <Compile Include="Html\Componente\Interface\DivCombustivel.cs" />
     <Compile Include="Html\Componente\Interface\DivInterfaceBase.cs" />
     <Compile Include="Html\Componente\Interface\DivCarteira.cs" />
     <Compile Include="Html\Componente\Interface\DivInterfaceProgressBase.cs" />
     <Compile Include="Html\Componente\Interface\DivInterfaceTextoBase.cs" />
-    <Compile Include="Html\Componente\Interface\DivMenuInterativo.cs" />
     <Compile Include="Html\Componente\Interface\DivTimer.cs" />
-    <Compile Include="Html\Componente\Menu\DivMenuBase.cs" />
-    <Compile Include="Html\Componente\Menu\DivMenuItem.cs" />
     <Compile Include="Html\Componente\CampoRealLifeUi.cs" />
-    <Compile Include="Html\Componente\Login\DivLoginAtalho.cs" />
     <Compile Include="Html\Componente\Login\DivLoginContaCadastro.cs" />
     <Compile Include="Html\Componente\Login\DivLoginEntrar.cs" />
     <Compile Include="Html\Componente\Login\DivLoginBase.cs" />
@@ -74,13 +67,10 @@
     <Compile Include="Html\Componente\Missao\DivMissaoRp.cs" />
     <Compile Include="Html\Componente\Missao\DivMissaoRpProgresso.cs" />
     <Compile Include="Html\Componente\Missao\DivMissaoValorBase.cs" />
-    <Compile Include="Html\Componente\Editor\Personagem\DivMenuPersonagemEditor.cs" />
-    <Compile Include="Html\Pagina\PagDev.cs" />
     <Compile Include="Html\Pagina\PagInterface.cs" />
     <Compile Include="Html\Pagina\PagLogin.cs" />
     <Compile Include="Html\Pagina\PagMissaoAbertura.cs" />
     <Compile Include="Html\Pagina\PagMissaoConclusao.cs" />
-    <Compile Include="Html\Pagina\PagPersonagemEditor.cs" />
     <Compile Include="Html\Pagina\PagRealLifeUiBase.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TemaRealLifeUi.cs" />

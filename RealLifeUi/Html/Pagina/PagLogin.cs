@@ -14,7 +14,6 @@ namespace RealLifeUi.Html.Pagina
 
         private Div _divConteudo;
         private Div _divConteudo2;
-        private DivLoginAtalho _divLoginAtalho;
         private DivLoginCabecalho _divLoginCabecalho;
         private DivLoginContaCadastro _divLoginContaCadastro;
         private DivLoginEntrar _divLoginEntrar;
@@ -47,21 +46,6 @@ namespace RealLifeUi.Html.Pagina
                 _divConteudo2 = new Div();
 
                 return _divConteudo2;
-            }
-        }
-
-        private DivLoginAtalho divLoginAtalho
-        {
-            get
-            {
-                if (_divLoginAtalho != null)
-                {
-                    return _divLoginAtalho;
-                }
-
-                _divLoginAtalho = new DivLoginAtalho();
-
-                return _divLoginAtalho;
             }
         }
 
@@ -166,8 +150,6 @@ namespace RealLifeUi.Html.Pagina
             this.divLoginEntrar.setPai(this.divConteudo2);
 
             this.divLoginContaCadastro.setPai(this.divConteudo2);
-
-            this.divLoginAtalho.setPai(this);
         }
 
         protected override void setCss(CssArquivoBase css)

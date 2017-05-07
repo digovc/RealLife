@@ -17,8 +17,9 @@ module RealLife
 
         private _booLoop: boolean;
         private _fltAguardando: number = 0;
-        private _fltDuracao: number = 1000;
+        private _fltDuracaoSegundo: number = 1;
         private _fnc: Function;
+        private _intIndex: number = 0;
 
         private get booLoop(): boolean
         {
@@ -40,14 +41,14 @@ module RealLife
             this._fltAguardando = fltAguardando;
         }
 
-        private get fltDuracao(): number
+        private get fltDuracaoSegundo(): number
         {
-            return this._fltDuracao;
+            return this._fltDuracaoSegundo;
         }
 
-        private set fltDuracao(fltDuracao: number)
+        private set fltDuracaoSegundo(fltDuracaoSegundo: number)
         {
-            this._fltDuracao = fltDuracao;
+            this._fltDuracaoSegundo = fltDuracaoSegundo;
         }
 
         private get fnc(): Function
@@ -60,19 +61,27 @@ module RealLife
             this._fnc = fnc;
         }
 
+        private get intIndex(): number
+        {
+            return this._intIndex;
+        }
+
+        private set intIndex(intIndex: number)
+        {
+            this._intIndex = intIndex;
+        }
+
         // #endregion Atributos
 
         // #region Construtores
 
-        constructor(fnc: Function, fltDuracao: number = 1000, booLoop: boolean = false)
+        constructor(fnc: Function, fltDuracaoSegundo: number = 1, booLoop: boolean = false)
         {
             super();
 
             this.booLoop = booLoop;
             this.fnc = fnc;
-            this.fltDuracao = fltDuracao;
-
-            this.iniciar();
+            this.fltDuracaoSegundo = fltDuracaoSegundo;
         }
 
         // #endregion Construtores
@@ -90,12 +99,14 @@ module RealLife
         {
             this.fltAguardando = (this.fltAguardando + Screen.i.fltDelta);
 
-            if (this.fltAguardando < this.fltDuracao)
+            if (this.fltAguardando < this.fltDuracaoSegundo)
             {
                 return;
             }
 
-            this.fnc();
+            this.fnc(this.intIndex);
+
+            this.intIndex = (this.intIndex + 1);
 
             if (this.booLoop)
             {

@@ -15,30 +15,18 @@ module RealLife
 
         // #region Atributos
 
-        private _objEtapaProxima: EtapaBase;
-
-        private get objEtapaProxima(): EtapaBase
-        {
-            if (this._objEtapaProxima != null)
-            {
-                return this._objEtapaProxima;
-            }
-
-            this._objEtapaProxima = this.getObjEtapaProxima(this.objScript);
-
-            return this._objEtapaProxima;
-        }
-
         private _objScript: ScriptBase;
 
-        private get objScript(): ScriptBase
+        protected get objScript(): ScriptBase
         {
             return this._objScript;
         }
 
-        private set objScript(objScript: ScriptBase)
+        protected set objScript(objScript: ScriptBase)
         {
             this._objScript = objScript;
+
+            this.setObjScript(this._objScript);
         }
 
         // #endregion Atributos
@@ -56,32 +44,15 @@ module RealLife
 
         // #region Métodos
 
-        public destruir(): void
+        private setObjScript(objScript: ScriptBase): void
         {
-            super.destruir();
-
-            if (this.objEtapaProxima == null)
+            if (objScript == null)
             {
-                this.objScript.destruir();
                 return;
             }
 
-            this.objEtapaProxima.iniciar();
+            objScript.addEtapa(this);
         }
-
-        protected finalizar(): void
-        {
-            super.finalizar();
-
-            this._001_comecar();
-        }
-
-        protected getObjEtapaProxima(objScript: ScriptBase): EtapaBase
-        {
-            return null;
-        }
-
-        protected abstract _001_comecar(): void;
 
         // #endregion Métodos
 

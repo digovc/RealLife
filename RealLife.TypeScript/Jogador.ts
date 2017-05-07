@@ -131,8 +131,6 @@ module RealLife
 
         private criarContaSucesso(): void
         {
-            PagLogin.i.criarContaSucesso();
-
             this.criarContaSucessoNotificar();
         }
 
@@ -182,8 +180,6 @@ module RealLife
             this.objJogador = new JogadorDominio();
 
             this.objJogador.copiarDados(jsnJogador);
-
-            PagLogin.i.entrarSucesso();
 
             this.entrarSucessoNotificar();
         }
@@ -274,9 +270,9 @@ module RealLife
 
             switch (strComando)
             {
-                case Jogador.STR_COMANDO_DEV:
-                    PagDev.i.iniciar();
-                    return;
+                //case Jogador.STR_COMANDO_DEV:
+                //    PagDev.i.iniciar();
+                //    return;
             }
         }
 

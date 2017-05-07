@@ -60,6 +60,15 @@ module RealLife
 
         // #region Métodos
 
+        public destruir(): void
+        {
+            super.destruir();
+
+            this.objBrowserRealLife.destruir();
+
+            Keyboard.i.removerEvtOnGameKeyListener(this);
+        }
+
         protected enviarCefKeyGame(enmKey: EnmKey): void
         {
             Keyboard.i.enviarCefKeyGame(this, enmKey);

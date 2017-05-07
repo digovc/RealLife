@@ -1,3 +1,5 @@
+/// <reference path="../RealLifeShared.TypeScript/dominio/AudioDominio.ts"/>
+
 module RealLife
 {
     // #region Importações
