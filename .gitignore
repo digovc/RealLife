@@ -1,6 +1,9 @@
 *.user
 /.vs
 /GTANetworkServer
+/ModTool/.vs
+/ModTool/bin
+/ModTool/obj
 /Principal/bin
 /Principal/obj
 /RealLife.TypeScript/bin
