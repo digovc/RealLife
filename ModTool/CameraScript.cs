@@ -1,9 +1,8 @@
-﻿using GTA;
+﻿using DigoFramework.Json;
+using GTA;
 using ModTool.Dominio;
 using System.Collections.Generic;
-using System.Globalization;
 using System.IO;
-using System.Text;
 using System.Windows.Forms;
 
 namespace ModTool
@@ -12,7 +11,7 @@ namespace ModTool
     {
         #region Constantes
 
-        private const string DIR_CAMERA_INFO = "camera_info.txt";
+        private const string DIR_CAMERA_INFO = "mod_tool_camera_info.txt";
 
         #endregion Constantes
 
@@ -29,7 +28,7 @@ namespace ModTool
                     return _lstObjCameraPredefinida;
                 }
 
-                _lstObjCameraPredefinida = new List<CameraPredefinidaDomminio>();
+                _lstObjCameraPredefinida = this.getLstObjCameraPredefinida();
 
                 return _lstObjCameraPredefinida;
             }
@@ -70,24 +69,21 @@ namespace ModTool
             objCamera.Rotation = objCameraPredefinida.vctRotacao;
         }
 
-        private void copiarInfo()
+        private List<CameraPredefinidaDomminio> getLstObjCameraPredefinida()
         {
-            var stbInfo = new StringBuilder();
-
             if (File.Exists(DIR_CAMERA_INFO))
             {
-                stbInfo.AppendLine(File.ReadAllText(DIR_CAMERA_INFO));
+                return new List<CameraPredefinidaDomminio>();
             }
 
-            var ctr = CultureInfo.GetCultureInfo("en-US");
+            var strJson = File.ReadAllText(DIR_CAMERA_INFO);
 
-            var objCamera = GTA.Native.Function.Call<Camera>(GTA.Native.Hash.GET_RENDERING_CAM);
+            if (string.IsNullOrEmpty(strJson))
+            {
+                return new List<CameraPredefinidaDomminio>();
+            }
 
-            stbInfo.AppendLine("Câmera info:");
-            stbInfo.AppendLine(string.Format(" pos: {0}, {1}, {2}", objCamera.Position.X.ToString(ctr), objCamera.Position.Y.ToString(ctr), objCamera.Position.Z.ToString(ctr)));
-            stbInfo.AppendLine(string.Format(" rot: {0}, {1}, {2}", objCamera.Rotation.X.ToString(ctr), objCamera.Rotation.Y.ToString(ctr), objCamera.Rotation.Z.ToString(ctr)));
-
-            File.WriteAllText(DIR_CAMERA_INFO, stbInfo.ToString());
+            return Json.i.fromJson<List<CameraPredefinidaDomminio>>(strJson);
         }
 
         private CameraPredefinidaDomminio getObjCameraPredefinida(Keys enmKey)
@@ -109,9 +105,14 @@ namespace ModTool
 
         private void processarOnKeyUp(KeyEventArgs arg)
         {
+            if (Keys.NumPad0.Equals(arg.KeyCode) && arg.Control)
+            {
+                this.salvarFile();
+                return;
+            }
+
             switch (arg.KeyCode)
             {
-                case Keys.NumPad0:
                 case Keys.NumPad1:
                 case Keys.NumPad2:
                 case Keys.NumPad3:
@@ -121,20 +122,25 @@ namespace ModTool
                 case Keys.NumPad7:
                 case Keys.NumPad8:
                 case Keys.NumPad9:
-                    this.salvarCarregarPredefinida(arg);
+
+                    if (arg.Control)
+                    {
+                        this.salvarPredefinida(arg.KeyCode);
+                    }
+                    else
+                    {
+                        this.carregarPredefinida(arg.KeyCode);
+                    }
+
                     return;
             }
         }
 
-        private void salvarCarregarPredefinida(KeyEventArgs arg)
+        private void salvarFile()
         {
-            if (arg.Control)
-            {
-                this.salvarPredefinida(arg.KeyCode);
-                return;
-            }
+            var strConteudo = Json.i.toJson(this.lstObjCameraPredefinida);
 
-            this.carregarPredefinida(arg.KeyCode);
+            File.WriteAllText(DIR_CAMERA_INFO, strConteudo);
         }
 
         private void salvarPredefinida(Keys enmKey)
@@ -146,8 +152,6 @@ namespace ModTool
             objCameraPredefinida.enmKey = enmKey;
             objCameraPredefinida.vctPosicao = objCamera.Position;
             objCameraPredefinida.vctRotacao = objCamera.Rotation;
-
-            this.copiarInfo();
         }
 
         #endregion Métodos

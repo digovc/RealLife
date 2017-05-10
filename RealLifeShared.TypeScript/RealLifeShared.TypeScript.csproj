@@ -72,6 +72,7 @@
     <TypeScriptCompile Include="dominio\ErroDominio.ts" />
     <TypeScriptCompile Include="dominio\SkinDominio.ts" />
     <TypeScriptCompile Include="dominio\MissaoConclusaoDominio.ts" />
+    <TypeScriptCompile Include="enumerado\EnmVehicleComponente.ts" />
     <TypeScriptCompile Include="enumerado\EnmPedComponente.ts" />
     <TypeScriptCompile Include="enumerado\EnmPedHash.ts" />
     <TypeScriptCompile Include="enumerado\EnmKey.ts" />

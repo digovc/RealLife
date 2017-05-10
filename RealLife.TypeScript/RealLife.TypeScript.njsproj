@@ -111,6 +111,7 @@
     <TypeScriptCompile Include="script\ScriptBase.ts" />
     <TypeScriptCompile Include="script\EtapaBase.ts" />
     <TypeScriptCompile Include="Server.ts" />
+    <TypeScriptCompile Include="World.ts" />
     <TypeScriptCompile Include="Timer.ts" />
     <TypeScriptCompile Include="typedefinition\gta-network-typescript\content\types-gtanetwork\index.d.ts" />
     <TypeScriptCompile Include="ui\BrowserRealLife.ts" />

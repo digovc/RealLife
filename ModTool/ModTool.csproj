@@ -35,6 +35,10 @@
       <HintPath>..\Lib\NativeUI\NativeUI.dll</HintPath>
       <Private>False</Private>
     </Reference>
+    <Reference Include="Newtonsoft.Json, Version=8.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\DigoFramework\Lib\Newtonsoft.Json\4.5\Newtonsoft.Json.dll</HintPath>
+    </Reference>
     <Reference Include="ScriptHookVDotNet">
       <HintPath>..\Lib\ScriptHookVDotNet\ScriptHookVDotNet.dll</HintPath>
       <Private>False</Private>
@@ -55,6 +59,12 @@
     <Compile Include="Dominio\DominioBase.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ScriptBase.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\DigoFramework\DigoFramework.csproj">
+      <Project>{93078de5-a910-4ad6-a942-657582105493}</Project>
+      <Name>DigoFramework</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
