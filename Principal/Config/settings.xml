@@ -22,5 +22,5 @@
   <upnp>false</upnp>
   <fqdn></fqdn>
   <conntimeout>false</conntimeout>
-  <allowcefdevtool>false</allowcefdevtool>
+  <allowcefdevtool>true</allowcefdevtool>
 </config>

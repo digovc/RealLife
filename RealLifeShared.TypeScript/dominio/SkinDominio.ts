@@ -1,4 +1,6 @@
-module RealLife
+/// <reference path="DominioRealLifeBase.ts"/>
+
+module RealLifeShared
 {
     // #region Importações
     // #endregion Importações
@@ -6,7 +8,7 @@ module RealLife
     // #region Enumerados
     // #endregion Enumerados
 
-    export class _002_EtapaEdicaoPersonagemEditor extends EtapaBase
+    export class SkinDominio extends DominioRealLifeBase
     {
         // #region Constantes
         // #endregion Constantes
@@ -19,16 +21,6 @@ module RealLife
         // #endregion Construtores
 
         // #region Métodos
-
-        protected getObjEtapaProxima(objScript: ScriptBase): EtapaBase
-        {
-            return new _003_EtapaConclusaoPersonagemEditor(objScript);
-        }
-
-        protected _001_comecar(): void
-        {
-        }
-
         // #endregion Métodos
 
         // #region Eventos

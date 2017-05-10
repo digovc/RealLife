@@ -54,6 +54,15 @@ module RealLife
         {
             super.inicializar();
 
+            this.inicializarComponente();
+
+            //new ScriptLogin().iniciar();
+
+            new ScriptPersonagemEditor().iniciar();
+        }
+
+        private inicializarComponente(): void
+        {
             Audio.i.iniciar();
             CameraGamePlay.i.iniciar();
             Chat.i.iniciar();
@@ -62,10 +71,6 @@ module RealLife
             Log.i.iniciar();
             Screen.i.iniciar();
             Server.i.iniciar();
-
-            Screen.i.fadeIn();
-
-            new ScriptLogin().iniciar();
         }
 
         // #endregion Métodos

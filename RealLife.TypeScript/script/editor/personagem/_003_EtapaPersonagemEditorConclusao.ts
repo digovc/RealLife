@@ -1,5 +1,3 @@
-/// <reference path="../../ScriptBase.ts"/>
-
 module RealLife
 {
     // #region Importações
@@ -8,7 +6,7 @@ module RealLife
     // #region Enumerados
     // #endregion Enumerados
 
-    export class ScriptPersonagemEditor extends ScriptBase
+    export class _003_EtapaPersonagemEditorConclusao extends EtapaBase
     {
         // #region Constantes
         // #endregion Constantes
@@ -20,14 +18,6 @@ module RealLife
         // #endregion Construtores
 
         // #region Métodos
-
-
-        protected inicializar(): void
-        {
-            super.inicializar();
-
-            new _001_EtapaPersonagemEditorAbertura(this).iniciar();
-        }
 
         // #endregion Métodos
 

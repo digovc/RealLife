@@ -1,3 +1,5 @@
+/// <reference path="CameraBase.ts"/>
+
 module RealLife
 {
     // #region Importações
@@ -6,12 +8,14 @@ module RealLife
     // #region Enumerados
     // #endregion Enumerados
 
-    export class _003_EtapaConclusaoPersonagemEditor extends EtapaBase
+    export class Camera extends CameraBase
     {
         // #region Constantes
+
         // #endregion Constantes
 
         // #region Atributos
+
         // #endregion Atributos
 
         // #region Construtores
@@ -19,13 +23,10 @@ module RealLife
 
         // #region Métodos
 
-        protected _001_comecar(): void
-        {
-        }
-
         // #endregion Métodos
 
         // #region Eventos
+
         // #endregion Eventos
     }
 }

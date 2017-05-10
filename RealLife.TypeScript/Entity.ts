@@ -134,7 +134,7 @@ module RealLife
             this.setIntDimensao(this._intDimensao);
         }
 
-        public get intHash(): number
+        protected get intHash(): number
         {
             return this._intHash;
         }
@@ -186,11 +186,6 @@ module RealLife
 
         public set vctPosicao(vctPosicao: Vector3)
         {
-            if (UtilsRealLife.getBooVctIgual(this._vctPosicao, vctPosicao))
-            {
-                return;
-            }
-
             this._vctPosicao = vctPosicao;
 
             this.setVctPosicao(this._vctPosicao);
@@ -205,11 +200,6 @@ module RealLife
 
         public set vctRotacao(vctRotacao: Vector3)
         {
-            if (UtilsRealLife.getBooVctIgual(this._vctRotacao, vctRotacao))
-            {
-                return;
-            }
-
             this._vctRotacao = vctRotacao;
 
             this.setVctRotacao(this._vctRotacao);
@@ -238,16 +228,26 @@ module RealLife
 
         // #region Construtores
 
-        constructor(intHash: number = 0)
+        constructor(intHash: number = 656641197)
         {
             super();
 
-            this._intHash = 656641197;
+            this._intHash = intHash;
         }
 
         // #endregion Construtores
 
         // #region Métodos
+
+        public ajustarZ(): void
+        {
+            if (this.objHandle == null)
+            {
+                return;
+            }
+
+            API.callNative("PLACE_OBJECT_ON_GROUND_PROPERLY", this.objHandle);
+        }
 
         public anexarEntityBone(objEntity: Entity, intBone: number, vctOffSet: Vector3 = new Vector3(), vctRotacaoOffset: Vector3 = new Vector3()): void
         {
@@ -541,6 +541,8 @@ module RealLife
                 return;
             }
 
+            Log.i.debug("Entity posição: {0}, {1}, {2}", vctPosicao.X.toString(), vctPosicao.Y.toString(), vctPosicao.Z.toString());
+
             API.setEntityPosition(this.objHandle, vctPosicao);
         }
 
@@ -555,6 +557,8 @@ module RealLife
             {
                 return;
             }
+
+            Log.i.debug("Entity rotação: {0}, {1}, {2}", vctRotacao.X.toString(), vctRotacao.Y.toString(), vctRotacao.Z.toString());
 
             API.setEntityRotation(this.objHandle, vctRotacao);
         }

@@ -1,8 +1,12 @@
+/// <reference path="../RealLifeShared.TypeScript/enumerado/EnmPedComponente.ts"/>
 /// <reference path="Entity.ts"/>
 
 module RealLife
 {
     // #region Importações
+
+    import EnmPedComponente = RealLifeShared.EnmPedComponente;
+
     // #endregion Importações
 
     // #region Enumerados
@@ -27,6 +31,10 @@ module RealLife
         private _booQuedaLivre: boolean;
         private _booRecarregando: boolean;
         private _booSubindoEscadas: boolean;
+        private _intCabeloCor: number;
+        private _intCabeloModelo: number;
+        private _intOlhoCor: number;
+        private _intRosto: number;
         private _vctAlvo: Vector3;
 
         public get booAtirando(): boolean
@@ -97,6 +105,54 @@ module RealLife
             this._booSubindoEscadas = this.getBooSubindoEscadas();
 
             return this._booSubindoEscadas;
+        }
+
+        public get intCabeloCor(): number
+        {
+            return this._intCabeloCor;
+        }
+
+        public set intCabeloCor(intCabeloCor: number)
+        {
+            this._intCabeloCor = intCabeloCor;
+
+            this.setIntCabeloCor(this._intCabeloCor);
+        }
+
+        public get intCabeloModelo(): number
+        {
+            return this._intCabeloModelo;
+        }
+
+        public set intCabeloModelo(intCabeloModelo: number)
+        {
+            this._intCabeloModelo = intCabeloModelo;
+
+            this.setIntCabeloModelo(this._intCabeloModelo);
+        }
+
+        public get intOlhoCor(): number
+        {
+            return this._intOlhoCor;
+        }
+
+        public set intOlhoCor(intOlhoCor: number)
+        {
+            this._intOlhoCor = intOlhoCor;
+
+            this.setIntOlhoCor(this._intOlhoCor);
+        }
+
+        public get intRosto(): number
+        {
+            return this._intRosto;
+        }
+
+        public set intRosto(intRosto: number)
+        {
+            this._intRosto = intRosto;
+
+            this.setIntRosto(this._intRosto);
         }
 
         public get vctAlvo(): Vector3
@@ -235,6 +291,46 @@ module RealLife
             }
 
             return API.getPlayerAimingPoint(this.objHandle);
+        }
+
+        private setIntCabeloCor(intCabeloCor: number): void
+        {
+            if (this.objHandle == null)
+            {
+                return;
+            }
+
+            API.setPlayerClothes(this.objHandle, EnmPedComponente.HAIR_COLORS, intCabeloCor, 0);
+        }
+
+        private setIntCabeloModelo(intCabeloModelo: number): void
+        {
+            if (this.objHandle == null)
+            {
+                return;
+            }
+
+            API.setPlayerClothes(this.objHandle, EnmPedComponente.HAIR, intCabeloModelo, 0);
+        }
+
+        private setIntOlhoCor(intOlhoCor: number): void
+        {
+            if (this.objHandle == null)
+            {
+                return;
+            }
+
+            API.setPlayerClothes(this.objHandle, EnmPedComponente.DECALS, intOlhoCor, 0);
+        }
+
+        private setIntRosto(intRosto: number): void
+        {
+            if (this.objHandle == null)
+            {
+                return;
+            }
+
+            API.setPlayerClothes(this.objHandle, EnmPedComponente.FACE, intRosto, 0);
         }
 
         // #endregion Métodos

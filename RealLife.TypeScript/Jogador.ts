@@ -1,5 +1,6 @@
 /// <reference path="../RealLifeShared.TypeScript/dominio/ErroDominio.ts"/>
 /// <reference path="../RealLifeShared.TypeScript/dominio/JogadorDominio.ts"/>
+/// <reference path="../RealLifeShared.TypeScript/enumerado/EnmPedHash.ts"/>
 /// <reference path="evento/OnChatCommandListener.ts"/>
 /// <reference path="evento/OnServerEventTriggerListener.ts"/>
 /// <reference path="Objeto.ts"/>
@@ -8,6 +9,7 @@ module RealLife
 {
     // #region Importações
 
+    import EnmPedHash = RealLifeShared.EnmPedHash;
     import ErroDominio = RealLifeShared.ErroDominio;
     import JogadorDominio = RealLifeShared.JogadorDominio;
 
@@ -46,23 +48,10 @@ module RealLife
             return Jogador._i;
         }
 
-        private _booControlavel: boolean = true;
         private _intId: number;
         private _objJogador: JogadorDominio;
         private _ped: Ped;
         private _strGametag: string;
-
-        public get booControlavel(): boolean
-        {
-            return this._booControlavel;
-        }
-
-        public set booControlavel(booControlavel: boolean)
-        {
-            this._booControlavel = booControlavel;
-
-            this.setBooControlavel(this._booControlavel);
-        }
 
         public get intId(): number
         {
@@ -116,6 +105,11 @@ module RealLife
         // #endregion Construtores
 
         // #region Métodos
+
+        public alterarSkin(enmPedHash: EnmPedHash): void
+        {
+            API.setPlayerSkin(enmPedHash);
+        }
 
         public criarConta(objJogador: JogadorDominio): void
         {
@@ -223,18 +217,6 @@ module RealLife
             pedResultado.objHandle = API.getLocalPlayer();
 
             return pedResultado;
-        }
-
-        private setBooControlavel(booControlavel: boolean): void
-        {
-            if (booControlavel)
-            {
-                API.requestControlOfPlayer(API.getLocalPlayer());
-            }
-            else
-            {
-                API.stopControlOfPlayer(API.getLocalPlayer());
-            }
         }
 
         protected setEventos(): void

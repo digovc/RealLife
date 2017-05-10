@@ -73,11 +73,6 @@ module RealLife
 
         public set vctPosicao(vctPosicao: Vector3)
         {
-            if (UtilsRealLife.getBooVctIgual(this._vctPosicao, vctPosicao))
-            {
-                return;
-            }
-
             this._vctPosicao = vctPosicao;
 
             this.setVctPosicao(this._vctPosicao);
@@ -92,11 +87,6 @@ module RealLife
 
         public set vctRotacao(vctRotacao: Vector3)
         {
-            if (UtilsRealLife.getBooVctIgual(this._vctRotacao, vctRotacao))
-            {
-                return;
-            }
-
             this._vctRotacao = vctRotacao;
 
             this.setVctRotacao(this._vctRotacao);
@@ -160,7 +150,7 @@ module RealLife
             API.attachCameraToEntityBone(this.objGlobalCamera, objEntity.objHandle, intBone, vctOffSet);
         }
 
-        public criarCamera(): void
+        public criar(): void
         {
             if (this.objGlobalCamera != null)
             {
@@ -169,7 +159,7 @@ module RealLife
 
             Log.i.debug("Criando camera.");
 
-            this.objGlobalCamera = API.createCamera(this.vctPosicao, this.vctRotacao);
+            this.objGlobalCamera = API.createCamera(new Vector3(), new Vector3());
         }
 
         public desanexar(): void
@@ -313,7 +303,7 @@ module RealLife
             return API.getCameraRotation(this.objGlobalCamera);
         }
 
-        public interpolar(objCameraTo: CameraBase, fltDuracao: number = 1, booPosicaoSuave: boolean = true, booRotacaoSuave: boolean = true): void
+        public interpolar(objCameraTo: CameraBase, fltDuracaoMilisegundo: number = 1000, booPosicaoSuave: boolean = true, booRotacaoSuave: boolean = true): void
         {
             if (this.objGlobalCamera == null)
             {
@@ -325,7 +315,7 @@ module RealLife
                 return;
             }
 
-            API.interpolateCameras(this.objGlobalCamera, objCameraTo.objGlobalCamera, fltDuracao, booPosicaoSuave, booRotacaoSuave);
+            API.interpolateCameras(this.objGlobalCamera, objCameraTo.objGlobalCamera, fltDuracaoMilisegundo, booPosicaoSuave, booRotacaoSuave);
         }
 
         protected setBooAtiva(booAtiva: boolean): void
@@ -362,6 +352,11 @@ module RealLife
                 return;
             }
 
+            if (vctPosicao == null)
+            {
+                return;
+            }
+
             API.setCameraPosition(this.objGlobalCamera, vctPosicao);
 
             Log.i.debug("Posicao (camera): {0}, {1}, {2}.", vctPosicao.X, vctPosicao.Y, vctPosicao.Z);
@@ -370,6 +365,11 @@ module RealLife
         private setVctRotacao(vctRotacao: Vector3): void
         {
             if (this.objGlobalCamera == null)
+            {
+                return;
+            }
+
+            if (vctRotacao == null)
             {
                 return;
             }

@@ -25,12 +25,17 @@ module RealLife
         {
             super.inicializar();
 
+            this._001_etapa();
+        }
+
+        private _001_etapa(): void
+        {
             Screen.i.fadeOut(1000);
 
             new Timer((() => { this._001_etapa(); }), 1).iniciar();
         }
 
-        private _001_etapa(): void
+        private _002_etapa(): void
         {
             Chat.i.booAtivo = false;
             Chat.i.booVisivel = false;

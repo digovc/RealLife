@@ -1,5 +1,6 @@
 /// <reference path="../RealLifeShared.TypeScript/enumerado/EnmKey.ts"/>
 /// <reference path="../RealLifeShared.TypeScript/evento/OnGameKeyListener.ts"/>
+/// <reference path="evento/OnUpdateListener.ts"/>
 
 module RealLife
 {
@@ -14,7 +15,7 @@ module RealLife
 
     // #endregion Enumerados
 
-    export class Keyboard extends Objeto implements OnKeyUpListener
+    export class Keyboard extends Objeto implements OnKeyUpListener, OnUpdateListener
     {
         // #region Constantes
         // #endregion Constantes
@@ -33,6 +34,20 @@ module RealLife
             Keyboard._i = new Keyboard();
 
             return Keyboard._i;
+        }
+
+        private _booAtivo: boolean = true;
+
+        public get booAtivo(): boolean
+        {
+            return this._booAtivo;
+        }
+
+        public set booAtivo(booAtivo: boolean)
+        {
+            this._booAtivo = booAtivo;
+
+            this.setBooAtivo(this._booAtivo);
         }
 
         // #endregion Atributos
@@ -103,6 +118,37 @@ module RealLife
             }
         }
 
+        private processarOnUpdate(): void
+        {
+            this.processarOnUpdateBooAtivo();
+        }
+
+        private processarOnUpdateBooAtivo(): void
+        {
+            if (this.booAtivo)
+            {
+                return;
+            }
+
+            API.disableAllControlsThisFrame();
+        }
+
+        private setBooAtivo(booAtivo: boolean): void
+        {
+            if (booAtivo)
+            {
+                Log.i.debug("Ligando o controle.");
+
+                Screen.i.removerEvtOnUpdateListener(this);
+            }
+            else
+            {
+                Log.i.debug("Desligando o controle.");
+
+                Screen.i.addEvtOnUpdateListener(this);
+            }
+        }
+
         // #endregion Métodos
 
         // #region Eventos
@@ -110,6 +156,11 @@ module RealLife
         public onKeyUp(objSender: Object, arg: System.Windows.Forms.KeyEventArgs): void
         {
             this.processarOnKeyUp(arg);
+        }
+
+        public onUpdate(): void
+        {
+            this.processarOnUpdate();
         }
 
         // #region OnGameKeyListener

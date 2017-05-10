@@ -30,6 +30,11 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="NativeUI, Version=1.0.0.0, Culture=neutral, processorArchitecture=AMD64">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Lib\NativeUI\NativeUI.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
     <Reference Include="ScriptHookVDotNet">
       <HintPath>..\Lib\ScriptHookVDotNet\ScriptHookVDotNet.dll</HintPath>
       <Private>False</Private>
@@ -46,6 +51,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CameraScript.cs" />
+    <Compile Include="Dominio\CameraPredefinidaDomminio.cs" />
+    <Compile Include="Dominio\DominioBase.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ScriptBase.cs" />
   </ItemGroup>

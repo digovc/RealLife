@@ -1,5 +1,3 @@
-/// <reference path="CameraBase.ts"/>
-
 module RealLife
 {
     // #region Importações
@@ -8,26 +6,25 @@ module RealLife
     // #region Enumerados
     // #endregion Enumerados
 
-    export class CameraLivre extends CameraBase
+    export class _002_EtapaPersonagemEditorEdicao extends EtapaBase
     {
         // #region Constantes
-
         // #endregion Constantes
 
         // #region Atributos
 
-        private _objEntityAncora: Entity;
+        private _objMenu: MenuPersonagemEditor;
 
-        private get objEntityAncora(): Entity
+        private get objMenu(): MenuPersonagemEditor
         {
-            if (this._objEntityAncora != null)
+            if (this._objMenu != null)
             {
-                return this._objEntityAncora;
+                return this._objMenu;
             }
 
-            this._objEntityAncora = new Entity(656641197);
+            this._objMenu = new MenuPersonagemEditor();
 
-            return this._objEntityAncora;
+            return this._objMenu;
         }
 
         // #endregion Atributos
@@ -41,19 +38,19 @@ module RealLife
         {
             super.inicializar();
 
-            this.inicializarVctPosicao();
+            this.inicializarOjMenu();
         }
 
-        private inicializarVctPosicao(): void
+        private inicializarOjMenu(): void
         {
-            this.vctPosicao = UtilsRealLife.copiarVct(Jogador.i.ped.vctPosicao);
-            this.vctRotacao = UtilsRealLife.copiarVct(Jogador.i.ped.vctRotacao);
+            this.objMenu.iniciar();
+
+            this.objMenu.booVisivel = true;
         }
 
         // #endregion Métodos
 
         // #region Eventos
-
         // #endregion Eventos
     }
 }

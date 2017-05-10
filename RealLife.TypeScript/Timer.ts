@@ -104,6 +104,8 @@ module RealLife
                 return;
             }
 
+            Log.i.debug("Timer tick.");
+
             this.fnc(this.intIndex);
 
             this.intIndex = (this.intIndex + 1);

@@ -70,7 +70,10 @@
     <TypeScriptCompile Include="dominio\DominioRealLifeBase.ts" />
     <TypeScriptCompile Include="dominio\EntityDominio.ts" />
     <TypeScriptCompile Include="dominio\ErroDominio.ts" />
+    <TypeScriptCompile Include="dominio\SkinDominio.ts" />
     <TypeScriptCompile Include="dominio\MissaoConclusaoDominio.ts" />
+    <TypeScriptCompile Include="enumerado\EnmPedComponente.ts" />
+    <TypeScriptCompile Include="enumerado\EnmPedHash.ts" />
     <TypeScriptCompile Include="enumerado\EnmKey.ts" />
     <TypeScriptCompile Include="evento\OnGameKeyListener.ts" />
   </ItemGroup>
