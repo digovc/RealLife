@@ -109,13 +109,13 @@ module RealLife
             this.objCameraDistante.criar();
 
             this.objCameraDistante.vctPosicao = new Vector3(126.8095, 1148.244, 237.1642);
-            this.objCameraDistante.vctRotacao = new Vector3(-8.180131, -8.537736E-07, -76.37589);
+            this.objCameraDistante.vctRotacao = new Vector3(-8.180131, -8.537736, -76.37589);
 
             this.objCameraDistante.booAtiva = true;
 
-
+            Jogador.i.ped.fltRotacao = 104.4779;
             Jogador.i.ped.vctPosicao = new Vector3(198.6063, 1165.586, 227.0094);
-            Jogador.i.ped.vctRotacao = new Vector3(200, 0, 200);
+            Jogador.i.ped.vctRotacao = new Vector3(1.494016, 0, 104.4779);
 
             Jogador.i.ped.ajustarZ();
 
@@ -124,22 +124,11 @@ module RealLife
             this.objCameraPerto.criar();
 
             this.objCameraPerto.vctPosicao = new Vector3(195.4025, 1164.994, 227.6242);
-            this.objCameraPerto.vctRotacao = new Vector3(-9.361199, 6.403303E-07, -77.35999);
+            this.objCameraPerto.vctRotacao = new Vector3(-8.180131, -8.537736, -76.37589);
 
             this.objCameraPerto.criar();
 
             this.objCameraDistante.interpolar(this.objCameraPerto, 5000);
-
-            new Timer((() => { this.teste(); }), 5, true).iniciar();
-        }
-
-        private teste(): void
-        {
-            var vct = Jogador.i.ped.vctRotacao;
-
-            vct.Z = (vct.Z + 45);
-
-            Jogador.i.ped.vctRotacao = vct;
         }
 
         // #endregion Métodos

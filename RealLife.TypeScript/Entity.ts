@@ -21,6 +21,7 @@ module RealLife
         private _booInvencivel: boolean;
         private _booVisivel: boolean = true;
         private _enmTipo: Enums.EntityType;
+        private _fltRotacao: number;
         private _intAlpha: number;
         private _intDimensao: number;
         private _intHash: number = 656641197;
@@ -104,6 +105,20 @@ module RealLife
             this._enmTipo = this.getEnmTipo();
 
             return this._enmTipo;
+        }
+
+        public get fltRotacao(): number
+        {
+            this._fltRotacao = this.getFltRotacao();
+
+            return this._fltRotacao;
+        }
+
+        public set fltRotacao(fltRotacao: number)
+        {
+            this._fltRotacao = fltRotacao;
+
+            this.setFltRotacao(this._fltRotacao);
         }
 
         public get intAlpha(): number
@@ -364,6 +379,16 @@ module RealLife
             return API.getEntityType(this.objHandle);
         }
 
+        private getFltRotacao(): number
+        {
+            if (this.objHandle == null)
+            {
+                return null;
+            }
+
+            return API.returnNative("GET_ENTITY_HEADING", Enums.NativeReturnTypes.Float, this.objHandle);
+        }
+
         private getIntAlpha(): number
         {
             if (this.objHandle == null)
@@ -472,6 +497,16 @@ module RealLife
             }
 
             API.callNative("SET_ENTITY_VISIBLE", this.objHandle, booVisivel, false);
+        }
+
+        private setFltRotacao(fltRotacao: number): void
+        {
+            if (this.objHandle == null)
+            {
+                return;
+            }
+
+            API.callNative("SET_ENTITY_HEADING", this.objHandle, fltRotacao);
         }
 
         private setIntAlpha(intAlpha: number): void

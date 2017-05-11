@@ -11,7 +11,7 @@ namespace ModTool
     {
         #region Constantes
 
-        private const string DIR_CAMERA_INFO = "mod_tool_camera_info.txt";
+        private const string DIR_CAMERA_INFO = "real_life_mod_tool/camera_info.json";
 
         #endregion Constantes
 
