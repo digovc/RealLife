@@ -8,7 +8,7 @@ module RealLife
     // #region Enumerados
     // #endregion Enumerados
 
-    export class _001_EtapaPersonagemEditorAbertura extends EtapaBase
+    export class Etapa001PersonagemEditorAbertura extends EtapaBase
     {
         // #region Constantes
         // #endregion Constantes
@@ -92,17 +92,18 @@ module RealLife
         {
             super.inicializar();
 
-            this._001_etapa();
+            this.etapa001();
         }
 
-        private _001_etapa(): void
+        private etapa001(): void
         {
+            Jogador.i.ped.booVisivel = false;
             Keyboard.i.booAtivo = false;
 
-            Screen.i.fadeOut(.350, (() => { this._002_etapa(); }));
+            Screen.i.fadeOut(.150, (() => { this.etapa002(); }));
         }
 
-        private _002_etapa(): void
+        private etapa002(): void
         {
             this.objCameraDistante.criar();
 
@@ -117,8 +118,13 @@ module RealLife
 
             Jogador.i.ped.ajustarZ();
 
-            Screen.i.fadeIn();
+            Jogador.i.ped.booVisivel = true;
 
+            new Timer((() => { this.etapa003(); }), .250);
+        }
+
+        private etapa003(): void
+        {
             this.objCameraPerto.criar();
 
             this.objCameraPerto.vctPosicao = new Vector3(195.4025, 1164.994, 227.6242);
@@ -126,7 +132,14 @@ module RealLife
 
             this.objCameraPerto.criar();
 
-            this.objCameraDistante.interpolar(this.objCameraPerto, 5000);
+            Screen.i.fadeIn();
+
+            this.objCameraDistante.interpolar(this.objCameraPerto, 5000, (() => { this.etapa004(); }));
+        }
+
+        private etapa004(): void
+        {
+            // TODO: Mostrar menu.
         }
 
         // #endregion Métodos

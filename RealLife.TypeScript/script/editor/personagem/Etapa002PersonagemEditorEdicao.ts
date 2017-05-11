@@ -6,7 +6,7 @@ module RealLife
     // #region Enumerados
     // #endregion Enumerados
 
-    export class _002_EtapaPersonagemEditorEdicao extends EtapaBase
+    export class Etapa002PersonagemEditorEdicao extends EtapaBase
     {
         // #region Constantes
         // #endregion Constantes

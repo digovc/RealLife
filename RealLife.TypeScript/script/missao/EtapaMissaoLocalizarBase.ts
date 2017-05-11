@@ -8,7 +8,7 @@ module RealLife
     // #region Enumerados
     // #endregion Enumerados
 
-    export abstract class EtapaTrajetoBase extends EtapaMissaoBase
+    export abstract class EtapaMissaoLocalizarBase extends EtapaMissaoBase
     {
         // #region Constantes
         // #endregion Constantes

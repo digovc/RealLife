@@ -23,14 +23,14 @@ module RealLife
 
         // #region Atributos
 
-        private _objEtapaLogin: _003_EtapaLogin;
+        private _objEtapaLogin: Etapa003Login;
 
-        private get objEtapaLogin(): _003_EtapaLogin
+        private get objEtapaLogin(): Etapa003Login
         {
             return this._objEtapaLogin;
         }
 
-        private set objEtapaLogin(objEtapaLogin: _003_EtapaLogin)
+        private set objEtapaLogin(objEtapaLogin: Etapa003Login)
         {
             this._objEtapaLogin = objEtapaLogin;
         }
@@ -39,7 +39,7 @@ module RealLife
 
         // #region Construtores
 
-        constructor(objEtapaLogin: _003_EtapaLogin)
+        constructor(objEtapaLogin: Etapa003Login)
         {
             super();
 

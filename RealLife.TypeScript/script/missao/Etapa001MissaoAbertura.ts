@@ -1,3 +1,5 @@
+/// <reference path="EtapaMissaoBase.ts"/>
+
 module RealLife
 {
     // #region Importações
@@ -6,7 +8,7 @@ module RealLife
     // #region Enumerados
     // #endregion Enumerados
 
-    export class _003_EtapaPersonagemEditorConclusao extends EtapaBase
+    export class Etapa001MissaoAbertura extends EtapaMissaoBase
     {
         // #region Constantes
         // #endregion Constantes

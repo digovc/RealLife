@@ -8,7 +8,7 @@ module RealLife
     // #region Enumerados
     // #endregion Enumerados
 
-    export class _001_EtapaMissaoAbertura extends EtapaMissaoBase
+    export abstract class EtapaMissaoDestruirBase extends EtapaMissaoBase
     {
         // #region Constantes
         // #endregion Constantes
@@ -20,11 +20,6 @@ module RealLife
         // #endregion Construtores
 
         // #region Métodos
-
-        protected _001_comecar(): void
-        {
-        }
-
         // #endregion Métodos
 
         // #region Eventos

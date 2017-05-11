@@ -26,7 +26,7 @@ module RealLife
         {
             super.inicializar();
 
-            new _001_EtapaPersonagemEditorAbertura(this).iniciar();
+            new Etapa001PersonagemEditorAbertura(this).iniciar();
         }
 
         // #endregion Métodos

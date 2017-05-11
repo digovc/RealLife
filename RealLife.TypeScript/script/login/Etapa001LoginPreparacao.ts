@@ -8,7 +8,7 @@ module RealLife
     // #region Enumerados
     // #endregion Enumerados
 
-    export class _001_EtapaLoginPreparacao extends EtapaBase
+    export class Etapa001LoginPreparacao extends EtapaBase
     {
         // #region Constantes
         // #endregion Constantes
@@ -25,23 +25,21 @@ module RealLife
         {
             super.inicializar();
 
-            this._001_etapa();
+            this.etapa001();
         }
 
-        private _001_etapa(): void
+        private etapa001(): void
         {
-            Screen.i.fadeOut();
-
-            new Timer((() => { this._001_etapa(); }), 1).iniciar();
+            Screen.i.fadeOut(1, (() => { this.etapa002(); }));
         }
 
-        private _002_etapa(): void
+        private etapa002(): void
         {
             Chat.i.booAtivo = false;
             Chat.i.booVisivel = false;
             Jogador.i.ped.booVisivel = false;
 
-            new Timer((() => { new _003_EtapaLogin(this.objScript).iniciar() }), 2.5).iniciar();
+            new Timer((() => { new Etapa003Login(this.objScript).iniciar() }), 2.5).iniciar();
         }
 
         // #endregion Métodos

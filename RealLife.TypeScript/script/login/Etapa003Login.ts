@@ -8,7 +8,7 @@ module RealLife
     // #region Enumerados
     // #endregion Enumerados
 
-    export class _003_EtapaLogin extends EtapaBase
+    export class Etapa003Login extends EtapaBase
     {
         // #region Constantes
         // #endregion Constantes

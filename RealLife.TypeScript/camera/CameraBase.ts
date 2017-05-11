@@ -303,7 +303,7 @@ module RealLife
             return API.getCameraRotation(this.objGlobalCamera);
         }
 
-        public interpolar(objCameraTo: CameraBase, fltDuracaoMilisegundo: number = 1000, booPosicaoSuave: boolean = true, booRotacaoSuave: boolean = true): void
+        public interpolar(objCameraTo: CameraBase, fltDuracao: number = 1, fncAfter: Function = null): void
         {
             if (this.objGlobalCamera == null)
             {
@@ -315,7 +315,14 @@ module RealLife
                 return;
             }
 
-            API.interpolateCameras(this.objGlobalCamera, objCameraTo.objGlobalCamera, fltDuracaoMilisegundo, booPosicaoSuave, booRotacaoSuave);
+            API.interpolateCameras(this.objGlobalCamera, objCameraTo.objGlobalCamera, (fltDuracao * 1000), true, true);
+
+            if (fncAfter == null)
+            {
+                return;
+            }
+
+            new Timer((() => { fncAfter(); }), fltDuracao).iniciar();
         }
 
         protected setBooAtiva(booAtiva: boolean): void
