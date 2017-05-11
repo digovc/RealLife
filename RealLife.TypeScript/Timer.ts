@@ -17,7 +17,7 @@ module RealLife
 
         private _booLoop: boolean;
         private _fltAguardando: number = 0;
-        private _fltDuracaoSegundo: number = 1;
+        private _fltDuracao: number = 1;
         private _fnc: Function;
         private _intIndex: number = 0;
 
@@ -41,14 +41,14 @@ module RealLife
             this._fltAguardando = fltAguardando;
         }
 
-        private get fltDuracaoSegundo(): number
+        private get fltDuracao(): number
         {
-            return this._fltDuracaoSegundo;
+            return this._fltDuracao;
         }
 
-        private set fltDuracaoSegundo(fltDuracaoSegundo: number)
+        private set fltDuracao(fltDuracao: number)
         {
-            this._fltDuracaoSegundo = fltDuracaoSegundo;
+            this._fltDuracao = fltDuracao;
         }
 
         private get fnc(): Function
@@ -75,13 +75,13 @@ module RealLife
 
         // #region Construtores
 
-        constructor(fnc: Function, fltDuracaoSegundo: number = 1, booLoop: boolean = false)
+        constructor(fnc: Function, fltDuracao: number = 1, booLoop: boolean = false)
         {
             super();
 
             this.booLoop = booLoop;
             this.fnc = fnc;
-            this.fltDuracaoSegundo = fltDuracaoSegundo;
+            this.fltDuracao = fltDuracao;
         }
 
         // #endregion Construtores
@@ -99,7 +99,7 @@ module RealLife
         {
             this.fltAguardando = (this.fltAguardando + Screen.i.fltDelta);
 
-            if (this.fltAguardando < this.fltDuracaoSegundo)
+            if (this.fltAguardando < this.fltDuracao)
             {
                 return;
             }

@@ -50,6 +50,7 @@
   <ItemGroup>
     <TypeScriptCompile Include="AppRealLife.ts" />
     <TypeScriptCompile Include="Audio.ts" />
+    <TypeScriptCompile Include="Gps.ts" />
     <TypeScriptCompile Include="Chat.ts" />
     <TypeScriptCompile Include="blip\Blip.ts" />
     <TypeScriptCompile Include="camera\CameraBase.ts" />

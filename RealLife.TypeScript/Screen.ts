@@ -32,22 +32,37 @@ module RealLife
             return Screen._i;
         }
 
-        private _booMostrarMouse: boolean;
+        private _booHudVisivel: boolean;
+        private _booMouseVisivel: boolean;
         private _dttUltimoFrame: Date = new Date();
         private _fltDelta: number;
         private _objResolucao: System.Drawing.Size;
         private _strLegenda: string;
 
-        public get booMostrarMouse(): boolean
+        public get booHudVisivel(): boolean
         {
-            return this._booMostrarMouse;
+            this._booHudVisivel = API.getHudVisible();
+
+            return this._booHudVisivel;
         }
 
-        public set booMostrarMouse(booMostrarMouse: boolean)
+        public set booHudVisivel(booHudVisivel: boolean)
         {
-            this._booMostrarMouse = booMostrarMouse;
+            this._booHudVisivel = booHudVisivel;
 
-            this.setBooMostrarMouse(this._booMostrarMouse);
+            API.setHudVisible(this._booHudVisivel);
+        }
+
+        public get booMouseVisivel(): boolean
+        {
+            return this._booMouseVisivel;
+        }
+
+        public set booMouseVisivel(booMouseVisivel: boolean)
+        {
+            this._booMouseVisivel = booMouseVisivel;
+
+            API.showCursor(booMouseVisivel);
         }
 
         private get dttUltimoFrame(): Date
@@ -67,7 +82,7 @@ module RealLife
                 return this._fltDelta;
             }
 
-            this._fltDelta = this.getFltDelta();
+            this._fltDelta = API.returnNative("GET_FRAME_TIME", Enums.NativeReturnTypes.Float);
 
             return this._fltDelta;
         }
@@ -101,19 +116,28 @@ module RealLife
 
         // #region Métodos
 
-        public fadeIn(intDuracaoMilisegundo: number = 1000): void
+        public fadeIn(fltDuracao: number = 1, fncAfter: Function = null): void
         {
-            API.callNative("DO_SCREEN_FADE_IN", intDuracaoMilisegundo);
+            API.callNative("DO_SCREEN_FADE_IN", (fltDuracao * 1000));
+
+            if (fncAfter == null)
+            {
+                return;
+            }
+
+            new Timer((() => { fncAfter(); }), fltDuracao).iniciar();
         }
 
-        public fadeOut(intDuracaoMilisegundo: number = 1000): void
+        public fadeOut(fltDuracao: number = 1, fncAfter: Function = null): void
         {
-            API.callNative("DO_SCREEN_FADE_OUT", intDuracaoMilisegundo);
-        }
+            API.callNative("DO_SCREEN_FADE_OUT", (fltDuracao * 1000));
 
-        private getFltDelta(): number
-        {
-            return API.returnNative("GET_FRAME_TIME", Enums.NativeReturnTypes.Float);
+            if (fncAfter == null)
+            {
+                return;
+            }
+
+            new Timer((() => { fncAfter(); }), fltDuracao).iniciar();
         }
 
         public notificar(strNotificacao: string): void
@@ -153,9 +177,14 @@ module RealLife
             API.displaySubtitle(this.strLegenda);
         }
 
-        private setBooMostrarMouse(booMostrarMouse: boolean): void
+        public setCorUi(cor: Cor): void
         {
-            API.showCursor(booMostrarMouse);
+            if (cor == null)
+            {
+                return;
+            }
+
+            API.setUiColor(cor.r, cor.g, cor.b);
         }
 
         // #endregion Métodos

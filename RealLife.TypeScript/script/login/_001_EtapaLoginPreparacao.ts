@@ -30,7 +30,7 @@ module RealLife
 
         private _001_etapa(): void
         {
-            Screen.i.fadeOut(1000);
+            Screen.i.fadeOut();
 
             new Timer((() => { this._001_etapa(); }), 1).iniciar();
         }

@@ -99,9 +99,7 @@ module RealLife
         {
             Keyboard.i.booAtivo = false;
 
-            Screen.i.fadeOut(350);
-
-            new Timer((() => { this._002_etapa(); }), .350).iniciar();
+            Screen.i.fadeOut(.350, (() => { this._002_etapa(); }));
         }
 
         private _002_etapa(): void
