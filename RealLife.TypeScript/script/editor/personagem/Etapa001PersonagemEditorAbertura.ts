@@ -97,14 +97,17 @@ module RealLife
 
         private etapa001(): void
         {
-            Jogador.i.ped.booVisivel = false;
-            Keyboard.i.booAtivo = false;
-
             Screen.i.fadeOut(.150, (() => { this.etapa002(); }));
         }
 
         private etapa002(): void
         {
+            Jogador.i.ped.booVisivel = false;
+            Keyboard.i.booAtivo = false;
+            Screen.i.booHudVisivel = false;
+            World.i.setEnmClima(Enums.Weather.Clear);
+            World.i.setHora(12);
+
             this.objCameraDistante.criar();
 
             this.objCameraDistante.vctPosicao = new Vector3(126.8095, 1148.244, 237.1642);
@@ -139,7 +142,7 @@ module RealLife
 
         private etapa004(): void
         {
-            // TODO: Mostrar menu.
+            new Etapa002PersonagemEditorEdicao(this.objScript).iniciar();
         }
 
         // #endregion Métodos

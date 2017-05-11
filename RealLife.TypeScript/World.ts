@@ -51,7 +51,7 @@ module RealLife
             API.setWeather(enmClima);
         }
 
-        public setHora(intHora: number, intMinuto: number): void
+        public setHora(intHora: number, intMinuto: number = 0): void
         {
             API.setTime(intHora, intMinuto);
         }

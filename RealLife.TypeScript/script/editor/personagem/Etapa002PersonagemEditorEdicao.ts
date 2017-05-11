@@ -38,10 +38,10 @@ module RealLife
         {
             super.inicializar();
 
-            this.inicializarOjMenu();
+            this.etapa001();
         }
 
-        private inicializarOjMenu(): void
+        private etapa001(): void
         {
             this.objMenu.iniciar();
 
