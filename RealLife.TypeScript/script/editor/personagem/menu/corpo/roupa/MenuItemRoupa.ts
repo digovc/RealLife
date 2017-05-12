@@ -18,9 +18,9 @@ module RealLife
 
         // #region Construtores
 
-        constructor()
+        constructor(objMenuItemPai: MenuItemCorpo)
         {
-            super(null, "Roupa");
+            super(objMenuItemPai, "Roupa");
         }
 
         // #endregion Construtores
@@ -31,10 +31,10 @@ module RealLife
         {
             super.inicializarArrObjMenuItem(arrObjMenuItem);
 
-            arrObjMenuItem.push(new MenuItemSuperior());
-            arrObjMenuItem.push(new MenuItemInferior());
-            arrObjMenuItem.push(new MenuItemCalcado());
-            arrObjMenuItem.push(new MenuItemConjunto());
+            arrObjMenuItem.push(new MenuItemSuperior(this));
+            arrObjMenuItem.push(new MenuItemInferior(this));
+            arrObjMenuItem.push(new MenuItemCalcado(this));
+            arrObjMenuItem.push(new MenuItemConjunto(this));
         }
 
         // #endregion Métodos

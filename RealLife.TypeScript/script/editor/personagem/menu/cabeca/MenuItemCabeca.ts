@@ -31,10 +31,10 @@ module RealLife
         {
             super.inicializarArrObjMenuItem(arrObjMenuItem);
 
-            arrObjMenuItem.push(new MenuItemCabelo());
-            arrObjMenuItem.push(new MenuItemCabeloCor());
-            arrObjMenuItem.push(new MenuItemRosto());
-            arrObjMenuItem.push(new MenuItemOlho());
+            arrObjMenuItem.push(new MenuItemCabelo(this));
+            arrObjMenuItem.push(new MenuItemCabeloCor(this));
+            arrObjMenuItem.push(new MenuItemRosto(this));
+            arrObjMenuItem.push(new MenuItemOlho(this));
         }
 
         // #endregion Métodos

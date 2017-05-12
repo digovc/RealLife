@@ -32,9 +32,9 @@ module RealLife
             super.inicializarArrObjMenuItem(arrObjMenuItem);
 
             //arrObjMenuItem.push(new MenuItemAltura());
-            arrObjMenuItem.push(new MenuItemPele());
-            arrObjMenuItem.push(new MenuItemPeso());
-            arrObjMenuItem.push(new MenuItemRoupa());
+            arrObjMenuItem.push(new MenuItemPele(this));
+            arrObjMenuItem.push(new MenuItemPeso(this));
+            arrObjMenuItem.push(new MenuItemRoupa(this));
         }
 
         // #endregion Métodos

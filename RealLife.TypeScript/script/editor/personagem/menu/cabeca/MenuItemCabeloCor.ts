@@ -18,9 +18,9 @@ module RealLife
 
         // #region Construtores
 
-        constructor()
+        constructor(objMenuItemPai: MenuItemCabeca)
         {
-            super(null, "Cor do cabelo");
+            super(objMenuItemPai, "Cor do cabelo");
         }
 
         // #endregion Construtores

@@ -18,9 +18,9 @@ module RealLife
 
         // #region Construtores
 
-        constructor()
+        constructor(objMenuItemPai: MenuItemCorpo)
         {
-            super(null, "Pele");
+            super(objMenuItemPai, "Pele");
         }
 
         // #endregion Construtores
