@@ -37,7 +37,7 @@ module RealLife
         {
             Chat.i.booAtivo = false;
             Chat.i.booVisivel = false;
-            Jogador.i.ped.booVisivel = false;
+            Jogador.i.booVisivel = false;
 
             new Timer((() => { new Etapa003Login(this.objScript).iniciar() }), 2.5).iniciar();
         }

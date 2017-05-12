@@ -53,7 +53,7 @@ module RealLife
 
             API.playSoundFrontEnd(strNome, strSetNome);
 
-            Log.i.debug("Audio: {0}.{1}.", strSetNome, strNome);
+            Log.i.debug("Áudio: {0}.{1}.", strSetNome, strNome);
         }
 
         public executarObjAudio(objAudio: AudioDominio): void

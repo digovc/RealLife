@@ -302,7 +302,7 @@ module RealLife
 
             this.objHandle = API.createVehicle(this.intHash, new Vector3(), 0);
 
-            Log.i.debug("Criando veiculo {0}.", this.intHash.toString());
+            Log.i.debug("Criando veículo {0}.", this.intHash.toString());
         }
 
         public explodir(): void

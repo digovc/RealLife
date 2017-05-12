@@ -2,8 +2,8 @@
 
 module RealLife
 {
-    // #region Importações
-    // #endregion Importações
+    // #region ImportaÃ§Ãµes
+    // #endregion ImportaÃ§Ãµes
 
     // #region Enumerados
     // #endregion Enumerados
@@ -25,20 +25,20 @@ module RealLife
 
         // #endregion Construtores
 
-        // #region Métodos
+        // #region MÃ©todos
 
         protected inicializarArrObjMenuItem(arrObjMenuItem: Array<MenuItemBase>): void
         {
             super.inicializarArrObjMenuItem(arrObjMenuItem);
 
-            arrObjMenuItem.push(new MenuItem(this, "Opção 1"));
-            arrObjMenuItem.push(new MenuItem(this, "Opção 2"));
-            arrObjMenuItem.push(new MenuItem(this, "Opção 3"));
-            arrObjMenuItem.push(new MenuItem(this, "Opção 4"));
-            arrObjMenuItem.push(new MenuItem(this, "Opção 5"));
+            arrObjMenuItem.push(new MenuItem(this, "OpÃ§Ã£o 1"));
+            arrObjMenuItem.push(new MenuItem(this, "OpÃ§Ã£o 2"));
+            arrObjMenuItem.push(new MenuItem(this, "OpÃ§Ã£o 3"));
+            arrObjMenuItem.push(new MenuItem(this, "OpÃ§Ã£o 4"));
+            arrObjMenuItem.push(new MenuItem(this, "OpÃ§Ã£o 5"));
         }
 
-        // #endregion Métodos
+        // #endregion MÃ©todos
 
         // #region Eventos
         // #endregion Eventos

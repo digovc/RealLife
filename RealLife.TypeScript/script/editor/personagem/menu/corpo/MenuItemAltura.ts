@@ -2,8 +2,8 @@
 
 module RealLife
 {
-    // #region Importações
-    // #endregion Importações
+    // #region ImportaÃ§Ãµes
+    // #endregion ImportaÃ§Ãµes
 
     // #region Enumerados
     // #endregion Enumerados
@@ -25,7 +25,7 @@ module RealLife
 
         // #endregion Construtores
 
-        // #region Métodos
+        // #region MÃ©todos
 
         protected inicializarArrObjMenuItem(arrObjMenuItem: Array<MenuItemBase>): void
         {
@@ -36,7 +36,7 @@ module RealLife
             arrObjMenuItem.push(new MenuItem(this, "Alta"));
         }
 
-        // #endregion Métodos
+        // #endregion MÃ©todos
 
         // #region Eventos
         // #endregion Eventos

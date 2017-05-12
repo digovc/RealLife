@@ -3,11 +3,11 @@
 
 module RealLife
 {
-    // #region Importações
+    // #region ImportaÃ§Ãµes
 
     import EnmPedHash = RealLifeShared.EnmPedHash;
 
-    // #endregion Importações
+    // #endregion ImportaÃ§Ãµes
 
     // #region Enumerados
     // #endregion Enumerados
@@ -29,7 +29,7 @@ module RealLife
 
         // #endregion Construtores
 
-        // #region Métodos
+        // #region MÃ©todos
 
         private alterarAparencia(enmPedHash: EnmPedHash): void
         {
@@ -44,7 +44,7 @@ module RealLife
             arrObjMenuItem.push(new MenuItem(this, "Feminino", null, (() => { this.alterarAparencia(EnmPedHash.FREEMODEFEMALE01) })));
         }
 
-        // #endregion Métodos
+        // #endregion MÃ©todos
 
         // #region Eventos
         // #endregion Eventos

@@ -2,8 +2,8 @@
 
 module RealLife
 {
-    // #region Importações
-    // #endregion Importações
+    // #region ImportaÃ§Ãµes
+    // #endregion ImportaÃ§Ãµes
 
     // #region Enumerados
     // #endregion Enumerados
@@ -20,23 +20,23 @@ module RealLife
 
         constructor()
         {
-            super(null, "Calçado");
+            super(null, "CalÃ§ado");
         }
 
         // #endregion Construtores
 
-        // #region Métodos
+        // #region MÃ©todos
 
         protected inicializarArrObjMenuItem(arrObjMenuItem: Array<MenuItemBase>): void
         {
             super.inicializarArrObjMenuItem(arrObjMenuItem);
 
             arrObjMenuItem.push(new MenuItem(this, "Chinelo"));
-            arrObjMenuItem.push(new MenuItem(this, "Tênis"));
+            arrObjMenuItem.push(new MenuItem(this, "TÃªnis"));
             arrObjMenuItem.push(new MenuItem(this, "Sapato"));
         }
 
-        // #endregion Métodos
+        // #endregion MÃ©todos
 
         // #region Eventos
         // #endregion Eventos

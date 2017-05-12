@@ -1,29 +1,26 @@
-/// <reference path="DominioRealLifeBase.ts"/>
+/// <reference path="ScriptComercioBase.ts"/>
 
-module RealLifeShared
+module RealLife
 {
-    // #region ImportaÃ§Ãµes
-    // #endregion ImportaÃ§Ãµes
+    // #region Importações
+    // #endregion Importações
 
     // #region Enumerados
     // #endregion Enumerados
 
-    export class SkinDominio extends DominioRealLifeBase
+    export class ScriptMecanica extends ScriptComercioBase
     {
         // #region Constantes
         // #endregion Constantes
 
         // #region Atributos
-
-
-
         // #endregion Atributos
 
         // #region Construtores
         // #endregion Construtores
 
-        // #region MÃ©todos
-        // #endregion MÃ©todos
+        // #region Métodos
+        // #endregion Métodos
 
         // #region Eventos
         // #endregion Eventos

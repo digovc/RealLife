@@ -22,7 +22,7 @@ module RealLife
                 return this._objMenu;
             }
 
-            this._objMenu = new MenuPersonagemEditor();
+            this._objMenu = new MenuPersonagemEditor(this);
 
             return this._objMenu;
         }
@@ -41,11 +41,25 @@ module RealLife
             this.etapa001();
         }
 
+        public salvar(): void
+        {
+            // TODO: Persistir skin definida pelo jogador no servidor.
+
+            this.etapa002();
+        }
+
+        // Etapas
+
         private etapa001(): void
         {
             this.objMenu.iniciar();
 
             this.objMenu.booVisivel = true;
+        }
+
+        private etapa002(): void
+        {
+            new Etapa003PersonagemEditorConclusao(this.objScript).iniciar();
         }
 
         // #endregion Métodos

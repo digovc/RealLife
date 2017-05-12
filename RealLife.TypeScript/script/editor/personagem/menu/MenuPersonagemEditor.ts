@@ -2,8 +2,8 @@
 
 module RealLife
 {
-    // #region Importações
-    // #endregion Importações
+    // #region ImportaÃ§Ãµes
+    // #endregion ImportaÃ§Ãµes
 
     // #region Enumerados
     // #endregion Enumerados
@@ -14,21 +14,50 @@ module RealLife
         // #endregion Constantes
 
         // #region Atributos
+
+        private _objEtapa: Etapa002PersonagemEditorEdicao;
+
+        private get objEtapa(): Etapa002PersonagemEditorEdicao
+        {
+            return this._objEtapa;
+        }
+
+        private set objEtapa(objEtapa: Etapa002PersonagemEditorEdicao)
+        {
+            this._objEtapa = objEtapa;
+        }
+
         // #endregion Atributos
 
         // #region Construtores
+
+        constructor(objEtapa: Etapa002PersonagemEditorEdicao)
+        {
+            super();
+
+            this.objEtapa = objEtapa;
+        }
+
         // #endregion Construtores
 
-        // #region Métodos
+        // #region MÃ©todos
 
         protected inicializarArrObjMenuItem(arrObjMenuItem: Array<MenuItemBase>): void
         {
             arrObjMenuItem.push(new MenuItemSexo());
             arrObjMenuItem.push(new MenuItemCabeca());
+
             //arrObjMenuItem.push(new MenuItemCorpo());
+
+            arrObjMenuItem.push(new MenuItem(null, "Salvar", null, (() => { this.salvar(); })));
         }
 
-        // #endregion Métodos
+        private salvar(): void
+        {
+            this.objEtapa.salvar();
+        }
+
+        // #endregion MÃ©todos
 
         // #region Eventos
         // #endregion Eventos

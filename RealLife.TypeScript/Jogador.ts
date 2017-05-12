@@ -4,6 +4,7 @@
 /// <reference path="evento/OnChatCommandListener.ts"/>
 /// <reference path="evento/OnServerEventTriggerListener.ts"/>
 /// <reference path="Objeto.ts"/>
+/// <reference path="Ped.ts"/>
 
 module RealLife
 {
@@ -18,7 +19,7 @@ module RealLife
     // #region Enumerados
     // #endregion Enumerados
 
-    export class Jogador extends Objeto implements OnChatCommandListener, OnServerEventTriggerListener
+    export class Jogador extends Ped implements OnChatCommandListener, OnServerEventTriggerListener
     {
         // #region Constantes
 
@@ -50,7 +51,6 @@ module RealLife
 
         private _intId: number;
         private _objJogador: JogadorDominio;
-        private _ped: Ped;
         private _strGametag: string;
 
         public get intId(): number
@@ -75,18 +75,6 @@ module RealLife
             this._objJogador = objJogador;
         }
 
-        public get ped(): Ped
-        {
-            if (this._ped != null)
-            {
-                return this._ped;
-            }
-
-            this._ped = this.getPed();
-
-            return this._ped;
-        }
-
         private get strGametag(): string
         {
             return this._strGametag;
@@ -96,7 +84,7 @@ module RealLife
         {
             this._strGametag = strGametag;
 
-            API.setPlayerNametag(this.ped.objHandle, this._strGametag);
+            API.setPlayerNametag(this.objHandle, this._strGametag);
         }
 
         // #endregion Atributos
@@ -208,6 +196,13 @@ module RealLife
             }
 
             return arrObjArg[0];
+        }
+
+        protected getObjHandle(): LocalHandle
+        {
+            //return super.getObjHandle();
+
+            return API.getLocalPlayer();
         }
 
         private getPed(): Ped

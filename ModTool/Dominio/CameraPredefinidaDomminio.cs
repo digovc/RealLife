@@ -1,7 +1,4 @@
-﻿using GTA.Math;
-using System.Globalization;
-using System.Text;
-using System.Windows.Forms;
+﻿using System.Windows.Forms;
 
 namespace ModTool.Dominio
 {
@@ -15,9 +12,8 @@ namespace ModTool.Dominio
 
         private Keys _enmKey;
         private int _intCamNumero;
-        private string _strCode;
-        private Vector3 _vctPosicao;
-        private Vector3 _vctRotacao;
+        private Vector3Dominio _vctPosicao = new Vector3Dominio();
+        private Vector3Dominio _vctRotacao = new Vector3Dominio();
 
         public Keys enmKey
         {
@@ -32,7 +28,7 @@ namespace ModTool.Dominio
             }
         }
 
-        public Vector3 vctPosicao
+        public Vector3Dominio vctPosicao
         {
             get
             {
@@ -45,7 +41,7 @@ namespace ModTool.Dominio
             }
         }
 
-        public Vector3 vctRotacao
+        public Vector3Dominio vctRotacao
         {
             get
             {
@@ -70,16 +66,6 @@ namespace ModTool.Dominio
                 _intCamNumero = this.getIntCamNumero();
 
                 return _intCamNumero;
-            }
-        }
-
-        private string strCode
-        {
-            get
-            {
-                _strCode = this.getStrCode();
-
-                return _strCode;
             }
         }
 
@@ -122,27 +108,6 @@ namespace ModTool.Dominio
                 default:
                     return 1;
             }
-        }
-
-        private string getStrCode()
-        {
-            if (this.vctPosicao == null)
-            {
-                return null;
-            }
-
-            if (this.vctRotacao == null)
-            {
-                return null;
-            }
-
-            var cti = CultureInfo.GetCultureInfo("en-US");
-
-            var stbResultado = new StringBuilder();
-
-            stbResultado.Append(string.Format("pos: {0}, {1}, {2}; rot: {3}, {4}, {5}", this.vctPosicao.X.ToString(cti), this.vctPosicao.Y.ToString(cti), this.vctPosicao.Z.ToString(cti), this.vctRotacao.X.ToString(cti), this.vctRotacao.Y.ToString(cti), this.vctRotacao.Z.ToString(cti)));
-
-            return stbResultado.ToString();
         }
 
         #endregion Métodos

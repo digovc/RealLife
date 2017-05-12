@@ -125,7 +125,7 @@ module RealLife
                 return;
             }
 
-            new Timer((() => { fncAfter(); }), fltDuracao).iniciar();
+            new Timer(fncAfter, fltDuracao).iniciar();
         }
 
         public fadeOut(fltDuracao: number = 1, fncAfter: Function = null): void
@@ -137,7 +137,7 @@ module RealLife
                 return;
             }
 
-            new Timer((() => { fncAfter(); }), fltDuracao).iniciar();
+            new Timer(fncAfter, fltDuracao).iniciar();
         }
 
         public notificar(strNotificacao: string): void

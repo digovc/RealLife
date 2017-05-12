@@ -57,6 +57,7 @@
     <Compile Include="CameraScript.cs" />
     <Compile Include="Dominio\CameraPredefinidaDomminio.cs" />
     <Compile Include="Dominio\DominioBase.cs" />
+    <Compile Include="Dominio\Vector3Dominio.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ScriptBase.cs" />
   </ItemGroup>

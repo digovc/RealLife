@@ -54,7 +54,7 @@ module RealLife
         {
             super.iniciar();
 
-            Screen.i.booMostrarMouse = true;
+            Screen.i.booMouseVisivel = true;
         }
 
         public criarConta(jsnJogador: string): void

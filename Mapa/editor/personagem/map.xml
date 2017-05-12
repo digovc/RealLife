@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Map xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <Objects>
+    <MapObject>
+      <Type>Ped</Type>
+      <Position>
+        <X>198.016464</X>
+        <Y>1165.42078</Y>
+        <Z>227.009354</Z>
+      </Position>
+      <Rotation>
+        <X>1.00178786E-05</X>
+        <Y>-0</Y>
+        <Z>99.99914</Z>
+      </Rotation>
+      <Hash>1885233650</Hash>
+      <Dynamic>true</Dynamic>
+      <Quaternion>
+        <X>5.61945974E-08</X>
+        <Y>6.696909E-08</Y>
+        <Z>0.7660396</Z>
+        <W>0.642793357</W>
+      </Quaternion>
+      <Action>None</Action>
+      <Relationship>Companion</Relationship>
+      <Weapon>Unarmed</Weapon>
+    </MapObject>
+  </Objects>
+  <RemoveFromWorld />
+  <Markers />
+  <Metadata>
+    <Creator>digovc</Creator>
+    <Name>Nameless Map</Name>
+    <Description />
+    <LoadingPoint xsi:nil="true" />
+    <TeleportPoint xsi:nil="true" />
+  </Metadata>
+</Map>

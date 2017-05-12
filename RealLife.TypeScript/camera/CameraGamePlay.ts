@@ -46,6 +46,11 @@ module RealLife
 
         // #region Métodos
 
+        protected criar(): void
+        {
+            //super.criar();
+        }
+
         protected inicializar(): void
         {
             super.inicializar();

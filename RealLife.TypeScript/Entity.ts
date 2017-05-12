@@ -184,6 +184,8 @@ module RealLife
 
         public get objHandle(): LocalHandle
         {
+            this._objHandle = this.getObjHandle();
+
             return this._objHandle;
         }
 
@@ -429,6 +431,11 @@ module RealLife
             return API.returnNative("GET_ENTITY_MAX_HEALTH", Enums.NativeReturnTypes.Int, this.objHandle);
         }
 
+        protected getObjHandle(): LocalHandle
+        {
+            return this._objHandle;
+        }
+
         private getVctPosicao(): Vector3
         {
             if (this.objHandle == null)
@@ -457,6 +464,16 @@ module RealLife
             }
 
             return API.getEntityVelocity(this.objHandle);
+        }
+
+        public setColisao(booPassivelDeColisao: boolean, booFisicaManter: boolean = true): void
+        {
+            if (this.objHandle == null)
+            {
+                return;
+            }
+
+            API.callNative("SET_ENTITY_COLLISION", this.objHandle, booPassivelDeColisao, booFisicaManter);
         }
 
         private setBooCongelado(booCongelado: boolean): void

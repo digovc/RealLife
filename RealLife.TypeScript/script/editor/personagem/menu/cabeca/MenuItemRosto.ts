@@ -2,8 +2,8 @@
 
 module RealLife
 {
-    // #region Importações
-    // #endregion Importações
+    // #region ImportaÃ§Ãµes
+    // #endregion ImportaÃ§Ãµes
 
     // #region Enumerados
     // #endregion Enumerados
@@ -25,25 +25,25 @@ module RealLife
 
         // #endregion Construtores
 
-        // #region Métodos
+        // #region MÃ©todos
 
         private alterarAparencia(intRosto: number): void
         {
-            Jogador.i.ped.intRosto = intRosto;
+            Jogador.i.intRosto = intRosto;
         }
 
         protected inicializarArrObjMenuItem(arrObjMenuItem: Array<MenuItemBase>): void
         {
             super.inicializarArrObjMenuItem(arrObjMenuItem);
 
-            arrObjMenuItem.push(new MenuItem(this, "Opção 1", null, (() => { this.alterarAparencia(0); })));
-            arrObjMenuItem.push(new MenuItem(this, "Opção 2", null, (() => { this.alterarAparencia(1); })));
-            arrObjMenuItem.push(new MenuItem(this, "Opção 3", null, (() => { this.alterarAparencia(2); })));
-            arrObjMenuItem.push(new MenuItem(this, "Opção 4", null, (() => { this.alterarAparencia(3); })));
-            arrObjMenuItem.push(new MenuItem(this, "Opção 5", null, (() => { this.alterarAparencia(4); })));
+            arrObjMenuItem.push(new MenuItem(this, "OpÃ§Ã£o 1", null, (() => { this.alterarAparencia(0); })));
+            arrObjMenuItem.push(new MenuItem(this, "OpÃ§Ã£o 2", null, (() => { this.alterarAparencia(1); })));
+            arrObjMenuItem.push(new MenuItem(this, "OpÃ§Ã£o 3", null, (() => { this.alterarAparencia(2); })));
+            arrObjMenuItem.push(new MenuItem(this, "OpÃ§Ã£o 4", null, (() => { this.alterarAparencia(3); })));
+            arrObjMenuItem.push(new MenuItem(this, "OpÃ§Ã£o 5", null, (() => { this.alterarAparencia(4); })));
         }
 
-        // #endregion Métodos
+        // #endregion MÃ©todos
 
         // #region Eventos
         // #endregion Eventos

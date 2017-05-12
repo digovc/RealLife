@@ -1,4 +1,4 @@
-/// <reference path="../../ScriptBase.ts"/>
+/// <reference path="ScriptProfissaoBase.ts"/>
 
 module RealLife
 {
@@ -8,7 +8,7 @@ module RealLife
     // #region Enumerados
     // #endregion Enumerados
 
-    export class ScriptPersonagemEditor extends ScriptBase
+    export abstract class ScriptPolicialBase extends ScriptProfissaoBase
     {
         // #region Constantes
         // #endregion Constantes
@@ -20,21 +20,6 @@ module RealLife
         // #endregion Construtores
 
         // #region Métodos
-
-        protected inicializar(): void
-        {
-            super.inicializar();
-
-            new Etapa001PersonagemEditorAbertura(this).iniciar();
-        }
-
-        public destruir(): void
-        {
-            super.destruir();
-
-            new ScriptOpenWorld().iniciar();
-        }
-
         // #endregion Métodos
 
         // #region Eventos

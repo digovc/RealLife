@@ -23,6 +23,21 @@ namespace ModTool
 
         #region Métodos
 
+        public void notificar(string strNotificacao, params object[] arrObjParam)
+        {
+            if (string.IsNullOrEmpty(strNotificacao))
+            {
+                return;
+            }
+
+            if (arrObjParam != null)
+            {
+                strNotificacao = string.Format(strNotificacao, arrObjParam);
+            }
+
+            UI.Notify(strNotificacao);
+        }
+
         protected virtual void inicializar()
         {
         }

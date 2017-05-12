@@ -16,8 +16,8 @@ module RealLife
         // #region Atributos
 
         private _objCameraCabeca: Camera;
-        private _objCameraDistante: Camera;
-        private _objCameraPernas: Camera;
+        private _objCameraLonge: Camera;
+        private _objCameraPerna: Camera;
         private _objCameraPerto: Camera;
         private _objCameraTronco: Camera;
 
@@ -28,33 +28,33 @@ module RealLife
                 return this._objCameraCabeca;
             }
 
-            this._objCameraCabeca = new Camera();
+            this._objCameraCabeca = this.getObjCameraCabeca();
 
             return this._objCameraCabeca;
         }
 
-        private get objCameraDistante(): Camera
+        private get objCameraLonge(): Camera
         {
-            if (this._objCameraDistante != null)
+            if (this._objCameraLonge != null)
             {
-                return this._objCameraDistante;
+                return this._objCameraLonge;
             }
 
-            this._objCameraDistante = new Camera();
+            this._objCameraLonge = this.getObjCameraLonge();
 
-            return this._objCameraDistante;
+            return this._objCameraLonge;
         }
 
-        private get objCameraPernas(): Camera
+        private get objCameraPerna(): Camera
         {
-            if (this._objCameraPernas != null)
+            if (this._objCameraPerna != null)
             {
-                return this._objCameraPernas;
+                return this._objCameraPerna;
             }
 
-            this._objCameraPernas = new Camera();
+            this._objCameraPerna = this.getObjCameraPerna();
 
-            return this._objCameraPernas;
+            return this._objCameraPerna;
         }
 
         private get objCameraPerto(): Camera
@@ -64,7 +64,7 @@ module RealLife
                 return this._objCameraPerto;
             }
 
-            this._objCameraPerto = new Camera();
+            this._objCameraPerto = this.getObjCameraPerto();
 
             return this._objCameraPerto;
         }
@@ -76,7 +76,7 @@ module RealLife
                 return this._objCameraTronco;
             }
 
-            this._objCameraTronco = new Camera();
+            this._objCameraTronco = this.getObjCameraTronco();
 
             return this._objCameraTronco;
         }
@@ -88,6 +88,57 @@ module RealLife
 
         // #region Métodos
 
+        private getObjCameraCabeca(): Camera
+        {
+            var objCameraResultado = new Camera();
+
+            objCameraResultado.vctPosicao = new Vector3(197.3365, 1165.237, 227.6546);
+            objCameraResultado.vctRotacao = new Vector3(0.6592886, -2.53464E-07, -76.61622);
+
+            return objCameraResultado;
+        }
+
+        private getObjCameraLonge(): Camera
+        {
+            var objCameraResultado = new Camera();
+
+            objCameraResultado.vctPosicao = new Vector3(121.2315, 1145.925, 244.075);
+            objCameraResultado.vctRotacao = new Vector3(-12.33284, 0, -75.63238);
+
+            return objCameraResultado;
+        }
+
+        private getObjCameraPerna(): Camera
+        {
+            var objCameraResultado = new Camera();
+
+            objCameraResultado.vctPosicao = new Vector3(196.9738, 1165.13, 227.2032);
+            objCameraResultado.vctRotacao = new Vector3(-33.98626, 1.28066E-06, -77.20695);
+
+            return objCameraResultado;
+        }
+
+        private getObjCameraPerto(): Camera
+        {
+            var objCameraResultado = new Camera();
+
+            objCameraResultado.fltFov = 65;
+            objCameraResultado.vctPosicao = new Vector3(196.3674, 1164.992, 227.6225);
+            objCameraResultado.vctRotacao = new Vector3(-20.01, 0, -75.63219);
+
+            return objCameraResultado;
+        }
+
+        private getObjCameraTronco(): Camera
+        {
+            var objCameraResultado = new Camera();
+
+            objCameraResultado.vctPosicao = new Vector3(197.3234, 1165.227, 227.446);
+            objCameraResultado.vctRotacao = new Vector3(-17.45088, -2.988208E-06, -76.61635);
+
+            return objCameraResultado;
+        }
+
         protected inicializar(): void
         {
             super.inicializar();
@@ -95,49 +146,41 @@ module RealLife
             this.etapa001();
         }
 
+        // Etapas
+
         private etapa001(): void
         {
-            Screen.i.fadeOut(.150, (() => { this.etapa002(); }));
+            Screen.i.fadeOut(1, (() => { this.etapa002(); }));
         }
 
         private etapa002(): void
         {
-            Jogador.i.ped.booVisivel = false;
+            Jogador.i.booVisivel = false;
             Keyboard.i.booAtivo = false;
             Screen.i.booHudVisivel = false;
             World.i.setEnmClima(Enums.Weather.Clear);
             World.i.setHora(12);
 
-            this.objCameraDistante.criar();
+            this.objCameraLonge.booAtiva = true;
 
-            this.objCameraDistante.vctPosicao = new Vector3(126.8095, 1148.244, 237.1642);
-            this.objCameraDistante.vctRotacao = new Vector3(-8.180131, -8.537736, -76.37589);
+            Jogador.i.fltRotacao = 99.99914;
+            Jogador.i.vctPosicao = new Vector3(198.016464, 1165.42078, 227.009354);
+            Jogador.i.vctRotacao = new Vector3(1.00178786E-05, -0, 99.99914);
 
-            this.objCameraDistante.booAtiva = true;
+            Jogador.i.ajustarZ();
 
-            Jogador.i.ped.fltRotacao = 104.4779;
-            Jogador.i.ped.vctPosicao = new Vector3(198.6063, 1165.586, 227.0094);
-            Jogador.i.ped.vctRotacao = new Vector3(1.494016, 0, 104.4779);
+            Jogador.i.booVisivel = true;
 
-            Jogador.i.ped.ajustarZ();
-
-            Jogador.i.ped.booVisivel = true;
-
-            new Timer((() => { this.etapa003(); }), .250);
+            new Timer((() => { this.etapa003(); }), 1).iniciar();
         }
 
         private etapa003(): void
         {
-            this.objCameraPerto.criar();
-
-            this.objCameraPerto.vctPosicao = new Vector3(195.4025, 1164.994, 227.6242);
-            this.objCameraPerto.vctRotacao = new Vector3(-8.180131, -8.537736, -76.37589);
-
-            this.objCameraPerto.criar();
+            Log.i.debug("Etapa 3");
 
             Screen.i.fadeIn();
 
-            this.objCameraDistante.interpolar(this.objCameraPerto, 5000, (() => { this.etapa004(); }));
+            this.objCameraLonge.interpolar(this.objCameraPerto, 5, (() => { this.etapa004(); }));
         }
 
         private etapa004(): void

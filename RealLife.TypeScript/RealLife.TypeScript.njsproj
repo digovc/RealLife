@@ -50,6 +50,7 @@
   <ItemGroup>
     <TypeScriptCompile Include="AppRealLife.ts" />
     <TypeScriptCompile Include="Audio.ts" />
+    <TypeScriptCompile Include="evento\OnDestruirListener.ts" />
     <TypeScriptCompile Include="Gps.ts" />
     <TypeScriptCompile Include="Chat.ts" />
     <TypeScriptCompile Include="blip\Blip.ts" />
@@ -91,6 +92,20 @@
     <TypeScriptCompile Include="script\editor\personagem\Etapa002PersonagemEditorEdicao.ts" />
     <TypeScriptCompile Include="script\editor\personagem\ScriptPersonagemEditor.ts" />
     <TypeScriptCompile Include="script\editor\personagem\Etapa003PersonagemEditorConclusao.ts" />
+    <TypeScriptCompile Include="script\missao\profissao\ScriptPolicialBase.ts" />
+    <TypeScriptCompile Include="script\openWorld\comercio\ScriptAutoEscola.ts" />
+    <TypeScriptCompile Include="script\openWorld\comercio\ScriptEscolaAviacao.ts" />
+    <TypeScriptCompile Include="script\openWorld\comercio\ScriptMecanica.ts" />
+    <TypeScriptCompile Include="script\openWorld\comercio\ScriptMercado.ts" />
+    <TypeScriptCompile Include="script\openWorld\comercio\ScriptEstudioTatuagem.ts" />
+    <TypeScriptCompile Include="script\openWorld\comercio\ScriptBanco.ts" />
+    <TypeScriptCompile Include="script\openWorld\comercio\ScriptComercioBase.ts" />
+    <TypeScriptCompile Include="script\openWorld\comercio\ScriptLojaVeiculo.ts" />
+    <TypeScriptCompile Include="script\openWorld\comercio\ScriptLojaImovel.ts" />
+    <TypeScriptCompile Include="script\openWorld\comercio\ScriptLojaRoupa.ts" />
+    <TypeScriptCompile Include="script\openWorld\comercio\ScriptCabeleireiro.ts" />
+    <TypeScriptCompile Include="script\openWorld\comercio\ScriptAgenciaEmprego.ts" />
+    <TypeScriptCompile Include="script\openWorld\ScriptOpenWorld.ts" />
     <TypeScriptCompile Include="script\login\ScriptLogin.ts" />
     <TypeScriptCompile Include="script\login\Etapa001LoginPreparacao.ts" />
     <TypeScriptCompile Include="script\login\Etapa003Login.ts" />
@@ -146,6 +161,8 @@
     <Folder Include="script\missao\" />
     <Folder Include="script\missao\profissao\" />
     <Folder Include="script\login\" />
+    <Folder Include="script\openWorld\" />
+    <Folder Include="script\openWorld\comercio\" />
     <Folder Include="ui\" />
     <Folder Include="typedefinition\" />
     <Folder Include="typedefinition\gta-network-typescript\" />

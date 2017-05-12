@@ -11,7 +11,7 @@ namespace ModTool
     {
         #region Constantes
 
-        private const string DIR_CAMERA_INFO = "real_life_mod_tool/camera_info.json";
+        private const string DIR_CAMERA_INFO = "temp/camera.json";
 
         #endregion Constantes
 
@@ -65,13 +65,15 @@ namespace ModTool
         {
             var objCamera = GTA.Native.Function.Call<Camera>(GTA.Native.Hash.GET_RENDERING_CAM);
 
-            objCamera.Position = objCameraPredefinida.vctPosicao;
-            objCamera.Rotation = objCameraPredefinida.vctRotacao;
+            objCamera.Position = objCameraPredefinida.vctPosicao.getVct();
+            objCamera.Rotation = objCameraPredefinida.vctRotacao.getVct();
+
+            this.notificar("Carregando câmera.");
         }
 
         private List<CameraPredefinidaDomminio> getLstObjCameraPredefinida()
         {
-            if (File.Exists(DIR_CAMERA_INFO))
+            if (!File.Exists(DIR_CAMERA_INFO))
             {
                 return new List<CameraPredefinidaDomminio>();
             }
@@ -82,6 +84,8 @@ namespace ModTool
             {
                 return new List<CameraPredefinidaDomminio>();
             }
+
+            this.notificar("Carregando arquivo de câmeras ({0}).", DIR_CAMERA_INFO);
 
             return Json.i.fromJson<List<CameraPredefinidaDomminio>>(strJson);
         }
@@ -140,7 +144,11 @@ namespace ModTool
         {
             var strConteudo = Json.i.toJson(this.lstObjCameraPredefinida);
 
+            Directory.CreateDirectory(Path.GetDirectoryName(DIR_CAMERA_INFO));
+
             File.WriteAllText(DIR_CAMERA_INFO, strConteudo);
+
+            this.notificar("Arquivo de câmeras salvo ({0}).", DIR_CAMERA_INFO);
         }
 
         private void salvarPredefinida(Keys enmKey)
@@ -150,8 +158,10 @@ namespace ModTool
             var objCameraPredefinida = this.getObjCameraPredefinida(enmKey);
 
             objCameraPredefinida.enmKey = enmKey;
-            objCameraPredefinida.vctPosicao = objCamera.Position;
-            objCameraPredefinida.vctRotacao = objCamera.Rotation;
+            objCameraPredefinida.vctPosicao.setVct(objCamera.Position);
+            objCameraPredefinida.vctRotacao.setVct(objCamera.Rotation);
+
+            this.notificar("Câmera salva.");
         }
 
         #endregion Métodos

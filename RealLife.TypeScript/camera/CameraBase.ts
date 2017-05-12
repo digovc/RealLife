@@ -106,6 +106,13 @@ module RealLife
 
         // #region Construtores
 
+        constructor()
+        {
+            super();
+
+            this.criar();
+        }
+
         // #endregion Construtores
 
         // #region Métodos
@@ -150,14 +157,14 @@ module RealLife
             API.attachCameraToEntityBone(this.objGlobalCamera, objEntity.objHandle, intBone, vctOffSet);
         }
 
-        public criar(): void
+        protected criar(): void
         {
             if (this.objGlobalCamera != null)
             {
                 return;
             }
 
-            Log.i.debug("Criando camera.");
+            Log.i.debug("Criando câmera.");
 
             this.objGlobalCamera = API.createCamera(new Vector3(), new Vector3());
         }
@@ -315,6 +322,8 @@ module RealLife
                 return;
             }
 
+            Log.i.debug("Interpolando câmeras.");
+
             API.interpolateCameras(this.objGlobalCamera, objCameraTo.objGlobalCamera, (fltDuracao * 1000), true, true);
 
             if (fncAfter == null)
@@ -322,7 +331,7 @@ module RealLife
                 return;
             }
 
-            new Timer((() => { fncAfter(); }), fltDuracao).iniciar();
+            new Timer(fncAfter, fltDuracao).iniciar();
         }
 
         protected setBooAtiva(booAtiva: boolean): void
@@ -366,7 +375,7 @@ module RealLife
 
             API.setCameraPosition(this.objGlobalCamera, vctPosicao);
 
-            Log.i.debug("Posicao (camera): {0}, {1}, {2}.", vctPosicao.X, vctPosicao.Y, vctPosicao.Z);
+            Log.i.debug("Posição (câmera): {0}, {1}, {2}.", vctPosicao.X, vctPosicao.Y, vctPosicao.Z);
         }
 
         private setVctRotacao(vctRotacao: Vector3): void
@@ -383,7 +392,7 @@ module RealLife
 
             API.setCameraRotation(this.objGlobalCamera, vctRotacao);
 
-            Log.i.debug("Rotacao (camera): {0}, {1}, {2}.", vctRotacao.X, vctRotacao.Y, vctRotacao.Z);
+            Log.i.debug("Rotação (câmera): {0}, {1}, {2}.", vctRotacao.X, vctRotacao.Y, vctRotacao.Z);
         }
 
         public tremer(fltAmplitude: number, enmTremerTipo: CameraBase_EnmTremerTipo = CameraBase_EnmTremerTipo.DRUNK_SHAKE): void
