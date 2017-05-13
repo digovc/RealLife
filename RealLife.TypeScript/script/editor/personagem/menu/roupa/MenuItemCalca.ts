@@ -8,7 +8,7 @@ module RealLife
     // #region Enumerados
     // #endregion Enumerados
 
-    export class MenuItemPele extends MenuItem
+    export class MenuItemCalca extends MenuItem
     {
         // #region Constantes
         // #endregion Constantes
@@ -18,9 +18,9 @@ module RealLife
 
         // #region Construtores
 
-        constructor(objMenuItemPai: MenuItemCorpo)
+        constructor(objMenuItemPai: MenuItemRoupa)
         {
-            super(objMenuItemPai, "Pele");
+            super(objMenuItemPai, "Calça");
         }
 
         // #endregion Construtores
@@ -31,11 +31,11 @@ module RealLife
         {
             super.inicializarArrObjMenuItem(arrObjMenuItem);
 
-            arrObjMenuItem.push(new MenuItem(this, "Opção 1"));
-            arrObjMenuItem.push(new MenuItem(this, "Opção 2"));
-            arrObjMenuItem.push(new MenuItem(this, "Opção 3"));
-            arrObjMenuItem.push(new MenuItem(this, "Opção 4"));
-            arrObjMenuItem.push(new MenuItem(this, "Opção 5"));
+            arrObjMenuItem.push(new MenuItem(this, "Opção 1", null, (() => { Jogador.i.intCalca = 0; })));
+            arrObjMenuItem.push(new MenuItem(this, "Opção 2", null, (() => { Jogador.i.intCalca = 3; })));
+            arrObjMenuItem.push(new MenuItem(this, "Opção 3", null, (() => { Jogador.i.intCalca = 6; })));
+            arrObjMenuItem.push(new MenuItem(this, "Opção 4", null, (() => { Jogador.i.intCalca = 9; })));
+            arrObjMenuItem.push(new MenuItem(this, "Opção 5", null, (() => { Jogador.i.intCalca = 12; })));
         }
 
         // #endregion Métodos

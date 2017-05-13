@@ -46,7 +46,7 @@ module RealLife
 
         protected getObjUiMenuItem(): NativeUI.UIMenuItem
         {
-            return API.createMenuItem(this.strTitulo, this.strDescricao);
+            return API.createMenuItem(this.strTitulo, this.strSubTitulo);
         }
 
         protected inicializarArrObjMenuItem(arrObjMenuItem: Array<MenuItemBase>): void

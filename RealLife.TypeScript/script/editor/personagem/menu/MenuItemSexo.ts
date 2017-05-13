@@ -34,6 +34,15 @@ module RealLife
         private alterarAparencia(enmPedHash: EnmPedHash): void
         {
             Jogador.i.alterarSkin(enmPedHash);
+
+            Jogador.i.randomizarAparencia();
+        }
+
+        protected inicializar(): void
+        {
+            super.inicializar();
+
+            this.strSubTitulo = "Teste";
         }
 
         protected inicializarArrObjMenuItem(arrObjMenuItem: Array<MenuItemBase>): void

@@ -85,6 +85,7 @@ module RealLife
                 case Keys.Back:
                 case Keys.Left:
                     this.dispararEvtOnGameKeyListener(EnmKey.MENU_VOLTAR);
+                    this.dispararEvtOnGameKeyListener(EnmKey.SETA_TRAS);
                     return;
 
                 case Keys.D:
@@ -93,11 +94,13 @@ module RealLife
 
                 case Keys.Down:
                     this.dispararEvtOnGameKeyListener(EnmKey.MENU_BAIXO);
+                    this.dispararEvtOnGameKeyListener(EnmKey.SETA_BAIXO);
                     return;
 
                 case Keys.Enter:
                 case Keys.Right:
                     this.dispararEvtOnGameKeyListener(EnmKey.MENU_SELECIONAR);
+                    this.dispararEvtOnGameKeyListener(EnmKey.SETA_FRENTE);
                     return;
 
                 case Keys.M:
@@ -110,6 +113,7 @@ module RealLife
 
                 case Keys.Up:
                     this.dispararEvtOnGameKeyListener(EnmKey.MENU_ALTO);
+                    this.dispararEvtOnGameKeyListener(EnmKey.SETA_ALTO);
                     return;
 
                 case Keys.W:

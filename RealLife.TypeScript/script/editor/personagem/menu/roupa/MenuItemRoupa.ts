@@ -1,4 +1,4 @@
-/// <reference path="../../../../../../ui/menu/MenuItem.ts"/>
+/// <reference path="../../../../../ui/menu/MenuItem.ts"/>
 
 module RealLife
 {
@@ -18,9 +18,9 @@ module RealLife
 
         // #region Construtores
 
-        constructor(objMenuItemPai: MenuItemCorpo)
+        constructor()
         {
-            super(objMenuItemPai, "Roupa");
+            super(null, "Roupa");
         }
 
         // #endregion Construtores
@@ -31,10 +31,9 @@ module RealLife
         {
             super.inicializarArrObjMenuItem(arrObjMenuItem);
 
-            arrObjMenuItem.push(new MenuItemSuperior(this));
-            arrObjMenuItem.push(new MenuItemInferior(this));
+            arrObjMenuItem.push(new MenuItemCamisa(this));
+            arrObjMenuItem.push(new MenuItemCalca(this));
             arrObjMenuItem.push(new MenuItemCalcado(this));
-            arrObjMenuItem.push(new MenuItemConjunto(this));
         }
 
         // #endregion Métodos

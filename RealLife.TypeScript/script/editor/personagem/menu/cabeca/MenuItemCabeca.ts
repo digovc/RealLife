@@ -33,7 +33,6 @@ module RealLife
 
             arrObjMenuItem.push(new MenuItemCabelo(this));
             arrObjMenuItem.push(new MenuItemCabeloCor(this));
-            arrObjMenuItem.push(new MenuItemRosto(this));
             arrObjMenuItem.push(new MenuItemOlho(this));
         }
 

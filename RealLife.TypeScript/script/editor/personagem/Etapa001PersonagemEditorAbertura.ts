@@ -156,6 +156,11 @@ module RealLife
         private etapa002(): void
         {
             Jogador.i.booVisivel = false;
+
+            Jogador.i.alterarSkin(RealLifeShared.EnmPedHash.FREEMODEMALE01);
+
+            Jogador.i.randomizarAparencia();
+
             Keyboard.i.booAtivo = false;
             Screen.i.booHudVisivel = false;
             World.i.setEnmClima(Enums.Weather.Clear);

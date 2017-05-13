@@ -67,6 +67,11 @@ module RealLife
             return true;
         }
 
+        public static getIntRandom(intMinimo: number, intMaximo: number)
+        {
+            return (Math.floor(Math.random() * (intMaximo - intMinimo + 1)) + intMinimo);
+        }
+
         // #endregion Métodos
 
         // #region Eventos

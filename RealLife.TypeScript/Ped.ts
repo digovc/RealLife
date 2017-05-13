@@ -19,8 +19,6 @@ module RealLife
 
         // #region Atributos
 
-        // TODO: Confirmar se métodos direrionados para o player funcionam com qualquer ped.
-
         private _booAtirando: boolean;
         private _booDirigindo: boolean;
         private _booEmChamas: boolean;
@@ -31,8 +29,11 @@ module RealLife
         private _booQuedaLivre: boolean;
         private _booRecarregando: boolean;
         private _booSubindoEscadas: boolean;
+        private _intCabelo: number;
         private _intCabeloCor: number;
-        private _intCabeloModelo: number;
+        private _intCalca: number;
+        private _intCalcado: number;
+        private _intCamisa: number;
         private _intOlhoCor: number;
         private _intRosto: number;
         private _vctAlvo: Vector3;
@@ -107,6 +108,18 @@ module RealLife
             return this._booSubindoEscadas;
         }
 
+        public get intCabelo(): number
+        {
+            return this._intCabelo;
+        }
+
+        public set intCabelo(intCabelo: number)
+        {
+            this._intCabelo = intCabelo;
+
+            this.setIntCabelo(this._intCabelo);
+        }
+
         public get intCabeloCor(): number
         {
             return this._intCabeloCor;
@@ -119,16 +132,40 @@ module RealLife
             this.setIntCabeloCor(this._intCabeloCor);
         }
 
-        public get intCabeloModelo(): number
+        public get intCalca(): number
         {
-            return this._intCabeloModelo;
+            return this._intCalca;
         }
 
-        public set intCabeloModelo(intCabeloModelo: number)
+        public set intCalca(intCalca: number)
         {
-            this._intCabeloModelo = intCabeloModelo;
+            this._intCalca = intCalca;
 
-            this.setIntCabeloModelo(this._intCabeloModelo);
+            this.setIntCalca(this._intCalca);
+        }
+
+        public get intCalcado(): number
+        {
+            return this._intCalcado;
+        }
+
+        public set intCalcado(intCalcado: number)
+        {
+            this._intCalcado = intCalcado;
+
+            this.setIntCalcado(this._intCalcado);
+        }
+
+        public get intCamisa(): number
+        {
+            return this._intCamisa;
+        }
+
+        public set intCamisa(intCamisa: number)
+        {
+            this._intCamisa = intCamisa;
+
+            this.setIntCamisa(this._intCamisa);
         }
 
         public get intOlhoCor(): number
@@ -293,6 +330,47 @@ module RealLife
             return API.getPlayerAimingPoint(this.objHandle);
         }
 
+        public randomizarAcessorio(): void
+        {
+            if (this.objHandle == null)
+            {
+                return;
+            }
+
+            API.callNative("SET_PED_RANDOM_PROPS", this.objHandle);
+        }
+
+        public randomizarAparencia(): void
+        {
+            var intPai = UtilsRealLife.getIntRandom(0, 20);
+            var intMae = UtilsRealLife.getIntRandom(21, 41);
+            var intTio = UtilsRealLife.getIntRandom(42, 45);
+
+            API.callNative("SET_PED_HEAD_BLEND_DATA", this.objHandle, intPai, intMae, intTio, intPai, intMae, intTio, Math.random(), Math.random(), Math.random(), false);
+
+            Log.i.debug("Randomizando aparência.");
+        }
+
+        public randomizarRoupa(): void
+        {
+            if (this.objHandle == null)
+            {
+                return;
+            }
+
+            API.callNative("SET_PED_RANDOM_COMPONENT_VARIATION", this.objHandle);
+        }
+
+        private setIntCabelo(intCabelo: number): void
+        {
+            if (this.objHandle == null)
+            {
+                return;
+            }
+
+            API.setPlayerClothes(this.objHandle, EnmPedComponente.HAIR, intCabelo, 0);
+        }
+
         private setIntCabeloCor(intCabeloCor: number): void
         {
             if (this.objHandle == null)
@@ -300,17 +378,37 @@ module RealLife
                 return;
             }
 
-            API.setPlayerClothes(this.objHandle, EnmPedComponente.HAIR_COLORS, intCabeloCor, 0);
+            API.callNative("_SET_PED_HAIR_COLOR", this.objHandle, intCabeloCor, 1);
         }
 
-        private setIntCabeloModelo(intCabeloModelo: number): void
+        private setIntCalca(intCalca: number): void
         {
             if (this.objHandle == null)
             {
                 return;
             }
 
-            API.setPlayerClothes(this.objHandle, EnmPedComponente.HAIR, intCabeloModelo, 0);
+            API.setPlayerClothes(this.objHandle, EnmPedComponente.LEGS, intCalca, 0);
+        }
+
+        private setIntCalcado(intCalcado: number): void
+        {
+            if (this.objHandle == null)
+            {
+                return;
+            }
+
+            API.setPlayerClothes(this.objHandle, EnmPedComponente.FEET, intCalcado, 0);
+        }
+
+        private setIntCamisa(intCamisa: number): void
+        {
+            if (this.objHandle == null)
+            {
+                return;
+            }
+
+            API.setPlayerClothes(this.objHandle, EnmPedComponente.TORSO, intCamisa, 0);
         }
 
         private setIntOlhoCor(intOlhoCor: number): void
@@ -320,7 +418,7 @@ module RealLife
                 return;
             }
 
-            API.setPlayerClothes(this.objHandle, EnmPedComponente.DECALS, intOlhoCor, 0);
+            API.callNative("_SET_PED_EYE_COLOR", this.objHandle, intOlhoCor);
         }
 
         private setIntRosto(intRosto: number): void
@@ -331,6 +429,16 @@ module RealLife
             }
 
             API.setPlayerClothes(this.objHandle, EnmPedComponente.FACE, intRosto, 0);
+        }
+
+        public vestirRoupaDefault(): void
+        {
+            if (this.objHandle)
+            {
+                return;
+            }
+
+            API.callNative("SET_PED_DEFAULT_COMPONENT_VARIATION", this.objHandle);
         }
 
         // #endregion Métodos

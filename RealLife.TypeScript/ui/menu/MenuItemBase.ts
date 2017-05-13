@@ -16,7 +16,7 @@ module RealLife
         private _fnc: Function;
         private _objMenuItemPai: MenuItem;
         private _objUiMenuItem: NativeUI.UIMenuItem;
-        private _strDescricao: string;
+        private _strSubTitulo: string;
         private _strTitulo: string;
 
         protected get fnc(): Function
@@ -51,22 +51,22 @@ module RealLife
             return this._objUiMenuItem;
         }
 
-        protected get strDescricao(): string
+        public get strSubTitulo(): string
         {
-            return this._strDescricao;
+            return this._strSubTitulo;
         }
 
-        protected set strDescricao(strDescricao: string)
+        public set strSubTitulo(strSubTitulo: string)
         {
-            this._strDescricao = strDescricao;
+            this._strSubTitulo = strSubTitulo;
         }
 
-        protected get strTitulo(): string
+        public get strTitulo(): string
         {
             return this._strTitulo;
         }
 
-        protected set strTitulo(strTitulo: string)
+        public set strTitulo(strTitulo: string)
         {
             this._strTitulo = strTitulo;
         }
@@ -75,13 +75,13 @@ module RealLife
 
         // #region Construtores
 
-        constructor(objMenuItemPai: MenuItem, strTitulo: string, strDescricao: string = null, fnc: Function = null)
+        constructor(objMenuItemPai: MenuItem, strTitulo: string, strSubTitulo: string = null, fnc: Function = null)
         {
             super();
 
             this.fnc = fnc;
             this.objMenuItemPai = objMenuItemPai;
-            this.strDescricao = strDescricao;
+            this.strSubTitulo = strSubTitulo;
             this.strTitulo = strTitulo;
         }
 

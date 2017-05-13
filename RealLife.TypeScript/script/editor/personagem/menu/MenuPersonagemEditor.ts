@@ -33,7 +33,7 @@ module RealLife
 
         constructor(objEtapa: Etapa002PersonagemEditorEdicao)
         {
-            super();
+            super("Personagem");
 
             this.objEtapa = objEtapa;
         }
@@ -45,9 +45,9 @@ module RealLife
         protected inicializarArrObjMenuItem(arrObjMenuItem: Array<MenuItemBase>): void
         {
             arrObjMenuItem.push(new MenuItemSexo());
+            arrObjMenuItem.push(new MenuItem(null, "Mudar aparência", null, (() => { Jogador.i.randomizarAparencia(); })));
             arrObjMenuItem.push(new MenuItemCabeca());
-
-            //arrObjMenuItem.push(new MenuItemCorpo());
+            arrObjMenuItem.push(new MenuItemRoupa());
 
             arrObjMenuItem.push(new MenuItem(null, "Salvar", null, (() => { this.salvar(); })));
         }

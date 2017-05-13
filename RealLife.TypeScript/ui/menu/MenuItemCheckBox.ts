@@ -47,7 +47,7 @@ module RealLife
 
         protected getObjUiMenuItem(): NativeUI.UIMenuCheckboxItem
         {
-            return API.createCheckboxItem(this.strTitulo, this.strDescricao, this.booMarcado);
+            return API.createCheckboxItem(this.strTitulo, this.strSubTitulo, this.booMarcado);
         }
 
         // #endregion Métodos

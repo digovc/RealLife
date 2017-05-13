@@ -15,34 +15,18 @@ module RealLife
 
         // #region Atributos
 
-        private static _i: MenuPrincipal;
-
-        public static get i(): MenuPrincipal
-        {
-            if (MenuPrincipal._i != null)
-            {
-                return MenuPrincipal._i;
-            }
-
-            MenuPrincipal._i = new MenuPrincipal();
-
-            return MenuPrincipal._i;
-        }
-
         // #endregion Atributos
 
         // #region Construtores
+
+        constructor()
+        {
+            super("Menu");
+        }
+
         // #endregion Construtores
 
         // #region Métodos
-
-        protected inicializar(): void
-        {
-            super.inicializar();
-
-            this.strSubTitulo = "GTA Real Life";
-            this.strTitulo = "Menu principal";
-        }
 
         protected inicializarArrObjMenuItem(arrObjMenuItem: Array<MenuItemBase>): void
         {

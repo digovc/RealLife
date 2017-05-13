@@ -56,9 +56,9 @@ module RealLife
 
             this.inicializarComponente();
 
-            //new ScriptLogin().iniciar();
-
             new ScriptPersonagemEditor().iniciar();
+
+            //new ScriptTestPedSkin().iniciar();
         }
 
         private inicializarComponente(): void

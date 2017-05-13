@@ -27,9 +27,9 @@ module RealLife
 
         // #region Métodos
 
-        private alterarAparencia(intCabeloModelo: number): void
+        private alterarAparencia(intCabelo: number): void
         {
-            Jogador.i.intCabeloModelo = intCabeloModelo;
+            Jogador.i.intCabelo = intCabelo;
         }
 
         protected inicializarArrObjMenuItem(arrObjMenuItem: Array<MenuItemBase>): void
@@ -37,8 +37,8 @@ module RealLife
             super.inicializarArrObjMenuItem(arrObjMenuItem);
 
             arrObjMenuItem.push(new MenuItem(this, "Curto", null, (() => { this.alterarAparencia(1); })));
-            arrObjMenuItem.push(new MenuItem(this, "Médio", null, (() => { this.alterarAparencia(13); })));
-            arrObjMenuItem.push(new MenuItem(this, "Longo", null, (() => { this.alterarAparencia(22); })));
+            arrObjMenuItem.push(new MenuItem(this, "Médio", null, (() => { this.alterarAparencia(4); })));
+            arrObjMenuItem.push(new MenuItem(this, "Longo", null, (() => { this.alterarAparencia(17); })));
         }
 
         // #endregion Métodos

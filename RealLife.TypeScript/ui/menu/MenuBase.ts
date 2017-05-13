@@ -31,8 +31,8 @@ module RealLife
         private _intYOffset: number = 50;
         private _objMenuItemSelecionado: MenuItem;
         private _objUiMenu: NativeUI.UIMenu;
-        private _strSubTitulo: string;
-        private _strTitulo: string = "Desconhecido";
+        private _strTitulo: string;
+        private _strTituloAtual: string;
 
         private get arrObjMenuItem(): Array<MenuItemBase>
         {
@@ -122,7 +122,14 @@ module RealLife
 
         public set objMenuItemSelecionado(objMenuItemSelecionado: MenuItem)
         {
+            if (this._objMenuItemSelecionado == objMenuItemSelecionado)
+            {
+                return;
+            }
+
             this._objMenuItemSelecionado = objMenuItemSelecionado;
+
+            this.setObjMenuItemSelecionado(this._objMenuItemSelecionado);
         }
 
         private get objUiMenu(): NativeUI.UIMenu
@@ -132,52 +139,64 @@ module RealLife
                 return this._objUiMenu;
             }
 
-            //this._objUiMenu = API.createMenu(this.strTitulo, this.strSubTitulo, this.intXOffset, this.intYOffset, this.enmAncora);
-            this._objUiMenu = API.createMenu("Teste", "SubTítulo", this.intXOffset, this.intYOffset, this.enmAncora);
+            this._objUiMenu = API.createMenu(this.strTitulo, null, this.intXOffset, this.intYOffset, this.enmAncora);
 
             return this._objUiMenu;
         }
 
-        protected get strSubTitulo(): string
-        {
-            return this._strSubTitulo;
-        }
-
-        protected set strSubTitulo(strSubTitulo: string)
-        {
-            if (this._strSubTitulo == strSubTitulo)
-            {
-                return;
-            }
-
-            this._strSubTitulo = strSubTitulo;
-
-            this.setStrSubTitulo(this._strSubTitulo);
-        }
-
-        protected get strTitulo(): string
+        private get strTitulo(): string
         {
             return this._strTitulo;
         }
 
-        protected set strTitulo(strTitulo: string)
+        private set strTitulo(strTitulo: string)
         {
-            if (this._strTitulo == strTitulo)
+            this._strTitulo = strTitulo;
+        }
+
+        private get strTituloAtual(): string
+        {
+            return this._strTituloAtual;
+        }
+
+        private set strTituloAtual(strTituloAtual: string)
+        {
+            if (this._strTituloAtual == strTituloAtual)
             {
                 return;
             }
 
-            this._strTitulo = strTitulo;
+            this._strTituloAtual = strTituloAtual;
 
-            this.setStrTitulo(this._strTitulo);
+            this.setStrTituloAtual(this._strTituloAtual);
         }
 
         // #endregion Atributos
 
         // #region Construtores
+
+        constructor(strTitulo: string)
+        {
+            super();
+
+            this.strTitulo = strTitulo;
+        }
+
         // #endregion Construtores
 
         // #region Métodos
+
+        public destruir(): void
+        {
+            super.destruir();
+
+            this.booVisivel = false;
+
+            Keyboard.i.removerEvtOnGameKeyListener(this);
+            Screen.i.removerEvtOnUpdateListener(this);
+
+            this.arrObjMenuItem.forEach((objMenuItem: MenuItem) => { objMenuItem.destruir(); });
+        }
 
         private getArrObjMenuItem(): Array<MenuItemBase>
         {
@@ -206,6 +225,11 @@ module RealLife
             if (this.arrObjMenuItemAtual == null)
             {
                 return;
+            }
+
+            if (this.arrObjMenuItemAtual == this.arrObjMenuItem)
+            {
+                this.strTituloAtual = this.strTitulo;
             }
 
             this.arrObjMenuItemAtual.forEach((objMenuItem: MenuItemBase) => { objMenuItem.montarMenu(this.objUiMenu); });
@@ -293,27 +317,27 @@ module RealLife
             Keyboard.i.addEvtOnGameKeyListener(this);
         }
 
-        private setStrSubTitulo(strSubTitulo: string): void
+        private setStrTituloAtual(strTituloAtual: string): void
         {
-            if (UtilsRealLife.getBooStrVazia(strSubTitulo))
+            if (UtilsRealLife.getBooStrVazia(strTituloAtual))
             {
                 return;
             }
 
-            API.setMenuSubtitle(this.objUiMenu, strSubTitulo);
+            API.setMenuTitle(this.objUiMenu, strTituloAtual);
         }
 
-        private setStrTitulo(strTitulo: string): void
+        private setObjMenuItemSelecionado(objMenuItemSelecionado: MenuItem): void
         {
-            if (UtilsRealLife.getBooStrVazia(strTitulo))
+            if (objMenuItemSelecionado == null)
             {
                 return;
             }
 
-            API.setMenuTitle(this.objUiMenu, strTitulo);
+            this.strTituloAtual = objMenuItemSelecionado.strTitulo;
         }
 
-        private voltar(): void
+        protected voltar(): void
         {
             if (this.arrObjMenuItem == this.arrObjMenuItemAtual)
             {
@@ -321,13 +345,33 @@ module RealLife
                 return;
             }
 
-            if (this.objMenuItemSelecionado.objMenuItemPai == null)
+            if ((this.arrObjMenuItemAtual == null) || (this.arrObjMenuItemAtual.length < 1))
             {
                 this.montarMenu(this.arrObjMenuItem);
                 return;
             }
 
-            this.montarMenu(this.objMenuItemSelecionado.objMenuItemPai.arrObjMenuItem);
+            if (this.arrObjMenuItemAtual[0].objMenuItemPai == null)
+            {
+                this.montarMenu(this.arrObjMenuItem);
+                return;
+            }
+
+            if (this.arrObjMenuItemAtual[0].objMenuItemPai.objMenuItemPai == null)
+            {
+                this.montarMenu(this.arrObjMenuItem);
+                return;
+            }
+
+            if (this.arrObjMenuItemAtual[0].objMenuItemPai.objMenuItemPai.arrObjMenuItem.length < 1)
+            {
+                this.montarMenu(this.arrObjMenuItem);
+                return;
+            }
+
+            this.montarMenu(this.arrObjMenuItemAtual[0].objMenuItemPai.objMenuItemPai.arrObjMenuItem);
+
+            this.strTituloAtual = this.arrObjMenuItemAtual[0].objMenuItemPai.objMenuItemPai.strTitulo;
         }
 
         // #endregion Métodos

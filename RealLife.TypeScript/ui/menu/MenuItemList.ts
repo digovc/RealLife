@@ -47,7 +47,7 @@ module RealLife
 
         protected getObjUiMenuItem(): NativeUI.UIMenuListItem
         {
-            return API.createListItem(this.strTitulo, this.strDescricao, (this.arrStrItem as any), 0);
+            return API.createListItem(this.strTitulo, this.strSubTitulo, (this.arrStrItem as any), 0);
         }
 
         // #endregion Métodos

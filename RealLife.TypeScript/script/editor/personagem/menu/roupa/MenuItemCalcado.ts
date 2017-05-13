@@ -8,7 +8,7 @@ module RealLife
     // #region Enumerados
     // #endregion Enumerados
 
-    export class MenuItemCorpo extends MenuItem
+    export class MenuItemCalcado extends MenuItem
     {
         // #region Constantes
         // #endregion Constantes
@@ -18,9 +18,9 @@ module RealLife
 
         // #region Construtores
 
-        constructor()
+        constructor(objMenuItemPai: MenuItemRoupa)
         {
-            super(null, "Corpo");
+            super(objMenuItemPai, "Calçado");
         }
 
         // #endregion Construtores
@@ -31,10 +31,9 @@ module RealLife
         {
             super.inicializarArrObjMenuItem(arrObjMenuItem);
 
-            //arrObjMenuItem.push(new MenuItemAltura());
-            arrObjMenuItem.push(new MenuItemPele(this));
-            arrObjMenuItem.push(new MenuItemPeso(this));
-            arrObjMenuItem.push(new MenuItemRoupa(this));
+            arrObjMenuItem.push(new MenuItem(this, "Chinelo", null, (() => { Jogador.i.intCalcado = 5; })));
+            arrObjMenuItem.push(new MenuItem(this, "Tênis", null, (() => { Jogador.i.intCalcado = 22; })));
+            arrObjMenuItem.push(new MenuItem(this, "Sapato", null, (() => { Jogador.i.intCalcado = 10; })));
         }
 
         // #endregion Métodos

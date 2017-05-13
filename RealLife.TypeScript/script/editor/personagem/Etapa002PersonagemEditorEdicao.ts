@@ -43,7 +43,7 @@ module RealLife
 
         public salvar(): void
         {
-            // TODO: Persistir skin definida pelo jogador no servidor.
+            this.objMenu.destruir();
 
             this.etapa002();
         }

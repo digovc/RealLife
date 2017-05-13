@@ -29,7 +29,7 @@ module RealLife
 
         private alterarAparencia(intCabeloCor: number): void
         {
-            Jogador.i.intCabeloModelo = intCabeloCor;
+            Jogador.i.intCabeloCor = intCabeloCor;
         }
 
         protected inicializarArrObjMenuItem(arrObjMenuItem: Array<MenuItemBase>): void
