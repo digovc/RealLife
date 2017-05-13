@@ -17,12 +17,12 @@ module RealLife
 
         private _objScript: ScriptBase;
 
-        protected get objScript(): ScriptBase
+        public get objScript(): ScriptBase
         {
             return this._objScript;
         }
 
-        protected set objScript(objScript: ScriptBase)
+        public set objScript(objScript: ScriptBase)
         {
             this._objScript = objScript;
 

@@ -17,12 +17,12 @@ module RealLife
 
         private _objEtapa: Etapa002PersonagemEditorEdicao;
 
-        private get objEtapa(): Etapa002PersonagemEditorEdicao
+        public get objEtapa(): Etapa002PersonagemEditorEdicao
         {
             return this._objEtapa;
         }
 
-        private set objEtapa(objEtapa: Etapa002PersonagemEditorEdicao)
+        public set objEtapa(objEtapa: Etapa002PersonagemEditorEdicao)
         {
             this._objEtapa = objEtapa;
         }
@@ -42,14 +42,33 @@ module RealLife
 
         // #region Métodos
 
+        private alterarAparencia(): void
+        {
+            Jogador.i.randomizarAparencia();
+
+            AppRealLife.i.objCameraAtual.interpolar((this.objEtapa.objScript as ScriptPersonagemEditor).objCameraCabeca, .150);
+        }
+
         protected inicializarArrObjMenuItem(arrObjMenuItem: Array<MenuItemBase>): void
         {
-            arrObjMenuItem.push(new MenuItemSexo());
-            arrObjMenuItem.push(new MenuItem(null, "Mudar aparência", null, (() => { Jogador.i.randomizarAparencia(); })));
-            arrObjMenuItem.push(new MenuItemCabeca());
-            arrObjMenuItem.push(new MenuItemRoupa());
+            arrObjMenuItem.push(new MenuItemSexo(this));
+            arrObjMenuItem.push(new MenuItem(this, "Alterar aparência", null, (() => { this.alterarAparencia(); })));
+            arrObjMenuItem.push(new MenuItemCabeca(this));
+            arrObjMenuItem.push(new MenuItemRoupa(this));
 
-            arrObjMenuItem.push(new MenuItem(null, "Salvar", null, (() => { this.salvar(); })));
+            arrObjMenuItem.push(new MenuItem(this, "Salvar", null, (() => { this.salvar(); })));
+        }
+
+        public montarMenu(arrObjMenuItem: Array<MenuItemBase>): void
+        {
+            super.montarMenu(arrObjMenuItem);
+
+            if (this.arrObjMenuItem != arrObjMenuItem)
+            {
+                return;
+            }
+
+            (this.objEtapa.objScript as ScriptPersonagemEditor).objCameraPerto.booAtiva = true;
         }
 
         private salvar(): void

@@ -18,9 +18,9 @@ module RealLife
 
         // #region Construtores
 
-        constructor()
+        constructor(objMenuPai: MenuPersonagemEditor)
         {
-            super(null, "Cabeça");
+            super(objMenuPai, "Cabeça");
         }
 
         // #endregion Construtores
@@ -34,6 +34,13 @@ module RealLife
             arrObjMenuItem.push(new MenuItemCabelo(this));
             arrObjMenuItem.push(new MenuItemCabeloCor(this));
             arrObjMenuItem.push(new MenuItemOlho(this));
+        }
+
+        protected selecionar(): void
+        {
+            super.selecionar();
+
+            AppRealLife.i.objCameraAtual.interpolar(((this.objMenu as MenuPersonagemEditor).objEtapa.objScript as ScriptPersonagemEditor).objCameraCabeca, .15);
         }
 
         // #endregion Métodos

@@ -38,6 +38,13 @@ module RealLife
             arrObjMenuItem.push(new MenuItem(this, "Opção 5", null, (() => { Jogador.i.intCamisa = 4; })));
         }
 
+        protected selecionar(): void
+        {
+            super.selecionar();
+
+            AppRealLife.i.objCameraAtual.interpolar(((this.objMenu as MenuPersonagemEditor).objEtapa.objScript as ScriptPersonagemEditor).objCameraTronco, .15);
+        }
+
         // #endregion Métodos
 
         // #region Eventos

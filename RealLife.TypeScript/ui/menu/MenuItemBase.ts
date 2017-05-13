@@ -14,6 +14,7 @@ module RealLife
         // #region Atributos
 
         private _fnc: Function;
+        private _objMenu: MenuBase;
         private _objMenuItemPai: MenuItem;
         private _objUiMenuItem: NativeUI.UIMenuItem;
         private _strSubTitulo: string;
@@ -27,6 +28,16 @@ module RealLife
         protected set fnc(fnc: Function)
         {
             this._fnc = fnc;
+        }
+
+        public get objMenu(): MenuBase
+        {
+            return this._objMenu;
+        }
+
+        public set objMenu(objMenu: MenuBase)
+        {
+            this._objMenu = objMenu;
         }
 
         public get objMenuItemPai(): MenuItem
@@ -75,12 +86,13 @@ module RealLife
 
         // #region Construtores
 
-        constructor(objMenuItemPai: MenuItem, strTitulo: string, strSubTitulo: string = null, fnc: Function = null)
+        constructor(objMenuPai: (MenuBase | MenuItem), strTitulo: string, strSubTitulo: string = null, fnc: Function = null)
         {
             super();
 
             this.fnc = fnc;
-            this.objMenuItemPai = objMenuItemPai;
+            this.objMenu = (objMenuPai instanceof MenuBase) ? objMenuPai : objMenuPai.objMenu;
+            this.objMenuItemPai = (objMenuPai instanceof MenuItem) ? objMenuPai : null;
             this.strSubTitulo = strSubTitulo;
             this.strTitulo = strTitulo;
         }
@@ -105,19 +117,19 @@ module RealLife
             objUiMenu.AddItem(this.objUiMenuItem);
         }
 
-        public processarOnItemSelecionado(objMenu: MenuBase, objUiMenuItemSelecionado: NativeUI.UIMenuItem): boolean
+        public processarOnItemSelecionado(objUiMenuItemSelecionado: NativeUI.UIMenuItem): boolean
         {
             if (this.objUiMenuItem != objUiMenuItemSelecionado)
             {
                 return false;
             }
 
-            this.selecionar(objMenu);
+            this.selecionar();
 
             return true;
         }
 
-        protected selecionar(objMenu: MenuBase): void
+        protected selecionar(): void
         {
             if (this.fnc != null)
             {

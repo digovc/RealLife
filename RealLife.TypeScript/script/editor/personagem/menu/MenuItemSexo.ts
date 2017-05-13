@@ -18,13 +18,14 @@ module RealLife
         // #endregion Constantes
 
         // #region Atributos
+
         // #endregion Atributos
 
         // #region Construtores
 
-        constructor()
+        constructor(objMenuPai: MenuPersonagemEditor)
         {
-            super(null, "Sexo");
+            super(objMenuPai, "Sexo");
         }
 
         // #endregion Construtores

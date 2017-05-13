@@ -34,7 +34,7 @@ module RealLife
         private _strTitulo: string;
         private _strTituloAtual: string;
 
-        private get arrObjMenuItem(): Array<MenuItemBase>
+        protected get arrObjMenuItem(): Array<MenuItemBase>
         {
             if (this._arrObjMenuItem != null)
             {
@@ -246,7 +246,7 @@ module RealLife
 
             for (var i = 0; i < this.arrObjMenuItemAtual.length; i++)
             {
-                if (this.arrObjMenuItemAtual[i].processarOnItemSelecionado(this, objUiMenuItemSelecionado))
+                if (this.arrObjMenuItemAtual[i].processarOnItemSelecionado(objUiMenuItemSelecionado))
                 {
                     return;
                 }

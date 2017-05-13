@@ -30,6 +30,7 @@ module RealLife
         }
 
         private _booDebug: boolean;
+        private _objCameraAtual: CameraBase;
 
         public get booDebug(): boolean
         {
@@ -41,6 +42,16 @@ module RealLife
             this._booDebug = true;
 
             return this._booDebug;
+        }
+
+        public get objCameraAtual(): CameraBase
+        {
+            return this._objCameraAtual;
+        }
+
+        public set objCameraAtual(objCameraAtual: CameraBase)
+        {
+            this._objCameraAtual = objCameraAtual;
         }
 
         // #endregion Atributos

@@ -317,6 +317,16 @@ module RealLife
                 return;
             }
 
+            if (objCameraTo == null)
+            {
+                return;
+            }
+
+            if (objCameraTo.booAtiva)
+            {
+                return;
+            }
+
             if (objCameraTo.objGlobalCamera == null)
             {
                 return;
@@ -325,6 +335,8 @@ module RealLife
             Log.i.debug("Interpolando câmeras.");
 
             API.interpolateCameras(this.objGlobalCamera, objCameraTo.objGlobalCamera, (fltDuracao * 1000), true, true);
+
+            AppRealLife.i.objCameraAtual = objCameraTo;
 
             if (fncAfter == null)
             {
@@ -344,6 +356,8 @@ module RealLife
             if (booAtiva)
             {
                 API.setActiveCamera(this.objGlobalCamera);
+
+                AppRealLife.i.objCameraAtual = this;
             }
             else
             {

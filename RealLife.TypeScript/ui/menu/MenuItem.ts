@@ -53,15 +53,15 @@ module RealLife
         {
         }
 
-        protected selecionar(objMenu: MenuBase): void
+        protected selecionar(): void
         {
-            super.selecionar(objMenu);
+            super.selecionar();
 
             if (this.arrObjMenuItem.length > 0)
             {
-                objMenu.objMenuItemSelecionado = this;
+                this.objMenu.objMenuItemSelecionado = this;
 
-                objMenu.montarMenu(this.arrObjMenuItem);
+                this.objMenu.montarMenu(this.arrObjMenuItem);
             }
         }
 
