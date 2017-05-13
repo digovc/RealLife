@@ -34,7 +34,7 @@ module RealLife
         private _strTitulo: string;
         private _strTituloAtual: string;
 
-        protected get arrObjMenuItem(): Array<MenuItemBase>
+        public get arrObjMenuItem(): Array<MenuItemBase>
         {
             if (this._arrObjMenuItem != null)
             {
@@ -132,7 +132,7 @@ module RealLife
             this.setObjMenuItemSelecionado(this._objMenuItemSelecionado);
         }
 
-        private get objUiMenu(): NativeUI.UIMenu
+        public get objUiMenu(): NativeUI.UIMenu
         {
             if (this._objUiMenu != null)
             {
@@ -232,9 +232,18 @@ module RealLife
                 this.strTituloAtual = this.strTitulo;
             }
 
-            this.arrObjMenuItemAtual.forEach((objMenuItem: MenuItemBase) => { objMenuItem.montarMenu(this.objUiMenu); });
+            this.arrObjMenuItemAtual.forEach((objMenuItem: MenuItemBase) => { objMenuItem.montarMenu(); });
 
             this.objUiMenu.RefreshIndex();
+
+            for (var i = 0; i < this.arrObjMenuItemAtual.length; i++)
+            {
+                if (this.arrObjMenuItemAtual[i].booSelecionado)
+                {
+                    this.objUiMenu.CurrentSelection = i;
+                    return;
+                }
+            }
         }
 
         private processarOnItemSelecionado(objUiMenuItemSelecionado: NativeUI.UIMenuItem): void

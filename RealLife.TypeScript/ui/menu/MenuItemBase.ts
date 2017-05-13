@@ -13,12 +13,30 @@ module RealLife
 
         // #region Atributos
 
+        private _booSelecionado: boolean = false;
         private _fnc: Function;
         private _objMenu: MenuBase;
         private _objMenuItemPai: MenuItem;
         private _objUiMenuItem: NativeUI.UIMenuItem;
         private _strSubTitulo: string;
         private _strTitulo: string;
+
+        public get booSelecionado(): boolean
+        {
+            return this._booSelecionado;
+        }
+
+        public set booSelecionado(booSelecionado: boolean)
+        {
+            if (this._booSelecionado == booSelecionado)
+            {
+                return;
+            }
+
+            this._booSelecionado = booSelecionado;
+
+            this.setBooSelecionado(this._booSelecionado);
+        }
 
         protected get fnc(): Function
         {
@@ -103,18 +121,13 @@ module RealLife
 
         protected abstract chamarFnc(): void;
 
-        protected abstract getObjUiMenuItem(): NativeUI.UIMenuItem
+        protected abstract getObjUiMenuItem(): NativeUI.UIMenuItem;
 
-        public montarMenu(objUiMenu: NativeUI.UIMenu): void
+        public montarMenu(): void
         {
-            if (objUiMenu == null)
-            {
-                return;
-            }
-
             this.objUiMenuItem.Selected = false;
 
-            objUiMenu.AddItem(this.objUiMenuItem);
+            this.objMenu.objUiMenu.AddItem(this.objUiMenuItem);
         }
 
         public processarOnItemSelecionado(objUiMenuItemSelecionado: NativeUI.UIMenuItem): boolean
@@ -131,10 +144,39 @@ module RealLife
 
         protected selecionar(): void
         {
+            this.booSelecionado = true;
+
             if (this.fnc != null)
             {
                 this.chamarFnc();
             }
+        }
+
+        private setBooSelecionado(booSelecionado: boolean): void
+        {
+            if (!booSelecionado)
+            {
+                return;
+            }
+
+            if (this.objMenuItemPai != null)
+            {
+                this.objMenuItemPai.arrObjMenuItem.forEach((objMenuItem) => { this.setBooSelecionadoItem(objMenuItem); });
+            }
+            else
+            {
+                this.objMenu.arrObjMenuItem.forEach((objMenuItem) => { this.setBooSelecionadoItem(objMenuItem); });
+            }
+        }
+
+        private setBooSelecionadoItem(objMenuItemBase: MenuItemBase): void
+        {
+            if (this == objMenuItemBase)
+            {
+                return;
+            }
+
+            objMenuItemBase._booSelecionado = false;
         }
 
         // #endregion Métodos
