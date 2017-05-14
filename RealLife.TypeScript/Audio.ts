@@ -39,7 +39,7 @@ module RealLife
 
         // #region Métodos
 
-        private executar(strNome: string, strSetNome: string): void
+        public executar(strNome: string, strSetNome: string): void
         {
             if (UtilsRealLife.getBooStrVazia(strNome))
             {

@@ -8,7 +8,7 @@ module RealLife
     // #region Enumerados
     // #endregion Enumerados
 
-    export class Etapa001LoginPreparacao extends EtapaBase
+    export class EtapaLogin001Iniciar extends EtapaBase
     {
         // #region Constantes
         // #endregion Constantes
@@ -39,7 +39,7 @@ module RealLife
             Chat.i.booVisivel = false;
             Jogador.i.booVisivel = false;
 
-            new Timer((() => { new Etapa003Login(this.objScript).iniciar() }), 2.5).iniciar();
+            new Timer((() => { new EtapaLogin003Logar(this.objScript).iniciar() }), 2.5).iniciar();
         }
 
         // #endregion Métodos

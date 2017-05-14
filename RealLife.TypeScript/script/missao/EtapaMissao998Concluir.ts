@@ -1,14 +1,14 @@
-/// <reference path="../EtapaBase.ts"/>
+/// <reference path="EtapaMissaoBase.ts"/>
 
 module RealLife
 {
-    // #region Importações
-    // #endregion Importações
+    // #region ImportaÃ§Ãµes
+    // #endregion ImportaÃ§Ãµes
 
     // #region Enumerados
     // #endregion Enumerados
 
-    export class Etapa002LoginLoopCamera extends EtapaBase
+    export class EtapaMissao998Concluir extends EtapaMissaoBase
     {
         // #region Constantes
         // #endregion Constantes
@@ -19,8 +19,9 @@ module RealLife
         // #region Construtores
         // #endregion Construtores
 
-        // #region Métodos
-        // #endregion Métodos
+        // #region MÃ©todos
+
+        // #endregion MÃ©todos
 
         // #region Eventos
         // #endregion Eventos

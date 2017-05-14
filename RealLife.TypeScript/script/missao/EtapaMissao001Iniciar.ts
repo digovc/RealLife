@@ -1,3 +1,5 @@
+/// <reference path="EtapaMissaoBase.ts"/>
+
 module RealLife
 {
     // #region Importações
@@ -6,7 +8,7 @@ module RealLife
     // #region Enumerados
     // #endregion Enumerados
 
-    export class Etapa003PersonagemEditorConclusao extends EtapaBase
+    export class EtapaMissao001Iniciar extends EtapaMissaoBase
     {
         // #region Constantes
         // #endregion Constantes
@@ -18,20 +20,6 @@ module RealLife
         // #endregion Construtores
 
         // #region Métodos
-
-        protected inicializar(): void
-        {
-            super.inicializar();
-
-            this.etapa001();
-        }
-
-        // Etapas
-
-        private etapa001(): void
-        {
-            Screen.i.fadeOut(1000, (() => { this.objScript.destruir(); }));
-        }
 
         // #endregion Métodos
 

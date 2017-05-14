@@ -1,4 +1,4 @@
-/// <reference path="../Objeto.ts"/>
+/// <reference path="Objeto.ts"/>
 
 module RealLife
 {
@@ -23,7 +23,7 @@ module RealLife
 
     // #endregion Enumerados
 
-    export abstract class CameraBase extends Objeto
+    export class Camera extends Objeto
     {
         // #region Constantes
         // #endregion Constantes
@@ -52,7 +52,7 @@ module RealLife
 
         public get fltFov(): number
         {
-            this._fltFov = this.getFltFov();
+            this._fltFov = API.getCameraFov(this.objGlobalCamera);
 
             return this._fltFov;
         }
@@ -61,12 +61,12 @@ module RealLife
         {
             this._fltFov = fltFov;
 
-            this.setFltFov(this._fltFov);
+            API.setCameraFov(this.objGlobalCamera, this._fltFov);
         }
 
         public get vctPosicao(): Vector3
         {
-            this._vctPosicao = this.getVctPosicao();
+            this._vctPosicao = API.getCameraPosition(this.objGlobalCamera);
 
             return this._vctPosicao;
         }
@@ -80,7 +80,7 @@ module RealLife
 
         public get vctRotacao(): Vector3
         {
-            this._vctRotacao = this.getVctRotacao();
+            this._vctRotacao = API.getCameraRotation(this.objGlobalCamera);
 
             return this._vctRotacao;
         }
@@ -92,26 +92,21 @@ module RealLife
             this.setVctRotacao(this._vctRotacao);
         }
 
-        protected get objGlobalCamera(): GTANetwork.Javascript.GlobalCamera
+        private get objGlobalCamera(): GTANetwork.Javascript.GlobalCamera
         {
-            return this._objGlobalCamera;
-        }
+            if (this._objGlobalCamera != null)
+            {
+                return this._objGlobalCamera;
+            }
 
-        protected set objGlobalCamera(objGlobalCamera: GTANetwork.Javascript.GlobalCamera)
-        {
-            this._objGlobalCamera = objGlobalCamera;
+            this._objGlobalCamera = API.createCamera(new Vector3(), new Vector3());
+
+            return this._objGlobalCamera;
         }
 
         // #endregion Atributos
 
         // #region Construtores
-
-        constructor()
-        {
-            super();
-
-            this.criar();
-        }
 
         // #endregion Construtores
 
@@ -125,11 +120,6 @@ module RealLife
             }
 
             if (objEntity.objHandle == null)
-            {
-                return;
-            }
-
-            if (this.objGlobalCamera == null)
             {
                 return;
             }
@@ -149,43 +139,22 @@ module RealLife
                 return;
             }
 
-            if (this.objGlobalCamera == null)
-            {
-                return;
-            }
-
             API.attachCameraToEntityBone(this.objGlobalCamera, objEntity.objHandle, intBone, vctOffSet);
         }
 
-        protected criar(): void
+        public clonarCameraGamePlay(): void
         {
-            if (this.objGlobalCamera != null)
-            {
-                return;
-            }
-
-            Log.i.debug("Criando câmera.");
-
-            this.objGlobalCamera = API.createCamera(new Vector3(), new Vector3());
+            this.vctPosicao = API.getGameplayCamPos();
+            this.vctRotacao = API.getGameplayCamRot();
         }
 
         public desanexar(): void
         {
-            if (this.objGlobalCamera == null)
-            {
-                return;
-            }
-
             API.detachCamera(this.objGlobalCamera);
         }
 
-        public focarEntity(objEntity: Entity, vctOffset: Vector3 = new Vector3()): void
+        public focar(objEntity: Entity, vctOffset: Vector3 = new Vector3()): void
         {
-            if (this.objGlobalCamera == null)
-            {
-                return;
-            }
-
             if (objEntity == null)
             {
                 return;
@@ -199,13 +168,8 @@ module RealLife
             API.pointCameraAtEntity(this.objGlobalCamera, objEntity.objHandle, vctOffset);
         }
 
-        public focarEntityBone(objEntity: Entity, intBone: number, vctOffset: Vector3 = new Vector3()): void
+        public focarBone(objEntity: Entity, intBone: number, vctOffset: Vector3 = new Vector3()): void
         {
-            if (this.objGlobalCamera == null)
-            {
-                return;
-            }
-
             if (objEntity == null)
             {
                 return;
@@ -221,21 +185,11 @@ module RealLife
 
         public focarParar(): void
         {
-            if (this.objGlobalCamera == null)
-            {
-                return;
-            }
-
             API.stopCameraPointing(this.objGlobalCamera);
         }
 
         public focarPosicao(vctPosicao: Vector3): void
         {
-            if (this.objGlobalCamera == null)
-            {
-                return;
-            }
-
             if (vctPosicao == null)
             {
                 return;
@@ -244,23 +198,10 @@ module RealLife
             API.pointCameraAtPosition(this.objGlobalCamera, vctPosicao);
         }
 
-        private getFltFov(): number
-        {
-            if (this.objGlobalCamera == null)
-            {
-                return null;
-            }
-
-            return API.getCameraFov(this.objGlobalCamera);
-        }
-
         private getStrShakeType(enmTremerTipo: CameraBase_EnmTremerTipo): string
         {
             switch (enmTremerTipo)
             {
-                case CameraBase_EnmTremerTipo.DRUNK_SHAKE:
-                    return "DRUNK_SHAKE";
-
                 case CameraBase_EnmTremerTipo.GRENADE_EXPLOSION_SHAKE:
                     return "GRENADE_EXPLOSION_SHAKE";
 
@@ -287,47 +228,20 @@ module RealLife
 
                 case CameraBase_EnmTremerTipo.VIBRATE_SHAKE:
                     return "VIBRATE_SHAKE";
+
+                default:
+                    return "DRUNK_SHAKE";
             }
         }
 
-        protected getVctPosicao(): Vector3
+        public interpolar(objCameraTo: Camera, fltDuracao: number = 1, fncAfter: Function = null): void
         {
-            if (this.objGlobalCamera == null)
-            {
-                return null;
-            }
-
-            return API.getCameraPosition(this.objGlobalCamera);
-        }
-
-        protected getVctRotacao(): Vector3
-        {
-            if (this.objGlobalCamera == null)
-            {
-                return null;
-            }
-
-            return API.getCameraRotation(this.objGlobalCamera);
-        }
-
-        public interpolar(objCameraTo: CameraBase, fltDuracao: number = 1, fncAfter: Function = null): void
-        {
-            if (this.objGlobalCamera == null)
-            {
-                return;
-            }
-
             if (objCameraTo == null)
             {
                 return;
             }
 
             if (objCameraTo.booAtiva)
-            {
-                return;
-            }
-
-            if (objCameraTo.objGlobalCamera == null)
             {
                 return;
             }
@@ -348,11 +262,6 @@ module RealLife
 
         protected setBooAtiva(booAtiva: boolean): void
         {
-            if (this.objGlobalCamera == null)
-            {
-                return;
-            }
-
             if (booAtiva)
             {
                 API.setActiveCamera(this.objGlobalCamera);
@@ -361,27 +270,14 @@ module RealLife
             }
             else
             {
-                API.setActiveCamera(null);
-            }
-        }
+                API.setGameplayCameraActive()
 
-        private setFltFov(fltFov: number): void
-        {
-            if (this.objGlobalCamera == null)
-            {
-                return;
+                AppRealLife.i.objCameraAtual = null;
             }
-
-            API.setCameraFov(this.objGlobalCamera, fltFov);
         }
 
         private setVctPosicao(vctPosicao: Vector3): void
         {
-            if (this.objGlobalCamera == null)
-            {
-                return;
-            }
-
             if (vctPosicao == null)
             {
                 return;
@@ -394,11 +290,6 @@ module RealLife
 
         private setVctRotacao(vctRotacao: Vector3): void
         {
-            if (this.objGlobalCamera == null)
-            {
-                return;
-            }
-
             if (vctRotacao == null)
             {
                 return;
@@ -409,14 +300,9 @@ module RealLife
             Log.i.debug("Rotação (câmera): {0}, {1}, {2}.", vctRotacao.X, vctRotacao.Y, vctRotacao.Z);
         }
 
-        public tremer(fltAmplitude: number, enmTremerTipo: CameraBase_EnmTremerTipo = CameraBase_EnmTremerTipo.DRUNK_SHAKE): void
+        public tremer(fltAmplitude: number = 1, enmTremerTipo: CameraBase_EnmTremerTipo = CameraBase_EnmTremerTipo.HAND_SHAKE): void
         {
-            if (this.objGlobalCamera == null)
-            {
-                return;
-            }
-
-            if (fltAmplitude >= 0)
+            if (fltAmplitude <= 0)
             {
                 return;
             }
@@ -428,11 +314,6 @@ module RealLife
 
         public tremerParar(): void
         {
-            if (this.objGlobalCamera == null)
-            {
-                return;
-            }
-
             API.stopCameraShake(this.objGlobalCamera);
         }
 

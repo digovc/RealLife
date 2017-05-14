@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Map xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <Objects />
+  <RemoveFromWorld />
+  <Markers>
+    <Marker>
+      <Type>UpsideDownCone</Type>
+      <Position>
+        <X>109.685921</X>
+        <Y>-1089.813</Y>
+        <Z>28.3024864</Z>
+      </Position>
+      <Rotation>
+        <X>0</X>
+        <Y>0</Y>
+        <Z>0</Z>
+      </Rotation>
+      <Scale>
+        <X>0.75</X>
+        <Y>0.75</Y>
+        <Z>0.75</Z>
+      </Scale>
+      <TeleportTarget xsi:nil="true" />
+      <Red>255</Red>
+      <Green>255</Green>
+      <Blue>0</Blue>
+      <Alpha>255</Alpha>
+      <BobUpAndDown>false</BobUpAndDown>
+      <RotateToCamera>false</RotateToCamera>
+      <OnlyVisibleInEditor>false</OnlyVisibleInEditor>
+      <Id>40</Id>
+    </Marker>
+  </Markers>
+  <Metadata>
+    <Creator>digovc</Creator>
+    <Name>Nameless Map</Name>
+    <Description />
+    <LoadingPoint xsi:nil="true" />
+    <TeleportPoint xsi:nil="true" />
+  </Metadata>
+</Map>

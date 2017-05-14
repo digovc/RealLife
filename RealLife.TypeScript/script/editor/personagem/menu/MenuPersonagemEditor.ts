@@ -15,14 +15,14 @@ module RealLife
 
         // #region Atributos
 
-        private _objEtapa: Etapa002PersonagemEditorEdicao;
+        private _objEtapa: EtapaPersonagemEditor002Editar;
 
-        public get objEtapa(): Etapa002PersonagemEditorEdicao
+        public get objEtapa(): EtapaPersonagemEditor002Editar
         {
             return this._objEtapa;
         }
 
-        public set objEtapa(objEtapa: Etapa002PersonagemEditorEdicao)
+        public set objEtapa(objEtapa: EtapaPersonagemEditor002Editar)
         {
             this._objEtapa = objEtapa;
         }
@@ -31,7 +31,7 @@ module RealLife
 
         // #region Construtores
 
-        constructor(objEtapa: Etapa002PersonagemEditorEdicao)
+        constructor(objEtapa: EtapaPersonagemEditor002Editar)
         {
             super("Personagem");
 

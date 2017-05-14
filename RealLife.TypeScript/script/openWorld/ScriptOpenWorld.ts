@@ -26,17 +26,7 @@ module RealLife
         {
             super.inicializar();
 
-            new ScriptAgenciaEmprego().iniciar();
-            new ScriptAutoEscola().iniciar();
-            new ScriptBanco().iniciar();
-            new ScriptCabeleireiro().iniciar();
-            new ScriptEscolaAviacao().iniciar();
-            new ScriptEstudioTatuagem().iniciar();
-            new ScriptLojaImovel().iniciar();
-            new ScriptLojaRoupa().iniciar();
-            new ScriptLojaVeiculo().iniciar();
-            new ScriptMecanica().iniciar();
-            new ScriptMercado().iniciar();
+            new EtapaOpenWorld001Iniciar(this).iniciar();
         }
 
         // #endregion Métodos

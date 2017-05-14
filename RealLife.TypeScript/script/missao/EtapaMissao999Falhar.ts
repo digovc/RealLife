@@ -8,7 +8,7 @@ module RealLife
     // #region Enumerados
     // #endregion Enumerados
 
-    export class Etapa998MissaoConclusao extends EtapaMissaoBase
+    export class EtapaMissao999Falhar extends EtapaMissaoBase
     {
         // #region Constantes
         // #endregion Constantes

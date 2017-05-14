@@ -24,7 +24,7 @@ module RealLife
 
         protected getObjEtapaInicial(): EtapaBase
         {
-            return new Etapa001MissaoAbertura(this);
+            return new EtapaMissao001Iniciar(this);
         }
 
         // #endregion Métodos

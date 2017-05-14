@@ -8,7 +8,7 @@ module RealLife
     // #region Enumerados
     // #endregion Enumerados
 
-    export class Etapa001PersonagemEditorAbertura extends EtapaBase
+    export class EtapaPersonagemEditor001Iniciar extends EtapaBase
     {
         // #region Constantes
         // #endregion Constantes
@@ -73,7 +73,7 @@ module RealLife
 
         private etapa004(): void
         {
-            new Etapa002PersonagemEditorEdicao(this.objScript).iniciar();
+            new EtapaPersonagemEditor002Editar(this.objScript).iniciar();
         }
 
         // #endregion Métodos

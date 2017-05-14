@@ -26,7 +26,7 @@ module RealLife
         {
             super.inicializar();
 
-            new Etapa001LoginPreparacao(this).iniciar();
+            new EtapaLogin001Iniciar(this).iniciar();
         }
 
         // #endregion Métodos

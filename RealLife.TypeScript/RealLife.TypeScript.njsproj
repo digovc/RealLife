@@ -54,9 +54,7 @@
     <TypeScriptCompile Include="Gps.ts" />
     <TypeScriptCompile Include="Chat.ts" />
     <TypeScriptCompile Include="blip\Blip.ts" />
-    <TypeScriptCompile Include="camera\CameraBase.ts" />
-    <TypeScriptCompile Include="camera\CameraGamePlay.ts" />
-    <TypeScriptCompile Include="camera\Camera.ts" />
+    <TypeScriptCompile Include="Camera.ts" />
     <TypeScriptCompile Include="Cor.ts" />
     <TypeScriptCompile Include="Entity.ts" />
     <TypeScriptCompile Include="evento\OnChatCommandListener.ts" />
@@ -71,6 +69,9 @@
     <TypeScriptCompile Include="Objeto.ts" />
     <TypeScriptCompile Include="Screen.ts" />
     <TypeScriptCompile Include="ScriptBoot.ts" />
+    <TypeScriptCompile Include="script\camera\EtapaAguardar002Concluir.ts" />
+    <TypeScriptCompile Include="script\camera\EtapaAguardar001Iniciar.ts" />
+    <TypeScriptCompile Include="script\camera\ScriptAguardar.ts" />
     <TypeScriptCompile Include="script\editor\personagem\menu\cabeca\MenuItemCabeloCor.ts" />
     <TypeScriptCompile Include="script\editor\personagem\menu\cabeca\MenuItemOlho.ts" />
     <TypeScriptCompile Include="script\editor\personagem\menu\cabeca\MenuItemCabelo.ts" />
@@ -81,10 +82,10 @@
     <TypeScriptCompile Include="script\editor\personagem\menu\roupa\MenuItemRoupa.ts" />
     <TypeScriptCompile Include="script\editor\personagem\menu\MenuItemSexo.ts" />
     <TypeScriptCompile Include="script\editor\personagem\menu\MenuPersonagemEditor.ts" />
-    <TypeScriptCompile Include="script\editor\personagem\Etapa001PersonagemEditorAbertura.ts" />
-    <TypeScriptCompile Include="script\editor\personagem\Etapa002PersonagemEditorEdicao.ts" />
+    <TypeScriptCompile Include="script\editor\personagem\EtapaPersonagemEditor001Iniciar.ts" />
+    <TypeScriptCompile Include="script\editor\personagem\EtapaPersonagemEditor002Editar.ts" />
     <TypeScriptCompile Include="script\editor\personagem\ScriptPersonagemEditor.ts" />
-    <TypeScriptCompile Include="script\editor\personagem\Etapa003PersonagemEditorConclusao.ts" />
+    <TypeScriptCompile Include="script\editor\personagem\EtapaPersonagemEditor003Concluir.ts" />
     <TypeScriptCompile Include="script\missao\profissao\ScriptPolicialBase.ts" />
     <TypeScriptCompile Include="script\openWorld\comercio\ScriptAutoEscola.ts" />
     <TypeScriptCompile Include="script\openWorld\comercio\ScriptEscolaAviacao.ts" />
@@ -98,11 +99,12 @@
     <TypeScriptCompile Include="script\openWorld\comercio\ScriptLojaRoupa.ts" />
     <TypeScriptCompile Include="script\openWorld\comercio\ScriptCabeleireiro.ts" />
     <TypeScriptCompile Include="script\openWorld\comercio\ScriptAgenciaEmprego.ts" />
+    <TypeScriptCompile Include="script\openWorld\EtapaOpenWorld001Iniciar.ts" />
     <TypeScriptCompile Include="script\openWorld\ScriptOpenWorld.ts" />
     <TypeScriptCompile Include="script\login\ScriptLogin.ts" />
-    <TypeScriptCompile Include="script\login\Etapa001LoginPreparacao.ts" />
-    <TypeScriptCompile Include="script\login\Etapa003Login.ts" />
-    <TypeScriptCompile Include="script\login\Etapa002LoginLoopCamera.ts" />
+    <TypeScriptCompile Include="script\login\EtapaLogin001Iniciar.ts" />
+    <TypeScriptCompile Include="script\login\EtapaLogin003Logar.ts" />
+    <TypeScriptCompile Include="script\login\EtapaLogin002LoopCamera.ts" />
     <TypeScriptCompile Include="script\missao\profissao\ScriptEntregadorBase.ts" />
     <TypeScriptCompile Include="script\missao\profissao\ScriptPescadorBase.ts" />
     <TypeScriptCompile Include="script\missao\profissao\ScriptTaxistaBase.ts" />
@@ -111,15 +113,16 @@
     <TypeScriptCompile Include="script\missao\EtapaMissaoLocalizarBase.ts" />
     <TypeScriptCompile Include="script\missao\EtapaMissaoTrajetoBase.ts" />
     <TypeScriptCompile Include="script\missao\profissao\ScriptProfissaoBase.ts" />
-    <TypeScriptCompile Include="script\missao\Etapa001MissaoAbertura.ts" />
+    <TypeScriptCompile Include="script\missao\EtapaMissao001Iniciar.ts" />
     <TypeScriptCompile Include="script\missao\EtapaMissaoBase.ts" />
-    <TypeScriptCompile Include="script\missao\Etapa998MissaoConclusao.ts" />
-    <TypeScriptCompile Include="script\missao\Etapa999MissaoFalha.ts" />
+    <TypeScriptCompile Include="script\missao\EtapaMissao998Concluir.ts" />
+    <TypeScriptCompile Include="script\missao\EtapaMissao999Falhar.ts" />
     <TypeScriptCompile Include="script\missao\EtapaMissaoViajarBase.ts" />
     <TypeScriptCompile Include="script\missao\ScriptMissaoBase.ts" />
     <TypeScriptCompile Include="script\ScriptBase.ts" />
     <TypeScriptCompile Include="script\EtapaBase.ts" />
     <TypeScriptCompile Include="script\test\ScriptTestBase.ts" />
+    <TypeScriptCompile Include="script\test\ScriptTestAguardar.ts" />
     <TypeScriptCompile Include="script\test\ScriptTestPedAparencia.ts" />
     <TypeScriptCompile Include="script\test\ScriptTestPedCabeloCor.ts" />
     <TypeScriptCompile Include="script\test\ScriptTestPedSkin.ts" />
@@ -146,7 +149,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="evento\" />
-    <Folder Include="camera\" />
     <Folder Include="blip\" />
     <Folder Include="marker\" />
     <Folder Include="script\" />
@@ -158,6 +160,7 @@
     <Folder Include="script\missao\" />
     <Folder Include="script\missao\profissao\" />
     <Folder Include="script\login\" />
+    <Folder Include="script\camera\" />
     <Folder Include="script\test\" />
     <Folder Include="script\openWorld\" />
     <Folder Include="script\openWorld\comercio\" />

@@ -30,7 +30,7 @@ module RealLife
         }
 
         private _booDebug: boolean;
-        private _objCameraAtual: CameraBase;
+        private _objCameraAtual: Camera;
 
         public get booDebug(): boolean
         {
@@ -44,12 +44,12 @@ module RealLife
             return this._booDebug;
         }
 
-        public get objCameraAtual(): CameraBase
+        public get objCameraAtual(): Camera
         {
             return this._objCameraAtual;
         }
 
-        public set objCameraAtual(objCameraAtual: CameraBase)
+        public set objCameraAtual(objCameraAtual: Camera)
         {
             this._objCameraAtual = objCameraAtual;
         }
@@ -61,21 +61,27 @@ module RealLife
 
         // #region Métodos
 
+        public ativarCameraGamePlay(): void
+        {
+            this.objCameraAtual == null;
+
+            API.setGameplayCameraActive();
+        }
+
         protected inicializar(): void
         {
             super.inicializar();
 
             this.inicializarComponente();
 
-            new ScriptPersonagemEditor().iniciar();
+            //new ScriptPersonagemEditor().iniciar();
 
-            //new ScriptTestPedSkin().iniciar();
+            new ScriptTestAguardar().iniciar();
         }
 
         private inicializarComponente(): void
         {
             Audio.i.iniciar();
-            CameraGamePlay.i.iniciar();
             Chat.i.iniciar();
             Jogador.i.iniciar();
             Keyboard.i.iniciar();

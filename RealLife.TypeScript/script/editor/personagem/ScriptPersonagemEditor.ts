@@ -143,7 +143,7 @@ module RealLife
         {
             super.inicializar();
 
-            new Etapa001PersonagemEditorAbertura(this).iniciar();
+            new EtapaPersonagemEditor001Iniciar(this).iniciar();
         }
 
         public destruir(): void
