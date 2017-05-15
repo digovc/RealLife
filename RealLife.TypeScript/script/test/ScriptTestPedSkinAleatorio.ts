@@ -1,9 +1,11 @@
+/// <reference path="../../../RealLifeShared.TypeScript/enumerado/EnmPedSkin.ts"/>
 /// <reference path="../ScriptBase.ts"/>
 
 module RealLife
 {
     // #region Importações
 
+    import EnmPedSkin = RealLifeShared.EnmPedSkin;
     import ScriptBase = RealLife.ScriptBase;
 
     // #endregion Importações
@@ -35,7 +37,7 @@ module RealLife
 
         private etapa001(): void
         {
-            Jogador.i.alterarSkin(RealLifeShared.EnmPedHash.FREEMODEMALE01);
+            Jogador.i.enmPedSkin = EnmPedSkin.FREEMODEMALE01;
             Jogador.i.vestirRoupaDefault();
 
             this.etapa002();

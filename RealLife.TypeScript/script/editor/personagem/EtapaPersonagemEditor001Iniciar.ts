@@ -1,8 +1,12 @@
+/// <reference path="../../../../RealLifeShared.TypeScript/enumerado/EnmPedSkin.ts"/>
 /// <reference path="../../EtapaBase.ts"/>
 
 module RealLife
 {
     // #region Importações
+
+    import EnmPedSkin = RealLifeShared.EnmPedSkin;
+
     // #endregion Importações
 
     // #region Enumerados
@@ -39,8 +43,7 @@ module RealLife
         private etapa002(): void
         {
             Jogador.i.booVisivel = false;
-
-            Jogador.i.alterarSkin(RealLifeShared.EnmPedHash.FREEMODEMALE01);
+            Jogador.i.enmPedSkin = EnmPedSkin.FREEMODEMALE01;
 
             Jogador.i.randomizarAparencia();
 

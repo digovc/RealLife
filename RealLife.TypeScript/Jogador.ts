@@ -1,6 +1,6 @@
 /// <reference path="../RealLifeShared.TypeScript/dominio/ErroDominio.ts"/>
 /// <reference path="../RealLifeShared.TypeScript/dominio/JogadorDominio.ts"/>
-/// <reference path="../RealLifeShared.TypeScript/enumerado/EnmPedHash.ts"/>
+/// <reference path="../RealLifeShared.TypeScript/enumerado/EnmPedSkin.ts"/>
 /// <reference path="evento/OnChatCommandListener.ts"/>
 /// <reference path="evento/OnServerEventTriggerListener.ts"/>
 /// <reference path="Objeto.ts"/>
@@ -10,7 +10,7 @@ module RealLife
 {
     // #region Importações
 
-    import EnmPedHash = RealLifeShared.EnmPedHash;
+    import EnmPedSkin = RealLifeShared.EnmPedSkin;
     import ErroDominio = RealLifeShared.ErroDominio;
     import JogadorDominio = RealLifeShared.JogadorDominio;
 
@@ -49,9 +49,22 @@ module RealLife
             return Jogador._i;
         }
 
+        private _enmPedSkin: EnmPedSkin;
         private _intId: number;
         private _objJogador: JogadorDominio;
         private _strGametag: string;
+
+        public get enmPedSkin(): EnmPedSkin
+        {
+            return this._enmPedSkin;
+        }
+
+        public set enmPedSkin(enmPedSkin: EnmPedSkin)
+        {
+            this._enmPedSkin = enmPedSkin;
+
+            this.setEnmPedSkin(this._enmPedSkin);
+        }
 
         public get intId(): number
         {
@@ -93,11 +106,6 @@ module RealLife
         // #endregion Construtores
 
         // #region Métodos
-
-        public alterarSkin(enmPedHash: EnmPedHash): void
-        {
-            API.setPlayerSkin(enmPedHash);
-        }
 
         public criarConta(objJogador: JogadorDominio): void
         {
@@ -161,7 +169,7 @@ module RealLife
 
             this.objJogador = new JogadorDominio();
 
-            this.objJogador.copiarDados(jsnJogador);
+            this.objJogador.copiarJson(jsnJogador);
 
             this.entrarSucessoNotificar();
         }
@@ -214,6 +222,11 @@ module RealLife
             return pedResultado;
         }
 
+        private setEnmPedSkin(enmPedSkin: EnmPedSkin): void
+        {
+            API.setPlayerSkin(enmPedSkin);
+        }
+
         protected setEventos(): void
         {
             super.setEventos();
@@ -233,7 +246,7 @@ module RealLife
 
             var objErro = new ErroDominio();
 
-            objErro.copiarDados(jsnErro);
+            objErro.copiarJson(jsnErro);
 
             Screen.i.notificarErro(objErro);
         }

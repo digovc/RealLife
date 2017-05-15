@@ -20,7 +20,7 @@ module RealLifeShared
 
         // #region Métodos
 
-        public copiarDados(jsn: string): void
+        public copiarJson(jsn: string): void
         {
             if (jsn == null)
             {
@@ -28,6 +28,16 @@ module RealLifeShared
             }
 
             var obj = JSON.parse(jsn);
+
+            this.copiar(obj);
+        }
+
+        public copiar(obj: any): void
+        {
+            if (obj == null)
+            {
+                return;
+            }
 
             for (var objPropriedade in obj)
             {

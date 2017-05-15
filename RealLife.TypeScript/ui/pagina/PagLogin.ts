@@ -66,7 +66,7 @@ module RealLife
 
             var objJogador = new JogadorDominio();
 
-            objJogador.copiarDados(jsnJogador);
+            objJogador.copiarJson(jsnJogador);
 
             Jogador.i.criarConta(objJogador);
         }
@@ -95,7 +95,7 @@ module RealLife
 
             var objJogador = new JogadorDominio();
 
-            objJogador.copiarDados(jsnJogador);
+            objJogador.copiarJson(jsnJogador);
 
             Jogador.i.entrar(objJogador);
         }

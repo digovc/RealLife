@@ -1,4 +1,5 @@
 /// <reference path="../../../RealLifeShared.TypeScript/enumerado/EnmKey.ts"/>
+/// <reference path="../../../RealLifeShared.TypeScript/enumerado/EnmPedSkin.ts"/>
 /// <reference path="../../evento/OnKeyUpListener.ts"/>
 
 module RealLife
@@ -6,6 +7,7 @@ module RealLife
     // #region Importações
 
     import EnmKey = RealLifeShared.EnmKey;
+    import EnmPedSkin = RealLifeShared.EnmPedSkin;
 
     // #endregion Importações
 
@@ -120,7 +122,7 @@ module RealLife
         {
             super.inicializar();
 
-            Jogador.i.alterarSkin(RealLifeShared.EnmPedHash.FREEMODEMALE01);
+            Jogador.i.enmPedSkin = EnmPedSkin.FREEMODEMALE01;
         }
 
         protected setEventos(): void

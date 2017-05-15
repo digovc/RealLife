@@ -1,8 +1,12 @@
+/// <reference path="../../../RealLifeShared.TypeScript/enumerado/EnmPedSkin.ts"/>
 /// <reference path="../ScriptBase.ts"/>
 
 module RealLife
 {
     // #region Importações
+
+    import EnmPedSkin = RealLifeShared.EnmPedSkin;
+
     // #endregion Importações
 
     // #region Enumerados
@@ -38,11 +42,10 @@ module RealLife
         {
             super.inicializar();
 
-            Jogador.i.alterarSkin(RealLifeShared.EnmPedHash.FREEMODEMALE01);
+            Jogador.i.enmPedSkin = EnmPedSkin.FREEMODEMALE01;
+            Jogador.i.intCabelo = 17;
 
             Jogador.i.vestirRoupaDefault();
-
-            Jogador.i.intCabelo = 17;
         }
 
         protected processarOnKeyUp(arg: System.Windows.Forms.KeyEventArgs): void

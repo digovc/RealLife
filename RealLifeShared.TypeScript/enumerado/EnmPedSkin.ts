@@ -1,6 +1,6 @@
 module RealLifeShared
 {
-    export enum EnmPedHash
+    export enum EnmPedSkin
     {
         ABIGAIL = 1074457665,
         ABIGAILCUTSCENE = -1988720319,

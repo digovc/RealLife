@@ -1,11 +1,11 @@
-/// <reference path="../../../../../RealLifeShared.TypeScript/enumerado/EnmPedHash.ts"/>
+/// <reference path="../../../../../RealLifeShared.TypeScript/enumerado/EnmPedSkin.ts"/>
 /// <reference path="../../../../ui/menu/MenuItem.ts"/>
 
 module RealLife
 {
     // #region Importações
 
-    import EnmPedHash = RealLifeShared.EnmPedHash;
+    import EnmPedSkin = RealLifeShared.EnmPedSkin;
 
     // #endregion Importações
 
@@ -32,9 +32,9 @@ module RealLife
 
         // #region Métodos
 
-        private alterarAparencia(enmPedHash: EnmPedHash): void
+        private alterarAparencia(enmPedHash: EnmPedSkin): void
         {
-            Jogador.i.alterarSkin(enmPedHash);
+            Jogador.i.enmPedSkin = enmPedHash;
 
             Jogador.i.randomizarAparencia();
         }
@@ -50,8 +50,8 @@ module RealLife
         {
             super.inicializarArrObjMenuItem(arrObjMenuItem);
 
-            arrObjMenuItem.push(new MenuItem(this, "Masculino", null, (() => { this.alterarAparencia(EnmPedHash.FREEMODEMALE01) })));
-            arrObjMenuItem.push(new MenuItem(this, "Feminino", null, (() => { this.alterarAparencia(EnmPedHash.FREEMODEFEMALE01) })));
+            arrObjMenuItem.push(new MenuItem(this, "Masculino", null, (() => { this.alterarAparencia(EnmPedSkin.FREEMODEMALE01) })));
+            arrObjMenuItem.push(new MenuItem(this, "Feminino", null, (() => { this.alterarAparencia(EnmPedSkin.FREEMODEFEMALE01) })));
         }
 
         // #endregion Métodos

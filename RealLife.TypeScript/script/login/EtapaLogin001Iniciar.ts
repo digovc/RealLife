@@ -30,7 +30,7 @@ module RealLife
 
         private etapa001(): void
         {
-            Screen.i.fadeOut(1, (() => { this.etapa002(); }));
+            Screen.i.fadeOut(.25, (() => { this.etapa002(); }));
         }
 
         private etapa002(): void

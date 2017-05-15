@@ -1,3 +1,4 @@
+/// <reference path="../RealLifeShared.TypeScript/dominio/AparenciaDominio.ts"/>
 /// <reference path="../RealLifeShared.TypeScript/enumerado/EnmPedComponente.ts"/>
 /// <reference path="Entity.ts"/>
 
@@ -5,6 +6,7 @@ module RealLife
 {
     // #region Importações
 
+    import AparenciaDominio = RealLifeShared.AparenciaDominio;
     import EnmPedComponente = RealLifeShared.EnmPedComponente;
 
     // #endregion Importações
@@ -36,6 +38,7 @@ module RealLife
         private _intCamisa: number;
         private _intOlhoCor: number;
         private _intRosto: number;
+        private _objAparencia: AparenciaDominio;
         private _vctAlvo: Vector3;
 
         public get booAtirando(): boolean
@@ -192,6 +195,18 @@ module RealLife
             this.setIntRosto(this._intRosto);
         }
 
+        public get objAparencia(): AparenciaDominio
+        {
+            return this._objAparencia;
+        }
+
+        public set objAparencia(objAparencia: AparenciaDominio)
+        {
+            this._objAparencia = objAparencia;
+
+            this.setObjAparencia(this._objAparencia);
+        }
+
         public get vctAlvo(): Vector3
         {
             this._vctAlvo = this.getVctAlvo();
@@ -342,13 +357,16 @@ module RealLife
 
         public randomizarAparencia(): void
         {
-            var intPai = UtilsRealLife.getIntRandom(0, 20);
-            var intMae = UtilsRealLife.getIntRandom(21, 41);
-            var intTio = UtilsRealLife.getIntRandom(42, 45);
+            var objAparenciaRandomica = new AparenciaDominio();
 
-            API.callNative("SET_PED_HEAD_BLEND_DATA", this.objHandle, intPai, intMae, intTio, intPai, intMae, intTio, Math.random(), Math.random(), Math.random(), false);
+            objAparenciaRandomica.fltAvoPercentual = Math.random();
+            objAparenciaRandomica.fltMaePercentual = Math.random();
+            objAparenciaRandomica.fltPaiPercentual = Math.random();
+            objAparenciaRandomica.intAvo = UtilsRealLife.getIntRandom(42, 45);
+            objAparenciaRandomica.intMae = UtilsRealLife.getIntRandom(21, 41);
+            objAparenciaRandomica.intPai = UtilsRealLife.getIntRandom(0, 20);
 
-            Log.i.debug("Randomizando aparência.");
+            this.objAparencia = objAparenciaRandomica;
         }
 
         public randomizarRoupa(): void
@@ -429,6 +447,23 @@ module RealLife
             }
 
             API.setPlayerClothes(this.objHandle, EnmPedComponente.FACE, intRosto, 0);
+        }
+
+        private setObjAparencia(objAparencia: AparenciaDominio): void
+        {
+            if (this.objHandle == null)
+            {
+                return;
+            }
+
+            if (objAparencia == null)
+            {
+                return;
+            }
+
+            API.callNative("SET_PED_HEAD_BLEND_DATA", this.objHandle, objAparencia.intPai, objAparencia.intMae, objAparencia.intAvo, objAparencia.intPai, objAparencia.intMae, objAparencia.intAvo, objAparencia.fltPaiPercentual, objAparencia.fltMaePercentual, objAparencia.fltAvoPercentual, false);
+
+            Log.i.debug("Aparência alterada.");
         }
 
         public vestirRoupaDefault(): void

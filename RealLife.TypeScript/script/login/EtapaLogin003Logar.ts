@@ -52,12 +52,16 @@ module RealLife
 
         public entrarSucesso(): void
         {
-            // TODO: Implementar.
+            this.objScript.destruir();
+
+            new ScriptOpenWorld().iniciar();
         }
 
         protected inicializar(): void
         {
             super.inicializar();
+
+            // TODO: Iniciar modo de loop de câmeras.
 
             Screen.i.fadeIn();
 
