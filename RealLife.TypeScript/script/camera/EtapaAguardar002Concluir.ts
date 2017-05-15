@@ -38,17 +38,17 @@ module RealLife
 
             (this.objScript as ScriptAguardar).objCameraGamePlay.clonarCameraGamePlay();
 
-            AppRealLife.i.objCameraAtual.interpolar((this.objScript as ScriptAguardar).objCameraFinal, 1, (() => { this.etapa002(); }));
+            Screen.i.objCameraAtual.interpolar((this.objScript as ScriptAguardar).objCameraFinal, 1, (() => { this.etapa002(); }));
         }
 
         private etapa002(): void
         {
-            AppRealLife.i.objCameraAtual.interpolar((this.objScript as ScriptAguardar).objCameraGamePlay, 1, (() => { this.etapa003(); }));
+            Screen.i.objCameraAtual.interpolar((this.objScript as ScriptAguardar).objCameraGamePlay, 1, (() => { this.etapa003(); }));
         }
 
         private etapa003(): void
         {
-            AppRealLife.i.ativarCameraGamePlay();
+            Screen.i.ativarCameraGamePlay();
 
             this.objScript.destruir();
         }

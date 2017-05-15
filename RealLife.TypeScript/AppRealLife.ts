@@ -30,7 +30,6 @@ module RealLife
         }
 
         private _booDebug: boolean;
-        private _objCameraAtual: Camera;
 
         public get booDebug(): boolean
         {
@@ -44,29 +43,12 @@ module RealLife
             return this._booDebug;
         }
 
-        public get objCameraAtual(): Camera
-        {
-            return this._objCameraAtual;
-        }
-
-        public set objCameraAtual(objCameraAtual: Camera)
-        {
-            this._objCameraAtual = objCameraAtual;
-        }
-
         // #endregion Atributos
 
         // #region Construtores
         // #endregion Construtores
 
         // #region Métodos
-
-        public ativarCameraGamePlay(): void
-        {
-            this.objCameraAtual == null;
-
-            API.setGameplayCameraActive();
-        }
 
         protected inicializar(): void
         {

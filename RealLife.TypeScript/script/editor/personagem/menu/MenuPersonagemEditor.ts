@@ -46,7 +46,7 @@ module RealLife
         {
             Jogador.i.randomizarAparencia();
 
-            AppRealLife.i.objCameraAtual.interpolar((this.objEtapa.objScript as ScriptPersonagemEditor).objCameraCabeca, .150);
+            Screen.i.objCameraAtual.interpolar((this.objEtapa.objScript as ScriptPersonagemEditor).objCameraCabeca, .150);
         }
 
         protected inicializarArrObjMenuItem(arrObjMenuItem: Array<MenuItemBase>): void

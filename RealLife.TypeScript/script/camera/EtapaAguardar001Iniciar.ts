@@ -52,7 +52,7 @@ module RealLife
 
         private etapa003(): void
         {
-            AppRealLife.i.objCameraAtual.interpolar((this.objScript as ScriptAguardar).objCameraNivel2, ScriptAguardar.FLT_TEMPO, (() => { this.etapa004(); }));
+            Screen.i.objCameraAtual.interpolar((this.objScript as ScriptAguardar).objCameraNivel2, ScriptAguardar.FLT_TEMPO, (() => { this.etapa004(); }));
         }
 
         private etapa004(): void
@@ -62,7 +62,7 @@ module RealLife
 
         private etapa005(): void
         {
-            AppRealLife.i.objCameraAtual.interpolar((this.objScript as ScriptAguardar).objCameraNivel3, ScriptAguardar.FLT_TEMPO, (() => { this.etapa006(); }));
+            Screen.i.objCameraAtual.interpolar((this.objScript as ScriptAguardar).objCameraNivel3, ScriptAguardar.FLT_TEMPO, (() => { this.etapa006(); }));
         }
 
         private etapa006(): void

@@ -36,6 +36,7 @@ module RealLife
         private _booMouseVisivel: boolean;
         private _dttUltimoFrame: Date = new Date();
         private _fltDelta: number;
+        private _objCameraAtual: Camera;
         private _objResolucao: System.Drawing.Size;
         private _strLegenda: string;
 
@@ -87,6 +88,16 @@ module RealLife
             return this._fltDelta;
         }
 
+        public get objCameraAtual(): Camera
+        {
+            return this._objCameraAtual;
+        }
+
+        public set objCameraAtual(objCameraAtual: Camera)
+        {
+            this._objCameraAtual = objCameraAtual;
+        }
+
         public get objResolucao(): System.Drawing.Size
         {
             if (this._objResolucao != null)
@@ -115,6 +126,13 @@ module RealLife
         // #endregion Construtores
 
         // #region Métodos
+
+        public ativarCameraGamePlay(): void
+        {
+            this.objCameraAtual == null;
+
+            API.setGameplayCameraActive();
+        }
 
         public fadeIn(fltDuracao: number = 1, fncAfter: Function = null): void
         {

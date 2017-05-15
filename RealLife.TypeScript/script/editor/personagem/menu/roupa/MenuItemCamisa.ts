@@ -42,7 +42,7 @@ module RealLife
         {
             super.selecionar();
 
-            AppRealLife.i.objCameraAtual.interpolar(((this.objMenu as MenuPersonagemEditor).objEtapa.objScript as ScriptPersonagemEditor).objCameraTronco, .15);
+            Screen.i.objCameraAtual.interpolar(((this.objMenu as MenuPersonagemEditor).objEtapa.objScript as ScriptPersonagemEditor).objCameraTronco, .15);
         }
 
         // #endregion Métodos

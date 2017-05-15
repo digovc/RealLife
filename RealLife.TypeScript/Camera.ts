@@ -250,7 +250,7 @@ module RealLife
 
             API.interpolateCameras(this.objHandle, objCameraTo.objHandle, (fltDuracao * 1000), true, true);
 
-            AppRealLife.i.objCameraAtual = objCameraTo;
+            Screen.i.objCameraAtual = objCameraTo;
 
             if (fncAfter == null)
             {
@@ -266,13 +266,13 @@ module RealLife
             {
                 API.setActiveCamera(this.objHandle);
 
-                AppRealLife.i.objCameraAtual = this;
+                Screen.i.objCameraAtual = this;
             }
             else
             {
                 API.setGameplayCameraActive()
 
-                AppRealLife.i.objCameraAtual = null;
+                Screen.i.objCameraAtual = null;
             }
         }
 
