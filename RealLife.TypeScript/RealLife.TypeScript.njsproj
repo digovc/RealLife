@@ -50,6 +50,7 @@
   <ItemGroup>
     <TypeScriptCompile Include="AppRealLife.ts" />
     <TypeScriptCompile Include="Audio.ts" />
+    <TypeScriptCompile Include="evento\OnColisaoListener.ts" />
     <TypeScriptCompile Include="evento\OnDestruirListener.ts" />
     <TypeScriptCompile Include="Gps.ts" />
     <TypeScriptCompile Include="Chat.ts" />
@@ -121,6 +122,7 @@
     <TypeScriptCompile Include="script\missao\ScriptMissaoBase.ts" />
     <TypeScriptCompile Include="script\ScriptBase.ts" />
     <TypeScriptCompile Include="script\EtapaBase.ts" />
+    <TypeScriptCompile Include="script\test\ScriptTestMarker.ts" />
     <TypeScriptCompile Include="script\test\ScriptTestBase.ts" />
     <TypeScriptCompile Include="script\test\ScriptTestAguardar.ts" />
     <TypeScriptCompile Include="script\test\ScriptTestPedAparencia.ts" />

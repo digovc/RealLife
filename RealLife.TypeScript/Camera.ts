@@ -32,13 +32,13 @@ module RealLife
 
         private _booAtiva: boolean;
         private _fltFov: number;
-        private _objGlobalCamera: GTANetwork.Javascript.GlobalCamera;
+        private _objHandle: GTANetwork.Javascript.GlobalCamera;
         private _vctPosicao: Vector3 = new Vector3();
         private _vctRotacao: Vector3 = new Vector3();
 
         public get booAtiva(): boolean
         {
-            this._booAtiva = (API.getActiveCamera() == this.objGlobalCamera);
+            this._booAtiva = (API.getActiveCamera() == this.objHandle);
 
             return this._booAtiva;
         }
@@ -52,7 +52,7 @@ module RealLife
 
         public get fltFov(): number
         {
-            this._fltFov = API.getCameraFov(this.objGlobalCamera);
+            this._fltFov = API.getCameraFov(this.objHandle);
 
             return this._fltFov;
         }
@@ -61,12 +61,24 @@ module RealLife
         {
             this._fltFov = fltFov;
 
-            API.setCameraFov(this.objGlobalCamera, this._fltFov);
+            API.setCameraFov(this.objHandle, this._fltFov);
+        }
+
+        private get objHandle(): GTANetwork.Javascript.GlobalCamera
+        {
+            if (this._objHandle != null)
+            {
+                return this._objHandle;
+            }
+
+            this._objHandle = API.createCamera(new Vector3(), new Vector3());
+
+            return this._objHandle;
         }
 
         public get vctPosicao(): Vector3
         {
-            this._vctPosicao = API.getCameraPosition(this.objGlobalCamera);
+            this._vctPosicao = API.getCameraPosition(this.objHandle);
 
             return this._vctPosicao;
         }
@@ -80,7 +92,7 @@ module RealLife
 
         public get vctRotacao(): Vector3
         {
-            this._vctRotacao = API.getCameraRotation(this.objGlobalCamera);
+            this._vctRotacao = API.getCameraRotation(this.objHandle);
 
             return this._vctRotacao;
         }
@@ -90,18 +102,6 @@ module RealLife
             this._vctRotacao = vctRotacao;
 
             this.setVctRotacao(this._vctRotacao);
-        }
-
-        private get objGlobalCamera(): GTANetwork.Javascript.GlobalCamera
-        {
-            if (this._objGlobalCamera != null)
-            {
-                return this._objGlobalCamera;
-            }
-
-            this._objGlobalCamera = API.createCamera(new Vector3(), new Vector3());
-
-            return this._objGlobalCamera;
         }
 
         // #endregion Atributos
@@ -124,7 +124,7 @@ module RealLife
                 return;
             }
 
-            API.attachCameraToEntity(this.objGlobalCamera, objEntity.objHandle, vctOffSet);
+            API.attachCameraToEntity(this.objHandle, objEntity.objHandle, vctOffSet);
         }
 
         public anexarEntityBone(objEntity: Entity, intBone: number, vctOffSet: Vector3 = new Vector3()): void
@@ -139,7 +139,7 @@ module RealLife
                 return;
             }
 
-            API.attachCameraToEntityBone(this.objGlobalCamera, objEntity.objHandle, intBone, vctOffSet);
+            API.attachCameraToEntityBone(this.objHandle, objEntity.objHandle, intBone, vctOffSet);
         }
 
         public clonarCameraGamePlay(): void
@@ -150,7 +150,7 @@ module RealLife
 
         public desanexar(): void
         {
-            API.detachCamera(this.objGlobalCamera);
+            API.detachCamera(this.objHandle);
         }
 
         public focar(objEntity: Entity, vctOffset: Vector3 = new Vector3()): void
@@ -165,7 +165,7 @@ module RealLife
                 return;
             }
 
-            API.pointCameraAtEntity(this.objGlobalCamera, objEntity.objHandle, vctOffset);
+            API.pointCameraAtEntity(this.objHandle, objEntity.objHandle, vctOffset);
         }
 
         public focarBone(objEntity: Entity, intBone: number, vctOffset: Vector3 = new Vector3()): void
@@ -180,12 +180,12 @@ module RealLife
                 return;
             }
 
-            API.pointCameraAtEntityBone(this.objGlobalCamera, objEntity.objHandle, intBone, vctOffset);
+            API.pointCameraAtEntityBone(this.objHandle, objEntity.objHandle, intBone, vctOffset);
         }
 
         public focarParar(): void
         {
-            API.stopCameraPointing(this.objGlobalCamera);
+            API.stopCameraPointing(this.objHandle);
         }
 
         public focarPosicao(vctPosicao: Vector3): void
@@ -195,7 +195,7 @@ module RealLife
                 return;
             }
 
-            API.pointCameraAtPosition(this.objGlobalCamera, vctPosicao);
+            API.pointCameraAtPosition(this.objHandle, vctPosicao);
         }
 
         private getStrShakeType(enmTremerTipo: CameraBase_EnmTremerTipo): string
@@ -248,7 +248,7 @@ module RealLife
 
             Log.i.debug("Interpolando câmeras.");
 
-            API.interpolateCameras(this.objGlobalCamera, objCameraTo.objGlobalCamera, (fltDuracao * 1000), true, true);
+            API.interpolateCameras(this.objHandle, objCameraTo.objHandle, (fltDuracao * 1000), true, true);
 
             AppRealLife.i.objCameraAtual = objCameraTo;
 
@@ -264,7 +264,7 @@ module RealLife
         {
             if (booAtiva)
             {
-                API.setActiveCamera(this.objGlobalCamera);
+                API.setActiveCamera(this.objHandle);
 
                 AppRealLife.i.objCameraAtual = this;
             }
@@ -283,7 +283,7 @@ module RealLife
                 return;
             }
 
-            API.setCameraPosition(this.objGlobalCamera, vctPosicao);
+            API.setCameraPosition(this.objHandle, vctPosicao);
 
             Log.i.debug("Posição (câmera): {0}, {1}, {2}.", vctPosicao.X, vctPosicao.Y, vctPosicao.Z);
         }
@@ -295,7 +295,7 @@ module RealLife
                 return;
             }
 
-            API.setCameraRotation(this.objGlobalCamera, vctRotacao);
+            API.setCameraRotation(this.objHandle, vctRotacao);
 
             Log.i.debug("Rotação (câmera): {0}, {1}, {2}.", vctRotacao.X, vctRotacao.Y, vctRotacao.Z);
         }
@@ -309,12 +309,12 @@ module RealLife
 
             var strShakeType = this.getStrShakeType(enmTremerTipo);
 
-            API.setCameraShake(this.objGlobalCamera, strShakeType, fltAmplitude);
+            API.setCameraShake(this.objHandle, strShakeType, fltAmplitude);
         }
 
         public tremerParar(): void
         {
-            API.stopCameraShake(this.objGlobalCamera);
+            API.stopCameraShake(this.objHandle);
         }
 
         // #endregion Métodos

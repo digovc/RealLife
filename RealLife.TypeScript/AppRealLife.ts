@@ -74,9 +74,9 @@ module RealLife
 
             this.inicializarComponente();
 
-            //new ScriptPersonagemEditor().iniciar();
+            //new ScriptOpenWorld().iniciar();
 
-            new ScriptTestAguardar().iniciar();
+            new ScriptTestMarker().iniciar();
         }
 
         private inicializarComponente(): void

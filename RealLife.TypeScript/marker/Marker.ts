@@ -1,3 +1,5 @@
+/// <reference path="../Cor.ts"/>
+/// <reference path="../Entity.ts"/>
 /// <reference path="../Objeto.ts"/>
 
 module RealLife
@@ -8,27 +10,39 @@ module RealLife
     // #region Enumerados
     // #endregion Enumerados
 
-    export class Marker extends Objeto
+    export class Marker extends Objeto implements OnUpdateListener
     {
         // #region Constantes
         // #endregion Constantes
 
         // #region Atributos
 
-        private _cor: System.Drawing.Color;
+        private _booColidiu: boolean;
+        private _cor: Cor;
         private _enmTipo: Enums.MarkerType;
         private _objHandle: LocalHandle;
         private _vctDirecao: Vector3;
         private _vctEscala: Vector3;
+        private _vctPosicao: Vector3;
 
-        public get cor(): System.Drawing.Color
+        private get booColidiu(): boolean
+        {
+            return this._booColidiu;
+        }
+
+        private set booColidiu(booColidiu: boolean)
+        {
+            this._booColidiu = booColidiu;
+        }
+
+        public get cor(): Cor
         {
             this._cor = this.getCor();
 
             return this._cor;
         }
 
-        public set cor(cor: System.Drawing.Color)
+        public set cor(cor: Cor)
         {
             this._cor = cor;
 
@@ -97,6 +111,11 @@ module RealLife
             this.setVctEscala(this._vctEscala);
         }
 
+        private get vctPosicao(): Vector3
+        {
+            return this._vctPosicao;
+        }
+
         // #endregion Atributos
 
         // #region Construtores
@@ -104,42 +123,47 @@ module RealLife
 
         // #region Métodos
 
-        public criar(vctPosicao: Vector3, vctRotacao: Vector3): void
+        public criar(vctPosicao: Vector3, vctRotacao: Vector3 = new Vector3()): void
         {
-            if (this.objHandle != null)
+            if (this.objHandle)
             {
                 return;
             }
 
-            // TODO: Confirmar se precisa ser desenhado a cada update.
+            this._vctPosicao = vctPosicao;
 
-            var corTemp = new System.Drawing.Color();
-            var vctDirecaoTemp = new Vector3();
-            var vctEscalaTemp = new Vector3(1, 1, 1);
+            var vctDirecao = new Vector3();
+            var vctEscala = new Vector3(1, 1, 1);
 
-            this.objHandle = API.createMarker(Enums.MarkerType.VerticalCylinder, vctPosicao, vctDirecaoTemp, vctRotacao, vctEscalaTemp, corTemp.R, corTemp.G, corTemp.B, corTemp.A);
+            this.objHandle = API.createMarker(Enums.MarkerType.VerticalCylinder, vctPosicao, vctDirecao, vctRotacao, vctEscala, 255, 255, 0, 255);
+
+            Log.i.debug("Criando marca.");
         }
 
         public destruir(): void
         {
             super.destruir();
 
+            Screen.i.removerEvtOnUpdateListener(this);
+
             if (this.objHandle == null)
             {
                 return;
             }
 
-            // TODO: Implementar.
+            API.deleteEntity(this.objHandle);
         }
 
-        private getCor(): System.Drawing.Color
+        private getCor(): Cor
         {
             if (this.objHandle == null)
             {
                 return null;
             }
 
-            return API.getMarkerColor(this.objHandle);
+            var corTemp = API.getMarkerColor(this.objHandle);
+
+            return new Cor(corTemp.R, corTemp.G, corTemp.B, corTemp.A);
         }
 
         private getEnmTipo(): Enums.MarkerType
@@ -172,14 +196,36 @@ module RealLife
             return API.getMarkerScale(this.objHandle);
         }
 
-        private setCor(cor: System.Drawing.Color): void
+        private processarOnUpdate(): void
+        {
+            var vctJogadorPosicao = Jogador.i.vctPosicao;
+
+            var fltDistancia = API.returnNative("VDIST2", Enums.NativeReturnTypes.Float, this.vctPosicao.X, this.vctPosicao.Y, this.vctPosicao.Z, vctJogadorPosicao.X, vctJogadorPosicao.Y, vctJogadorPosicao.Z);
+
+            if (fltDistancia > .25)
+            {
+                this.booColidiu = false;
+                return;
+            }
+
+            if (this.booColidiu)
+            {
+                return;
+            }
+
+            this.booColidiu = true;
+
+            this.dispararEvtOnColisaoListener();
+        }
+
+        private setCor(cor: Cor): void
         {
             if (this.objHandle == null)
             {
                 return;
             }
 
-            API.setMarkerColor(this.objHandle, cor.A, cor.R, cor.G, cor.B);
+            API.setMarkerColor(this.objHandle, cor.a, cor.r, cor.g, cor.b);
         }
 
         private setEnmTipo(enmTipo: Enums.MarkerType): void
@@ -215,6 +261,90 @@ module RealLife
         // #endregion Métodos
 
         // #region Eventos
+
+        public onUpdate(): void
+        {
+            this.processarOnUpdate();
+        }
+
+        // #region OnColisaoListener
+
+        private _arrEvtOnColisaoListener: Array<OnColisaoListener>;
+
+        private get arrEvtOnColisaoListener(): Array<OnColisaoListener>
+        {
+            if (this._arrEvtOnColisaoListener != null)
+            {
+                return this._arrEvtOnColisaoListener;
+            }
+
+            this._arrEvtOnColisaoListener = new Array<OnColisaoListener>();
+
+            return this._arrEvtOnColisaoListener;
+        }
+
+        public addEvtOnColisaoListener(evtOnColisaoListener: OnColisaoListener): void
+        {
+            if (evtOnColisaoListener == null)
+            {
+                return;
+            }
+
+            if (this.arrEvtOnColisaoListener.indexOf(evtOnColisaoListener) > -1)
+            {
+                return;
+            }
+
+            if (this.arrEvtOnColisaoListener.length == 0)
+            {
+                Screen.i.addEvtOnUpdateListener(this);
+            }
+
+            this.arrEvtOnColisaoListener.push(evtOnColisaoListener);
+        }
+
+        private dispararEvtOnColisaoListener(): void
+        {
+            Log.i.debug("Disparando colisão.");
+
+            if (this.arrEvtOnColisaoListener.length == 0)
+            {
+                return;
+            }
+
+            this.arrEvtOnColisaoListener.forEach((evt) =>
+            {
+                if (evt == null)
+                {
+                    return;
+                }
+
+                evt.onColisao();
+            });
+        }
+
+        public removerEvtOnColisaoListener(evt: OnColisaoListener): void
+        {
+            if (evt == null)
+            {
+                return;
+            }
+
+            if (this.arrEvtOnColisaoListener.indexOf(evt) == -1)
+            {
+                return;
+            }
+
+            if (this.arrEvtOnColisaoListener.length == 1)
+            {
+                Screen.i.removerEvtOnUpdateListener(this);
+            }
+
+            this.arrEvtOnColisaoListener.splice(this.arrEvtOnColisaoListener.indexOf(evt), 1);
+        }
+
+        // #endregion OnColisaoListener
+
         // #endregion Eventos
     }
 }
