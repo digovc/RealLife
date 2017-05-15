@@ -46,14 +46,12 @@ module RealLife
 
         public get booDebug(): boolean
         {
-            if (this._booDebug != null)
-            {
-                return this._booDebug;
-            }
-
-            this._booDebug = true;
-
             return this._booDebug;
+        }
+
+        public set booDebug(booDebug: boolean)
+        {
+            this._booDebug = booDebug;
         }
 
         // #endregion Atributos
@@ -84,9 +82,9 @@ module RealLife
 
             this.inicializarComponente();
 
-            this.inicializarGame();
+            this.inicializarTeste();
 
-            //new ScriptTestMarker().iniciar();
+            this.inicializarGame();
         }
 
         private inicializarComponente(): void
@@ -102,7 +100,19 @@ module RealLife
 
         private inicializarGame(): void
         {
-            new ScriptOpenWorld().iniciar();
+            if (this.booDebug)
+            {
+                return;
+            }
+
+            new ScriptLogin().iniciar();
+        }
+
+        private inicializarTeste(): void
+        {
+            //this.booDebug = true;
+
+            //new ScriptTestAguardar().iniciar();
         }
 
         public removerScript(objScript: ScriptBase): void

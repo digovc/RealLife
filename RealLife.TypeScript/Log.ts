@@ -38,7 +38,10 @@ module RealLife
 
         public debug(strLog: string, ...arrStrParam: Array<any>): void
         {
-            // TODO: Implementar um booleano para indicar o modo debug.
+            if (!AppRealLife.i.booDebug)
+            {
+                return;
+            }
 
             if (UtilsRealLife.getBooStrVazia(strLog))
             {
