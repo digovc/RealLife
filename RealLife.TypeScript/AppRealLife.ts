@@ -29,7 +29,20 @@ module RealLife
             return AppRealLife._i;
         }
 
+        private _arrObjScript: Array<ScriptBase>;
         private _booDebug: boolean;
+
+        private get arrObjScript(): Array<ScriptBase>
+        {
+            if (this._arrObjScript != null)
+            {
+                return this._arrObjScript;
+            }
+
+            this._arrObjScript = new Array<ScriptBase>();
+
+            return this._arrObjScript;
+        }
 
         public get booDebug(): boolean
         {
@@ -50,15 +63,30 @@ module RealLife
 
         // #region Métodos
 
+        public addScript(objScript: ScriptBase): void
+        {
+            if (objScript == null)
+            {
+                return;
+            }
+
+            if (this.arrObjScript.indexOf(objScript) > -1)
+            {
+                return;
+            }
+
+            this.arrObjScript.push(objScript);
+        }
+
         protected inicializar(): void
         {
             super.inicializar();
 
             this.inicializarComponente();
 
-            //new ScriptOpenWorld().iniciar();
+            this.inicializarGame();
 
-            new ScriptTestMarker().iniciar();
+            //new ScriptTestMarker().iniciar();
         }
 
         private inicializarComponente(): void
@@ -70,6 +98,26 @@ module RealLife
             Log.i.iniciar();
             Screen.i.iniciar();
             Server.i.iniciar();
+        }
+
+        private inicializarGame(): void
+        {
+            new ScriptOpenWorld().iniciar();
+        }
+
+        public removerScript(objScript: ScriptBase): void
+        {
+            if (objScript == null)
+            {
+                return;
+            }
+
+            if (this.arrObjScript.indexOf(objScript) == -1)
+            {
+                return;
+            }
+
+            this.arrObjScript.splice(this.arrObjScript.indexOf(objScript), 1);
         }
 
         // #endregion Métodos

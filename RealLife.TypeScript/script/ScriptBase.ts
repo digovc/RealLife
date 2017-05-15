@@ -55,10 +55,19 @@ module RealLife
         {
             super.destruir();
 
+            AppRealLife.i.removerScript(this);
+
             for (var i = 0; i < this.arrObjEtapa.length; i++)
             {
                 this.arrObjEtapa[i].destruir();
             }
+        }
+
+        protected inicializar(): void
+        {
+            super.inicializar();
+
+            AppRealLife.i.addScript(this);
         }
 
         // #endregion Métodos
