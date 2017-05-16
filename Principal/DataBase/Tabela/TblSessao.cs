@@ -14,8 +14,6 @@ namespace RealLife.DataBase.Tabela
 
         private Coluna _clnDttSaida;
         private Coluna _clnIntJogadorId;
-        private Coluna _clnStrChavePrivada;
-        private Coluna _clnStrChavePublica;
         private Coluna _clnStrIp;
         private Coluna _clnStrSessaoId;
 
@@ -61,36 +59,6 @@ namespace RealLife.DataBase.Tabela
                 _clnIntJogadorId = new Coluna("int_jogador_id", this, Coluna.EnmTipo.BIGINT, TblJogador.i.clnIntId);
 
                 return _clnIntJogadorId;
-            }
-        }
-
-        public Coluna clnStrChavePrivada
-        {
-            get
-            {
-                if (_clnStrChavePrivada != null)
-                {
-                    return _clnStrChavePrivada;
-                }
-
-                _clnStrChavePrivada = new Coluna("str_chave_privada", this, Coluna.EnmTipo.TEXT);
-
-                return _clnStrChavePrivada;
-            }
-        }
-
-        public Coluna clnStrChavePublica
-        {
-            get
-            {
-                if (_clnStrChavePublica != null)
-                {
-                    return _clnStrChavePublica;
-                }
-
-                _clnStrChavePublica = new Coluna("str_chave_publica", this, Coluna.EnmTipo.TEXT);
-
-                return _clnStrChavePublica;
             }
         }
 
@@ -142,8 +110,6 @@ namespace RealLife.DataBase.Tabela
 
             this.clnDttSaida.intOrdem += intOrdem;
             this.clnIntJogadorId.intOrdem += intOrdem;
-            this.clnStrChavePrivada.intOrdem += intOrdem;
-            this.clnStrChavePublica.intOrdem += intOrdem;
             this.clnStrIp.intOrdem += intOrdem;
             this.clnStrSessaoId.intOrdem += intOrdem;
 

@@ -1,8 +1,9 @@
 ﻿using DigoFramework;
 using GTANetworkServer;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 
-namespace RealLife
+namespace RealLife.Jogador
 {
     internal class JogadorManager : Objeto
     {
@@ -79,9 +80,31 @@ namespace RealLife
             this.lstObjJogador.Add(objJogador);
         }
 
+        private void processarOnPlayerDisconnected(Client objClient, string strMotivo)
+        {
+            if (objClient == null)
+            {
+                return;
+            }
+
+            foreach (var objJogador in this.lstObjJogador)
+            {
+                if (!objClient.Equals(objJogador.objClient))
+                {
+                    continue;
+                }
+
+                objJogador.disconectar();
+
+                this.lstObjJogador.Remove(objJogador);
+                return;
+            }
+        }
+
         private void setEventos()
         {
             AppRealLife.i.api.onPlayerConnected += this.onPlayerConnected;
+            AppRealLife.i.api.onPlayerDisconnected += this.onPlayerDisconnected;
         }
 
         #endregion Métodos
@@ -90,7 +113,12 @@ namespace RealLife
 
         private void onPlayerConnected(Client objClient)
         {
-            this.processarOnPlayerConnected(objClient);
+            new Task(() => this.processarOnPlayerConnected(objClient)).Start();
+        }
+
+        private void onPlayerDisconnected(Client objClient, string strMotivo)
+        {
+            new Task(() => this.processarOnPlayerDisconnected(objClient, strMotivo)).Start();
         }
 
         #endregion Eventos

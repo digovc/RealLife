@@ -1,13 +1,14 @@
-﻿using DigoFramework.Json;
+﻿using DigoFramework;
+using DigoFramework.Json;
 using GTANetworkServer;
 using RealLife.DataBase.Dominio;
 using RealLife.DataBase.Tabela;
 using System;
 using System.Threading;
 
-namespace RealLife
+namespace RealLife.Jogador
 {
-    internal class Jogador
+    internal class Jogador : Objeto
     {
         #region Constantes
 
@@ -23,6 +24,7 @@ namespace RealLife
 
         private Client _objClient;
         private JogadorDominio _objJogador;
+        private SessaoDominio _objSessao;
 
         public Client objClient
         {
@@ -50,6 +52,19 @@ namespace RealLife
             }
         }
 
+        private SessaoDominio objSessao
+        {
+            get
+            {
+                return _objSessao;
+            }
+
+            set
+            {
+                _objSessao = value;
+            }
+        }
+
         #endregion Atributos
 
         #region Construtores
@@ -58,8 +73,16 @@ namespace RealLife
 
         #region Métodos
 
+        internal void disconectar()
+        {
+            this.objSessao.dttSaida = DateTime.Now;
+
+            TblSessao.i.salvar(this.objSessao);
+        }
+
         internal void iniciar()
         {
+            this.inicializar();
             this.setEventos();
         }
 
@@ -83,6 +106,10 @@ namespace RealLife
             this.objJogador = Json.i.fromJson<JogadorDominio>(arrObjArg[0].ToString());
 
             TblJogador.i.criarConta(this.objJogador);
+
+            this.objSessao.intJogadorId = this.objJogador.intId;
+
+            TblSessao.i.salvar(this.objSessao);
 
             this.criarContaSucesso();
         }
@@ -113,12 +140,33 @@ namespace RealLife
 
             TblJogador.i.entrar(this.objJogador);
 
+            this.objSessao.intJogadorId = this.objJogador.intId;
+
+            TblSessao.i.salvar(this.objSessao);
+
             this.entrarSucesso();
         }
 
         private void entrarSucesso()
         {
             ClientRealLife.i.executar(this.objClient, STR_METODO_ENTRAR_SUCESSO, this.objJogador);
+        }
+
+        private void inicializar()
+        {
+            this.inicializarObjSessao();
+        }
+
+        private void inicializarObjSessao()
+        {
+            this.objSessao = new SessaoDominio();
+
+            this.objSessao.dttAlteracao = DateTime.Now;
+            this.objSessao.dttCadastro = DateTime.Now;
+            this.objSessao.strIp = this.objClient.address;
+            this.objSessao.strSessaoId = Utils.getStrToken(this.objSessao.intObjetoId.ToString(), this.objClient.address, DateTime.Now.ToString());
+
+            TblSessao.i.salvar(this.objSessao);
         }
 
         private void processarErro(Exception ex)
