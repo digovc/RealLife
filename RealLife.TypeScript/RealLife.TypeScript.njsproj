@@ -129,7 +129,7 @@
     <TypeScriptCompile Include="script\test\ScriptTestPedCabeloCor.ts" />
     <TypeScriptCompile Include="script\test\ScriptTestPedSkin.ts" />
     <TypeScriptCompile Include="script\test\ScriptTestPedSkinAleatorio.ts" />
-    <TypeScriptCompile Include="Server.ts" />
+    <TypeScriptCompile Include="ServerRealLife.ts" />
     <TypeScriptCompile Include="World.ts" />
     <TypeScriptCompile Include="Timer.ts" />
     <TypeScriptCompile Include="typedefinition\gta-network-typescript\content\types-gtanetwork\index.d.ts" />

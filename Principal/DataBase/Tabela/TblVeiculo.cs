@@ -8,11 +8,28 @@
 
         #region Atributos
 
+        private static TblVeiculo _i;
+
+        public static TblVeiculo i
+        {
+            get
+            {
+                if (_i != null)
+                {
+                    return _i;
+                }
+
+                _i = new TblVeiculo();
+
+                return _i;
+            }
+        }
+
         #endregion Atributos
 
         #region Construtores
 
-        public TblVeiculo() : base("tbl_veiculo")
+        private TblVeiculo() : base("tbl_veiculo")
         {
         }
 

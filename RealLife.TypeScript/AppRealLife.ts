@@ -95,7 +95,7 @@ module RealLife
             Keyboard.i.iniciar();
             Log.i.iniciar();
             Screen.i.iniciar();
-            Server.i.iniciar();
+            ServerRealLife.i.iniciar();
         }
 
         private inicializarGame(): void

@@ -1,6 +1,6 @@
 ﻿namespace RealLife.DataBase.Tabela
 {
-    internal class TblImovel : TblRealLifeBase
+    internal class TblPersonagem : TblRealLifeBase
     {
         #region Constantes
 
@@ -8,9 +8,9 @@
 
         #region Atributos
 
-        private static TblImovel _i;
+        private static TblPersonagem _i;
 
-        public static TblImovel i
+        public static TblPersonagem i
         {
             get
             {
@@ -19,17 +19,21 @@
                     return _i;
                 }
 
-                _i = new TblImovel();
+                _i = new TblPersonagem();
 
                 return _i;
             }
         }
 
+        int_jogador_id
+        int_skin
+        
+
         #endregion Atributos
 
         #region Construtores
 
-        private TblImovel() : base("tbl_imovel")
+        private TblPersonagem() : base("tbl_personagem")
         {
         }
 

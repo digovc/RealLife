@@ -19,7 +19,7 @@ module RealLife
     // #region Enumerados
     // #endregion Enumerados
 
-    export class Jogador extends Ped implements OnChatCommandListener, OnServerEventTriggerListener
+    export class Jogador extends Ped implements OnServerEventTriggerListener
     {
         // #region Constantes
 
@@ -30,6 +30,7 @@ module RealLife
         private static get STR_METODO_ENTRAR(): string { return "STR_METODO_ENTRAR" };
         private static get STR_METODO_ENTRAR_SUCESSO(): string { return "STR_METODO_ENTRAR_SUCESSO" };
         private static get STR_METODO_ERRO(): string { return "STR_METODO_ERRO" };
+        private static get STR_METODO_SALVAR_APARENCIA(): string { return "STR_METODO_SALVAR_APARENCIA" };
 
         // #endregion Constantes
 
@@ -49,21 +50,21 @@ module RealLife
             return Jogador._i;
         }
 
-        private _enmPedSkin: EnmPedSkin;
+        private _booMasculino: boolean;
         private _intId: number;
         private _objJogador: JogadorDominio;
         private _strGametag: string;
 
-        public get enmPedSkin(): EnmPedSkin
+        public get booMasculino(): boolean
         {
-            return this._enmPedSkin;
+            return this._booMasculino;
         }
 
-        public set enmPedSkin(enmPedSkin: EnmPedSkin)
+        public set booMasculino(booMasculino: boolean)
         {
-            this._enmPedSkin = enmPedSkin;
+            this._booMasculino = booMasculino;
 
-            this.setEnmPedSkin(this._enmPedSkin);
+            this.setBooMasculino(this._booMasculino);
         }
 
         public get intId(): number
@@ -116,7 +117,7 @@ module RealLife
 
             this.objJogador = objJogador;
 
-            Server.i.executarJson(Jogador.STR_METODO_CRIAR_CONTA, this.objJogador);
+            ServerRealLife.i.executarJson(Jogador.STR_METODO_CRIAR_CONTA, this.objJogador);
         }
 
         private criarContaSucesso(): void
@@ -155,7 +156,7 @@ module RealLife
 
             this.objJogador = objJogador;
 
-            Server.i.executarJson(Jogador.STR_METODO_ENTRAR, this.objJogador);
+            ServerRealLife.i.executarJson(Jogador.STR_METODO_ENTRAR, this.objJogador);
         }
 
         private entrarSucesso(arrObjArg: System.Array<any>): void
@@ -222,8 +223,20 @@ module RealLife
             return pedResultado;
         }
 
-        private setEnmPedSkin(enmPedSkin: EnmPedSkin): void
+        public salvarAparencia(): void
         {
+            ServerRealLife.i.executarJson(Jogador.STR_METODO_SALVAR_APARENCIA, this.objJogador);
+        }
+
+        private setBooMasculino(booMasculino: boolean): void
+        {
+            var enmPedSkin = EnmPedSkin.FREEMODEMALE01;
+
+            if (!booMasculino)
+            {
+                var enmPedSkin = EnmPedSkin.FREEMODEFEMALE01;
+            }
+
             API.setPlayerSkin(enmPedSkin);
         }
 
@@ -231,8 +244,7 @@ module RealLife
         {
             super.setEventos();
 
-            Chat.i.addEvtOnChatCommandListener(this);
-            Server.i.addEvtOnServerEventTriggerListener(this);
+            ServerRealLife.i.addEvtOnServerEventTriggerListener(this);
         }
 
         private processarErro(arrObjArg: System.Array<any>): void
@@ -249,21 +261,6 @@ module RealLife
             objErro.copiarJson(jsnErro);
 
             Screen.i.notificarErro(objErro);
-        }
-
-        private processarOnChatCommand(strComando: string): void
-        {
-            if (UtilsRealLife.getBooStrVazia(strComando))
-            {
-                return;
-            }
-
-            switch (strComando)
-            {
-                //case Jogador.STR_COMANDO_DEV:
-                //    PagDev.i.iniciar();
-                //    return;
-            }
         }
 
         private processarOnServerEventTrigger(strMetodoNome: string, arrObjArg: System.Array<any>): void
@@ -292,11 +289,6 @@ module RealLife
         // #endregion Métodos
 
         // #region Eventos
-
-        public onChatCommand(strComando: string): void
-        {
-            this.processarOnChatCommand(strComando);
-        }
 
         public onServerEventTrigger(strMetodoNome: string, arrObjArg: System.Array<any>): void
         {

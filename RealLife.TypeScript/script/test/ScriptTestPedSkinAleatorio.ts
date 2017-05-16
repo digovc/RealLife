@@ -37,7 +37,8 @@ module RealLife
 
         private etapa001(): void
         {
-            Jogador.i.enmPedSkin = EnmPedSkin.FREEMODEMALE01;
+            Jogador.i.booMasculino = true;
+
             Jogador.i.vestirRoupaDefault();
 
             this.etapa002();

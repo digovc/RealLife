@@ -42,8 +42,8 @@ module RealLife
 
         private etapa002(): void
         {
+            Jogador.i.booMasculino = true;
             Jogador.i.booVisivel = false;
-            Jogador.i.enmPedSkin = EnmPedSkin.FREEMODEMALE01;
 
             Jogador.i.randomizarAparencia();
 

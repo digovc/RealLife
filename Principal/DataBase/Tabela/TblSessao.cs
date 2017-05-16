@@ -8,11 +8,28 @@
 
         #region Atributos
 
+        private static TblSessao _i;
+
+        public static TblSessao i
+        {
+            get
+            {
+                if (_i != null)
+                {
+                    return _i;
+                }
+
+                _i = new TblSessao();
+
+                return _i;
+            }
+        }
+
         #endregion Atributos
 
         #region Construtores
 
-        public TblSessao() : base("tbl_sessao")
+        private TblSessao() : base("tbl_sessao")
         {
         }
 

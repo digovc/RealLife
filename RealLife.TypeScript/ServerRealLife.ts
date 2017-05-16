@@ -11,25 +11,25 @@ module RealLife
     // #region Enumerados
     // #endregion Enumerados
 
-    export class Server extends Objeto
+    export class ServerRealLife extends Objeto
     {
         // #region Constantes
         // #endregion Constantes
 
         // #region Atributos
 
-        private static _i: Server;
+        private static _i: ServerRealLife;
 
-        public static get i(): Server
+        public static get i(): ServerRealLife
         {
-            if (Server._i != null)
+            if (ServerRealLife._i != null)
             {
-                return Server._i;
+                return ServerRealLife._i;
             }
 
-            Server._i = new Server();
+            ServerRealLife._i = new ServerRealLife();
 
-            return Server._i;
+            return ServerRealLife._i;
         }
 
         // #endregion Atributos

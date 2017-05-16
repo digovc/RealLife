@@ -2,7 +2,7 @@
 
 namespace RealLife.DataBase.Tabela
 {
-    internal class TblAmigo : TblRealLifeBase
+    internal class TblAmizade : TblRealLifeBase
     {
         #region Constantes
 
@@ -10,12 +10,12 @@ namespace RealLife.DataBase.Tabela
 
         #region Atributos
 
-        private static TblAmigo _i;
-        private Coluna _clnIntJogador1Id;
+        private static TblAmizade _i;
 
+        private Coluna _clnIntJogador1Id;
         private Coluna _clnIntJogador2Id;
 
-        public static TblAmigo i
+        public static TblAmizade i
         {
             get
             {
@@ -24,7 +24,7 @@ namespace RealLife.DataBase.Tabela
                     return _i;
                 }
 
-                _i = new TblAmigo();
+                _i = new TblAmizade();
 
                 return _i;
             }
@@ -64,7 +64,7 @@ namespace RealLife.DataBase.Tabela
 
         #region Construtores
 
-        private TblAmigo() : base("tbl_amigo")
+        private TblAmizade() : base("tbl_amizade")
         {
         }
 

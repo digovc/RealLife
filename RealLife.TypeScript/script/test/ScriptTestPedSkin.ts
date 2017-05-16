@@ -122,7 +122,7 @@ module RealLife
         {
             super.inicializar();
 
-            Jogador.i.enmPedSkin = EnmPedSkin.FREEMODEMALE01;
+            Jogador.i.booMasculino = true;
         }
 
         protected setEventos(): void

@@ -45,7 +45,7 @@ module RealLife
         {
             this.objMenu.destruir();
 
-            this.etapa002();
+            new EtapaPersonagemEditor003Concluir(this.objScript).iniciar();
         }
 
         // Etapas
@@ -55,11 +55,6 @@ module RealLife
             this.objMenu.iniciar();
 
             this.objMenu.booVisivel = true;
-        }
-
-        private etapa002(): void
-        {
-            new EtapaPersonagemEditor003Concluir(this.objScript).iniciar();
         }
 
         // #endregion Métodos

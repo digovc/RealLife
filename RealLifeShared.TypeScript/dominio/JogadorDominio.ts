@@ -15,9 +15,20 @@ module RealLifeShared
 
         // #region Atributos
 
+        private _objAparencia: AparenciaDominio;
         private _strEmail: string;
         private _strGametag: string;
         private _strSenha: string;
+
+        public get objAparencia(): AparenciaDominio
+        {
+            return this._objAparencia;
+        }
+
+        public set objAparencia(objAparencia: AparenciaDominio)
+        {
+            this._objAparencia = objAparencia;
+        }
 
         public get strEmail(): string
         {

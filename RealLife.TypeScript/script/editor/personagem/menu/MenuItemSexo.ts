@@ -32,26 +32,19 @@ module RealLife
 
         // #region Métodos
 
-        private alterarAparencia(enmPedHash: EnmPedSkin): void
+        private alterarAparencia(booMasculino: boolean): void
         {
-            Jogador.i.enmPedSkin = enmPedHash;
+            Jogador.i.booMasculino = booMasculino;
 
             Jogador.i.randomizarAparencia();
-        }
-
-        protected inicializar(): void
-        {
-            super.inicializar();
-
-            this.strSubTitulo = "Teste";
         }
 
         protected inicializarArrObjMenuItem(arrObjMenuItem: Array<MenuItemBase>): void
         {
             super.inicializarArrObjMenuItem(arrObjMenuItem);
 
-            arrObjMenuItem.push(new MenuItem(this, "Masculino", null, (() => { this.alterarAparencia(EnmPedSkin.FREEMODEMALE01) })));
-            arrObjMenuItem.push(new MenuItem(this, "Feminino", null, (() => { this.alterarAparencia(EnmPedSkin.FREEMODEFEMALE01) })));
+            arrObjMenuItem.push(new MenuItem(this, "Masculino", null, (() => { this.alterarAparencia(true); })));
+            arrObjMenuItem.push(new MenuItem(this, "Feminino", null, (() => { this.alterarAparencia(false); })));
         }
 
         // #endregion Métodos

@@ -23,6 +23,8 @@ module RealLife
         {
             super.inicializar();
 
+            Jogador.i.salvarAparencia();
+
             this.etapa001();
         }
 

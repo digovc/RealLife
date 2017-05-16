@@ -51,7 +51,7 @@ module RealLife
 
             API.onChatCommand.connect((strComando: string) => { Chat.i.dispararEvtOnChatCommandListener(strComando); });
             API.onKeyUp.connect((objSender: any, arg: any) => { Keyboard.i.dispararEvtOnKeyUpListener(objSender, arg); });
-            API.onServerEventTrigger.connect((strMetodoNome: string, arrObjArg: System.Array<any>) => { Server.i.dispararEvtOnServerEventTriggerListener(strMetodoNome, arrObjArg); });
+            API.onServerEventTrigger.connect((strMetodoNome: string, arrObjArg: System.Array<any>) => { ServerRealLife.i.dispararEvtOnServerEventTriggerListener(strMetodoNome, arrObjArg); });
             API.onUpdate.connect(() => { Screen.i.dispararEvtOnUpdateListener(); });
         }
 
