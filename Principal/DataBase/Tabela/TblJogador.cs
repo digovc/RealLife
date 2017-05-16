@@ -101,6 +101,8 @@ namespace RealLife.DataBase.Tabela
                 this.criarContaPreparar(objJogador);
 
                 this.salvar(objJogador);
+
+                objJogador.intId = this.clnIntId.intValor;
             }
             finally
             {
@@ -148,6 +150,8 @@ namespace RealLife.DataBase.Tabela
                 {
                     throw new Exception("Dados inválidos.");
                 }
+
+                objJogador.intId = this.clnIntId.intValor;
             }
             finally
             {
