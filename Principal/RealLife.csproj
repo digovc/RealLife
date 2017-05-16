@@ -62,6 +62,7 @@
     <Compile Include="DataBase\Dominio\JogadorDominio.cs" />
     <Compile Include="DataBase\Dominio\ErroDominio.cs" />
     <Compile Include="DataBase\Tabela\TblAmizade.cs" />
+    <Compile Include="DataBase\Tabela\TblDocumento.cs" />
     <Compile Include="DataBase\Tabela\TblFinanceiro.cs" />
     <Compile Include="DataBase\Tabela\TblJogador.cs" />
     <Compile Include="DataBase\Tabela\TblPersonagem.cs" />

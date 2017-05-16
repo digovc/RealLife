@@ -12,9 +12,9 @@ namespace RealLife.DataBase.Tabela
 
         private static TblFinanceiro _i;
 
-        private Coluna _clnDblValor;
         private Coluna _clnIntPersonagemId;
         private Coluna _clnIntSessaoId;
+        private Coluna _clnIntValor;
         private Coluna _clnStrDescricao;
 
         public static TblFinanceiro i
@@ -29,21 +29,6 @@ namespace RealLife.DataBase.Tabela
                 _i = new TblFinanceiro();
 
                 return _i;
-            }
-        }
-
-        public Coluna clnDblValor
-        {
-            get
-            {
-                if (_clnDblValor != null)
-                {
-                    return _clnDblValor;
-                }
-
-                _clnDblValor = new Coluna("dbl_valor", this, Coluna.EnmTipo.DOUBLE);
-
-                return _clnDblValor;
             }
         }
 
@@ -77,6 +62,21 @@ namespace RealLife.DataBase.Tabela
             }
         }
 
+        public Coluna clnIntValor
+        {
+            get
+            {
+                if (_clnIntValor != null)
+                {
+                    return _clnIntValor;
+                }
+
+                _clnIntValor = new Coluna("int_valor", this, Coluna.EnmTipo.INTEGER);
+
+                return _clnIntValor;
+            }
+        }
+
         public Coluna clnStrDescricao
         {
             get
@@ -103,6 +103,18 @@ namespace RealLife.DataBase.Tabela
         #endregion Construtores
 
         #region Métodos
+
+        protected override int inicializarColunas(int intOrdem)
+        {
+            intOrdem = base.inicializarColunas(intOrdem);
+
+            this.clnIntPersonagemId.intOrdem += intOrdem;
+            this.clnIntSessaoId.intOrdem += intOrdem;
+            this.clnIntValor.intOrdem += intOrdem;
+            this.clnStrDescricao.intOrdem += intOrdem;
+
+            return intOrdem;
+        }
 
         #endregion Métodos
 
