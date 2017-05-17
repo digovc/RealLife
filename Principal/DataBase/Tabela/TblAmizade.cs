@@ -39,7 +39,7 @@ namespace RealLife.DataBase.Tabela
                     return _clnIntJogador1Id;
                 }
 
-                _clnIntJogador1Id = new Coluna("int_jogador_1_id", this, Coluna.EnmTipo.BIGINT, TblJogador.i.clnIntId);
+                _clnIntJogador1Id = new Coluna("int_jogador_1_id", this, Coluna.EnmTipo.BIGINT, TblConta.i.clnIntId);
 
                 return _clnIntJogador1Id;
             }
@@ -54,7 +54,7 @@ namespace RealLife.DataBase.Tabela
                     return _clnIntJogador2Id;
                 }
 
-                _clnIntJogador2Id = new Coluna("int_jogador_2_id", this, Coluna.EnmTipo.BIGINT, TblJogador.i.clnIntId);
+                _clnIntJogador2Id = new Coluna("int_jogador_2_id", this, Coluna.EnmTipo.BIGINT, TblConta.i.clnIntId);
 
                 return _clnIntJogador2Id;
             }

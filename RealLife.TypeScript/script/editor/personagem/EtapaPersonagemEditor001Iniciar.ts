@@ -42,13 +42,10 @@ module RealLife
 
         private etapa002(): void
         {
-            Jogador.i.booMasculino = true;
             Jogador.i.booVisivel = false;
-
-            Jogador.i.randomizarAparencia();
-
             Keyboard.i.booAtivo = false;
             Screen.i.booHudVisivel = false;
+
             World.i.setEnmClima(Enums.Weather.Clear);
             World.i.setHora(12);
 

@@ -1,18 +1,21 @@
-/// <reference path="../RealLifeShared.TypeScript/dominio/ErroDominio.ts"/>
-/// <reference path="../RealLifeShared.TypeScript/dominio/JogadorDominio.ts"/>
-/// <reference path="../RealLifeShared.TypeScript/enumerado/EnmPedSkin.ts"/>
-/// <reference path="evento/OnChatCommandListener.ts"/>
-/// <reference path="evento/OnServerEventTriggerListener.ts"/>
-/// <reference path="Objeto.ts"/>
-/// <reference path="Ped.ts"/>
+/// <reference path="../../RealLifeShared.TypeScript/dominio/ContaDominio.ts"/>
+/// <reference path="../../RealLifeShared.TypeScript/dominio/ErroDominio.ts"/>
+/// <reference path="../../RealLifeShared.TypeScript/dominio/PersonagemDominio.ts"/>
+/// <reference path="../../RealLifeShared.TypeScript/enumerado/EnmPedSkin.ts"/>
+/// <reference path="../evento/OnChatCommandListener.ts"/>
+/// <reference path="../evento/OnServerEventTriggerListener.ts"/>
+/// <reference path="../Objeto.ts"/>
+/// <reference path="../Ped.ts"/>
+/// <reference path="BlendData.ts"/>
 
 module RealLife
 {
     // #region Importações
 
+    import ContaDominio = RealLifeShared.ContaDominio;
     import EnmPedSkin = RealLifeShared.EnmPedSkin;
     import ErroDominio = RealLifeShared.ErroDominio;
-    import JogadorDominio = RealLifeShared.JogadorDominio;
+    import PersonagemDominio = RealLifeShared.PersonagemDominio;
 
     // #endregion Importações
 
@@ -52,8 +55,8 @@ module RealLife
 
         private _booMasculino: boolean;
         private _intId: number;
-        private _objJogador: JogadorDominio;
-        private _strGametag: string;
+        private _objBlendData: BlendData;
+        private _objConta: ContaDominio;
 
         public get booMasculino(): boolean
         {
@@ -79,26 +82,26 @@ module RealLife
             return this._intId;
         }
 
-        private get objJogador(): JogadorDominio
+        public get objBlendData(): BlendData
         {
-            return this._objJogador;
+            return this._objBlendData;
         }
 
-        private set objJogador(objJogador: JogadorDominio)
+        public set objBlendData(objBlendData: BlendData)
         {
-            this._objJogador = objJogador;
+            this._objBlendData = objBlendData;
+
+            this.setObjBlendData(this._objBlendData);
         }
 
-        private get strGametag(): string
+        private get objConta(): ContaDominio
         {
-            return this._strGametag;
+            return this._objConta;
         }
 
-        private set strGametag(strGametag: string)
+        private set objConta(objConta: ContaDominio)
         {
-            this._strGametag = strGametag;
-
-            API.setPlayerNametag(this.objHandle, this._strGametag);
+            this._objConta = objConta;
         }
 
         // #endregion Atributos
@@ -108,16 +111,16 @@ module RealLife
 
         // #region Métodos
 
-        public criarConta(objJogador: JogadorDominio): void
+        public criarConta(objConta: ContaDominio): void
         {
-            if (objJogador == null)
+            if (objConta == null)
             {
                 return;
             }
 
-            this.objJogador = objJogador;
+            this.objConta = objConta;
 
-            ServerRealLife.i.executarJson(Jogador.STR_METODO_CRIAR_CONTA, this.objJogador);
+            ServerRealLife.i.executarJson(Jogador.STR_METODO_CRIAR_CONTA, this.objConta);
         }
 
         private criarContaSucesso(): void
@@ -127,17 +130,17 @@ module RealLife
 
         private criarContaSucessoNotificar(): void
         {
-            if (this.objJogador == null)
+            if (this.objConta == null)
             {
                 return;
             }
 
-            if (UtilsRealLife.getBooStrVazia(this.objJogador.strGametag))
+            if (UtilsRealLife.getBooStrVazia(this.objConta.strGametag))
             {
                 return;
             }
 
-            var strNotificacao = "Sua conta foi criada com sucesso _player_gametag!".replace("_player_gametag", this.objJogador.strGametag);
+            var strNotificacao = "Sua conta foi criada com sucesso _player_gametag!".replace("_player_gametag", this.objConta.strGametag);
 
             Screen.i.notificar(strNotificacao);
         }
@@ -147,47 +150,47 @@ module RealLife
             API.detonatePlayerStickies();
         }
 
-        public entrar(objJogador: JogadorDominio): void
+        public entrar(objConta: ContaDominio): void
         {
-            if (objJogador == null)
+            if (objConta == null)
             {
                 return;
             }
 
-            this.objJogador = objJogador;
+            this.objConta = objConta;
 
-            ServerRealLife.i.executarJson(Jogador.STR_METODO_ENTRAR, this.objJogador);
+            ServerRealLife.i.executarJson(Jogador.STR_METODO_ENTRAR, this.objConta);
         }
 
         private entrarSucesso(arrObjArg: System.Array<any>): void
         {
-            var jsnJogador = this.getJsn(arrObjArg);
+            var jsnConta = this.getJsn(arrObjArg);
 
-            if (UtilsRealLife.getBooStrVazia(jsnJogador))
+            if (UtilsRealLife.getBooStrVazia(jsnConta))
             {
                 return;
             }
 
-            this.objJogador = new JogadorDominio();
+            this.objConta = new ContaDominio();
 
-            this.objJogador.copiarJson(jsnJogador);
+            this.objConta.copiarJson(jsnConta);
 
             this.entrarSucessoNotificar();
         }
 
         private entrarSucessoNotificar(): void
         {
-            if (this.objJogador == null)
+            if (this.objConta == null)
             {
                 return;
             }
 
-            if (UtilsRealLife.getBooStrVazia(this.objJogador.strGametag))
+            if (UtilsRealLife.getBooStrVazia(this.objConta.strGametag))
             {
                 return;
             }
 
-            var strNotificacao = "Seja bem vindo _player_gametag!".replace("_player_gametag", this.objJogador.strGametag);
+            var strNotificacao = "Seja bem vindo _player_gametag!".replace("_player_gametag", this.objConta.strGametag);
 
             Screen.i.notificar(strNotificacao);
         }
@@ -214,6 +217,21 @@ module RealLife
             return API.getLocalPlayer();
         }
 
+        private getObjPersonagem(): PersonagemDominio
+        {
+            var objPersonagemResultado = new PersonagemDominio();
+
+            objPersonagemResultado.booMasculino = true;
+            objPersonagemResultado.fltAvoPercentual = Math.random();
+            objPersonagemResultado.fltMaePercentual = Math.random();
+            objPersonagemResultado.fltPaiPercentual = Math.random();
+            objPersonagemResultado.intAvo = UtilsRealLife.getIntRandom(42, 45);
+            objPersonagemResultado.intMae = UtilsRealLife.getIntRandom(21, 41);
+            objPersonagemResultado.intPai = UtilsRealLife.getIntRandom(0, 20);
+
+            return objPersonagemResultado;
+        }
+
         private getPed(): Ped
         {
             var pedResultado = new Ped();
@@ -223,28 +241,17 @@ module RealLife
             return pedResultado;
         }
 
-        public salvarAparencia(): void
+        protected inicializar(): void
         {
-            ServerRealLife.i.executarJson(Jogador.STR_METODO_SALVAR_APARENCIA, this.objJogador);
+            super.inicializar();
+
+            this.inicializarAparencia();
         }
 
-        private setBooMasculino(booMasculino: boolean): void
+        private inicializarAparencia(): void
         {
-            var enmPedSkin = EnmPedSkin.FREEMODEMALE01;
-
-            if (!booMasculino)
-            {
-                var enmPedSkin = EnmPedSkin.FREEMODEFEMALE01;
-            }
-
-            API.setPlayerSkin(enmPedSkin);
-        }
-
-        protected setEventos(): void
-        {
-            super.setEventos();
-
-            ServerRealLife.i.addEvtOnServerEventTriggerListener(this);
+            this.booMasculino = true;
+            this.objBlendData = BlendData.criarRandomico();
         }
 
         private processarErro(arrObjArg: System.Array<any>): void
@@ -284,6 +291,40 @@ module RealLife
                     this.processarErro(arrObjArg);
                     return;
             }
+        }
+
+        public salvarAparencia(): void
+        {
+            ServerRealLife.i.executarJson(Jogador.STR_METODO_SALVAR_APARENCIA, this.objConta);
+        }
+
+        protected setEventos(): void
+        {
+            super.setEventos();
+
+            ServerRealLife.i.addEvtOnServerEventTriggerListener(this);
+        }
+
+        private setBooMasculino(booMasculino: boolean): void
+        {
+            if (booMasculino)
+            {
+                API.setPlayerSkin(EnmPedSkin.FREEMODEMALE01);
+            }
+            else
+            {
+                API.setPlayerSkin(EnmPedSkin.FREEMODEFEMALE01);
+            }
+        }
+
+        private setObjBlendData(objBlendData: BlendData): void
+        {
+            if (objBlendData == null)
+            {
+                return;
+            }
+
+            API.callNative("SET_PED_HEAD_BLEND_DATA", this.objHandle, objBlendData.intPai, objBlendData.intMae, objBlendData.intAvo, objBlendData.intPai, objBlendData.intMae, objBlendData.intAvo, objBlendData.fltPaiPercentual, objBlendData.fltMaePercentual, objBlendData.fltAvoPercentual, false);
         }
 
         // #endregion Métodos

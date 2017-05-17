@@ -1,5 +1,6 @@
 ﻿using DigoFramework;
 using GTANetworkServer;
+using RealLife.Jogador;
 
 namespace RealLife
 {

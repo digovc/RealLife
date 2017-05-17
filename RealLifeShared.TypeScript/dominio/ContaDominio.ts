@@ -8,27 +8,16 @@ module RealLifeShared
     // #region Enumerados
     // #endregion Enumerados
 
-    export class JogadorDominio extends DominioRealLifeBase
+    export class ContaDominio extends DominioRealLifeBase
     {
         // #region Constantes
         // #endregion Constantes
 
         // #region Atributos
 
-        private _objAparencia: AparenciaDominio;
         private _strEmail: string;
         private _strGametag: string;
         private _strSenha: string;
-
-        public get objAparencia(): AparenciaDominio
-        {
-            return this._objAparencia;
-        }
-
-        public set objAparencia(objAparencia: AparenciaDominio)
-        {
-            this._objAparencia = objAparencia;
-        }
 
         public get strEmail(): string
         {

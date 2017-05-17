@@ -1,6 +1,6 @@
 ﻿namespace RealLife.DataBase.Dominio
 {
-    internal class JogadorDominio : DominioRealLifeBase
+    internal class ContaDominio : DominioRealLifeBase
     {
         #region Constantes
 

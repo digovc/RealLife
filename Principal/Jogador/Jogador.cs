@@ -23,7 +23,7 @@ namespace RealLife.Jogador
         #region Atributos
 
         private Client _objClient;
-        private JogadorDominio _objJogador;
+        private ContaDominio _objJogador;
         private SessaoDominio _objSessao;
 
         public Client objClient
@@ -39,7 +39,7 @@ namespace RealLife.Jogador
             }
         }
 
-        private JogadorDominio objJogador
+        private ContaDominio objJogador
         {
             get
             {
@@ -73,7 +73,7 @@ namespace RealLife.Jogador
 
         #region Métodos
 
-        internal void disconectar()
+        internal void desconectar()
         {
             this.objSessao.dttSaida = DateTime.Now;
 
@@ -103,9 +103,9 @@ namespace RealLife.Jogador
                 return;
             }
 
-            this.objJogador = Json.i.fromJson<JogadorDominio>(arrObjArg[0].ToString());
+            this.objJogador = Json.i.fromJson<ContaDominio>(arrObjArg[0].ToString());
 
-            TblJogador.i.criarConta(this.objJogador);
+            TblConta.i.criarConta(this.objJogador);
 
             this.objSessao.intJogadorId = this.objJogador.intId;
 
@@ -136,9 +136,9 @@ namespace RealLife.Jogador
                 return;
             }
 
-            this.objJogador = Json.i.fromJson<JogadorDominio>(arrObjArg[0].ToString());
+            this.objJogador = Json.i.fromJson<ContaDominio>(arrObjArg[0].ToString());
 
-            TblJogador.i.entrar(this.objJogador);
+            TblConta.i.entrar(this.objJogador);
 
             this.objSessao.intJogadorId = this.objJogador.intId;
 

@@ -66,11 +66,10 @@
     <Folder Include="Properties\" />
   </ItemGroup>
   <ItemGroup>
+    <TypeScriptCompile Include="dominio\PersonagemDominio.ts" />
     <TypeScriptCompile Include="dominio\AudioDominio.ts" />
     <TypeScriptCompile Include="dominio\DominioRealLifeBase.ts" />
-    <TypeScriptCompile Include="dominio\EntityDominio.ts" />
     <TypeScriptCompile Include="dominio\ErroDominio.ts" />
-    <TypeScriptCompile Include="dominio\AparenciaDominio.ts" />
     <TypeScriptCompile Include="dominio\MissaoConclusaoDominio.ts" />
     <TypeScriptCompile Include="enumerado\EnmVehicleComponente.ts" />
     <TypeScriptCompile Include="enumerado\EnmPedComponente.ts" />
@@ -82,7 +81,7 @@
     <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />
   </ItemGroup>
   <ItemGroup>
-    <TypeScriptCompile Include="dominio\JogadorDominio.ts" />
+    <TypeScriptCompile Include="dominio\ContaDominio.ts" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.targets" Condition="Exists('$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.targets')" />

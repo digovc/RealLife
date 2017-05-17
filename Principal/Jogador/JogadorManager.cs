@@ -94,7 +94,7 @@ namespace RealLife.Jogador
                     continue;
                 }
 
-                objJogador.disconectar();
+                objJogador.desconectar();
 
                 this.lstObjJogador.Remove(objJogador);
                 return;

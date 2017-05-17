@@ -44,7 +44,7 @@ module RealLife
 
         private alterarAparencia(): void
         {
-            Jogador.i.randomizarAparencia();
+            Jogador.i.objBlendData = BlendData.criarRandomico();
 
             Screen.i.objCameraAtual.interpolar((this.objEtapa.objScript as ScriptPersonagemEditor).objCameraCabeca, .150);
         }

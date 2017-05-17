@@ -1,6 +1,4 @@
-/// <reference path="DominioRealLifeBase.ts"/>
-
-module RealLifeShared
+module RealLife
 {
     // #region Importações
     // #endregion Importações
@@ -8,7 +6,7 @@ module RealLifeShared
     // #region Enumerados
     // #endregion Enumerados
 
-    export class AparenciaDominio extends DominioRealLifeBase
+    export class BlendData
     {
         // #region Constantes
         // #endregion Constantes
@@ -88,6 +86,21 @@ module RealLifeShared
         // #endregion Construtores
 
         // #region Métodos
+
+        public static criarRandomico(): BlendData
+        {
+            var objResultado = new BlendData();
+
+            objResultado.fltAvoPercentual = Math.random();
+            objResultado.fltMaePercentual = Math.random();
+            objResultado.fltPaiPercentual = Math.random();
+            objResultado.intAvo = UtilsRealLife.getIntRandom(42, 45);
+            objResultado.intMae = UtilsRealLife.getIntRandom(21, 41);
+            objResultado.intPai = UtilsRealLife.getIntRandom(0, 20);
+
+            return objResultado;
+        }
+
         // #endregion Métodos
 
         // #region Eventos

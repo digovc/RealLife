@@ -30,7 +30,6 @@ module RealLife
         {
             super.inicializar();
 
-            Jogador.i.booMasculino = true;
             Jogador.i.intCabelo = 17;
 
             Jogador.i.vestirRoupaDefault();
@@ -41,7 +40,7 @@ module RealLife
             switch (arg.KeyCode)
             {
                 case Keys.Up:
-                    Jogador.i.randomizarAparencia();
+                    Jogador.i.objBlendData = BlendData.criarRandomico();
                     return;
             }
         }

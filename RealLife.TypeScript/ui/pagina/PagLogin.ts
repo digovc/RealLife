@@ -1,4 +1,4 @@
-/// <reference path="../../../RealLifeShared.TypeScript/dominio/JogadorDominio.ts"/>
+/// <reference path="../../../RealLifeShared.TypeScript/dominio/ContaDominio.ts"/>
 /// <reference path="../../../RealLifeShared.TypeScript/enumerado/EnmKey.ts"/>
 /// <reference path="../../typedefinition/gta-network-typescript/content/types-gtanetwork/index.d.ts" />
 /// <reference path="../../UtilsRealLife.ts"/>
@@ -8,8 +8,8 @@ module RealLife
 {
     // #region Importações
 
+    import ContaDominio = RealLifeShared.ContaDominio;
     import EnmKey = RealLifeShared.EnmKey;
-    import JogadorDominio = RealLifeShared.JogadorDominio;
 
     // #endregion Importações
 
@@ -57,18 +57,18 @@ module RealLife
             Screen.i.booMouseVisivel = true;
         }
 
-        public criarConta(jsnJogador: string): void
+        public criarConta(jsnConta: string): void
         {
-            if (UtilsRealLife.getBooStrVazia(jsnJogador))
+            if (UtilsRealLife.getBooStrVazia(jsnConta))
             {
                 return;
             }
 
-            var objJogador = new JogadorDominio();
+            var objConta = new ContaDominio();
 
-            objJogador.copiarJson(jsnJogador);
+            objConta.copiarJson(jsnConta);
 
-            Jogador.i.criarConta(objJogador);
+            Jogador.i.criarConta(objConta);
         }
 
         public criarContaSucesso(): void
@@ -86,18 +86,18 @@ module RealLife
             return "ui/pag_login.html";
         }
 
-        public entrar(jsnJogador: string): void
+        public entrar(jsnConta: string): void
         {
-            if (UtilsRealLife.getBooStrVazia(jsnJogador))
+            if (UtilsRealLife.getBooStrVazia(jsnConta))
             {
                 return;
             }
 
-            var objJogador = new JogadorDominio();
+            var objConta = new ContaDominio();
 
-            objJogador.copiarJson(jsnJogador);
+            objConta.copiarJson(jsnConta);
 
-            Jogador.i.entrar(objJogador);
+            Jogador.i.entrar(objConta);
         }
 
         public entrarSucesso(): void

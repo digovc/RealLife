@@ -5,7 +5,7 @@ using System.Collections.Generic;
 
 namespace RealLife.DataBase.Tabela
 {
-    internal class TblJogador : TblRealLifeBase
+    internal class TblConta : TblRealLifeBase
     {
         #region Constantes
 
@@ -13,13 +13,13 @@ namespace RealLife.DataBase.Tabela
 
         #region Atributos
 
-        private static TblJogador _i;
+        private static TblConta _i;
 
         private Coluna _clnStrEmail;
         private Coluna _clnStrGametag;
         private Coluna _clnStrSenha;
 
-        public static TblJogador i
+        public static TblConta i
         {
             get
             {
@@ -28,7 +28,7 @@ namespace RealLife.DataBase.Tabela
                     return _i;
                 }
 
-                _i = new TblJogador();
+                _i = new TblConta();
 
                 return _i;
             }
@@ -83,7 +83,7 @@ namespace RealLife.DataBase.Tabela
 
         #region Construtores
 
-        private TblJogador() : base("tbl_jogador")
+        private TblConta() : base("tbl_conta")
         {
         }
 
@@ -91,18 +91,19 @@ namespace RealLife.DataBase.Tabela
 
         #region Métodos
 
-        internal void criarConta(JogadorDominio objJogador)
+        internal void criarConta(ContaDominio objConta)
         {
             try
             {
                 this.bloquearThread();
 
-                this.criarContaValidar(objJogador);
-                this.criarContaPreparar(objJogador);
+                this.criarContaValidar(objConta);
 
-                this.salvar(objJogador);
+                this.criarContaPreparar(objConta);
 
-                objJogador.intId = this.clnIntId.intValor;
+                this.salvar(objConta);
+
+                objConta.intId = this.clnIntId.intValor;
             }
             finally
             {
@@ -110,39 +111,39 @@ namespace RealLife.DataBase.Tabela
             }
         }
 
-        internal void entrar(JogadorDominio objJogador)
+        internal void entrar(ContaDominio objConta)
         {
             try
             {
                 this.bloquearThread();
 
-                if (objJogador == null)
+                if (objConta == null)
                 {
-                    throw new NullReferenceException("O objeto jogador não pode estar nulo.");
+                    throw new NullReferenceException("O objeto conta não pode estar nulo.");
                 }
 
-                if (string.IsNullOrEmpty(objJogador.strEmail) && string.IsNullOrEmpty(objJogador.strGametag))
+                if (string.IsNullOrEmpty(objConta.strEmail) && string.IsNullOrEmpty(objConta.strGametag))
                 {
                     throw new ArgumentException("Um email ou gametag válido deve ser informado.");
                 }
 
-                if (string.IsNullOrEmpty(objJogador.strSenha))
+                if (string.IsNullOrEmpty(objConta.strSenha))
                 {
                     throw new ArgumentException("A senha deve ser informada.");
                 }
 
                 var lstFil = new List<Filtro>();
 
-                if (!string.IsNullOrEmpty(objJogador.strEmail))
+                if (!string.IsNullOrEmpty(objConta.strEmail))
                 {
-                    lstFil.Add(new Filtro(this.clnStrEmail, objJogador.strEmail.ToLower()));
+                    lstFil.Add(new Filtro(this.clnStrEmail, objConta.strEmail.ToLower()));
                 }
                 else
                 {
-                    lstFil.Add(new Filtro(this.clnStrGametag, objJogador.strGametag));
+                    lstFil.Add(new Filtro(this.clnStrGametag, objConta.strGametag));
                 }
 
-                lstFil.Add(new Filtro(this.clnStrSenha, objJogador.strSenha));
+                lstFil.Add(new Filtro(this.clnStrSenha, objConta.strSenha));
 
                 this.recuperar(lstFil);
 
@@ -151,7 +152,7 @@ namespace RealLife.DataBase.Tabela
                     throw new Exception("Dados inválidos.");
                 }
 
-                objJogador.intId = this.clnIntId.intValor;
+                objConta.intId = this.clnIntId.intValor;
             }
             finally
             {
@@ -170,46 +171,46 @@ namespace RealLife.DataBase.Tabela
             return intOrdem;
         }
 
-        private void criarContaPreparar(JogadorDominio objJogador)
+        private void criarContaPreparar(ContaDominio objConta)
         {
-            objJogador.strEmail = objJogador.strEmail.ToLower();
+            objConta.strEmail = objConta.strEmail.ToLower();
         }
 
-        private void criarContaValidar(JogadorDominio objJogador)
+        private void criarContaValidar(ContaDominio objConta)
         {
-            if (objJogador == null)
+            if (objConta == null)
             {
-                throw new NullReferenceException("O objeto jogador não pode estar nulo.");
+                throw new NullReferenceException("O objeto conta não pode estar nulo.");
             }
 
-            if (string.IsNullOrEmpty(objJogador.strEmail))
-            {
-                throw new NullReferenceException("O email deve ser informado.");
-            }
-
-            if (string.IsNullOrEmpty(objJogador.strEmail))
+            if (string.IsNullOrEmpty(objConta.strEmail))
             {
                 throw new NullReferenceException("O email deve ser informado.");
             }
 
-            if (string.IsNullOrEmpty(objJogador.strGametag))
+            if (string.IsNullOrEmpty(objConta.strEmail))
+            {
+                throw new NullReferenceException("O email deve ser informado.");
+            }
+
+            if (string.IsNullOrEmpty(objConta.strGametag))
             {
                 throw new NullReferenceException("A gametag deve ser informada.");
             }
 
-            if (string.IsNullOrEmpty(objJogador.strSenha))
+            if (string.IsNullOrEmpty(objConta.strSenha))
             {
                 throw new NullReferenceException("A senha deve ser informada.");
             }
 
-            this.recuperar(this.clnStrEmail, objJogador.strEmail.ToLower());
+            this.recuperar(this.clnStrEmail, objConta.strEmail.ToLower());
 
             if (this.clnIntId.intValor > 0)
             {
                 throw new NullReferenceException("Este email já está sendo usado.");
             }
 
-            this.recuperar(this.clnStrGametag, objJogador.strGametag);
+            this.recuperar(this.clnStrGametag, objConta.strGametag);
 
             if (this.clnIntId.intValor > 0)
             {

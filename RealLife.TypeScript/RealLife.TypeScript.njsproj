@@ -62,9 +62,11 @@
     <TypeScriptCompile Include="evento\OnKeyUpListener.ts" />
     <TypeScriptCompile Include="evento\OnServerEventTriggerListener.ts" />
     <TypeScriptCompile Include="evento\OnUpdateListener.ts" />
+    <TypeScriptCompile Include="jogador\HeadOverlay.ts" />
+    <TypeScriptCompile Include="jogador\BlendData.ts" />
     <TypeScriptCompile Include="marker\Marker.ts" />
     <TypeScriptCompile Include="Ped.ts" />
-    <TypeScriptCompile Include="Jogador.ts" />
+    <TypeScriptCompile Include="jogador\Jogador.ts" />
     <TypeScriptCompile Include="Keyboard.ts" />
     <TypeScriptCompile Include="Log.ts" />
     <TypeScriptCompile Include="Objeto.ts" />
@@ -153,6 +155,7 @@
     <Folder Include="evento\" />
     <Folder Include="blip\" />
     <Folder Include="marker\" />
+    <Folder Include="jogador\" />
     <Folder Include="script\" />
     <Folder Include="script\editor\" />
     <Folder Include="script\editor\personagem\" />

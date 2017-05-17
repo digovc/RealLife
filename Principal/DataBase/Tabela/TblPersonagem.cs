@@ -227,7 +227,7 @@ namespace RealLife.DataBase.Tabela
                     return _clnIntJogadorId;
                 }
 
-                _clnIntJogadorId = new Coluna("int_jogador_id", this, Coluna.EnmTipo.BIGINT, TblJogador.i.clnIntId);
+                _clnIntJogadorId = new Coluna("int_jogador_id", this, Coluna.EnmTipo.BIGINT, TblConta.i.clnIntId);
 
                 return _clnIntJogadorId;
             }
