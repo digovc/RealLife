@@ -34,8 +34,12 @@ module RealLife
         private etapa001(): void
         {
             Chat.i.booAtivo = false;
-            Jogador.i.booCongelado = false;
+            Chat.i.booVisivel = false;
+
+            Jogador.i.booCongelado = true;
+            Jogador.i.booDinamico = false;
             Jogador.i.booVisivel = false;
+
             Screen.i.booHudVisivel = false;
 
             (this.objScript as ScriptAguardar).objCameraGamePlay.booAtiva = true;
@@ -67,6 +71,8 @@ module RealLife
 
         private etapa006(): void
         {
+            // TODO: Diminuir o passar do tempo.
+
             (this.objScript as ScriptAguardar).objCameraNivel3.tremer();
         }
 

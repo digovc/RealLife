@@ -50,7 +50,7 @@ module RealLife
         {
             Screen.i.ativarCameraGamePlay();
 
-            this.objScript.destruir();
+            (this.objScript as ScriptAguardar).baixarConcluir();
         }
 
         // #endregion Métodos

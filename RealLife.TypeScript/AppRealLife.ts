@@ -54,6 +54,20 @@ module RealLife
             this._booDebug = booDebug;
         }
 
+        private _objScriptAguardar: ScriptAguardar;
+
+        public get objScriptAguardar(): ScriptAguardar
+        {
+            if (this._objScriptAguardar != null)
+            {
+                return this._objScriptAguardar;
+            }
+
+            this._objScriptAguardar = new ScriptAguardar();
+
+            return this._objScriptAguardar;
+        }
+
         // #endregion Atributos
 
         // #region Construtores

@@ -39,7 +39,7 @@ module RealLife
         {
             Log.i.debug("Descendo.");
 
-            this.objScriptAguardar.concluir(Jogador.i.vctPosicao);
+            this.objScriptAguardar.baixar(Jogador.i.vctPosicao);
         }
 
         protected processarOnKeyUp(arg: System.Windows.Forms.KeyEventArgs): void

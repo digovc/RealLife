@@ -153,6 +153,18 @@ module RealLife
             API.detachCamera(this.objHandle);
         }
 
+        public destruir(): void
+        {
+            super.destruir();
+
+            if (this.objHandle == null)
+            {
+                return;
+            }
+
+            API.callNative("DESTROY_CAM", this.objHandle, false);
+        }
+
         public focar(objEntity: Entity, vctOffset: Vector3 = new Vector3()): void
         {
             if (objEntity == null)
