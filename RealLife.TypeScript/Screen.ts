@@ -178,6 +178,13 @@ module RealLife
             API.sendNotification("~r~Erro: ~s~" + objErro.strMensagem);
         }
 
+        public processarEvtOnUpdateListener(): void
+        {
+            this.processarOnUpdate();
+
+            this.dispararEvtOnUpdateListener();
+        }
+
         private processarOnUpdate(): void
         {
             this._fltDelta = null;
@@ -245,10 +252,8 @@ module RealLife
             this.arrEvtOnUpdateListener.push(evtOnUpdateListener);
         }
 
-        public dispararEvtOnUpdateListener(): void
+        private dispararEvtOnUpdateListener(): void
         {
-            this.processarOnUpdate();
-
             if (this.arrEvtOnUpdateListener.length == 0)
             {
                 return;

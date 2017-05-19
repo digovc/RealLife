@@ -36,7 +36,8 @@ module RealLife
         private static get STR_METODO_ENTRAR(): string { return "STR_METODO_ENTRAR" };
         private static get STR_METODO_ENTRAR_SUCESSO(): string { return "STR_METODO_ENTRAR_SUCESSO" };
         private static get STR_METODO_ERRO(): string { return "STR_METODO_ERRO" };
-        private static get STR_METODO_SALVAR_APARENCIA(): string { return "STR_METODO_SALVAR_APARENCIA" };
+        private static get STR_METODO_APARENCIA_SALVAR(): string { return "STR_METODO_SALVAR_APARENCIA" };
+        private static get STR_METODO_APARENCIA_SALVAR_SUCESSO(): string { return "STR_METODO_SALVAR_APARENCIA_SUCESSO" };
 
         // #endregion Constantes
 
@@ -61,6 +62,7 @@ module RealLife
         private _intId: number;
         private _objBlendData: BlendDataDominio;
         private _objConta: ContaDominio;
+        private _objEtapaPersonagemEditor003Concluir: EtapaPersonagemEditor003Concluir;
 
         private get arrObjHeadOverlay(): Array<HeadOverlayDominio>
         {
@@ -120,6 +122,16 @@ module RealLife
             this._objConta = objConta;
         }
 
+        private get objEtapaPersonagemEditor003Concluir(): EtapaPersonagemEditor003Concluir
+        {
+            return this._objEtapaPersonagemEditor003Concluir;
+        }
+
+        private set objEtapaPersonagemEditor003Concluir(objEtapaPersonagemEditor003Concluir: EtapaPersonagemEditor003Concluir)
+        {
+            this._objEtapaPersonagemEditor003Concluir = objEtapaPersonagemEditor003Concluir;
+        }
+
         // #endregion Atributos
 
         // #region Construtores
@@ -144,6 +156,11 @@ module RealLife
             API.callNative("SET_PED_HEAD_OVERLAY", this.objHandle, objHeadOverlay.enmTipo, objHeadOverlay.intIndex, objHeadOverlay.intAlpha);
         }
 
+        public carregarAparencia(fnc: Function): void
+        {
+            ServerRealLife.i.executarSync(fnc, Jogador.STR_METODO_CRIAR_CONTA);
+        }
+
         public criarConta(objConta: ContaDominio): void
         {
             if (objConta == null)
@@ -153,7 +170,7 @@ module RealLife
 
             this.objConta = objConta;
 
-            ServerRealLife.i.executarJson(Jogador.STR_METODO_CRIAR_CONTA, this.objConta);
+            ServerRealLife.i.executar(Jogador.STR_METODO_CRIAR_CONTA, this.objConta);
         }
 
         private criarContaSucesso(): void
@@ -192,12 +209,12 @@ module RealLife
 
             this.objConta = objConta;
 
-            ServerRealLife.i.executarJson(Jogador.STR_METODO_ENTRAR, this.objConta);
+            ServerRealLife.i.executar(Jogador.STR_METODO_ENTRAR, this.objConta);
         }
 
-        private entrarSucesso(arrObjArg: System.Array<any>): void
+        private entrarSucesso(arrObjArg: Object[]): void
         {
-            var jsnConta = this.getJsn(arrObjArg);
+            var jsnConta = this.getStrArgumento(arrObjArg);
 
             if (UtilsRealLife.getBooStrVazia(jsnConta))
             {
@@ -228,19 +245,19 @@ module RealLife
             Screen.i.notificar(strNotificacao);
         }
 
-        private getJsn(arrObjArg: System.Array<any>): string
+        private getStrArgumento(arrObjArg: Object[], intIndex: number = 0): string
         {
             if (arrObjArg == null)
             {
                 return null;
             }
 
-            if (arrObjArg.Length < 1)
+            if (arrObjArg.length < (intIndex - 1))
             {
                 return null;
             }
 
-            return arrObjArg[0];
+            return arrObjArg[intIndex].toString();
         }
 
         protected getObjHandle(): LocalHandle
@@ -263,9 +280,9 @@ module RealLife
             this.objBlendData = UtilsRealLife.getObjBlendDataRandomico();
         }
 
-        private processarErro(arrObjArg: System.Array<any>): void
+        private processarErro(arrObjArg: Object[]): void
         {
-            var jsnErro = this.getJsn(arrObjArg);
+            var jsnErro = this.getStrArgumento(arrObjArg);
 
             if (UtilsRealLife.getBooStrVazia(jsnErro))
             {
@@ -279,7 +296,7 @@ module RealLife
             Screen.i.notificarErro(objErro);
         }
 
-        private processarOnServerEventTrigger(strMetodoNome: string, arrObjArg: System.Array<any>): void
+        private processarOnServerEventTrigger(strMetodoNome: string, arrObjArg: Object[]): void
         {
             if (UtilsRealLife.getBooStrVazia(strMetodoNome))
             {
@@ -296,24 +313,43 @@ module RealLife
                     this.entrarSucesso(arrObjArg);
                     return;
 
+                case Jogador.STR_METODO_APARENCIA_SALVAR_SUCESSO:
+                    this.salvarAparenciaSucesso();
+                    return;
+
                 case Jogador.STR_METODO_ERRO:
                     this.processarErro(arrObjArg);
                     return;
             }
         }
 
-        public salvarAparencia(): void
+        public salvarAparencia(objEtapa: EtapaPersonagemEditor003Concluir): void
         {
+            if (objEtapa == null)
+            {
+                return;
+            }
+
+            this.objEtapaPersonagemEditor003Concluir = objEtapa;
+
             var objPersonagem = new PersonagemDominio();
 
-            objPersonagem.arrObjHeadOverlay = this.arrObjHeadOverlay;
-            objPersonagem.arrObjPedComponente = this.arrObjPedComponente;
             objPersonagem.booMasculino = this.booMasculino;
-            objPersonagem.objBlendData = this.objBlendData;
             objPersonagem.intCabeloCor = this.intCabeloCor;
             objPersonagem.intOlhoCor = this.intOlhoCor;
+            objPersonagem.objBlendData = this.objBlendData;
 
-            ServerRealLife.i.executarJson(Jogador.STR_METODO_SALVAR_APARENCIA, objPersonagem);
+            ServerRealLife.i.executar(Jogador.STR_METODO_APARENCIA_SALVAR, objPersonagem, this.arrObjHeadOverlay, this.arrObjPedComponente);
+        }
+
+        private salvarAparenciaSucesso(): void
+        {
+            if (this.objEtapaPersonagemEditor003Concluir == null)
+            {
+                return;
+            }
+
+            this.objEtapaPersonagemEditor003Concluir.salvarAparenciaSucesso();
         }
 
         protected setEventos(): void
@@ -349,7 +385,7 @@ module RealLife
 
         // #region Eventos
 
-        public onServerEventTrigger(strMetodoNome: string, arrObjArg: System.Array<any>): void
+        public onServerEventTrigger(strMetodoNome: string, arrObjArg: Object[]): void
         {
             this.processarOnServerEventTrigger(strMetodoNome, arrObjArg);
         }

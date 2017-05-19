@@ -3,7 +3,7 @@ using GTANetworkServer;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
-namespace RealLife.Jogador
+namespace RealLife
 {
     internal class JogadorManager : Objeto
     {

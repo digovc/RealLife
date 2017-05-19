@@ -17,8 +17,6 @@ module RealLifeShared
 
         // #region Atributos
 
-        private _arrObjHeadOverlay: Array<HeadOverlayDominio>;
-        private _arrObjPedComponente: Array<PedComponenteDominio>;
         private _booMasculino: boolean;
         private _intCabeloCor: number;
         private _intDinheiro: number;
@@ -41,26 +39,6 @@ module RealLifeShared
         private _intSono: number;
         private _intVelocidade: number;
         private _objBlendData: BlendDataDominio;
-
-        public get arrObjPedComponente(): Array<PedComponenteDominio>
-        {
-            return this._arrObjPedComponente;
-        }
-
-        public set arrObjPedComponente(arrObjPedComponente: Array<PedComponenteDominio>)
-        {
-            this._arrObjPedComponente = arrObjPedComponente;
-        }
-
-        public get arrObjHeadOverlay(): Array<HeadOverlayDominio>
-        {
-            return this._arrObjHeadOverlay;
-        }
-
-        public set arrObjHeadOverlay(arrObjHeadOverlay: Array<HeadOverlayDominio>)
-        {
-            this._arrObjHeadOverlay = arrObjHeadOverlay;
-        }
 
         public get booMasculino(): boolean
         {

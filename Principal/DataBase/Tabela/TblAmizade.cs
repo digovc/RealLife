@@ -30,7 +30,7 @@ namespace RealLife.DataBase.Tabela
             }
         }
 
-        public Coluna clnIntJogador1Id
+        private Coluna clnIntJogador1Id
         {
             get
             {
@@ -45,7 +45,7 @@ namespace RealLife.DataBase.Tabela
             }
         }
 
-        public Coluna clnIntJogador2Id
+        private Coluna clnIntJogador2Id
         {
             get
             {

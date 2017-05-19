@@ -27,7 +27,7 @@ namespace RealLife.DataBase.Tabela
         private Coluna _clnIntSessaoId;
         private Coluna _clnIntTipo;
 
-        public Coluna clnBooAtiva
+        private Coluna clnBooAtiva
         {
             get
             {
@@ -42,7 +42,7 @@ namespace RealLife.DataBase.Tabela
             }
         }
 
-        public Coluna clnDttValidade
+        private Coluna clnDttValidade
         {
             get
             {
@@ -57,7 +57,7 @@ namespace RealLife.DataBase.Tabela
             }
         }
 
-        public Coluna clnIntPersonagemId
+        private Coluna clnIntPersonagemId
         {
             get
             {
@@ -72,7 +72,7 @@ namespace RealLife.DataBase.Tabela
             }
         }
 
-        public Coluna clnIntSessaoId
+        private Coluna clnIntSessaoId
         {
             get
             {
@@ -87,7 +87,7 @@ namespace RealLife.DataBase.Tabela
             }
         }
 
-        public Coluna clnIntTipo
+        private Coluna clnIntTipo
         {
             get
             {

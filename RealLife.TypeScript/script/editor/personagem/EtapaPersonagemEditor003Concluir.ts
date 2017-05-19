@@ -23,7 +23,19 @@ module RealLife
         {
             super.inicializar();
 
-            Jogador.i.salvarAparencia();
+            this.salvarAparencia();
+        }
+
+        private salvarAparencia(): void
+        {
+            Jogador.i.salvarAparencia(this);
+
+            Screen.i.notificar("Salvando o personagem.");
+        }
+
+        public salvarAparenciaSucesso(): void
+        {
+            Screen.i.notificar("Personagem salvo com sucesso.");
 
             this.etapa001();
         }

@@ -49,10 +49,10 @@ module RealLife
         {
             super.setEventos();
 
-            API.onChatCommand.connect((strComando: string) => { Chat.i.dispararEvtOnChatCommandListener(strComando); });
-            API.onKeyUp.connect((objSender: any, arg: any) => { Keyboard.i.dispararEvtOnKeyUpListener(objSender, arg); });
-            API.onServerEventTrigger.connect((strMetodoNome: string, arrObjArg: System.Array<any>) => { ServerRealLife.i.dispararEvtOnServerEventTriggerListener(strMetodoNome, arrObjArg); });
-            API.onUpdate.connect(() => { Screen.i.dispararEvtOnUpdateListener(); });
+            API.onChatCommand.connect((strComando: string) => { Chat.i.processarEvtOnChatCommandListener(strComando); });
+            API.onKeyUp.connect((objSender: any, arg: any) => { Keyboard.i.processarEvtOnKeyUpListener(objSender, arg); });
+            API.onServerEventTrigger.connect((strMetodo: string, ...arrObjArg: Object[]) => { ServerRealLife.i.processarEvtOnServerEventTriggerListener(strMetodo, arrObjArg); });
+            API.onUpdate.connect(() => { Screen.i.processarEvtOnUpdateListener(); });
         }
 
         // #endregion Métodos

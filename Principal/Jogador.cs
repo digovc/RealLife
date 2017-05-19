@@ -4,9 +4,10 @@ using GTANetworkServer;
 using RealLife.DataBase.Dominio;
 using RealLife.DataBase.Tabela;
 using System;
+using System.Collections.Generic;
 using System.Threading;
 
-namespace RealLife.Jogador
+namespace RealLife
 {
     internal class Jogador : Objeto
     {
@@ -17,13 +18,17 @@ namespace RealLife.Jogador
         private const string STR_METODO_ENTRAR = "STR_METODO_ENTRAR";
         private const string STR_METODO_ENTRAR_SUCESSO = "STR_METODO_ENTRAR_SUCESSO";
         private const string STR_METODO_ERRO = "STR_METODO_ERRO";
+        private const string STR_METODO_SALVAR_APARENCIA = "STR_METODO_SALVAR_APARENCIA";
+        private const string STR_METODO_SALVAR_APARENCIA_SUCESSO = "STR_METODO_SALVAR_APARENCIA_SUCESSO";
+
+        private const string STR_SYNC_TAG = "STR_SYNC_TAG";
 
         #endregion Constantes
 
         #region Atributos
 
         private Client _objClient;
-        private ContaDominio _objJogador;
+        private ContaDominio _objConta;
         private SessaoDominio _objSessao;
 
         public Client objClient
@@ -39,16 +44,16 @@ namespace RealLife.Jogador
             }
         }
 
-        private ContaDominio objJogador
+        private ContaDominio objConta
         {
             get
             {
-                return _objJogador;
+                return _objConta;
             }
 
             set
             {
-                _objJogador = value;
+                _objConta = value;
             }
         }
 
@@ -88,26 +93,16 @@ namespace RealLife.Jogador
 
         private void criarConta(object[] arrObjArg)
         {
-            if (arrObjArg == null)
+            this.objConta = this.getObjArg<ContaDominio>(arrObjArg);
+
+            if (this.objConta == null)
             {
                 return;
             }
 
-            if (arrObjArg.Length < 1)
-            {
-                return;
-            }
+            TblConta.i.criarConta(this.objConta);
 
-            if (arrObjArg[0] == null)
-            {
-                return;
-            }
-
-            this.objJogador = Json.i.fromJson<ContaDominio>(arrObjArg[0].ToString());
-
-            TblConta.i.criarConta(this.objJogador);
-
-            this.objSessao.intJogadorId = this.objJogador.intId;
+            this.objSessao.intJogadorId = this.objConta.intId;
 
             TblSessao.i.salvar(this.objSessao);
 
@@ -121,26 +116,16 @@ namespace RealLife.Jogador
 
         private void entrar(object[] arrObjArg)
         {
-            if (arrObjArg == null)
+            this.objConta = this.getObjArg<ContaDominio>(arrObjArg);
+
+            if (this.objConta == null)
             {
                 return;
             }
 
-            if (arrObjArg.Length < 1)
-            {
-                return;
-            }
+            TblConta.i.entrar(this.objConta);
 
-            if (arrObjArg[0] == null)
-            {
-                return;
-            }
-
-            this.objJogador = Json.i.fromJson<ContaDominio>(arrObjArg[0].ToString());
-
-            TblConta.i.entrar(this.objJogador);
-
-            this.objSessao.intJogadorId = this.objJogador.intId;
+            this.objSessao.intJogadorId = this.objConta.intId;
 
             TblSessao.i.salvar(this.objSessao);
 
@@ -149,7 +134,34 @@ namespace RealLife.Jogador
 
         private void entrarSucesso()
         {
-            ClientRealLife.i.executar(this.objClient, STR_METODO_ENTRAR_SUCESSO, this.objJogador);
+            ClientRealLife.i.executar(this.objClient, STR_METODO_ENTRAR_SUCESSO, this.objConta);
+        }
+
+        private T getObjArg<T>(object[] arrObjArg, int intIndex = 0)
+        {
+            if (arrObjArg == null)
+            {
+                return default(T);
+            }
+
+            if (intIndex < 0)
+            {
+                return default(T);
+            }
+
+            if (arrObjArg.Length < (intIndex + 1))
+            {
+                return default(T);
+            }
+
+            var jsn = arrObjArg[intIndex].ToString();
+
+            if (string.IsNullOrEmpty(jsn))
+            {
+                return default(T);
+            }
+
+            return Json.i.fromJson<T>(jsn);
         }
 
         private void inicializar()
@@ -169,8 +181,13 @@ namespace RealLife.Jogador
             TblSessao.i.salvar(this.objSessao);
         }
 
-        private void processarErro(Exception ex)
+        private void processarErro(string strMetodo, Exception ex)
         {
+            if (string.IsNullOrEmpty(strMetodo))
+            {
+                return;
+            }
+
             if (ex == null)
             {
                 return;
@@ -180,11 +197,16 @@ namespace RealLife.Jogador
 
             objErro.strMensagem = ex.Message;
 
-            ClientRealLife.i.executar(this.objClient, STR_METODO_ERRO, objErro);
+            ClientRealLife.i.executar(this.objClient, STR_METODO_ERRO, strMetodo, objErro);
         }
 
         private void processarOnClientEventTrigger(string strMetodo, object[] arrObjArg)
         {
+            if (this.processarOnClientEventTriggerSync(strMetodo, arrObjArg))
+            {
+                return;
+            }
+
             switch (strMetodo)
             {
                 case STR_METODO_CRIAR_CONTA:
@@ -194,7 +216,92 @@ namespace RealLife.Jogador
                 case STR_METODO_ENTRAR:
                     this.entrar(arrObjArg);
                     return;
+
+                case STR_METODO_SALVAR_APARENCIA:
+                    this.salvarAparencia(arrObjArg);
+                    return;
             }
+        }
+
+        private bool processarOnClientEventTriggerSync(string strMetodo, object[] arrObjArg)
+        {
+            if (arrObjArg == null)
+            {
+                return false;
+            }
+
+            if (arrObjArg.Length < 1)
+            {
+                return false;
+            }
+
+            if (!STR_SYNC_TAG.Equals(arrObjArg[0]))
+            {
+                return false;
+            }
+
+            var lstObjArg = new List<object>(arrObjArg);
+
+            lstObjArg.RemoveRange(0, 2);
+
+            arrObjArg = lstObjArg.ToArray();
+
+            lstObjArg.Clear();
+
+            lstObjArg.Add(STR_SYNC_TAG);
+
+            switch (strMetodo)
+            {
+                //case STR_METODO_CRIAR_CONTA:
+                //    lstObjArgResultado = this.criarConta(arrObjArg);
+                //    break;
+            }
+
+            ClientRealLife.i.executar(this.objClient, strMetodo, lstObjArg.ToArray());
+
+            return true;
+        }
+
+        private void salvarAparencia(object[] arrObjArg)
+        {
+            var objPersonagem = this.getObjArg<PersonagemDominio>(arrObjArg);
+
+            if (objPersonagem == null)
+            {
+                return;
+            }
+
+            if (this.objConta == null)
+            {
+                return;
+            }
+
+            if (this.objSessao == null)
+            {
+                return;
+            }
+
+            TblPersonagem.i.salvarAparencia(this.objConta, this.objSessao, objPersonagem);
+
+            if (objPersonagem.intId < 1)
+            {
+                throw new Exception("Erro ao salvar o personagem.");
+            }
+
+            var arrObjHeadOverlay = this.getObjArg<HeadOverlayDominio[]>(arrObjArg, 1);
+
+            TblHeadOverlay.i.salvarAparencia(objPersonagem, objSessao, arrObjHeadOverlay);
+
+            var arrObjPedComponente = this.getObjArg<PedComponenteDominio[]>(arrObjArg, 2);
+
+            TblPedComponente.i.salvarAparencia(objPersonagem, objSessao, arrObjPedComponente);
+
+            this.salvarAparenciaSucesso();
+        }
+
+        private void salvarAparenciaSucesso()
+        {
+            ClientRealLife.i.executar(this.objClient, STR_METODO_SALVAR_APARENCIA_SUCESSO);
         }
 
         private void setEventos()
@@ -234,7 +341,7 @@ namespace RealLife.Jogador
             }
             catch (Exception ex)
             {
-                this.processarErro(ex);
+                this.processarErro(strMetodo, ex);
             }
         }
 

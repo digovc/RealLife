@@ -34,7 +34,7 @@ namespace RealLife.DataBase.Tabela
             }
         }
 
-        public Coluna clnStrEmail
+        private Coluna clnStrEmail
         {
             get
             {
@@ -49,7 +49,7 @@ namespace RealLife.DataBase.Tabela
             }
         }
 
-        public Coluna clnStrGametag
+        private Coluna clnStrGametag
         {
             get
             {
@@ -64,7 +64,7 @@ namespace RealLife.DataBase.Tabela
             }
         }
 
-        public Coluna clnStrSenha
+        private Coluna clnStrSenha
         {
             get
             {

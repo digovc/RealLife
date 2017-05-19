@@ -75,6 +75,16 @@ module RealLife
             API.sendChatMessage(strMensagem);
         }
 
+        public processarEvtOnChatCommandListener(strComando: string): void
+        {
+            if (UtilsRealLife.getBooStrVazia(strComando))
+            {
+                return;
+            }
+
+            this.dispararEvtOnChatCommandListener(strComando);
+        }
+
         // #endregion Métodos
 
         // #region Eventos
@@ -110,13 +120,8 @@ module RealLife
             this.arrEvtOnChatCommandListener.push(evtOnChatCommandListener);
         }
 
-        public dispararEvtOnChatCommandListener(strComando: string): void
+        private dispararEvtOnChatCommandListener(strComando: string): void
         {
-            if (UtilsRealLife.getBooStrVazia(strComando))
-            {
-                return;
-            }
-
             if (this.arrEvtOnChatCommandListener.length == 0)
             {
                 return;

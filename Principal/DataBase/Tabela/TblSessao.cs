@@ -13,7 +13,7 @@ namespace RealLife.DataBase.Tabela
         private static TblSessao _i;
 
         private Coluna _clnDttSaida;
-        private Coluna _clnIntJogadorId;
+        private Coluna _clnIntContaId;
         private Coluna _clnStrIp;
         private Coluna _clnStrSessaoId;
 
@@ -32,7 +32,7 @@ namespace RealLife.DataBase.Tabela
             }
         }
 
-        public Coluna clnDttSaida
+        private Coluna clnDttSaida
         {
             get
             {
@@ -47,22 +47,22 @@ namespace RealLife.DataBase.Tabela
             }
         }
 
-        public Coluna clnIntJogadorId
+        private Coluna clnIntContaId
         {
             get
             {
-                if (_clnIntJogadorId != null)
+                if (_clnIntContaId != null)
                 {
-                    return _clnIntJogadorId;
+                    return _clnIntContaId;
                 }
 
-                _clnIntJogadorId = new Coluna("int_jogador_id", this, Coluna.EnmTipo.BIGINT, TblConta.i.clnIntId);
+                _clnIntContaId = new Coluna("int_conta_id", this, Coluna.EnmTipo.BIGINT, TblConta.i.clnIntId);
 
-                return _clnIntJogadorId;
+                return _clnIntContaId;
             }
         }
 
-        public Coluna clnStrIp
+        private Coluna clnStrIp
         {
             get
             {
@@ -77,7 +77,7 @@ namespace RealLife.DataBase.Tabela
             }
         }
 
-        public Coluna clnStrSessaoId
+        private Coluna clnStrSessaoId
         {
             get
             {
@@ -109,7 +109,7 @@ namespace RealLife.DataBase.Tabela
             intOrdem = base.inicializarColunas(intOrdem);
 
             this.clnDttSaida.intOrdem += intOrdem;
-            this.clnIntJogadorId.intOrdem += intOrdem;
+            this.clnIntContaId.intOrdem += intOrdem;
             this.clnStrIp.intOrdem += intOrdem;
             this.clnStrSessaoId.intOrdem += intOrdem;
 

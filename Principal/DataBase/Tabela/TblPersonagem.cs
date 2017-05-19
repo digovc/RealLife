@@ -1,4 +1,5 @@
 ﻿using NetZ.Persistencia;
+using RealLife.DataBase.Dominio;
 
 namespace RealLife.DataBase.Tabela
 {
@@ -12,21 +13,16 @@ namespace RealLife.DataBase.Tabela
 
         private static TblPersonagem _i;
 
+        private Coluna _clnBooAtivo;
         private Coluna _clnBooMasculino;
-        private Coluna _clnFltAvoPercentual;
-        private Coluna _clnFltMaePercentual;
-        private Coluna _clnFltPaiPercentual;
-        private Coluna _clnIntAvo;
+        private Coluna _clnIntContaId;
         private Coluna _clnIntDinheiro;
         private Coluna _clnIntDoenca;
         private Coluna _clnIntExperiencia;
         private Coluna _clnIntFome;
         private Coluna _clnIntForca;
         private Coluna _clnIntInteligencia;
-        private Coluna _clnIntJogadorId;
-        private Coluna _clnIntMae;
         private Coluna _clnIntNivel;
-        private Coluna _clnIntPai;
         private Coluna _clnIntPericiaArma;
         private Coluna _clnIntPericiaAviao;
         private Coluna _clnIntPericiaBarco;
@@ -34,7 +30,8 @@ namespace RealLife.DataBase.Tabela
         private Coluna _clnIntResistencia;
         private Coluna _clnIntSangue;
         private Coluna _clnIntSanidade;
-        private Coluna _clnIntSessaoId;
+        private Coluna _clnIntSessaoCadastroId;
+        private Coluna _clnIntSessaoUltimaId;
         private Coluna _clnIntSono;
         private Coluna _clnIntVelocidade;
 
@@ -53,7 +50,22 @@ namespace RealLife.DataBase.Tabela
             }
         }
 
-        public Coluna clnBooMasculino
+        private Coluna clnBooAtivo
+        {
+            get
+            {
+                if (_clnBooAtivo != null)
+                {
+                    return _clnBooAtivo;
+                }
+
+                _clnBooAtivo = new Coluna("boo_ativo", this, Coluna.EnmTipo.BOOLEAN);
+
+                return _clnBooAtivo;
+            }
+        }
+
+        private Coluna clnBooMasculino
         {
             get
             {
@@ -68,67 +80,22 @@ namespace RealLife.DataBase.Tabela
             }
         }
 
-        public Coluna clnFltAvoPercentual
+        private Coluna clnIntContaId
         {
             get
             {
-                if (_clnFltAvoPercentual != null)
+                if (_clnIntContaId != null)
                 {
-                    return _clnFltAvoPercentual;
+                    return _clnIntContaId;
                 }
 
-                _clnFltAvoPercentual = new Coluna("flt_avo_percentual", this, Coluna.EnmTipo.FLOAT);
+                _clnIntContaId = new Coluna("int_conta_id", this, Coluna.EnmTipo.BIGINT, TblConta.i.clnIntId);
 
-                return _clnFltAvoPercentual;
+                return _clnIntContaId;
             }
         }
 
-        public Coluna clnFltMaePercentual
-        {
-            get
-            {
-                if (_clnFltMaePercentual != null)
-                {
-                    return _clnFltMaePercentual;
-                }
-
-                _clnFltMaePercentual = new Coluna("flt_mae_percentual", this, Coluna.EnmTipo.FLOAT);
-
-                return _clnFltMaePercentual;
-            }
-        }
-
-        public Coluna clnFltPaiPercentual
-        {
-            get
-            {
-                if (_clnFltPaiPercentual != null)
-                {
-                    return _clnFltPaiPercentual;
-                }
-
-                _clnFltPaiPercentual = new Coluna("flt_pai_percentual", this, Coluna.EnmTipo.FLOAT);
-
-                return _clnFltPaiPercentual;
-            }
-        }
-
-        public Coluna clnIntAvo
-        {
-            get
-            {
-                if (_clnIntAvo != null)
-                {
-                    return _clnIntAvo;
-                }
-
-                _clnIntAvo = new Coluna("int_avo", this, Coluna.EnmTipo.INTEGER);
-
-                return _clnIntAvo;
-            }
-        }
-
-        public Coluna clnIntDinheiro
+        private Coluna clnIntDinheiro
         {
             get
             {
@@ -143,7 +110,7 @@ namespace RealLife.DataBase.Tabela
             }
         }
 
-        public Coluna clnIntDoenca
+        private Coluna clnIntDoenca
         {
             get
             {
@@ -158,7 +125,7 @@ namespace RealLife.DataBase.Tabela
             }
         }
 
-        public Coluna clnIntExperiencia
+        private Coluna clnIntExperiencia
         {
             get
             {
@@ -173,7 +140,7 @@ namespace RealLife.DataBase.Tabela
             }
         }
 
-        public Coluna clnIntFome
+        private Coluna clnIntFome
         {
             get
             {
@@ -188,7 +155,7 @@ namespace RealLife.DataBase.Tabela
             }
         }
 
-        public Coluna clnIntForca
+        private Coluna clnIntForca
         {
             get
             {
@@ -203,7 +170,7 @@ namespace RealLife.DataBase.Tabela
             }
         }
 
-        public Coluna clnIntInteligencia
+        private Coluna clnIntInteligencia
         {
             get
             {
@@ -218,37 +185,7 @@ namespace RealLife.DataBase.Tabela
             }
         }
 
-        public Coluna clnIntJogadorId
-        {
-            get
-            {
-                if (_clnIntJogadorId != null)
-                {
-                    return _clnIntJogadorId;
-                }
-
-                _clnIntJogadorId = new Coluna("int_jogador_id", this, Coluna.EnmTipo.BIGINT, TblConta.i.clnIntId);
-
-                return _clnIntJogadorId;
-            }
-        }
-
-        public Coluna clnIntMae
-        {
-            get
-            {
-                if (_clnIntMae != null)
-                {
-                    return _clnIntMae;
-                }
-
-                _clnIntMae = new Coluna("int_mae", this, Coluna.EnmTipo.INTEGER);
-
-                return _clnIntMae;
-            }
-        }
-
-        public Coluna clnIntNivel
+        private Coluna clnIntNivel
         {
             get
             {
@@ -263,22 +200,7 @@ namespace RealLife.DataBase.Tabela
             }
         }
 
-        public Coluna clnIntPai
-        {
-            get
-            {
-                if (_clnIntPai != null)
-                {
-                    return _clnIntPai;
-                }
-
-                _clnIntPai = new Coluna("int_pai", this, Coluna.EnmTipo.INTEGER);
-
-                return _clnIntPai;
-            }
-        }
-
-        public Coluna clnIntPericiaArma
+        private Coluna clnIntPericiaArma
         {
             get
             {
@@ -293,7 +215,7 @@ namespace RealLife.DataBase.Tabela
             }
         }
 
-        public Coluna clnIntPericiaAviao
+        private Coluna clnIntPericiaAviao
         {
             get
             {
@@ -308,7 +230,7 @@ namespace RealLife.DataBase.Tabela
             }
         }
 
-        public Coluna clnIntPericiaBarco
+        private Coluna clnIntPericiaBarco
         {
             get
             {
@@ -323,7 +245,7 @@ namespace RealLife.DataBase.Tabela
             }
         }
 
-        public Coluna clnIntPericiaCarro
+        private Coluna clnIntPericiaCarro
         {
             get
             {
@@ -338,7 +260,7 @@ namespace RealLife.DataBase.Tabela
             }
         }
 
-        public Coluna clnIntResistencia
+        private Coluna clnIntResistencia
         {
             get
             {
@@ -353,7 +275,7 @@ namespace RealLife.DataBase.Tabela
             }
         }
 
-        public Coluna clnIntSangue
+        private Coluna clnIntSangue
         {
             get
             {
@@ -368,7 +290,7 @@ namespace RealLife.DataBase.Tabela
             }
         }
 
-        public Coluna clnIntSanidade
+        private Coluna clnIntSanidade
         {
             get
             {
@@ -383,22 +305,37 @@ namespace RealLife.DataBase.Tabela
             }
         }
 
-        public Coluna clnIntSessaoId
+        private Coluna clnIntSessaoCadastroId
         {
             get
             {
-                if (_clnIntSessaoId != null)
+                if (_clnIntSessaoCadastroId != null)
                 {
-                    return _clnIntSessaoId;
+                    return _clnIntSessaoCadastroId;
                 }
 
-                _clnIntSessaoId = new Coluna("int_sessao_id", this, Coluna.EnmTipo.BIGINT);
+                _clnIntSessaoCadastroId = new Coluna("int_sessao_cadastro_id", this, Coluna.EnmTipo.BIGINT);
 
-                return _clnIntSessaoId;
+                return _clnIntSessaoCadastroId;
             }
         }
 
-        public Coluna clnIntSono
+        private Coluna clnIntSessaoUltimaId
+        {
+            get
+            {
+                if (_clnIntSessaoUltimaId != null)
+                {
+                    return _clnIntSessaoUltimaId;
+                }
+
+                _clnIntSessaoUltimaId = new Coluna("int_sessao_ultima_id", this, Coluna.EnmTipo.BIGINT);
+
+                return _clnIntSessaoUltimaId;
+            }
+        }
+
+        private Coluna clnIntSono
         {
             get
             {
@@ -413,7 +350,7 @@ namespace RealLife.DataBase.Tabela
             }
         }
 
-        public Coluna clnIntVelocidade
+        private Coluna clnIntVelocidade
         {
             get
             {
@@ -440,25 +377,59 @@ namespace RealLife.DataBase.Tabela
 
         #region Métodos
 
+        internal void salvarAparencia(ContaDominio objConta, SessaoDominio objSessao, PersonagemDominio objPersonagem)
+        {
+            if (objConta == null)
+            {
+                return;
+            }
+
+            if (objConta.intId < 1)
+            {
+                return;
+            }
+
+            if (objSessao == null)
+            {
+                return;
+            }
+
+            if (objSessao.intId < 1)
+            {
+                return;
+            }
+
+            if (objPersonagem == null)
+            {
+                return;
+            }
+
+            this.dbe.execSql(string.Format("update {0} set {1} = false where {2} = {3};", this.sqlNome, this.clnBooAtivo.sqlNome, this.clnIntContaId.sqlNome, objConta.intId));
+
+            objPersonagem.booAtivo = true;
+            objPersonagem.intContaId = objConta.intId;
+            objPersonagem.intDinheiro = 2500;
+            objPersonagem.intSangue = 100;
+            objPersonagem.intSessaoCadastroId = objSessao.intId;
+            objPersonagem.intSessaoUltimaId = objSessao.intId;
+
+            this.salvar(objPersonagem);
+        }
+
         protected override int inicializarColunas(int intOrdem)
         {
             intOrdem = base.inicializarColunas(intOrdem);
 
+            this.clnBooAtivo.intOrdem += intOrdem;
             this.clnBooMasculino.intOrdem += intOrdem;
-            this.clnFltAvoPercentual.intOrdem += intOrdem;
-            this.clnFltMaePercentual.intOrdem += intOrdem;
-            this.clnFltPaiPercentual.intOrdem += intOrdem;
-            this.clnIntAvo.intOrdem += intOrdem;
+            this.clnIntContaId.intOrdem += intOrdem;
             this.clnIntDinheiro.intOrdem += intOrdem;
             this.clnIntDoenca.intOrdem += intOrdem;
             this.clnIntExperiencia.intOrdem += intOrdem;
             this.clnIntFome.intOrdem += intOrdem;
             this.clnIntForca.intOrdem += intOrdem;
             this.clnIntInteligencia.intOrdem += intOrdem;
-            this.clnIntJogadorId.intOrdem += intOrdem;
-            this.clnIntMae.intOrdem += intOrdem;
             this.clnIntNivel.intOrdem += intOrdem;
-            this.clnIntPai.intOrdem += intOrdem;
             this.clnIntPericiaArma.intOrdem += intOrdem;
             this.clnIntPericiaAviao.intOrdem += intOrdem;
             this.clnIntPericiaBarco.intOrdem += intOrdem;
@@ -466,7 +437,8 @@ namespace RealLife.DataBase.Tabela
             this.clnIntResistencia.intOrdem += intOrdem;
             this.clnIntSangue.intOrdem += intOrdem;
             this.clnIntSanidade.intOrdem += intOrdem;
-            this.clnIntSessaoId.intOrdem += intOrdem;
+            this.clnIntSessaoCadastroId.intOrdem += intOrdem;
+            this.clnIntSessaoUltimaId.intOrdem += intOrdem;
             this.clnIntSono.intOrdem += intOrdem;
             this.clnIntVelocidade.intOrdem += intOrdem;
 

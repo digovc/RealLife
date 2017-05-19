@@ -72,6 +72,13 @@ module RealLife
             return API.returnNative("IS_CONTROL_PRESSED", Enums.NativeReturnTypes.Bool, 0, enmKey);
         }
 
+        public processarEvtOnKeyUpListener(objSender: Object, arg: System.Windows.Forms.KeyEventArgs): void
+        {
+            this.processarOnKeyUp(arg);
+
+            this.dispararEvtOnKeyUpListener(objSender, arg);
+        }
+
         private processarOnKeyUp(arg: System.Windows.Forms.KeyEventArgs): void
         {
             Log.i.debug("Tecla {0} acionada.", arg.KeyValue.toString());
@@ -264,10 +271,8 @@ module RealLife
             this.arrEvtOnKeyUpListener.push(evtOnKeyUpListener);
         }
 
-        public dispararEvtOnKeyUpListener(objSender: Object, arg: System.Windows.Forms.KeyEventArgs): void
+        private dispararEvtOnKeyUpListener(objSender: Object, arg: System.Windows.Forms.KeyEventArgs): void
         {
-            this.processarOnKeyUp(arg);
-
             if (this.arrEvtOnKeyUpListener.length == 0)
             {
                 return;

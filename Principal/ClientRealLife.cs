@@ -1,6 +1,8 @@
 ﻿using DigoFramework.Json;
 using GTANetworkServer;
-using RealLife.DataBase.Dominio;
+using System;
+using System.Collections.Generic;
+using System.Globalization;
 
 namespace RealLife
 {
@@ -41,7 +43,7 @@ namespace RealLife
 
         #region Métodos
 
-        public void executar(Client objClient, string strMetodoNome, DominioRealLifeBase objDominio = null)
+        public void executar(Client objClient, string strMetodoNome, params object[] arrObjDominio)
         {
             if (objClient == null)
             {
@@ -53,14 +55,40 @@ namespace RealLife
                 return;
             }
 
-            if (objDominio == null)
+            if (arrObjDominio == null)
             {
                 AppRealLife.i.api.triggerClientEvent(objClient, strMetodoNome);
+                return;
             }
-            else
+
+            var lstStrArg = new List<string>();
+
+            foreach (var objArg in arrObjDominio)
             {
-                AppRealLife.i.api.triggerClientEvent(objClient, strMetodoNome, Json.i.toJson(objDominio));
+                lstStrArg.Add(this.getStrArgumento(objArg));
             }
+
+            AppRealLife.i.api.triggerClientEvent(objClient, strMetodoNome, lstStrArg.ToArray());
+        }
+
+        private string getStrArgumento(object objArg)
+        {
+            if (objArg is bool)
+            {
+                return objArg.ToString();
+            }
+
+            if (objArg is string)
+            {
+                return (objArg as string);
+            }
+
+            if (objArg is float)
+            {
+                return Convert.ToString(objArg, CultureInfo.GetCultureInfo("en-US"));
+            }
+
+            return Json.i.toJson(objArg);
         }
 
         #endregion Métodos

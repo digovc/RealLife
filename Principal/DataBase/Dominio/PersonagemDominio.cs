@@ -8,11 +8,12 @@
 
         #region Atributos
 
-        private string _booMasculino;
-        private float _fltAvoPercentual;
-        private float _fltMaePercentual;
-        private float _fltPaiPercentual;
-        private int _intAvo;
+        private object[] _arrObjHeadOverlay;
+        private object[] _arrObjPedComponente;
+        private bool _booAtivo;
+        private bool _booMasculino;
+        private int _intCabeloCor;
+        private int _intContaId;
         private int _intDinheiro;
         private int _intDoenca;
         private int _intExperiencia;
@@ -20,9 +21,8 @@
         private int _intForca;
         private int _intInteligencia;
         private int _intJogadorId;
-        private int _intMae;
         private int _intNivel;
-        private int _intPai;
+        private int _intOlhoCor;
         private int _intPericiaArma;
         private int _intPericiaAviao;
         private int _intPericiaBarco;
@@ -30,11 +30,53 @@
         private int _intResistencia;
         private int _intSangue;
         private int _intSanidade;
+        private int _intSessaoCadastroId;
         private int _intSessaoId;
+        private int _intSessaoUltimaId;
         private int _intSono;
         private int _intVelocidade;
+        private object _objBlendData;
 
-        public string booMasculino
+        public object[] arrObjHeadOverlay
+        {
+            get
+            {
+                return _arrObjHeadOverlay;
+            }
+
+            set
+            {
+                _arrObjHeadOverlay = value;
+            }
+        }
+
+        public object[] arrObjPedComponente
+        {
+            get
+            {
+                return _arrObjPedComponente;
+            }
+
+            set
+            {
+                _arrObjPedComponente = value;
+            }
+        }
+
+        public bool booAtivo
+        {
+            get
+            {
+                return _booAtivo;
+            }
+
+            set
+            {
+                _booAtivo = value;
+            }
+        }
+
+        public bool booMasculino
         {
             get
             {
@@ -47,55 +89,29 @@
             }
         }
 
-        public float fltAvoPercentual
+        public int intCabeloCor
         {
             get
             {
-                return _fltAvoPercentual;
+                return _intCabeloCor;
             }
 
             set
             {
-                _fltAvoPercentual = value;
+                _intCabeloCor = value;
             }
         }
 
-        public float fltMaePercentual
+        public int intContaId
         {
             get
             {
-                return _fltMaePercentual;
+                return _intContaId;
             }
 
             set
             {
-                _fltMaePercentual = value;
-            }
-        }
-
-        public float fltPaiPercentual
-        {
-            get
-            {
-                return _fltPaiPercentual;
-            }
-
-            set
-            {
-                _fltPaiPercentual = value;
-            }
-        }
-
-        public int intAvo
-        {
-            get
-            {
-                return _intAvo;
-            }
-
-            set
-            {
-                _intAvo = value;
+                _intContaId = value;
             }
         }
 
@@ -190,19 +206,6 @@
             }
         }
 
-        public int intMae
-        {
-            get
-            {
-                return _intMae;
-            }
-
-            set
-            {
-                _intMae = value;
-            }
-        }
-
         public int intNivel
         {
             get
@@ -216,16 +219,16 @@
             }
         }
 
-        public int intPai
+        public int intOlhoCor
         {
             get
             {
-                return _intPai;
+                return _intOlhoCor;
             }
 
             set
             {
-                _intPai = value;
+                _intOlhoCor = value;
             }
         }
 
@@ -320,6 +323,19 @@
             }
         }
 
+        public int intSessaoCadastroId
+        {
+            get
+            {
+                return _intSessaoCadastroId;
+            }
+
+            set
+            {
+                _intSessaoCadastroId = value;
+            }
+        }
+
         public int intSessaoId
         {
             get
@@ -330,6 +346,19 @@
             set
             {
                 _intSessaoId = value;
+            }
+        }
+
+        public int intSessaoUltimaId
+        {
+            get
+            {
+                return _intSessaoUltimaId;
+            }
+
+            set
+            {
+                _intSessaoUltimaId = value;
             }
         }
 
@@ -356,6 +385,19 @@
             set
             {
                 _intVelocidade = value;
+            }
+        }
+
+        public object objBlendData
+        {
+            get
+            {
+                return _objBlendData;
+            }
+
+            set
+            {
+                _objBlendData = value;
             }
         }
 

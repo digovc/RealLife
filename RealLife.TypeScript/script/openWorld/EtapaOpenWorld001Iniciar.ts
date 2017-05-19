@@ -15,20 +15,6 @@ module RealLife
 
         // #region Atributos
 
-        private _objScriptAguardar: ScriptAguardar;
-
-        private get objScriptAguardar(): ScriptAguardar
-        {
-            if (this._objScriptAguardar != null)
-            {
-                return this._objScriptAguardar;
-            }
-
-            this._objScriptAguardar = new ScriptAguardar();
-
-            return this._objScriptAguardar;
-        }
-
         // #endregion Atributos
 
         // #region Construtores
@@ -47,8 +33,20 @@ module RealLife
 
         private etapa001(): void
         {
-            this.objScriptAguardar.iniciar();
+            Jogador.i.booCongelado = true;
+            Jogador.i.booDinamico = false;
+            Jogador.i.booVisivel = false;
 
+            Chat.i.booAtivo = false;
+            Chat.i.booVisivel = false;
+
+            Screen.i.booHudVisivel = false;
+
+            Jogador.i.carregarAparencia(() => { this.etapa002(); });
+        }
+
+        private etapa002(): void
+        {
         }
 
         // #endregion Métodos
