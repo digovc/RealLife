@@ -1,11 +1,11 @@
-/// <reference path="../RealLifeShared.TypeScript/enumerado/EnmPedComponente.ts"/>
+/// <reference path="../RealLifeShared.TypeScript/dominio/PedComponenteDominio.ts"/>
 /// <reference path="Entity.ts"/>
 
 module RealLife
 {
     // #region Importações
 
-    import EnmPedComponente = RealLifeShared.EnmPedComponente;
+    import PedComponenteDominio = RealLifeShared.PedComponenteDominio;
 
     // #endregion Importações
 
@@ -19,6 +19,7 @@ module RealLife
 
         // #region Atributos
 
+        private _arrObjPedComponente: Array<PedComponenteDominio>;
         private _booAtirando: boolean;
         private _booDirigindo: boolean;
         private _booEmChamas: boolean;
@@ -29,14 +30,21 @@ module RealLife
         private _booQuedaLivre: boolean;
         private _booRecarregando: boolean;
         private _booSubindoEscadas: boolean;
-        private _intCabelo: number;
         private _intCabeloCor: number;
-        private _intCalca: number;
-        private _intCalcado: number;
-        private _intCamisa: number;
         private _intOlhoCor: number;
-        private _intRosto: number;
         private _vctAlvo: Vector3;
+
+        protected get arrObjPedComponente(): Array<PedComponenteDominio>
+        {
+            if (this._arrObjPedComponente != null)
+            {
+                return this._arrObjPedComponente;
+            }
+
+            this._arrObjPedComponente = new Array<PedComponenteDominio>();
+
+            return this._arrObjPedComponente;
+        }
 
         public get booAtirando(): boolean
         {
@@ -108,18 +116,6 @@ module RealLife
             return this._booSubindoEscadas;
         }
 
-        public get intCabelo(): number
-        {
-            return this._intCabelo;
-        }
-
-        public set intCabelo(intCabelo: number)
-        {
-            this._intCabelo = intCabelo;
-
-            this.setIntCabelo(this._intCabelo);
-        }
-
         public get intCabeloCor(): number
         {
             return this._intCabeloCor;
@@ -132,42 +128,6 @@ module RealLife
             this.setIntCabeloCor(this._intCabeloCor);
         }
 
-        public get intCalca(): number
-        {
-            return this._intCalca;
-        }
-
-        public set intCalca(intCalca: number)
-        {
-            this._intCalca = intCalca;
-
-            this.setIntCalca(this._intCalca);
-        }
-
-        public get intCalcado(): number
-        {
-            return this._intCalcado;
-        }
-
-        public set intCalcado(intCalcado: number)
-        {
-            this._intCalcado = intCalcado;
-
-            this.setIntCalcado(this._intCalcado);
-        }
-
-        public get intCamisa(): number
-        {
-            return this._intCamisa;
-        }
-
-        public set intCamisa(intCamisa: number)
-        {
-            this._intCamisa = intCamisa;
-
-            this.setIntCamisa(this._intCamisa);
-        }
-
         public get intOlhoCor(): number
         {
             return this._intOlhoCor;
@@ -178,18 +138,6 @@ module RealLife
             this._intOlhoCor = intOlhoCor;
 
             this.setIntOlhoCor(this._intOlhoCor);
-        }
-
-        public get intRosto(): number
-        {
-            return this._intRosto;
-        }
-
-        public set intRosto(intRosto: number)
-        {
-            this._intRosto = intRosto;
-
-            this.setIntRosto(this._intRosto);
         }
 
         public get vctAlvo(): Vector3
@@ -205,6 +153,47 @@ module RealLife
         // #endregion Construtores
 
         // #region Métodos
+
+        public addObjPedComponente(objPedComponente: PedComponenteDominio): void
+        {
+            if (this.objHandle == null)
+            {
+                return;
+            }
+
+            if (objPedComponente == null)
+            {
+                return;
+            }
+
+            if (this.arrObjPedComponente.indexOf(objPedComponente) > -1)
+            {
+                return;
+            }
+
+            for (var i = 0; i < this.arrObjPedComponente.length; i++)
+            {
+                if (objPedComponente.enmTipo != this.arrObjPedComponente[i].enmTipo)
+                {
+                    continue;
+                }
+
+                this.removerObjPedComponente(this.arrObjPedComponente[i]);
+                break;
+            }
+
+            var booValido = API.returnNative("IS_PED_COMPONENT_VARIATION_VALID", Enums.NativeReturnTypes.Bool, this.objHandle, objPedComponente.enmTipo, objPedComponente.intModelo, objPedComponente.intTextura);
+
+            if (!booValido)
+            {
+                Log.i.debug("Componente inválido: {0}, {1}, {2}", objPedComponente.enmTipo, objPedComponente.intModelo, objPedComponente.intTextura);
+                return;
+            }
+
+            this.arrObjPedComponente.push(objPedComponente);
+
+            API.callNative("SET_PED_COMPONENT_VARIATION", this.objHandle, objPedComponente.enmTipo, objPedComponente.intModelo, objPedComponente.intTextura, objPedComponente.intPaleta);
+        }
 
         public criar(): void
         {
@@ -350,14 +339,19 @@ module RealLife
             API.callNative("SET_PED_RANDOM_COMPONENT_VARIATION", this.objHandle);
         }
 
-        private setIntCabelo(intCabelo: number): void
+        public removerObjPedComponente(objPedComponente: PedComponenteDominio): void
         {
-            if (this.objHandle == null)
+            if (objPedComponente == null)
             {
                 return;
             }
 
-            API.setPlayerClothes(this.objHandle, EnmPedComponente.HAIR, intCabelo, 0);
+            if (this.arrObjPedComponente.indexOf(objPedComponente) < 0)
+            {
+                return;
+            }
+
+            this.arrObjPedComponente.slice(this.arrObjPedComponente.indexOf(objPedComponente), 1);
         }
 
         private setIntCabeloCor(intCabeloCor: number): void
@@ -370,36 +364,6 @@ module RealLife
             API.callNative("_SET_PED_HAIR_COLOR", this.objHandle, intCabeloCor, 1);
         }
 
-        private setIntCalca(intCalca: number): void
-        {
-            if (this.objHandle == null)
-            {
-                return;
-            }
-
-            API.setPlayerClothes(this.objHandle, EnmPedComponente.LEGS, intCalca, 0);
-        }
-
-        private setIntCalcado(intCalcado: number): void
-        {
-            if (this.objHandle == null)
-            {
-                return;
-            }
-
-            API.setPlayerClothes(this.objHandle, EnmPedComponente.FEET, intCalcado, 0);
-        }
-
-        private setIntCamisa(intCamisa: number): void
-        {
-            if (this.objHandle == null)
-            {
-                return;
-            }
-
-            API.setPlayerClothes(this.objHandle, EnmPedComponente.TORSO, intCamisa, 0);
-        }
-
         private setIntOlhoCor(intOlhoCor: number): void
         {
             if (this.objHandle == null)
@@ -408,16 +372,6 @@ module RealLife
             }
 
             API.callNative("_SET_PED_EYE_COLOR", this.objHandle, intOlhoCor);
-        }
-
-        private setIntRosto(intRosto: number): void
-        {
-            if (this.objHandle == null)
-            {
-                return;
-            }
-
-            API.setPlayerClothes(this.objHandle, EnmPedComponente.FACE, intRosto, 0);
         }
 
         public vestirRoupaDefault(): void

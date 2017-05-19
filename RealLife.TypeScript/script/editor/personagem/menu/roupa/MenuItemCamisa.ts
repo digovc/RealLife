@@ -1,8 +1,12 @@
+/// <reference path="../../../../../../RealLifeShared.TypeScript/dominio/PedComponenteDominio.ts"/>
 /// <reference path="../../../../../ui/menu/MenuItem.ts"/>
 
 module RealLife
 {
     // #region Importações
+
+    import PedComponenteDominio = RealLifeShared.PedComponenteDominio;
+
     // #endregion Importações
 
     // #region Enumerados
@@ -31,11 +35,11 @@ module RealLife
         {
             super.inicializarArrObjMenuItem(arrObjMenuItem);
 
-            arrObjMenuItem.push(new MenuItem(this, "Opção 1", null, (() => { Jogador.i.intCamisa = 0; })));
-            arrObjMenuItem.push(new MenuItem(this, "Opção 2", null, (() => { Jogador.i.intCamisa = 1; })));
-            arrObjMenuItem.push(new MenuItem(this, "Opção 3", null, (() => { Jogador.i.intCamisa = 2; })));
-            arrObjMenuItem.push(new MenuItem(this, "Opção 4", null, (() => { Jogador.i.intCamisa = 3; })));
-            arrObjMenuItem.push(new MenuItem(this, "Opção 5", null, (() => { Jogador.i.intCamisa = 4; })));
+            arrObjMenuItem.push(new MenuItem(this, "Opção 1", null, (() => { Jogador.i.addObjPedComponente(new PedComponenteDominio(RealLifeShared.PedComponenteDominio_EnmTipo.TORSO, 0)); })));
+            arrObjMenuItem.push(new MenuItem(this, "Opção 2", null, (() => { Jogador.i.addObjPedComponente(new PedComponenteDominio(RealLifeShared.PedComponenteDominio_EnmTipo.TORSO, 1)); })));
+            arrObjMenuItem.push(new MenuItem(this, "Opção 3", null, (() => { Jogador.i.addObjPedComponente(new PedComponenteDominio(RealLifeShared.PedComponenteDominio_EnmTipo.TORSO, 2)); })));
+            arrObjMenuItem.push(new MenuItem(this, "Opção 4", null, (() => { Jogador.i.addObjPedComponente(new PedComponenteDominio(RealLifeShared.PedComponenteDominio_EnmTipo.TORSO, 3)); })));
+            arrObjMenuItem.push(new MenuItem(this, "Opção 5", null, (() => { Jogador.i.addObjPedComponente(new PedComponenteDominio(RealLifeShared.PedComponenteDominio_EnmTipo.TORSO, 4)); })));
         }
 
         protected selecionar(): void

@@ -1,8 +1,12 @@
+/// <reference path="../../../../../RealLifeShared.TypeScript/dominio/BlendDataDominio.ts"/>
 /// <reference path="../../../../ui/menu/MenuBase.ts"/>
 
 module RealLife
 {
     // #region Importações
+
+    import BlendDataDominio = RealLifeShared.BlendDataDominio;
+
     // #endregion Importações
 
     // #region Enumerados
@@ -44,7 +48,7 @@ module RealLife
 
         private alterarAparencia(): void
         {
-            Jogador.i.objBlendData = BlendData.criarRandomico();
+            Jogador.i.objBlendData = UtilsRealLife.getObjBlendDataRandomico();
 
             Screen.i.objCameraAtual.interpolar((this.objEtapa.objScript as ScriptPersonagemEditor).objCameraCabeca, .150);
         }

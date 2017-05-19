@@ -1,8 +1,13 @@
+/// <reference path="../../../../../../RealLifeShared.TypeScript/dominio/PedComponenteDominio.ts"/>
+/// <reference path="../../../../../Jogador.ts"/>
 /// <reference path="../../../../../ui/menu/MenuItem.ts"/>
 
 module RealLife
 {
     // #region Importações
+
+    import PedComponenteDominio = RealLifeShared.PedComponenteDominio;
+
     // #endregion Importações
 
     // #region Enumerados
@@ -27,18 +32,13 @@ module RealLife
 
         // #region Métodos
 
-        private alterarAparencia(intCabelo: number): void
-        {
-            Jogador.i.intCabelo = intCabelo;
-        }
-
         protected inicializarArrObjMenuItem(arrObjMenuItem: Array<MenuItemBase>): void
         {
             super.inicializarArrObjMenuItem(arrObjMenuItem);
 
-            arrObjMenuItem.push(new MenuItem(this, "Curto", null, (() => { this.alterarAparencia(1); })));
-            arrObjMenuItem.push(new MenuItem(this, "Médio", null, (() => { this.alterarAparencia(4); })));
-            arrObjMenuItem.push(new MenuItem(this, "Longo", null, (() => { this.alterarAparencia(17); })));
+            arrObjMenuItem.push(new MenuItem(this, "Curto", null, (() => { Jogador.i.addObjPedComponente(new PedComponenteDominio(RealLifeShared.PedComponenteDominio_EnmTipo.HAIR, 1)); })));
+            arrObjMenuItem.push(new MenuItem(this, "Médio", null, (() => { Jogador.i.addObjPedComponente(new PedComponenteDominio(RealLifeShared.PedComponenteDominio_EnmTipo.HAIR, 4)); })));
+            arrObjMenuItem.push(new MenuItem(this, "Longo", null, (() => { Jogador.i.addObjPedComponente(new PedComponenteDominio(RealLifeShared.PedComponenteDominio_EnmTipo.HAIR, 17)); })));
         }
 
         // #endregion Métodos

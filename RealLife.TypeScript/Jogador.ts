@@ -1,20 +1,23 @@
-/// <reference path="../../RealLifeShared.TypeScript/dominio/ContaDominio.ts"/>
-/// <reference path="../../RealLifeShared.TypeScript/dominio/ErroDominio.ts"/>
-/// <reference path="../../RealLifeShared.TypeScript/dominio/PersonagemDominio.ts"/>
-/// <reference path="../../RealLifeShared.TypeScript/enumerado/EnmPedSkin.ts"/>
-/// <reference path="../evento/OnChatCommandListener.ts"/>
-/// <reference path="../evento/OnServerEventTriggerListener.ts"/>
-/// <reference path="../Objeto.ts"/>
-/// <reference path="../Ped.ts"/>
-/// <reference path="BlendData.ts"/>
+/// <reference path="../reallifeshared.typescript/dominio/blenddatadominio.ts"/>
+/// <reference path="../RealLifeShared.TypeScript/dominio/ContaDominio.ts"/>
+/// <reference path="../RealLifeShared.TypeScript/dominio/ErroDominio.ts"/>
+/// <reference path="../RealLifeShared.TypeScript/dominio/HeadOverlayDominio.ts"/>
+/// <reference path="../RealLifeShared.TypeScript/dominio/PersonagemDominio.ts"/>
+/// <reference path="../RealLifeShared.TypeScript/enumerado/EnmPedSkin.ts"/>
+/// <reference path="evento/OnChatCommandListener.ts"/>
+/// <reference path="evento/OnServerEventTriggerListener.ts"/>
+/// <reference path="Objeto.ts"/>
+/// <reference path="Ped.ts"/>
 
 module RealLife
 {
     // #region Importações
 
+    import BlendDataDominio = RealLifeShared.BlendDataDominio;
     import ContaDominio = RealLifeShared.ContaDominio;
     import EnmPedSkin = RealLifeShared.EnmPedSkin;
     import ErroDominio = RealLifeShared.ErroDominio;
+    import HeadOverlayDominio = RealLifeShared.HeadOverlayDominio;
     import PersonagemDominio = RealLifeShared.PersonagemDominio;
 
     // #endregion Importações
@@ -53,10 +56,23 @@ module RealLife
             return Jogador._i;
         }
 
+        private _arrObjHeadOverlay: Array<HeadOverlayDominio>;
         private _booMasculino: boolean;
         private _intId: number;
-        private _objBlendData: BlendData;
+        private _objBlendData: BlendDataDominio;
         private _objConta: ContaDominio;
+
+        private get arrObjHeadOverlay(): Array<HeadOverlayDominio>
+        {
+            if (this._arrObjHeadOverlay != null)
+            {
+                return this._arrObjHeadOverlay;
+            }
+
+            this._arrObjHeadOverlay = new Array<HeadOverlayDominio>();
+
+            return this._arrObjHeadOverlay;
+        }
 
         public get booMasculino(): boolean
         {
@@ -82,12 +98,12 @@ module RealLife
             return this._intId;
         }
 
-        public get objBlendData(): BlendData
+        public get objBlendData(): BlendDataDominio
         {
             return this._objBlendData;
         }
 
-        public set objBlendData(objBlendData: BlendData)
+        public set objBlendData(objBlendData: BlendDataDominio)
         {
             this._objBlendData = objBlendData;
 
@@ -110,6 +126,23 @@ module RealLife
         // #endregion Construtores
 
         // #region Métodos
+
+        public addObjHeadOverlay(objHeadOverlay: HeadOverlayDominio): void
+        {
+            if (objHeadOverlay == null)
+            {
+                return;
+            }
+
+            if (this.arrObjHeadOverlay.indexOf(objHeadOverlay) > -1)
+            {
+                return;
+            }
+
+            this.arrObjHeadOverlay.push(objHeadOverlay);
+
+            API.callNative("SET_PED_HEAD_OVERLAY", this.objHandle, objHeadOverlay.enmTipo, objHeadOverlay.intIndex, objHeadOverlay.intAlpha);
+        }
 
         public criarConta(objConta: ContaDominio): void
         {
@@ -217,30 +250,6 @@ module RealLife
             return API.getLocalPlayer();
         }
 
-        private getObjPersonagem(): PersonagemDominio
-        {
-            var objPersonagemResultado = new PersonagemDominio();
-
-            objPersonagemResultado.booMasculino = true;
-            objPersonagemResultado.fltAvoPercentual = Math.random();
-            objPersonagemResultado.fltMaePercentual = Math.random();
-            objPersonagemResultado.fltPaiPercentual = Math.random();
-            objPersonagemResultado.intAvo = UtilsRealLife.getIntRandom(42, 45);
-            objPersonagemResultado.intMae = UtilsRealLife.getIntRandom(21, 41);
-            objPersonagemResultado.intPai = UtilsRealLife.getIntRandom(0, 20);
-
-            return objPersonagemResultado;
-        }
-
-        private getPed(): Ped
-        {
-            var pedResultado = new Ped();
-
-            pedResultado.objHandle = API.getLocalPlayer();
-
-            return pedResultado;
-        }
-
         protected inicializar(): void
         {
             super.inicializar();
@@ -251,7 +260,7 @@ module RealLife
         private inicializarAparencia(): void
         {
             this.booMasculino = true;
-            this.objBlendData = BlendData.criarRandomico();
+            this.objBlendData = UtilsRealLife.getObjBlendDataRandomico();
         }
 
         private processarErro(arrObjArg: System.Array<any>): void
@@ -295,7 +304,16 @@ module RealLife
 
         public salvarAparencia(): void
         {
-            ServerRealLife.i.executarJson(Jogador.STR_METODO_SALVAR_APARENCIA, this.objConta);
+            var objPersonagem = new PersonagemDominio();
+
+            objPersonagem.arrObjHeadOverlay = this.arrObjHeadOverlay;
+            objPersonagem.arrObjPedComponente = this.arrObjPedComponente;
+            objPersonagem.booMasculino = this.booMasculino;
+            objPersonagem.objBlendData = this.objBlendData;
+            objPersonagem.intCabeloCor = this.intCabeloCor;
+            objPersonagem.intOlhoCor = this.intOlhoCor;
+
+            ServerRealLife.i.executarJson(Jogador.STR_METODO_SALVAR_APARENCIA, objPersonagem);
         }
 
         protected setEventos(): void
@@ -317,7 +335,7 @@ module RealLife
             }
         }
 
-        private setObjBlendData(objBlendData: BlendData): void
+        private setObjBlendData(objBlendData: BlendDataDominio): void
         {
             if (objBlendData == null)
             {

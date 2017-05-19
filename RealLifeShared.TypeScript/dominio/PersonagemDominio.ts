@@ -1,4 +1,6 @@
+/// <reference path="BlendDataDominio.ts"/>
 /// <reference path="DominioRealLifeBase.ts"/>
+/// <reference path="HeadOverlayDominio.ts"/>
 
 module RealLifeShared
 {
@@ -15,11 +17,10 @@ module RealLifeShared
 
         // #region Atributos
 
+        private _arrObjHeadOverlay: Array<HeadOverlayDominio>;
+        private _arrObjPedComponente: Array<PedComponenteDominio>;
         private _booMasculino: boolean;
-        private _fltAvoPercentual: number;
-        private _fltMaePercentual: number;
-        private _fltPaiPercentual: number;
-        private _intAvo: number;
+        private _intCabeloCor: number;
         private _intDinheiro: number;
         private _intDoenca: number;
         private _intExperiencia: number;
@@ -27,9 +28,8 @@ module RealLifeShared
         private _intForca: number;
         private _intInteligencia: number;
         private _intJogadorId: number;
-        private _intMae: number;
         private _intNivel: number;
-        private _intPai: number;
+        private _intOlhoCor: number;
         private _intPericiaArma: number;
         private _intPericiaAviao: number;
         private _intPericiaBarco: number;
@@ -40,6 +40,27 @@ module RealLifeShared
         private _intSessaoId: number;
         private _intSono: number;
         private _intVelocidade: number;
+        private _objBlendData: BlendDataDominio;
+
+        public get arrObjPedComponente(): Array<PedComponenteDominio>
+        {
+            return this._arrObjPedComponente;
+        }
+
+        public set arrObjPedComponente(arrObjPedComponente: Array<PedComponenteDominio>)
+        {
+            this._arrObjPedComponente = arrObjPedComponente;
+        }
+
+        public get arrObjHeadOverlay(): Array<HeadOverlayDominio>
+        {
+            return this._arrObjHeadOverlay;
+        }
+
+        public set arrObjHeadOverlay(arrObjHeadOverlay: Array<HeadOverlayDominio>)
+        {
+            this._arrObjHeadOverlay = arrObjHeadOverlay;
+        }
 
         public get booMasculino(): boolean
         {
@@ -51,44 +72,14 @@ module RealLifeShared
             this._booMasculino = booMasculino;
         }
 
-        public get fltAvoPercentual(): number
+        public get intCabeloCor(): number
         {
-            return this._fltAvoPercentual;
+            return this._intCabeloCor;
         }
 
-        public set fltAvoPercentual(fltAvoPercentual: number)
+        public set intCabeloCor(intCabeloCor: number)
         {
-            this._fltAvoPercentual = fltAvoPercentual;
-        }
-
-        public get fltMaePercentual(): number
-        {
-            return this._fltMaePercentual;
-        }
-
-        public set fltMaePercentual(fltMaePercentual: number)
-        {
-            this._fltMaePercentual = fltMaePercentual;
-        }
-
-        public get fltPaiPercentual(): number
-        {
-            return this._fltPaiPercentual;
-        }
-
-        public set fltPaiPercentual(fltPaiPercentual: number)
-        {
-            this._fltPaiPercentual = fltPaiPercentual;
-        }
-
-        public get intAvo(): number
-        {
-            return this._intAvo;
-        }
-
-        public set intAvo(intAvo: number)
-        {
-            this._intAvo = intAvo;
+            this._intCabeloCor = intCabeloCor;
         }
 
         public get intDinheiro(): number
@@ -161,16 +152,6 @@ module RealLifeShared
             this._intJogadorId = intJogadorId;
         }
 
-        public get intMae(): number
-        {
-            return this._intMae;
-        }
-
-        public set intMae(intMae: number)
-        {
-            this._intMae = intMae;
-        }
-
         public get intNivel(): number
         {
             return this._intNivel;
@@ -181,14 +162,14 @@ module RealLifeShared
             this._intNivel = intNivel;
         }
 
-        public get intPai(): number
+        public get intOlhoCor(): number
         {
-            return this._intPai;
+            return this._intOlhoCor;
         }
 
-        public set intPai(intPai: number)
+        public set intOlhoCor(intOlhoCor: number)
         {
-            this._intPai = intPai;
+            this._intOlhoCor = intOlhoCor;
         }
 
         public get intPericiaArma(): number
@@ -289,6 +270,16 @@ module RealLifeShared
         public set intVelocidade(intVelocidade: number)
         {
             this._intVelocidade = intVelocidade;
+        }
+
+        public get objBlendData(): BlendDataDominio
+        {
+            return this._objBlendData;
+        }
+
+        public set objBlendData(objBlendData: BlendDataDominio)
+        {
+            this._objBlendData = objBlendData;
         }
 
         // #endregion Atributos

@@ -1,3 +1,4 @@
+/// <reference path="../../../RealLifeShared.TypeScript/dominio/PedComponenteDominio.ts"/>
 /// <reference path="../../../RealLifeShared.TypeScript/enumerado/EnmPedSkin.ts"/>
 /// <reference path="../ScriptBase.ts"/>
 
@@ -6,6 +7,7 @@ module RealLife
     // #region Importações
 
     import EnmPedSkin = RealLifeShared.EnmPedSkin;
+    import PedComponenteDominio = RealLifeShared.PedComponenteDominio;
 
     // #endregion Importações
 
@@ -43,8 +45,8 @@ module RealLife
             super.inicializar();
 
             Jogador.i.booMasculino = true;
-            Jogador.i.intCabelo = 17;
 
+            Jogador.i.addObjPedComponente(new PedComponenteDominio(RealLifeShared.PedComponenteDominio_EnmTipo.HAIR, 17));
             Jogador.i.vestirRoupaDefault();
         }
 

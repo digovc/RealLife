@@ -1,6 +1,11 @@
+/// <reference path="../reallifeshared.typescript/dominio/BlendDataDominio.ts"/>
+
 module RealLife
 {
     // #region Importações
+
+    import BlendDataDominio = RealLifeShared.BlendDataDominio;
+
     // #endregion Importações
 
     // #region Enumerados
@@ -70,6 +75,20 @@ module RealLife
         public static getIntRandom(intMinimo: number, intMaximo: number)
         {
             return (Math.floor(Math.random() * (intMaximo - intMinimo + 1)) + intMinimo);
+        }
+
+        public static getObjBlendDataRandomico(): BlendDataDominio
+        {
+            var objResultado = new BlendDataDominio();
+
+            objResultado.fltAvoPercentual = Math.random();
+            objResultado.fltMaePercentual = Math.random();
+            objResultado.fltPaiPercentual = Math.random();
+            objResultado.intAvo = UtilsRealLife.getIntRandom(42, 45);
+            objResultado.intMae = UtilsRealLife.getIntRandom(21, 41);
+            objResultado.intPai = UtilsRealLife.getIntRandom(0, 20);
+
+            return objResultado;
         }
 
         // #endregion Métodos
