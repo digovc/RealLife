@@ -1,10 +1,6 @@
-/// <reference path="../RealLifeShared.TypeScript/dominio/ErroDominio.ts"/>
-
 module RealLife
 {
     // #region Importações
-
-    import ErroDominio = RealLifeShared.ErroDominio;
 
     // #endregion Importações
 
@@ -168,14 +164,14 @@ module RealLife
             API.sendNotification(strNotificacao);
         }
 
-        public notificarErro(objErro: ErroDominio): void
+        public notificarErro(strErro: string): void
         {
-            if (objErro == null)
+            if (UtilsRealLife.getBooStrVazia(strErro))
             {
                 return;
             }
 
-            API.sendNotification("~r~Erro: ~s~" + objErro.strMensagem);
+            API.sendNotification("~r~Erro: ~s~" + strErro);
         }
 
         public processarEvtOnUpdateListener(): void

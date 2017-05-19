@@ -91,26 +91,6 @@ namespace RealLife.DataBase.Tabela
 
         #region Métodos
 
-        internal void criarConta(ContaDominio objConta)
-        {
-            try
-            {
-                this.bloquearThread();
-
-                this.criarContaValidar(objConta);
-
-                this.criarContaPreparar(objConta);
-
-                this.salvar(objConta);
-
-                objConta.intId = this.clnIntId.intValor;
-            }
-            finally
-            {
-                this.liberarThread();
-            }
-        }
-
         internal void entrar(ContaDominio objConta)
         {
             try
@@ -151,6 +131,26 @@ namespace RealLife.DataBase.Tabela
                 {
                     throw new Exception("Dados inválidos.");
                 }
+
+                objConta.intId = this.clnIntId.intValor;
+            }
+            finally
+            {
+                this.liberarThread();
+            }
+        }
+
+        internal void salvarConta(ContaDominio objConta)
+        {
+            try
+            {
+                this.bloquearThread();
+
+                this.criarContaValidar(objConta);
+
+                this.criarContaPreparar(objConta);
+
+                this.salvar(objConta);
 
                 objConta.intId = this.clnIntId.intValor;
             }

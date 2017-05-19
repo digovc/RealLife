@@ -4,7 +4,6 @@ using GTANetworkServer;
 using RealLife.DataBase.Dominio;
 using RealLife.DataBase.Tabela;
 using System;
-using System.Collections.Generic;
 using System.Threading;
 
 namespace RealLife
@@ -12,16 +11,6 @@ namespace RealLife
     internal class Jogador : Objeto
     {
         #region Constantes
-
-        private const string STR_METODO_CRIAR_CONTA = "STR_METODO_CRIAR_CONTA";
-        private const string STR_METODO_CRIAR_CONTA_SUCESSO = "STR_METODO_CRIAR_CONTA_SUCESSO";
-        private const string STR_METODO_ENTRAR = "STR_METODO_ENTRAR";
-        private const string STR_METODO_ENTRAR_SUCESSO = "STR_METODO_ENTRAR_SUCESSO";
-        private const string STR_METODO_ERRO = "STR_METODO_ERRO";
-        private const string STR_METODO_SALVAR_APARENCIA = "STR_METODO_SALVAR_APARENCIA";
-        private const string STR_METODO_SALVAR_APARENCIA_SUCESSO = "STR_METODO_SALVAR_APARENCIA_SUCESSO";
-
-        private const string STR_SYNC_TAG = "STR_SYNC_TAG";
 
         #endregion Constantes
 
@@ -91,32 +80,9 @@ namespace RealLife
             this.setEventos();
         }
 
-        private void criarConta(object[] arrObjArg)
+        private void entrar(SolicitacaoDominio objSolicitacao)
         {
-            this.objConta = this.getObjArg<ContaDominio>(arrObjArg);
-
-            if (this.objConta == null)
-            {
-                return;
-            }
-
-            TblConta.i.criarConta(this.objConta);
-
-            this.objSessao.intJogadorId = this.objConta.intId;
-
-            TblSessao.i.salvar(this.objSessao);
-
-            this.criarContaSucesso();
-        }
-
-        private void criarContaSucesso()
-        {
-            ClientRealLife.i.executar(this.objClient, STR_METODO_CRIAR_CONTA_SUCESSO);
-        }
-
-        private void entrar(object[] arrObjArg)
-        {
-            this.objConta = this.getObjArg<ContaDominio>(arrObjArg);
+            this.objConta = objSolicitacao.getObjArgumento<ContaDominio>();
 
             if (this.objConta == null)
             {
@@ -128,40 +94,26 @@ namespace RealLife
             this.objSessao.intJogadorId = this.objConta.intId;
 
             TblSessao.i.salvar(this.objSessao);
-
-            this.entrarSucesso();
         }
 
-        private void entrarSucesso()
+        private void enviar(SolicitacaoDominio objSolicitacao)
         {
-            ClientRealLife.i.executar(this.objClient, STR_METODO_ENTRAR_SUCESSO, this.objConta);
+            if (objSolicitacao == null)
+            {
+                return;
+            }
+
+            AppRealLife.i.api.triggerClientEvent(this.objClient, "0", Json.i.toJson(objSolicitacao));
         }
 
-        private T getObjArg<T>(object[] arrObjArg, int intIndex = 0)
+        private void enviar(RespostaDominio objResposta)
         {
-            if (arrObjArg == null)
+            if (objResposta == null)
             {
-                return default(T);
+                return;
             }
 
-            if (intIndex < 0)
-            {
-                return default(T);
-            }
-
-            if (arrObjArg.Length < (intIndex + 1))
-            {
-                return default(T);
-            }
-
-            var jsn = arrObjArg[intIndex].ToString();
-
-            if (string.IsNullOrEmpty(jsn))
-            {
-                return default(T);
-            }
-
-            return Json.i.fromJson<T>(jsn);
+            AppRealLife.i.api.triggerClientEvent(this.objClient, "1", Json.i.toJson(objResposta));
         }
 
         private void inicializar()
@@ -181,90 +133,92 @@ namespace RealLife
             TblSessao.i.salvar(this.objSessao);
         }
 
-        private void processarErro(string strMetodo, Exception ex)
+        private void processarOnClientEventTriggerLocal(Client objClient, object[] arrObjArg)
         {
-            if (string.IsNullOrEmpty(strMetodo))
+            if (this.objClient == null)
             {
                 return;
             }
 
-            if (ex == null)
+            if (!this.objClient.Equals(objClient))
             {
                 return;
             }
 
-            var objErro = new ErroDominio();
-
-            objErro.strMensagem = ex.Message;
-
-            ClientRealLife.i.executar(this.objClient, STR_METODO_ERRO, strMetodo, objErro);
-        }
-
-        private void processarOnClientEventTrigger(string strMetodo, object[] arrObjArg)
-        {
-            if (this.processarOnClientEventTriggerSync(strMetodo, arrObjArg))
-            {
-                return;
-            }
-
-            switch (strMetodo)
-            {
-                case STR_METODO_CRIAR_CONTA:
-                    this.criarConta(arrObjArg);
-                    return;
-
-                case STR_METODO_ENTRAR:
-                    this.entrar(arrObjArg);
-                    return;
-
-                case STR_METODO_SALVAR_APARENCIA:
-                    this.salvarAparencia(arrObjArg);
-                    return;
-            }
-        }
-
-        private bool processarOnClientEventTriggerSync(string strMetodo, object[] arrObjArg)
-        {
             if (arrObjArg == null)
             {
-                return false;
+                return;
             }
 
             if (arrObjArg.Length < 1)
             {
-                return false;
+                return;
             }
 
-            if (!STR_SYNC_TAG.Equals(arrObjArg[0]))
+            if (arrObjArg[0] == null)
             {
-                return false;
+                return;
             }
 
-            var lstObjArg = new List<object>(arrObjArg);
+            SolicitacaoDominio objSolicitacao = null;
 
-            lstObjArg.RemoveRange(0, 2);
-
-            arrObjArg = lstObjArg.ToArray();
-
-            lstObjArg.Clear();
-
-            lstObjArg.Add(STR_SYNC_TAG);
-
-            switch (strMetodo)
+            try
             {
-                //case STR_METODO_CRIAR_CONTA:
-                //    lstObjArgResultado = this.criarConta(arrObjArg);
-                //    break;
+                objSolicitacao = Json.i.fromJson<SolicitacaoDominio>(arrObjArg[0].ToString());
+
+                if (objSolicitacao == null)
+                {
+                    return;
+                }
+
+                var objResposta = this.processarSolicitacao(objSolicitacao);
+
+                if (objResposta == null)
+                {
+                    return;
+                }
+
+                this.enviar(objResposta);
             }
-
-            ClientRealLife.i.executar(this.objClient, strMetodo, lstObjArg.ToArray());
-
-            return true;
+            catch (Exception ex)
+            {
+                this.processarSolicitacaoErro(objSolicitacao, ex);
+            }
         }
 
-        private void salvarAparencia(object[] arrObjArg)
+        private RespostaDominio processarSolicitacao(SolicitacaoDominio objSolicitacao)
         {
-            var objPersonagem = this.getObjArg<PersonagemDominio>(arrObjArg);
+            switch (objSolicitacao.enmMetodo)
+            {
+                case SolicitacaoDominio.EnmMetodo.CONTA_SALVAR:
+                    this.salvarConta(objSolicitacao);
+                    return null;
+
+                case SolicitacaoDominio.EnmMetodo.LOGIN_ENTRAR:
+                    this.entrar(objSolicitacao);
+                    return null;
+
+                case SolicitacaoDominio.EnmMetodo.APARENCIA_SALVAR:
+                    this.salvarAparencia(objSolicitacao);
+                    return null;
+
+                default:
+                    return null;
+            }
+        }
+
+        private void processarSolicitacaoErro(SolicitacaoDominio objSolicitacao, Exception ex)
+        {
+            var objResposta = new RespostaDominio(objSolicitacao);
+
+            objResposta.strErro = ex.Message;
+
+            this.enviar(objResposta);
+        }
+
+        private void salvarAparencia(SolicitacaoDominio objSolicitacao)
+        {
+            var objPersonagem = objSolicitacao.getObjArgumento<PersonagemDominio>();
 
             if (objPersonagem == null)
             {
@@ -288,20 +242,29 @@ namespace RealLife
                 throw new Exception("Erro ao salvar o personagem.");
             }
 
-            var arrObjHeadOverlay = this.getObjArg<HeadOverlayDominio[]>(arrObjArg, 1);
+            var arrObjHeadOverlay = objSolicitacao.getObjArgumento<HeadOverlayDominio[]>(1);
 
             TblHeadOverlay.i.salvarAparencia(objPersonagem, objSessao, arrObjHeadOverlay);
 
-            var arrObjPedComponente = this.getObjArg<PedComponenteDominio[]>(arrObjArg, 2);
+            var arrObjPedComponente = objSolicitacao.getObjArgumento<PedComponenteDominio[]>(2);
 
             TblPedComponente.i.salvarAparencia(objPersonagem, objSessao, arrObjPedComponente);
-
-            this.salvarAparenciaSucesso();
         }
 
-        private void salvarAparenciaSucesso()
+        private void salvarConta(SolicitacaoDominio objSolicitacao)
         {
-            ClientRealLife.i.executar(this.objClient, STR_METODO_SALVAR_APARENCIA_SUCESSO);
+            this.objConta = objSolicitacao.getObjArgumento<ContaDominio>();
+
+            if (this.objConta == null)
+            {
+                return;
+            }
+
+            TblConta.i.salvarConta(this.objConta);
+
+            this.objSessao.intJogadorId = this.objConta.intId;
+
+            TblSessao.i.salvar(this.objSessao);
         }
 
         private void setEventos()
@@ -315,34 +278,7 @@ namespace RealLife
 
         private void onClientEventTrigger(Client objClient, string strMetodo, object[] arrObjArg)
         {
-            new Thread(() => this.onClientEventTriggerLocal(objClient, strMetodo, arrObjArg)).Start();
-        }
-
-        private void onClientEventTriggerLocal(Client objClient, string strMetodo, object[] arrObjArg)
-        {
-            if (this.objClient == null)
-            {
-                return;
-            }
-
-            if (!this.objClient.Equals(objClient))
-            {
-                return;
-            }
-
-            if (string.IsNullOrEmpty(strMetodo))
-            {
-                return;
-            }
-
-            try
-            {
-                this.processarOnClientEventTrigger(strMetodo, arrObjArg);
-            }
-            catch (Exception ex)
-            {
-                this.processarErro(strMetodo, ex);
-            }
+            new Thread(() => this.processarOnClientEventTriggerLocal(objClient, arrObjArg)).Start();
         }
 
         #endregion Eventos

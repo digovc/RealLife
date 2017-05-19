@@ -60,7 +60,6 @@
     <TypeScriptCompile Include="Entity.ts" />
     <TypeScriptCompile Include="evento\OnChatCommandListener.ts" />
     <TypeScriptCompile Include="evento\OnKeyUpListener.ts" />
-    <TypeScriptCompile Include="evento\OnServerEventTriggerListener.ts" />
     <TypeScriptCompile Include="evento\OnUpdateListener.ts" />
     <TypeScriptCompile Include="marker\Marker.ts" />
     <TypeScriptCompile Include="Ped.ts" />
@@ -129,8 +128,6 @@
     <TypeScriptCompile Include="script\test\ScriptTestPedCabeloCor.ts" />
     <TypeScriptCompile Include="script\test\ScriptTestPedSkin.ts" />
     <TypeScriptCompile Include="script\test\ScriptTestPedSkinAleatorio.ts" />
-    <TypeScriptCompile Include="server\FuncSync.ts" />
-    <TypeScriptCompile Include="server\ServerRealLife.ts" />
     <TypeScriptCompile Include="World.ts" />
     <TypeScriptCompile Include="Timer.ts" />
     <TypeScriptCompile Include="typedefinition\gta-network-typescript\content\types-gtanetwork\index.d.ts" />
@@ -154,7 +151,6 @@
     <Folder Include="evento\" />
     <Folder Include="blip\" />
     <Folder Include="marker\" />
-    <Folder Include="server\" />
     <Folder Include="script\" />
     <Folder Include="script\editor\" />
     <Folder Include="script\editor\personagem\" />

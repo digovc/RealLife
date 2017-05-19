@@ -8,23 +8,34 @@ module RealLifeShared
     // #region Enumerados
     // #endregion Enumerados
 
-    export class ErroDominio extends DominioRealLifeBase
+    export class RespostaDominio extends DominioRealLifeBase
     {
         // #region Constantes
         // #endregion Constantes
 
         // #region Atributos
 
-        private _strMensagem: string;
+        private _intSolicitacaoId: number;
+        private _strErro: string;
 
-        public get strMensagem(): string
+        public get intSolicitacaoId(): number
         {
-            return this._strMensagem;
+            return this._intSolicitacaoId;
         }
 
-        public set strMensagem(strMensagem: string)
+        public set intSolicitacaoId(intSolicitacaoId: number)
         {
-            this._strMensagem = strMensagem;
+            this._intSolicitacaoId = intSolicitacaoId;
+        }
+
+        public get strErro(): string
+        {
+            return this._strErro;
+        }
+
+        public set strErro(strErro: string)
+        {
+            this._strErro = strErro;
         }
 
         // #endregion Atributos
@@ -33,6 +44,7 @@ module RealLifeShared
         // #endregion Construtores
 
         // #region Métodos
+
         // #endregion Métodos
 
         // #region Eventos

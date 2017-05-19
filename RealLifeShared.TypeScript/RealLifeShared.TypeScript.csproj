@@ -66,14 +66,16 @@
     <Folder Include="Properties\" />
   </ItemGroup>
   <ItemGroup>
+    <TypeScriptCompile Include="dominio\RespostaDominio.ts" />
+    <TypeScriptCompile Include="dominio\SolicitacaoDominio.ts" />
     <TypeScriptCompile Include="dominio\PedComponenteDominio.ts" />
     <TypeScriptCompile Include="dominio\BlendDataDominio.ts" />
     <TypeScriptCompile Include="dominio\HeadOverlayDominio.ts" />
     <TypeScriptCompile Include="dominio\PersonagemDominio.ts" />
     <TypeScriptCompile Include="dominio\AudioDominio.ts" />
     <TypeScriptCompile Include="dominio\DominioRealLifeBase.ts" />
-    <TypeScriptCompile Include="dominio\ErroDominio.ts" />
     <TypeScriptCompile Include="dominio\MissaoConclusaoDominio.ts" />
+    <TypeScriptCompile Include="enumerado\EnmMetodo.ts" />
     <TypeScriptCompile Include="enumerado\EnmVehicleComponente.ts" />
     <TypeScriptCompile Include="enumerado\EnmPedSkin.ts" />
     <TypeScriptCompile Include="enumerado\EnmKey.ts" />

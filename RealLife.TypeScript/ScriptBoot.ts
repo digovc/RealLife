@@ -51,7 +51,7 @@ module RealLife
 
             API.onChatCommand.connect((strComando: string) => { Chat.i.processarEvtOnChatCommandListener(strComando); });
             API.onKeyUp.connect((objSender: any, arg: any) => { Keyboard.i.processarEvtOnKeyUpListener(objSender, arg); });
-            API.onServerEventTrigger.connect((strMetodo: string, ...arrObjArg: Object[]) => { ServerRealLife.i.processarEvtOnServerEventTriggerListener(strMetodo, arrObjArg); });
+            API.onServerEventTrigger.connect((strMetodo: string, strJson: any) => { Jogador.i.processarEvtOnServerEventTriggerListener(strMetodo, strJson); });
             API.onUpdate.connect(() => { Screen.i.processarEvtOnUpdateListener(); });
         }
 

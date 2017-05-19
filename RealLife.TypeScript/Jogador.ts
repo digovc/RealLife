@@ -1,11 +1,12 @@
 /// <reference path="../reallifeshared.typescript/dominio/blenddatadominio.ts"/>
 /// <reference path="../RealLifeShared.TypeScript/dominio/ContaDominio.ts"/>
-/// <reference path="../RealLifeShared.TypeScript/dominio/ErroDominio.ts"/>
 /// <reference path="../RealLifeShared.TypeScript/dominio/HeadOverlayDominio.ts"/>
 /// <reference path="../RealLifeShared.TypeScript/dominio/PersonagemDominio.ts"/>
+/// <reference path="../RealLifeShared.TypeScript/dominio/RespostaDominio.ts"/>
+/// <reference path="../RealLifeShared.TypeScript/dominio/SolicitacaoDominio.ts"/>
+/// <reference path="../RealLifeShared.TypeScript/enumerado/EnmMetodo.ts"/>
 /// <reference path="../RealLifeShared.TypeScript/enumerado/EnmPedSkin.ts"/>
 /// <reference path="evento/OnChatCommandListener.ts"/>
-/// <reference path="evento/OnServerEventTriggerListener.ts"/>
 /// <reference path="Objeto.ts"/>
 /// <reference path="Ped.ts"/>
 
@@ -15,17 +16,19 @@ module RealLife
 
     import BlendDataDominio = RealLifeShared.BlendDataDominio;
     import ContaDominio = RealLifeShared.ContaDominio;
+    import EnmMetodo = RealLifeShared.EnmMetodo;
     import EnmPedSkin = RealLifeShared.EnmPedSkin;
-    import ErroDominio = RealLifeShared.ErroDominio;
     import HeadOverlayDominio = RealLifeShared.HeadOverlayDominio;
     import PersonagemDominio = RealLifeShared.PersonagemDominio;
+    import RespostaDominio = RealLifeShared.RespostaDominio;
+    import SolicitacaoDominio = RealLifeShared.SolicitacaoDominio;
 
     // #endregion Importações
 
     // #region Enumerados
     // #endregion Enumerados
 
-    export class Jogador extends Ped implements OnServerEventTriggerListener
+    export class Jogador extends Ped
     {
         // #region Constantes
 
@@ -58,11 +61,12 @@ module RealLife
         }
 
         private _arrObjHeadOverlay: Array<HeadOverlayDominio>;
+        private _arrObjSolicitacao: Array<SolicitacaoDominio>;
         private _booMasculino: boolean;
         private _intId: number;
+        private _intSolicitacaoUltimaId: number = 0;
         private _objBlendData: BlendDataDominio;
         private _objConta: ContaDominio;
-        private _objEtapaPersonagemEditor003Concluir: EtapaPersonagemEditor003Concluir;
 
         private get arrObjHeadOverlay(): Array<HeadOverlayDominio>
         {
@@ -74,6 +78,18 @@ module RealLife
             this._arrObjHeadOverlay = new Array<HeadOverlayDominio>();
 
             return this._arrObjHeadOverlay;
+        }
+
+        private get arrObjSolicitacao(): Array<SolicitacaoDominio>
+        {
+            if (this._arrObjSolicitacao != null)
+            {
+                return this._arrObjSolicitacao;
+            }
+
+            this._arrObjSolicitacao = new Array<SolicitacaoDominio>();
+
+            return this._arrObjSolicitacao;
         }
 
         public get booMasculino(): boolean
@@ -100,6 +116,16 @@ module RealLife
             return this._intId;
         }
 
+        private get intSolicitacaoUltimaId(): number
+        {
+            return this._intSolicitacaoUltimaId;
+        }
+
+        private set intSolicitacaoUltimaId(intSolicitacaoUltimaId: number)
+        {
+            this._intSolicitacaoUltimaId = intSolicitacaoUltimaId;
+        }
+
         public get objBlendData(): BlendDataDominio
         {
             return this._objBlendData;
@@ -120,16 +146,6 @@ module RealLife
         private set objConta(objConta: ContaDominio)
         {
             this._objConta = objConta;
-        }
-
-        private get objEtapaPersonagemEditor003Concluir(): EtapaPersonagemEditor003Concluir
-        {
-            return this._objEtapaPersonagemEditor003Concluir;
-        }
-
-        private set objEtapaPersonagemEditor003Concluir(objEtapaPersonagemEditor003Concluir: EtapaPersonagemEditor003Concluir)
-        {
-            this._objEtapaPersonagemEditor003Concluir = objEtapaPersonagemEditor003Concluir;
         }
 
         // #endregion Atributos
@@ -158,7 +174,7 @@ module RealLife
 
         public carregarAparencia(fnc: Function): void
         {
-            ServerRealLife.i.executarSync(fnc, Jogador.STR_METODO_CRIAR_CONTA);
+            this.enviar(new SolicitacaoDominio(RealLifeShared.EnmMetodo.APARENCIA_RECUPERAR, fnc));
         }
 
         public criarConta(objConta: ContaDominio): void
@@ -170,16 +186,17 @@ module RealLife
 
             this.objConta = objConta;
 
-            ServerRealLife.i.executar(Jogador.STR_METODO_CRIAR_CONTA, this.objConta);
+            this.enviar(new SolicitacaoDominio(RealLifeShared.EnmMetodo.CONTA_SALVAR, ((objResposta) => this.criarContaRetorno(objResposta)), this.objConta));
         }
 
-        private criarContaSucesso(): void
+        private criarContaRetorno(objResposta: RespostaDominio): void
         {
-            this.criarContaSucessoNotificar();
-        }
+            if (!UtilsRealLife.getBooStrVazia(objResposta.strErro))
+            {
+                Screen.i.notificarErro(objResposta.strErro);
+                return;
+            }
 
-        private criarContaSucessoNotificar(): void
-        {
             if (this.objConta == null)
             {
                 return;
@@ -209,27 +226,17 @@ module RealLife
 
             this.objConta = objConta;
 
-            ServerRealLife.i.executar(Jogador.STR_METODO_ENTRAR, this.objConta);
+            this.enviar(new SolicitacaoDominio(RealLifeShared.EnmMetodo.LOGIN_ENTRAR, ((objResposta) => { this.entrarRetorno(objResposta); }), this.objConta));
         }
 
-        private entrarSucesso(arrObjArg: Object[]): void
+        private entrarRetorno(objResposta: RespostaDominio): void
         {
-            var jsnConta = this.getStrArgumento(arrObjArg);
-
-            if (UtilsRealLife.getBooStrVazia(jsnConta))
+            if (UtilsRealLife.getBooStrVazia(objResposta.strErro))
             {
+                Screen.i.notificarErro(objResposta.strErro);
                 return;
             }
 
-            this.objConta = new ContaDominio();
-
-            this.objConta.copiarJson(jsnConta);
-
-            this.entrarSucessoNotificar();
-        }
-
-        private entrarSucessoNotificar(): void
-        {
             if (this.objConta == null)
             {
                 return;
@@ -243,6 +250,30 @@ module RealLife
             var strNotificacao = "Seja bem vindo _player_gametag!".replace("_player_gametag", this.objConta.strGametag);
 
             Screen.i.notificar(strNotificacao);
+        }
+
+        public enviar(objSolicitacao: SolicitacaoDominio): void
+        {
+            if (objSolicitacao == null)
+            {
+                return;
+            }
+
+            objSolicitacao.intId = this.intSolicitacaoUltimaId++;
+
+            if (this.intSolicitacaoUltimaId >= 2147483647)
+            {
+                this.intSolicitacaoUltimaId = 0;
+            }
+
+            API.triggerServerEvent("0", JSON.stringify(objSolicitacao));
+
+            if (objSolicitacao.fncRetorno == null)
+            {
+                return;
+            }
+
+            this.arrObjSolicitacao.push(objSolicitacao);
         }
 
         private getStrArgumento(arrObjArg: Object[], intIndex: number = 0): string
@@ -280,47 +311,44 @@ module RealLife
             this.objBlendData = UtilsRealLife.getObjBlendDataRandomico();
         }
 
-        private processarErro(arrObjArg: Object[]): void
+        public processarEvtOnServerEventTriggerListener(strMetodo: string, strJson: string): void
         {
-            var jsnErro = this.getStrArgumento(arrObjArg);
-
-            if (UtilsRealLife.getBooStrVazia(jsnErro))
+            if (UtilsRealLife.getBooStrVazia(strJson))
             {
                 return;
             }
 
-            var objErro = new ErroDominio();
+            if ("0" == strMetodo)
+            {
+                var objSolicitacao = new SolicitacaoDominio(RealLifeShared.EnmMetodo.DESCONHECIDO);
 
-            objErro.copiarJson(jsnErro);
+                objSolicitacao.copiarJson(strJson);
 
-            Screen.i.notificarErro(objErro);
+                this.processarSolicitacao(objSolicitacao);
+                return;
+            }
+
+            var objResposta = new RespostaDominio();
+
+            objResposta.copiarJson(strJson);
+
+            this.processarResposta(objResposta);
         }
 
-        private processarOnServerEventTrigger(strMetodoNome: string, arrObjArg: Object[]): void
+        private processarResposta(objResposta: RespostaDominio): void
         {
-            if (UtilsRealLife.getBooStrVazia(strMetodoNome))
+            for (var i = 0; i < this.arrObjSolicitacao.length; i++)
             {
-                return;
+                if (this.arrObjSolicitacao[i].processarResposta(objResposta))
+                {
+                    this.arrObjSolicitacao.splice(i, 1);
+                    return;
+                }
             }
+        }
 
-            switch (strMetodoNome)
-            {
-                case Jogador.STR_METODO_CRIAR_CONTA_SUCESSO:
-                    this.criarContaSucesso();
-                    return;
-
-                case Jogador.STR_METODO_ENTRAR_SUCESSO:
-                    this.entrarSucesso(arrObjArg);
-                    return;
-
-                case Jogador.STR_METODO_APARENCIA_SALVAR_SUCESSO:
-                    this.salvarAparenciaSucesso();
-                    return;
-
-                case Jogador.STR_METODO_ERRO:
-                    this.processarErro(arrObjArg);
-                    return;
-            }
+        private processarSolicitacao(objSolicitacao: SolicitacaoDominio): void
+        {
         }
 
         public salvarAparencia(objEtapa: EtapaPersonagemEditor003Concluir): void
@@ -330,8 +358,6 @@ module RealLife
                 return;
             }
 
-            this.objEtapaPersonagemEditor003Concluir = objEtapa;
-
             var objPersonagem = new PersonagemDominio();
 
             objPersonagem.booMasculino = this.booMasculino;
@@ -339,24 +365,12 @@ module RealLife
             objPersonagem.intOlhoCor = this.intOlhoCor;
             objPersonagem.objBlendData = this.objBlendData;
 
-            ServerRealLife.i.executar(Jogador.STR_METODO_APARENCIA_SALVAR, objPersonagem, this.arrObjHeadOverlay, this.arrObjPedComponente);
+            this.enviar(new SolicitacaoDominio(EnmMetodo.APARENCIA_SALVAR, ((objResposta) => { this.salvarAparenciaRetorno(objResposta, objEtapa); }), objPersonagem, this.arrObjHeadOverlay, this.arrObjPedComponente));
         }
 
-        private salvarAparenciaSucesso(): void
+        private salvarAparenciaRetorno(objResposta: RespostaDominio, objEtapa: EtapaPersonagemEditor003Concluir): void
         {
-            if (this.objEtapaPersonagemEditor003Concluir == null)
-            {
-                return;
-            }
-
-            this.objEtapaPersonagemEditor003Concluir.salvarAparenciaSucesso();
-        }
-
-        protected setEventos(): void
-        {
-            super.setEventos();
-
-            ServerRealLife.i.addEvtOnServerEventTriggerListener(this);
+            objEtapa.salvarAparenciaSucesso();
         }
 
         private setBooMasculino(booMasculino: boolean): void
@@ -384,11 +398,6 @@ module RealLife
         // #endregion Métodos
 
         // #region Eventos
-
-        public onServerEventTrigger(strMetodoNome: string, arrObjArg: Object[]): void
-        {
-            this.processarOnServerEventTrigger(strMetodoNome, arrObjArg);
-        }
 
         // #endregion Eventos
     }

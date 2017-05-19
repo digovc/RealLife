@@ -13,6 +13,19 @@ module RealLifeShared
         // #endregion Constantes
 
         // #region Atributos
+
+        private _intId: number;
+
+        public get intId(): number
+        {
+            return this._intId;
+        }
+
+        public set intId(intId: number)
+        {
+            this._intId = intId;
+        }
+
         // #endregion Atributos
 
         // #region Construtores
