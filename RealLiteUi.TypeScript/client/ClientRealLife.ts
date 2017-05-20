@@ -41,27 +41,27 @@ module RealLifeUi
 
         // #region Métodos
 
-        public executar(strClassName: string, strMetodoNome: string, objDominio: DominioRealLifeBase = null): void
+        public executar(strClass: string, strMetodo: string, objDominio: DominioRealLifeBase = null): void
         {
             if (!AppRealLifeUi.i.booGame)
             {
                 return;
             }
 
-            if (Utils.getBooStrVazia(strClassName))
+            if (Utils.getBooStrVazia(strClass))
             {
                 return;
             }
 
-            if (Utils.getBooStrVazia(strMetodoNome))
+            if (Utils.getBooStrVazia(strMetodo))
             {
                 return;
             }
 
             var strCodigo = "RealLife._class_name.i._method_name";
 
-            strCodigo = strCodigo.replace("_class_name", strClassName);
-            strCodigo = strCodigo.replace("_method_name", strMetodoNome);
+            strCodigo = strCodigo.replace("_class_name", strClass);
+            strCodigo = strCodigo.replace("_method_name", strMetodo);
 
             if (objDominio == null)
             {

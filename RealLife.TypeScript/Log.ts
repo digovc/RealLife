@@ -56,7 +56,7 @@ module RealLife
                 }
             }
 
-            API.sendChatMessage(strLog);
+            Chat.i.debug(strLog);
         }
 
         // #endregion Métodos

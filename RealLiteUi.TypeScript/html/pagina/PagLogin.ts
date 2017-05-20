@@ -1,4 +1,4 @@
-/// <reference path="../../../RealLifeShared.TypeScript/dominio/JogadorDominio.ts"/>
+/// <reference path="../../../RealLifeShared.TypeScript/dominio/ContaDominio.ts"/>
 /// <reference path="../../../Web.TypeScript/html/componente/Mensagem.ts"/>
 /// <reference path="../../../Web.TypeScript/html/Div.ts"/>
 /// <reference path="../../../Web.TypeScript/Keys.ts"/>
@@ -8,8 +8,8 @@ module RealLifeUi
 {
     // #region Importações
 
+    import ContaDominio = RealLifeShared.ContaDominio;
     import Div = Web.Div;
-    import JogadorDominio = RealLifeShared.JogadorDominio;
     import Keys = Web.Keys;
     import Mensagem = Web.Mensagem;
     import OnKeyPressListener = Web.OnKeyPressListener;
@@ -120,11 +120,11 @@ module RealLifeUi
                 return;
             }
 
-            var objJogador = new JogadorDominio();
+            var objConta = new ContaDominio();
 
-            this.divLoginContaCadastro.carregarDados(objJogador);
+            this.divLoginContaCadastro.carregarDados(objConta);
 
-            ClientRealLife.i.executar(PagLogin.name, "criarConta", objJogador);
+            ClientRealLife.i.executar(PagLogin.name, "criarConta", objConta);
         }
 
         private criarContaValidar(): boolean
@@ -144,11 +144,11 @@ module RealLifeUi
                 return;
             }
 
-            var objJogador = new JogadorDominio();
+            var objConta = new ContaDominio();
 
-            this.divLoginEntrar.carregarDados(objJogador);
+            this.divLoginEntrar.carregarDados(objConta);
 
-            ClientRealLife.i.executar(PagLogin.name, "entrar", objJogador);
+            ClientRealLife.i.executar(PagLogin.name, "entrar", objConta);
         }
 
         private entrarValidar(): boolean

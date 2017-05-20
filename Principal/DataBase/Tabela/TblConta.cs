@@ -129,7 +129,7 @@ namespace RealLife.DataBase.Tabela
 
                 if (this.clnIntId.intValor < 1)
                 {
-                    throw new Exception("Dados inválidos.");
+                    throw new Exception("Login inválido.");
                 }
 
                 objConta.intId = this.clnIntId.intValor;

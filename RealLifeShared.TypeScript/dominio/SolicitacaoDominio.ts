@@ -16,16 +16,16 @@ module RealLifeShared
 
         // #region Atributos
 
-        private _arrObjArgumento: Object[];
+        private _arrObjArgumento: Array<Object>;
         private _enmMetodo: EnmMetodo = EnmMetodo.DESCONHECIDO;
         private _fncRetorno: Function;
 
-        public get arrObjArgumento(): Object[]
+        public get arrObjArgumento(): Array<Object>
         {
             return this._arrObjArgumento;
         }
 
-        public set arrObjArgumento(arrObjArgumento: Object[])
+        public set arrObjArgumento(arrObjArgumento: Array<Object>)
         {
             this._arrObjArgumento = arrObjArgumento;
         }
@@ -61,26 +61,29 @@ module RealLifeShared
             this.enmMetodo = enmMetodo;
             this.fncRetorno = fncRetorno;
 
-            this.addObjArgumento(arrObjArgumento);
+            if (arrObjArgumento != null)
+            {
+                arrObjArgumento.forEach((objArgumento) => { this.addObjArgumento(objArgumento); });
+            }
         }
 
         // #endregion Construtores
 
         // #region Métodos
 
-        public addObjArgumento(...arrObjArgumento: Object[]): void
+        public addObjArgumento(objArgumento: Object): void
         {
-            if (arrObjArgumento == null)
+            if (objArgumento == null)
             {
                 return;
             }
 
-            if (arrObjArgumento.length < 1)
+            if (this.arrObjArgumento == null)
             {
-                return;
+                this.arrObjArgumento = new Array<Object>();
             }
 
-            arrObjArgumento.forEach((objArgumento) => { this.arrObjArgumento.push(JSON.stringify(objArgumento)); });
+            this.arrObjArgumento.push(JSON.stringify(objArgumento));
         }
 
         public processarResposta(objResposta: RespostaDominio): boolean

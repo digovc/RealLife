@@ -236,12 +236,12 @@ module RealLife
 
             this.objConta = objConta;
 
-            this.enviar(new SolicitacaoDominio(RealLifeShared.EnmMetodo.LOGIN_ENTRAR, ((objResposta) => { this.entrarRetorno(objResposta); }), this.objConta));
+            this.enviar(new SolicitacaoDominio(RealLifeShared.EnmMetodo.LOGIN_ENTRAR, ((objResposta) => { this.entrarRetorno(objResposta); }), this.objConta, 3));
         }
 
         private entrarRetorno(objResposta: RespostaDominio): void
         {
-            if (UtilsRealLife.getBooStrVazia(objResposta.strErro))
+            if (!UtilsRealLife.getBooStrVazia(objResposta.strErro))
             {
                 Screen.i.notificarErro(objResposta.strErro);
                 return;
@@ -321,8 +321,22 @@ module RealLife
             this.objBlendData = UtilsRealLife.getObjBlendDataRandomico();
         }
 
-        public processarEvtOnServerEventTriggerListener(strMetodo: string, strJson: string): void
+        public processarEvtOnServerEventTriggerListener(strMetodo: string, arrObjArgumento: System.Array<any>): void
         {
+            if (arrObjArgumento == null)
+            {
+                return;
+            }
+
+            if (arrObjArgumento.Length < 1)
+            {
+                return;
+            }
+
+            var strJson = arrObjArgumento[0];
+
+            Log.i.debug(strJson);
+
             if (UtilsRealLife.getBooStrVazia(strJson))
             {
                 return;

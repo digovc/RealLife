@@ -23,6 +23,13 @@ module RealLife
 
         // #region Atributos
 
+        private static _i: PagLogin;
+
+        public static get i(): PagLogin
+        {
+            return PagLogin._i;
+        }
+
         private _objEtapaLogin: EtapaLogin003Logar;
 
         private get objEtapaLogin(): EtapaLogin003Logar
@@ -42,6 +49,8 @@ module RealLife
         constructor(objEtapaLogin: EtapaLogin003Logar)
         {
             super();
+
+            PagLogin._i = this;
 
             this.objEtapaLogin = objEtapaLogin;
         }
@@ -88,6 +97,8 @@ module RealLife
 
         public entrar(jsnConta: string): void
         {
+            Log.i.debug(jsnConta);
+
             if (UtilsRealLife.getBooStrVazia(jsnConta))
             {
                 return;

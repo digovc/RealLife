@@ -9,6 +9,7 @@ namespace RealLife.DataBase.Dominio
 
         public enum EnmMetodo
         {
+            APARENCIA_RECUPERAR,
             APARENCIA_SALVAR,
 
             CONTA_SALVAR,

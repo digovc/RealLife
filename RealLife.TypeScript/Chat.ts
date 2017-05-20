@@ -55,7 +55,7 @@ module RealLife
         {
             this._booVisivel = booVisivel;
 
-            API.setChatVisible(this._booVisivel);
+            this.setBooVisivel(this._booVisivel);
         }
 
         // #endregion Atributos
@@ -64,6 +64,13 @@ module RealLife
         // #endregion Construtores
 
         // #region Métodos
+
+        public debug(strLog: string): void
+        {
+            strLog = ("~y~Debug: ~s~" + strLog);
+
+            API.sendChatMessage(strLog);
+        }
 
         public enviar(strMensagem: string): void
         {
@@ -83,6 +90,16 @@ module RealLife
             }
 
             this.dispararEvtOnChatCommandListener(strComando);
+        }
+
+        private setBooVisivel(booVisivel: boolean): void
+        {
+            if (AppRealLife.i.booDebug && !booVisivel)
+            {
+                return;
+            }
+
+            API.setChatVisible(booVisivel);
         }
 
         // #endregion Métodos

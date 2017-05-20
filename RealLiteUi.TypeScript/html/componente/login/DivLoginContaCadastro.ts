@@ -1,4 +1,4 @@
-/// <reference path="../../../../RealLifeShared.TypeScript/dominio/JogadorDominio.ts"/>
+/// <reference path="../../../../RealLifeShared.TypeScript/dominio/ContaDominio.ts"/>
 /// <reference path="../../../../Web.TypeScript/html/componente/Mensagem.ts"/>
 /// <reference path="../../../../Web.TypeScript/Utils.ts"/>
 
@@ -6,7 +6,7 @@ module RealLifeUi
 {
     // #region Importações
 
-    import JogadorDominio = RealLifeShared.JogadorDominio;
+    import ContaDominio = RealLifeShared.ContaDominio;
     import Mensagem = Web.Mensagem;
     import Utils = Web.Utils;
 
@@ -88,16 +88,16 @@ module RealLifeUi
 
         // #region Métodos
 
-        public carregarDados(objJogador: JogadorDominio): void
+        public carregarDados(objConta: ContaDominio): void
         {
-            if (objJogador == null)
+            if (objConta == null)
             {
                 return;
             }
 
-            objJogador.strEmail = this.cmpStrEmail.txt.strValor;
-            objJogador.strGametag = this.cmpStrGameTag.txt.strValor;
-            objJogador.strSenha = this.encriptar(this.cmpStrSenha.txt.strValor);
+            objConta.strEmail = this.cmpStrEmail.txt.strValor;
+            objConta.strGametag = this.cmpStrGameTag.txt.strValor;
+            objConta.strSenha = this.encriptar(this.cmpStrSenha.txt.strValor);
         }
 
         public criarContaValidar(): boolean

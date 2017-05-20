@@ -200,7 +200,7 @@ module RealLife
             this.objEtapaConcluir.iniciar();
         }
 
-        private baixarConcluir(): void
+        public baixarConcluir(): void
         {
             this.objCameraFinal.destruir();
             this.objCameraGamePlay.destruir();
