@@ -34,7 +34,7 @@ module RealLife
         private _intOlhoCor: number;
         private _vctAlvo: Vector3;
 
-        protected get arrObjPedComponente(): Array<PedComponenteDominio>
+        public get arrObjPedComponente(): Array<PedComponenteDominio>
         {
             if (this._arrObjPedComponente != null)
             {
@@ -190,9 +190,9 @@ module RealLife
                 return;
             }
 
-            this.arrObjPedComponente.push(objPedComponente);
-
             API.callNative("SET_PED_COMPONENT_VARIATION", this.objHandle, objPedComponente.enmTipo, objPedComponente.intModelo, objPedComponente.intTextura, objPedComponente.intPaleta);
+
+            this.arrObjPedComponente.push(objPedComponente);
         }
 
         public criar(): void

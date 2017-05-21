@@ -140,30 +140,30 @@ namespace RealLife.DataBase.Tabela
         {
             if (objPersonagem == null)
             {
-                return;
+                throw new System.NullReferenceException("Objeto 'personagem' nulo.");
             }
 
             if (objPersonagem.intId < 1)
             {
-                return;
+                throw new System.Exception("Personagem não indicado.");
             }
 
             if (objSessao == null)
             {
-                return;
+                throw new System.NullReferenceException("Objeto 'sessão' nulo.");
             }
 
             if (objSessao.intId < 1)
             {
-                return;
+                throw new System.Exception("Sessão não indicada.");
             }
+
+            this.apagar(new Filtro(this.clnIntPersonagemId, objPersonagem.intId));
 
             if (arrObjPedComponente == null)
             {
                 return;
             }
-
-            this.apagar(new Filtro(this.clnIntPersonagemId, objPersonagem.intId));
 
             foreach (var objPedComponente in arrObjPedComponente)
             {
@@ -196,7 +196,7 @@ namespace RealLife.DataBase.Tabela
         {
             if (objPedComponente == null)
             {
-                return;
+                throw new System.NullReferenceException("Objeto 'componente' nulo.");
             }
 
             objPedComponente.intPersonagemId = objPersonagem.intId;

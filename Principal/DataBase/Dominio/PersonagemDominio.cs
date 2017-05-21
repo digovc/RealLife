@@ -8,8 +8,6 @@
 
         #region Atributos
 
-        private object[] _arrObjHeadOverlay;
-        private object[] _arrObjPedComponente;
         private bool _booAtivo;
         private bool _booMasculino;
         private int _intCabeloCor;
@@ -35,33 +33,7 @@
         private int _intSessaoUltimaId;
         private int _intSono;
         private int _intVelocidade;
-        private object _objBlendData;
-
-        public object[] arrObjHeadOverlay
-        {
-            get
-            {
-                return _arrObjHeadOverlay;
-            }
-
-            set
-            {
-                _arrObjHeadOverlay = value;
-            }
-        }
-
-        public object[] arrObjPedComponente
-        {
-            get
-            {
-                return _arrObjPedComponente;
-            }
-
-            set
-            {
-                _arrObjPedComponente = value;
-            }
-        }
+        private BlendDataDominio _objBlendData;
 
         public bool booAtivo
         {
@@ -388,7 +360,7 @@
             }
         }
 
-        public object objBlendData
+        public BlendDataDominio objBlendData
         {
             get
             {

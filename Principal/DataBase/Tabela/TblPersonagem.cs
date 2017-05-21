@@ -381,27 +381,27 @@ namespace RealLife.DataBase.Tabela
         {
             if (objConta == null)
             {
-                return;
+                throw new System.NullReferenceException("Objeto 'conta' nulo.");
             }
 
             if (objConta.intId < 1)
             {
-                return;
+                throw new System.Exception("Conta não indicada.");
             }
 
             if (objSessao == null)
             {
-                return;
+                throw new System.NullReferenceException("Objeto 'sessão' nulo.");
             }
 
             if (objSessao.intId < 1)
             {
-                return;
+                throw new System.Exception("Sessão não indicada.");
             }
 
             if (objPersonagem == null)
             {
-                return;
+                throw new System.NullReferenceException("Objeto 'personagem' nulo.");
             }
 
             this.dbe.execSql(string.Format("update {0} set {1} = false where {2} = {3};", this.sqlNome, this.clnBooAtivo.sqlNome, this.clnIntContaId.sqlNome, objConta.intId));

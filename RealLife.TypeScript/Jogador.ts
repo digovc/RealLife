@@ -57,7 +57,7 @@ module RealLife
         private _intId: number;
         private _objBlendData: BlendDataDominio;
 
-        private get arrObjHeadOverlay(): Array<HeadOverlayDominio>
+        public get arrObjHeadOverlay(): Array<HeadOverlayDominio>
         {
             if (this._arrObjHeadOverlay != null)
             {
@@ -167,28 +167,6 @@ module RealLife
         {
             this.booMasculino = true;
             this.objBlendData = UtilsRealLife.getObjBlendDataRandomico();
-        }
-
-        public salvarAparencia(objEtapa: EtapaPersonagemEditor003Concluir): void
-        {
-            if (objEtapa == null)
-            {
-                return;
-            }
-
-            var objPersonagem = new PersonagemDominio();
-
-            objPersonagem.booMasculino = this.booMasculino;
-            objPersonagem.intCabeloCor = this.intCabeloCor;
-            objPersonagem.intOlhoCor = this.intOlhoCor;
-            objPersonagem.objBlendData = this.objBlendData;
-
-            Server.i.enviar(new SolicitacaoDominio(EnmMetodo.APARENCIA_SALVAR, ((objResposta) => { this.salvarAparenciaRetorno(objResposta, objEtapa); }), objPersonagem, this.arrObjHeadOverlay, this.arrObjPedComponente));
-        }
-
-        private salvarAparenciaRetorno(objResposta: RespostaDominio, objEtapa: EtapaPersonagemEditor003Concluir): void
-        {
-            objEtapa.salvarAparenciaSucesso();
         }
 
         private setBooMasculino(booMasculino: boolean): void

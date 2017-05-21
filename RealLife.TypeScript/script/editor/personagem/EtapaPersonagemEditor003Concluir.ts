@@ -1,6 +1,17 @@
+/// <reference path="../../../../RealLifeShared.TypeScript/dominio/PersonagemDominio.ts"/>
+/// <reference path="../../../../RealLifeShared.TypeScript/dominio/RespostaDominio.ts"/>
+/// <reference path="../../../../RealLifeShared.TypeScript/dominio/SolicitacaoDominio.ts"/>
+/// <reference path="../../../../RealLifeShared.TypeScript/enumerado/EnmMetodo.ts"/>
+
 module RealLife
 {
     // #region Importações
+
+    import EnmMetodo = RealLifeShared.EnmMetodo;
+    import PersonagemDominio = RealLifeShared.PersonagemDominio;
+    import RespostaDominio = RealLifeShared.RespostaDominio;
+    import SolicitacaoDominio = RealLifeShared.SolicitacaoDominio;
+
     // #endregion Importações
 
     // #region Enumerados
@@ -28,13 +39,25 @@ module RealLife
 
         private salvarAparencia(): void
         {
-            Jogador.i.salvarAparencia(this);
+            var objPersonagem = new PersonagemDominio();
+
+            objPersonagem.booMasculino = Jogador.i.booMasculino;
+            objPersonagem.intCabeloCor = Jogador.i.intCabeloCor;
+            objPersonagem.intOlhoCor = Jogador.i.intOlhoCor;
+            objPersonagem.objBlendData = Jogador.i.objBlendData;
+
+            Server.i.enviar(new SolicitacaoDominio(EnmMetodo.APARENCIA_SALVAR, ((objResposta) => { this.salvarAparenciaRetorno(objResposta); }), objPersonagem, Jogador.i.arrObjHeadOverlay, Jogador.i.arrObjPedComponente));
 
             Screen.i.notificar("Salvando o personagem.");
         }
 
-        public salvarAparenciaSucesso(): void
+        private salvarAparenciaRetorno(objResposta: RespostaDominio): void
         {
+            if (Screen.i.notificarErro(objResposta))
+            {
+                return;
+            }
+
             Screen.i.notificar("Personagem salvo com sucesso.");
 
             this.etapa001();

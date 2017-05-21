@@ -26,7 +26,7 @@ module RealLife
         {
             super.inicializar();
 
-            this.etapa001();
+            //this.etapa001();
         }
 
         // Etapas
@@ -42,7 +42,7 @@ module RealLife
 
             Screen.i.booHudVisivel = false;
 
-            Jogador.i.carregarAparencia(() => { this.etapa002(); });
+            //Jogador.i.carregarAparencia(() => { this.etapa002(); });
         }
 
         private etapa002(): void
