@@ -263,7 +263,15 @@ module RealLife
                 return;
             }
 
-            API.callNative("PLACE_OBJECT_ON_GROUND_PROPERLY", this.objHandle);
+            var fltGround = API.returnNative("GET_ENTITY_HEIGHT_ABOVE_GROUND", Enums.NativeReturnTypes.Float, this.objHandle);
+
+            var vctPosicao = this.vctPosicao;
+
+            vctPosicao.Z -= fltGround;
+
+            this.vctPosicao = vctPosicao;
+
+            //API.callNative("PLACE_OBJECT_ON_GROUND_PROPERLY", this.objHandle);
         }
 
         public anexarEntityBone(objEntity: Entity, intBone: number, vctOffSet: Vector3 = new Vector3(), vctRotacaoOffset: Vector3 = new Vector3()): void

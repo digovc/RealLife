@@ -129,17 +129,18 @@ module RealLife
 
         private inicializarGame(): void
         {
-            //if (this.booDebug)
-            //{
-            //    return;
-            //}
+            if (this.booDebug)
+            {
+                return;
+            }
 
             new ScriptLogin().iniciar();
+            //new ScriptPersonagemEditor().iniciar();
         }
 
         private inicializarTeste(): void
         {
-            this.booDebug = true;
+            //this.booDebug = true;
 
             //new ScriptTestAguardar().iniciar();
         }

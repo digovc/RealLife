@@ -37,22 +37,23 @@ module RealLife
 
         private etapa001(): void
         {
-            Screen.i.fadeOut(1, (() => { this.etapa002(); }));
-        }
-
-        private etapa002(): void
-        {
             Jogador.i.booVisivel = false;
             Keyboard.i.booAtivo = false;
+
             Screen.i.booHudVisivel = false;
 
             World.i.setEnmClima(Enums.Weather.Clear);
             World.i.setHora(12);
 
+            Screen.i.fadeOut(1, (() => { this.etapa002(); }));
+        }
+
+        private etapa002(): void
+        {
             (this.objScript as ScriptPersonagemEditor).objCameraLonge.booAtiva = true;
 
             Jogador.i.fltRotacao = 99.99914;
-            Jogador.i.vctPosicao = new Vector3(198.016464, 1165.42078, 227.009354);
+            Jogador.i.vctPosicao = new Vector3(198.016464, 1165.42078, 227);
             Jogador.i.vctRotacao = new Vector3(1.00178786E-05, -0, 99.99914);
 
             Jogador.i.ajustarZ();

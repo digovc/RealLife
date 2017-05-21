@@ -30,11 +30,6 @@ module RealLife
 
         private etapa001(): void
         {
-            Screen.i.fadeOut(.25, (() => { this.etapa002(); }));
-        }
-
-        private etapa002(): void
-        {
             Chat.i.booAtivo = false;
             Chat.i.booVisivel = false;
 
@@ -42,6 +37,13 @@ module RealLife
             Jogador.i.booCongelado = true;
             Jogador.i.booDinamico = false;
 
+            Screen.i.booHudVisivel = false;
+
+            Screen.i.fadeOut(.25, (() => { this.etapa002(); }));
+        }
+
+        private etapa002(): void
+        {
             new Timer((() => { new EtapaLogin002Logar(this.objScript).iniciar() }), 2.5).iniciar();
         }
 
