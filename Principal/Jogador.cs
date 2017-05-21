@@ -80,13 +80,13 @@ namespace RealLife
             this.setEventos();
         }
 
-        private void entrar(SolicitacaoDominio objSolicitacao)
+        private RespostaDominio entrar(SolicitacaoDominio objSolicitacao)
         {
             this.objConta = objSolicitacao.getObjArgumento<ContaDominio>();
 
             if (this.objConta == null)
             {
-                return;
+                throw new NullReferenceException("Objeto 'conta' nulo.");
             }
 
             TblConta.i.entrar(this.objConta);
@@ -94,6 +94,8 @@ namespace RealLife
             this.objSessao.intJogadorId = this.objConta.intId;
 
             TblSessao.i.salvar(this.objSessao);
+
+            return new RespostaDominio(objSolicitacao).addArgumento(this.objConta, this.objSessao);
         }
 
         private void enviar(SolicitacaoDominio objSolicitacao)
@@ -191,16 +193,13 @@ namespace RealLife
             switch (objSolicitacao.enmMetodo)
             {
                 case SolicitacaoDominio.EnmMetodo.CONTA_SALVAR:
-                    this.salvarConta(objSolicitacao);
-                    return null;
+                    return this.salvarConta(objSolicitacao);
 
                 case SolicitacaoDominio.EnmMetodo.LOGIN_ENTRAR:
-                    this.entrar(objSolicitacao);
-                    return null;
+                    return this.entrar(objSolicitacao);
 
                 case SolicitacaoDominio.EnmMetodo.APARENCIA_SALVAR:
-                    this.salvarAparencia(objSolicitacao);
-                    return null;
+                    return this.salvarAparencia(objSolicitacao);
 
                 default:
                     return null;
@@ -216,23 +215,23 @@ namespace RealLife
             this.enviar(objResposta);
         }
 
-        private void salvarAparencia(SolicitacaoDominio objSolicitacao)
+        private RespostaDominio salvarAparencia(SolicitacaoDominio objSolicitacao)
         {
             var objPersonagem = objSolicitacao.getObjArgumento<PersonagemDominio>();
 
             if (objPersonagem == null)
             {
-                return;
+                throw new NullReferenceException("Objeto 'personagem' nulo.");
             }
 
             if (this.objConta == null)
             {
-                return;
+                throw new NullReferenceException("Objeto 'conta' nulo.");
             }
 
             if (this.objSessao == null)
             {
-                return;
+                throw new NullReferenceException("Objeto 'sessão' nulo.");
             }
 
             TblPersonagem.i.salvarAparencia(this.objConta, this.objSessao, objPersonagem);
@@ -249,15 +248,17 @@ namespace RealLife
             var arrObjPedComponente = objSolicitacao.getObjArgumento<PedComponenteDominio[]>(2);
 
             TblPedComponente.i.salvarAparencia(objPersonagem, objSessao, arrObjPedComponente);
+
+            return new RespostaDominio(objSolicitacao).addArgumento(true);
         }
 
-        private void salvarConta(SolicitacaoDominio objSolicitacao)
+        private RespostaDominio salvarConta(SolicitacaoDominio objSolicitacao)
         {
             this.objConta = objSolicitacao.getObjArgumento<ContaDominio>();
 
             if (this.objConta == null)
             {
-                return;
+                throw new Exception("Objeto 'conta' nulo.");
             }
 
             TblConta.i.salvarConta(this.objConta);
@@ -265,6 +266,8 @@ namespace RealLife
             this.objSessao.intJogadorId = this.objConta.intId;
 
             TblSessao.i.salvar(this.objSessao);
+
+            return new RespostaDominio(objSolicitacao).addArgumento(this.objConta, this.objSessao);
         }
 
         private void setEventos()
