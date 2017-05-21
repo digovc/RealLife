@@ -42,7 +42,7 @@ module RealLife
             Jogador.i.booCongelado = true;
             Jogador.i.booDinamico = false;
 
-            new Timer((() => { new EtapaLogin003Logar(this.objScript).iniciar() }), 2.5).iniciar();
+            new Timer((() => { new EtapaLogin002Logar(this.objScript).iniciar() }), 2.5).iniciar();
         }
 
         // #endregion Métodos

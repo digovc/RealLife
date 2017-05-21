@@ -1,6 +1,8 @@
 /// <reference path="../../../RealLifeShared.TypeScript/dominio/ContaDominio.ts"/>
+/// <reference path="../../../RealLifeShared.TypeScript/dominio/RespostaDominio.ts"/>
+/// <reference path="../../../RealLifeShared.TypeScript/dominio/SolicitacaoDominio.ts"/>
 /// <reference path="../../../RealLifeShared.TypeScript/enumerado/EnmKey.ts"/>
-/// <reference path="../../typedefinition/gta-network-typescript/content/types-gtanetwork/index.d.ts" />
+/// <reference path="../../typedefinition/gta-network-typescript/content/types-gtanetwork/index.d.ts"/>
 /// <reference path="../../UtilsRealLife.ts"/>
 /// <reference path="PagRealLifeBase.ts"/>
 
@@ -10,6 +12,8 @@ module RealLife
 
     import ContaDominio = RealLifeShared.ContaDominio;
     import EnmKey = RealLifeShared.EnmKey;
+    import RespostaDominio = RealLifeShared.RespostaDominio;
+    import SolicitacaoDominio = RealLifeShared.SolicitacaoDominio;
 
     // #endregion Importações
 
@@ -30,14 +34,14 @@ module RealLife
             return PagLogin._i;
         }
 
-        private _objEtapaLogin: EtapaLogin003Logar;
+        private _objEtapaLogin: EtapaLogin002Logar;
 
-        private get objEtapaLogin(): EtapaLogin003Logar
+        private get objEtapaLogin(): EtapaLogin002Logar
         {
             return this._objEtapaLogin;
         }
 
-        private set objEtapaLogin(objEtapaLogin: EtapaLogin003Logar)
+        private set objEtapaLogin(objEtapaLogin: EtapaLogin002Logar)
         {
             this._objEtapaLogin = objEtapaLogin;
         }
@@ -46,7 +50,7 @@ module RealLife
 
         // #region Construtores
 
-        constructor(objEtapaLogin: EtapaLogin003Logar)
+        constructor(objEtapaLogin: EtapaLogin002Logar)
         {
             super();
 
@@ -59,30 +63,16 @@ module RealLife
 
         // #region Métodos
 
-        public iniciar(): void
+        protected inicializar(): void
         {
-            super.iniciar();
+            super.inicializar();
 
             Screen.i.booMouseVisivel = true;
         }
 
-        public criarConta(jsnConta: string): void
+        public contaSalvar(jsnConta: string): void
         {
-            if (UtilsRealLife.getBooStrVazia(jsnConta))
-            {
-                return;
-            }
-
-            var objConta = new ContaDominio();
-
-            objConta.copiarJson(jsnConta);
-
-            Jogador.i.criarConta(objConta);
-        }
-
-        public criarContaSucesso(): void
-        {
-            this.objEtapaLogin.criarContaSucesso();
+            this.objEtapaLogin.contaSalvar(jsnConta);
         }
 
         protected getBooEnviarTecla(enmKey: EnmKey): boolean
@@ -97,23 +87,7 @@ module RealLife
 
         public entrar(jsnConta: string): void
         {
-            Log.i.debug(jsnConta);
-
-            if (UtilsRealLife.getBooStrVazia(jsnConta))
-            {
-                return;
-            }
-
-            var objConta = new ContaDominio();
-
-            objConta.copiarJson(jsnConta);
-
-            Jogador.i.entrar(objConta);
-        }
-
-        public entrarSucesso(): void
-        {
-            this.objEtapaLogin.entrarSucesso();
+            this.objEtapaLogin.entrar(jsnConta);
         }
 
         // #endregion Métodos

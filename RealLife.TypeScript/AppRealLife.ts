@@ -1,8 +1,12 @@
+/// <reference path="../RealLifeShared.TypeScript/dominio/ContaDominio.ts"/>
 /// <reference path="Objeto.ts"/>
 
 module RealLife
 {
     // #region Importações
+
+    import ContaDominio = RealLifeShared.ContaDominio;
+
     // #endregion Importações
 
     // #region Enumerados
@@ -31,6 +35,8 @@ module RealLife
 
         private _arrObjScript: Array<ScriptBase>;
         private _booDebug: boolean;
+        private _objConta: ContaDominio;
+        private _objScriptAguardar: ScriptAguardar;
 
         private get arrObjScript(): Array<ScriptBase>
         {
@@ -54,7 +60,17 @@ module RealLife
             this._booDebug = booDebug;
         }
 
-        private _objScriptAguardar: ScriptAguardar;
+        public get objConta(): ContaDominio
+        {
+            if (this._objConta != null)
+            {
+                return this._objConta;
+            }
+
+            this._objConta = new ContaDominio();
+
+            return this._objConta;
+        }
 
         public get objScriptAguardar(): ScriptAguardar
         {

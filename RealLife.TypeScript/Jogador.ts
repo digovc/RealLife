@@ -34,14 +34,6 @@ module RealLife
 
         private static get STR_COMANDO_DEV(): string { return "/devmode" };
 
-        private static get STR_METODO_CRIAR_CONTA(): string { return "STR_METODO_CRIAR_CONTA" };
-        private static get STR_METODO_CRIAR_CONTA_SUCESSO(): string { return "STR_METODO_CRIAR_CONTA_SUCESSO" };
-        private static get STR_METODO_ENTRAR(): string { return "STR_METODO_ENTRAR" };
-        private static get STR_METODO_ENTRAR_SUCESSO(): string { return "STR_METODO_ENTRAR_SUCESSO" };
-        private static get STR_METODO_ERRO(): string { return "STR_METODO_ERRO" };
-        private static get STR_METODO_APARENCIA_SALVAR(): string { return "STR_METODO_SALVAR_APARENCIA" };
-        private static get STR_METODO_APARENCIA_SALVAR_SUCESSO(): string { return "STR_METODO_SALVAR_APARENCIA_SUCESSO" };
-
         // #endregion Constantes
 
         // #region Atributos
@@ -61,12 +53,9 @@ module RealLife
         }
 
         private _arrObjHeadOverlay: Array<HeadOverlayDominio>;
-        private _arrObjSolicitacao: Array<SolicitacaoDominio>;
         private _booMasculino: boolean;
         private _intId: number;
-        private _intSolicitacaoUltimaId: number = 0;
         private _objBlendData: BlendDataDominio;
-        private _objConta: ContaDominio;
 
         private get arrObjHeadOverlay(): Array<HeadOverlayDominio>
         {
@@ -78,18 +67,6 @@ module RealLife
             this._arrObjHeadOverlay = new Array<HeadOverlayDominio>();
 
             return this._arrObjHeadOverlay;
-        }
-
-        private get arrObjSolicitacao(): Array<SolicitacaoDominio>
-        {
-            if (this._arrObjSolicitacao != null)
-            {
-                return this._arrObjSolicitacao;
-            }
-
-            this._arrObjSolicitacao = new Array<SolicitacaoDominio>();
-
-            return this._arrObjSolicitacao;
         }
 
         public get booMasculino(): boolean
@@ -116,16 +93,6 @@ module RealLife
             return this._intId;
         }
 
-        private get intSolicitacaoUltimaId(): number
-        {
-            return this._intSolicitacaoUltimaId;
-        }
-
-        private set intSolicitacaoUltimaId(intSolicitacaoUltimaId: number)
-        {
-            this._intSolicitacaoUltimaId = intSolicitacaoUltimaId;
-        }
-
         public get objBlendData(): BlendDataDominio
         {
             return this._objBlendData;
@@ -136,16 +103,6 @@ module RealLife
             this._objBlendData = objBlendData;
 
             this.setObjBlendData(this._objBlendData);
-        }
-
-        private get objConta(): ContaDominio
-        {
-            return this._objConta;
-        }
-
-        private set objConta(objConta: ContaDominio)
-        {
-            this._objConta = objConta;
         }
 
         // #endregion Atributos
@@ -174,7 +131,7 @@ module RealLife
 
         public carregarAparencia(fncRetorno: Function = null): void
         {
-            this.enviar(new SolicitacaoDominio(RealLifeShared.EnmMetodo.APARENCIA_RECUPERAR, ((objResposta) => { this.carregarAparenciaRetorno(objResposta, fncRetorno); })));
+            Server.i.enviar(new SolicitacaoDominio(RealLifeShared.EnmMetodo.APARENCIA_RECUPERAR, ((objResposta) => { this.carregarAparenciaRetorno(objResposta, fncRetorno); })));
         }
 
         private carregarAparenciaRetorno(objResposta: RespostaDominio, fncRetorno: Function): void
@@ -187,118 +144,9 @@ module RealLife
             }
         }
 
-        public criarConta(objConta: ContaDominio): void
-        {
-            if (objConta == null)
-            {
-                return;
-            }
-
-            this.objConta = objConta;
-
-            this.enviar(new SolicitacaoDominio(RealLifeShared.EnmMetodo.CONTA_SALVAR, ((objResposta) => this.criarContaRetorno(objResposta)), this.objConta));
-        }
-
-        private criarContaRetorno(objResposta: RespostaDominio): void
-        {
-            if (!UtilsRealLife.getBooStrVazia(objResposta.strErro))
-            {
-                Screen.i.notificarErro(objResposta.strErro);
-                return;
-            }
-
-            if (this.objConta == null)
-            {
-                return;
-            }
-
-            if (UtilsRealLife.getBooStrVazia(this.objConta.strGametag))
-            {
-                return;
-            }
-
-            var strNotificacao = "Sua conta foi criada com sucesso _player_gametag!".replace("_player_gametag", this.objConta.strGametag);
-
-            Screen.i.notificar(strNotificacao);
-        }
-
-        public detonarBombasAdesivas(): void
+        public detonarBombaAdesiva(): void
         {
             API.detonatePlayerStickies();
-        }
-
-        public entrar(objConta: ContaDominio): void
-        {
-            if (objConta == null)
-            {
-                return;
-            }
-
-            this.objConta = objConta;
-
-            this.enviar(new SolicitacaoDominio(RealLifeShared.EnmMetodo.LOGIN_ENTRAR, ((objResposta) => { this.entrarRetorno(objResposta); }), this.objConta, 3));
-        }
-
-        private entrarRetorno(objResposta: RespostaDominio): void
-        {
-            if (!UtilsRealLife.getBooStrVazia(objResposta.strErro))
-            {
-                Screen.i.notificarErro(objResposta.strErro);
-                return;
-            }
-
-            if (this.objConta == null)
-            {
-                return;
-            }
-
-            if (UtilsRealLife.getBooStrVazia(this.objConta.strGametag))
-            {
-                return;
-            }
-
-            var strNotificacao = "Seja bem vindo _player_gametag!".replace("_player_gametag", this.objConta.strGametag);
-
-            Screen.i.notificar(strNotificacao);
-        }
-
-        public enviar(objSolicitacao: SolicitacaoDominio): void
-        {
-            if (objSolicitacao == null)
-            {
-                return;
-            }
-
-            objSolicitacao.intId = this.intSolicitacaoUltimaId++;
-
-            if (this.intSolicitacaoUltimaId >= 2147483647)
-            {
-                this.intSolicitacaoUltimaId = 0;
-            }
-
-            API.triggerServerEvent("0", JSON.stringify(objSolicitacao));
-
-            if (objSolicitacao.fncRetorno == null)
-            {
-                return;
-            }
-
-            this.arrObjSolicitacao.push(objSolicitacao);
-        }
-
-        private getStrArgumento(arrObjArg: Object[], intIndex: number = 0): string
-        {
-            if (arrObjArg == null)
-            {
-                return null;
-            }
-
-            if (arrObjArg.length < (intIndex - 1))
-            {
-                return null;
-            }
-
-            return arrObjArg[intIndex].toString();
         }
 
         protected getObjHandle(): LocalHandle
@@ -321,60 +169,6 @@ module RealLife
             this.objBlendData = UtilsRealLife.getObjBlendDataRandomico();
         }
 
-        public processarEvtOnServerEventTriggerListener(strMetodo: string, arrObjArgumento: System.Array<any>): void
-        {
-            if (arrObjArgumento == null)
-            {
-                return;
-            }
-
-            if (arrObjArgumento.Length < 1)
-            {
-                return;
-            }
-
-            var strJson = arrObjArgumento[0];
-
-            Log.i.debug(strJson);
-
-            if (UtilsRealLife.getBooStrVazia(strJson))
-            {
-                return;
-            }
-
-            if ("0" == strMetodo)
-            {
-                var objSolicitacao = new SolicitacaoDominio(RealLifeShared.EnmMetodo.DESCONHECIDO);
-
-                objSolicitacao.copiarJson(strJson);
-
-                this.processarSolicitacao(objSolicitacao);
-                return;
-            }
-
-            var objResposta = new RespostaDominio();
-
-            objResposta.copiarJson(strJson);
-
-            this.processarResposta(objResposta);
-        }
-
-        private processarResposta(objResposta: RespostaDominio): void
-        {
-            for (var i = 0; i < this.arrObjSolicitacao.length; i++)
-            {
-                if (this.arrObjSolicitacao[i].processarResposta(objResposta))
-                {
-                    this.arrObjSolicitacao.splice(i, 1);
-                    return;
-                }
-            }
-        }
-
-        private processarSolicitacao(objSolicitacao: SolicitacaoDominio): void
-        {
-        }
-
         public salvarAparencia(objEtapa: EtapaPersonagemEditor003Concluir): void
         {
             if (objEtapa == null)
@@ -389,7 +183,7 @@ module RealLife
             objPersonagem.intOlhoCor = this.intOlhoCor;
             objPersonagem.objBlendData = this.objBlendData;
 
-            this.enviar(new SolicitacaoDominio(EnmMetodo.APARENCIA_SALVAR, ((objResposta) => { this.salvarAparenciaRetorno(objResposta, objEtapa); }), objPersonagem, this.arrObjHeadOverlay, this.arrObjPedComponente));
+            Server.i.enviar(new SolicitacaoDominio(EnmMetodo.APARENCIA_SALVAR, ((objResposta) => { this.salvarAparenciaRetorno(objResposta, objEtapa); }), objPersonagem, this.arrObjHeadOverlay, this.arrObjPedComponente));
         }
 
         private salvarAparenciaRetorno(objResposta: RespostaDominio, objEtapa: EtapaPersonagemEditor003Concluir): void

@@ -49,6 +49,7 @@
   </PropertyGroup>
   <ItemGroup>
     <TypeScriptCompile Include="AppRealLife.ts" />
+    <TypeScriptCompile Include="Server.ts" />
     <TypeScriptCompile Include="Audio.ts" />
     <TypeScriptCompile Include="evento\OnColisaoListener.ts" />
     <TypeScriptCompile Include="evento\OnDestruirListener.ts" />
@@ -103,8 +104,7 @@
     <TypeScriptCompile Include="script\openWorld\ScriptOpenWorld.ts" />
     <TypeScriptCompile Include="script\login\ScriptLogin.ts" />
     <TypeScriptCompile Include="script\login\EtapaLogin001Iniciar.ts" />
-    <TypeScriptCompile Include="script\login\EtapaLogin003Logar.ts" />
-    <TypeScriptCompile Include="script\login\EtapaLogin002LoopCamera.ts" />
+    <TypeScriptCompile Include="script\login\EtapaLogin002Logar.ts" />
     <TypeScriptCompile Include="script\missao\profissao\ScriptEntregadorBase.ts" />
     <TypeScriptCompile Include="script\missao\profissao\ScriptPescadorBase.ts" />
     <TypeScriptCompile Include="script\missao\profissao\ScriptTaxistaBase.ts" />

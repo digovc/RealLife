@@ -46,7 +46,7 @@ namespace RealLifeUi.Html.Pagina
         {
             base.addJsCodigo(tagJs);
 
-            tagJs.addJs(string.Format("RealLifeUi.{0}.i.iniciar();", this.GetType().Name));
+            tagJs.addJsCodigo(string.Format("RealLifeUi.{0}.i.iniciar();", this.GetType().Name));
         }
 
         protected override void setCss(CssArquivoBase css)

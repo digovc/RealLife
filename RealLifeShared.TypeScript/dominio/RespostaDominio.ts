@@ -15,8 +15,19 @@ module RealLifeShared
 
         // #region Atributos
 
+        private _arrObjArgumento: Object[];
         private _intSolicitacaoId: number;
         private _strErro: string;
+
+        public get arrObjArgumento(): Object[]
+        {
+            return this._arrObjArgumento;
+        }
+
+        public set arrObjArgumento(arrObjArgumento: Object[])
+        {
+            this._arrObjArgumento = arrObjArgumento;
+        }
 
         public get intSolicitacaoId(): number
         {
@@ -44,6 +55,33 @@ module RealLifeShared
         // #endregion Construtores
 
         // #region Métodos
+
+        public getObjArgumento(intIndex: number = 0): Object
+        {
+            if (intIndex < 0)
+            {
+                return null;
+            }
+
+            if (this.arrObjArgumento == null)
+            {
+                return null;
+            }
+
+            if (this.arrObjArgumento.length < (intIndex + 1))
+            {
+                return null;
+            }
+
+            var jsn = this.arrObjArgumento[intIndex].toString();
+
+            if (jsn == null || jsn == "")
+            {
+                return null;
+            }
+
+            return JSON.parse(jsn);
+        }
 
         // #endregion Métodos
 

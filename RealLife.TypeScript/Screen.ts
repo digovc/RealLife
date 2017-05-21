@@ -1,6 +1,10 @@
+/// <reference path="../RealLifeShared.TypeScript/dominio/RespostaDominio.ts"/>
+
 module RealLife
 {
     // #region Importações
+
+    import RespostaDominio = RealLifeShared.RespostaDominio;
 
     // #endregion Importações
 
@@ -164,14 +168,21 @@ module RealLife
             API.sendNotification(strNotificacao);
         }
 
-        public notificarErro(strErro: string): void
+        public notificarErro(objResposta: RespostaDominio): boolean
         {
-            if (UtilsRealLife.getBooStrVazia(strErro))
+            if (objResposta == null)
             {
-                return;
+                return false;
             }
 
-            API.sendNotification("~r~Erro: ~s~" + strErro);
+            if (UtilsRealLife.getBooStrVazia(objResposta.strErro))
+            {
+                return false;
+            }
+
+            API.sendNotification("~r~Erro no servidor: ~s~" + objResposta.strErro);
+
+            return true;
         }
 
         public processarEvtOnUpdateListener(): void

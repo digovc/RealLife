@@ -113,9 +113,9 @@ module RealLifeUi
 
         // #region Métodos
 
-        private criarConta(): void
+        private contaSalvar(): void
         {
-            if (!this.criarContaValidar())
+            if (!this.contaSalvarValidar())
             {
                 return;
             }
@@ -124,10 +124,10 @@ module RealLifeUi
 
             this.divLoginContaCadastro.carregarDados(objConta);
 
-            ClientRealLife.i.executar(PagLogin.name, "criarConta", objConta);
+            ClientRealLife.i.executar(PagLogin.name, "contaSalvar", objConta);
         }
 
-        private criarContaValidar(): boolean
+        private contaSalvarValidar(): boolean
         {
             if (!this.divLoginContaCadastro.criarContaValidar())
             {
@@ -203,7 +203,7 @@ module RealLifeUi
                 return;
             }
 
-            this.criarConta();
+            this.contaSalvar();
         }
 
         // #endregion Métodos
