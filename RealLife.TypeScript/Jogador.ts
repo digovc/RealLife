@@ -129,21 +129,6 @@ module RealLife
             API.callNative("SET_PED_HEAD_OVERLAY", this.objHandle, objHeadOverlay.enmTipo, objHeadOverlay.intIndex, objHeadOverlay.intAlpha);
         }
 
-        public carregarAparencia(fncRetorno: Function = null): void
-        {
-            Server.i.enviar(new SolicitacaoDominio(RealLifeShared.EnmMetodo.APARENCIA_RECUPERAR, ((objResposta) => { this.carregarAparenciaRetorno(objResposta, fncRetorno); })));
-        }
-
-        private carregarAparenciaRetorno(objResposta: RespostaDominio, fncRetorno: Function): void
-        {
-            // TODO: Parei aqui.
-
-            if (fncRetorno != null)
-            {
-                fncRetorno();
-            }
-        }
-
         public detonarBombaAdesiva(): void
         {
             API.detonatePlayerStickies();

@@ -1,8 +1,16 @@
+/// <reference path="../../../RealLifeShared.TypeScript/dominio/RespostaDominio.ts"/>
+/// <reference path="../../../RealLifeShared.TypeScript/dominio/SolicitacaoDominio.ts"/>
+/// <reference path="../../../RealLifeShared.TypeScript/enumerado/EnmMetodo.ts"/>
 /// <reference path="../EtapaBase.ts"/>
 
 module RealLife
 {
     // #region Importações
+
+    import EnmMetodo = RealLifeShared.EnmMetodo;
+    import RespostaDominio = RealLifeShared.RespostaDominio;
+    import SolicitacaoDominio = RealLifeShared.SolicitacaoDominio;
+
     // #endregion Importações
 
     // #region Enumerados
@@ -26,7 +34,7 @@ module RealLife
         {
             super.inicializar();
 
-            //this.etapa001();
+            this.etapa001();
         }
 
         // Etapas
@@ -42,11 +50,17 @@ module RealLife
 
             Screen.i.booHudVisivel = false;
 
-            //Jogador.i.carregarAparencia(() => { this.etapa002(); });
+            Server.i.enviar(new SolicitacaoDominio(EnmMetodo.APARENCIA_RECUPERAR, ((objResposta) => { this.etapa002(objResposta); })));
         }
 
-        private etapa002(): void
+        private etapa002(objResposta: RespostaDominio): void
         {
+            if (Screen.i.notificarErro(objResposta))
+            {
+                return;
+            }
+
+
         }
 
         // #endregion Métodos

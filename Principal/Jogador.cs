@@ -80,13 +80,83 @@ namespace RealLife
             this.setEventos();
         }
 
+        private RespostaDominio aparenciaRecuperar(SolicitacaoDominio objSolicitacao)
+        {
+            if (this.objConta == null)
+            {
+                throw new NullReferenceException();
+            }
+
+            if (this.objConta.intId < 1)
+            {
+                throw new Exception();
+            }
+
+            return new RespostaDominio(objSolicitacao);
+        }
+
+        private RespostaDominio aparenciaSalvar(SolicitacaoDominio objSolicitacao)
+        {
+            var objPersonagem = objSolicitacao.getObjArgumento<PersonagemDominio>();
+
+            if (objPersonagem == null)
+            {
+                throw new NullReferenceException();
+            }
+
+            if (this.objConta == null)
+            {
+                throw new NullReferenceException();
+            }
+
+            if (this.objSessao == null)
+            {
+                throw new NullReferenceException();
+            }
+
+            TblPersonagem.i.aparenciaSalvar(this.objConta, this.objSessao, objPersonagem);
+
+            if (objPersonagem.intId < 1)
+            {
+                throw new Exception("Erro ao salvar o personagem.");
+            }
+
+            var arrObjHeadOverlay = objSolicitacao.getObjArgumento<HeadOverlayDominio[]>(1);
+
+            TblHeadOverlay.i.aparenciaSalvar(objPersonagem, objSessao, arrObjHeadOverlay);
+
+            var arrObjPedComponente = objSolicitacao.getObjArgumento<PedComponenteDominio[]>(2);
+
+            TblPedComponente.i.aparenciaSalvar(objPersonagem, objSessao, arrObjPedComponente);
+
+            return new RespostaDominio(objSolicitacao).addArgumento(true);
+        }
+
+        private RespostaDominio contaSalvar(SolicitacaoDominio objSolicitacao)
+        {
+            this.objConta = objSolicitacao.getObjArgumento<ContaDominio>();
+
+            if (this.objConta == null)
+            {
+                throw new NullReferenceException();
+            }
+
+            TblConta.i.contaSalvar(this.objConta);
+
+            this.objSessao.intJogadorId = this.objConta.intId;
+
+            TblSessao.i.salvar(this.objSessao);
+
+            return new RespostaDominio(objSolicitacao).addArgumento(this.objConta, this.objSessao);
+        }
+
         private RespostaDominio entrar(SolicitacaoDominio objSolicitacao)
         {
             this.objConta = objSolicitacao.getObjArgumento<ContaDominio>();
 
             if (this.objConta == null)
             {
-                throw new NullReferenceException("Objeto 'conta' nulo.");
+                throw new NullReferenceException();
             }
 
             TblConta.i.entrar(this.objConta);
@@ -193,13 +263,16 @@ namespace RealLife
             switch (objSolicitacao.enmMetodo)
             {
                 case SolicitacaoDominio.EnmMetodo.CONTA_SALVAR:
-                    return this.salvarConta(objSolicitacao);
+                    return this.contaSalvar(objSolicitacao);
 
                 case SolicitacaoDominio.EnmMetodo.LOGIN_ENTRAR:
                     return this.entrar(objSolicitacao);
 
+                case SolicitacaoDominio.EnmMetodo.APARENCIA_RECUPERAR:
+                    return this.aparenciaRecuperar(objSolicitacao);
+
                 case SolicitacaoDominio.EnmMetodo.APARENCIA_SALVAR:
-                    return this.salvarAparencia(objSolicitacao);
+                    return this.aparenciaSalvar(objSolicitacao);
 
                 default:
                     return null;
@@ -213,61 +286,6 @@ namespace RealLife
             objResposta.strErro = ex.Message;
 
             this.enviar(objResposta);
-        }
-
-        private RespostaDominio salvarAparencia(SolicitacaoDominio objSolicitacao)
-        {
-            var objPersonagem = objSolicitacao.getObjArgumento<PersonagemDominio>();
-
-            if (objPersonagem == null)
-            {
-                throw new NullReferenceException("Objeto 'personagem' nulo.");
-            }
-
-            if (this.objConta == null)
-            {
-                throw new NullReferenceException("Objeto 'conta' nulo.");
-            }
-
-            if (this.objSessao == null)
-            {
-                throw new NullReferenceException("Objeto 'sessão' nulo.");
-            }
-
-            TblPersonagem.i.salvarAparencia(this.objConta, this.objSessao, objPersonagem);
-
-            if (objPersonagem.intId < 1)
-            {
-                throw new Exception("Erro ao salvar o personagem.");
-            }
-
-            var arrObjHeadOverlay = objSolicitacao.getObjArgumento<HeadOverlayDominio[]>(1);
-
-            TblHeadOverlay.i.salvarAparencia(objPersonagem, objSessao, arrObjHeadOverlay);
-
-            var arrObjPedComponente = objSolicitacao.getObjArgumento<PedComponenteDominio[]>(2);
-
-            TblPedComponente.i.salvarAparencia(objPersonagem, objSessao, arrObjPedComponente);
-
-            return new RespostaDominio(objSolicitacao).addArgumento(true);
-        }
-
-        private RespostaDominio salvarConta(SolicitacaoDominio objSolicitacao)
-        {
-            this.objConta = objSolicitacao.getObjArgumento<ContaDominio>();
-
-            if (this.objConta == null)
-            {
-                throw new Exception("Objeto 'conta' nulo.");
-            }
-
-            TblConta.i.contaSalvar(this.objConta);
-
-            this.objSessao.intJogadorId = this.objConta.intId;
-
-            TblSessao.i.salvar(this.objSessao);
-
-            return new RespostaDominio(objSolicitacao).addArgumento(this.objConta, this.objSessao);
         }
 
         private void setEventos()

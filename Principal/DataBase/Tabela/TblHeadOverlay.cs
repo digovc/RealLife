@@ -1,5 +1,6 @@
 ﻿using NetZ.Persistencia;
 using RealLife.DataBase.Dominio;
+using System;
 
 namespace RealLife.DataBase.Tabela
 {
@@ -121,26 +122,26 @@ namespace RealLife.DataBase.Tabela
 
         #region Métodos
 
-        internal void salvarAparencia(PersonagemDominio objPersonagem, SessaoDominio objSessao, HeadOverlayDominio[] arrObjHeadOverlay)
+        internal void aparenciaSalvar(PersonagemDominio objPersonagem, SessaoDominio objSessao, HeadOverlayDominio[] arrObjHeadOverlay)
         {
             if (objPersonagem == null)
             {
-                throw new System.NullReferenceException("Objeto 'personagem' nulo.");
+                throw new NullReferenceException();
             }
 
             if (objPersonagem.intId < 1)
             {
-                throw new System.Exception("Personagem não indicado.");
+                throw new Exception();
             }
 
             if (objSessao == null)
             {
-                throw new System.NullReferenceException("Objeto 'sessão' nulo.");
+                throw new NullReferenceException();
             }
 
             if (objSessao.intId < 1)
             {
-                throw new System.Exception("Sessão não indicada.");
+                throw new Exception();
             }
 
             this.apagar(new Filtro(this.clnIntPersonagemId, objPersonagem.intId));

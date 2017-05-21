@@ -1,5 +1,6 @@
 ﻿using NetZ.Persistencia;
 using RealLife.DataBase.Dominio;
+using System;
 
 namespace RealLife.DataBase.Tabela
 {
@@ -377,34 +378,34 @@ namespace RealLife.DataBase.Tabela
 
         #region Métodos
 
-        internal void salvarAparencia(ContaDominio objConta, SessaoDominio objSessao, PersonagemDominio objPersonagem)
+        internal void aparenciaSalvar(ContaDominio objConta, SessaoDominio objSessao, PersonagemDominio objPersonagem)
         {
             if (objConta == null)
             {
-                throw new System.NullReferenceException("Objeto 'conta' nulo.");
+                throw new NullReferenceException();
             }
 
             if (objConta.intId < 1)
             {
-                throw new System.Exception("Conta não indicada.");
+                throw new Exception();
             }
 
             if (objSessao == null)
             {
-                throw new System.NullReferenceException("Objeto 'sessão' nulo.");
+                throw new NullReferenceException();
             }
 
             if (objSessao.intId < 1)
             {
-                throw new System.Exception("Sessão não indicada.");
+                throw new Exception();
             }
 
             if (objPersonagem == null)
             {
-                throw new System.NullReferenceException("Objeto 'personagem' nulo.");
+                throw new NullReferenceException();
             }
 
-            this.dbe.execSql(string.Format("update {0} set {1} = false where {2} = {3};", this.sqlNome, this.clnBooAtivo.sqlNome, this.clnIntContaId.sqlNome, objConta.intId));
+            this.desativarTodos(objConta);
 
             objPersonagem.booAtivo = true;
             objPersonagem.intContaId = objConta.intId;
@@ -443,6 +444,11 @@ namespace RealLife.DataBase.Tabela
             this.clnIntVelocidade.intOrdem += intOrdem;
 
             return intOrdem;
+        }
+
+        private void desativarTodos(ContaDominio objConta)
+        {
+            this.dbe.execSql(string.Format("update {0} set {1} = false where {2} = {3};", this.sqlNome, this.clnBooAtivo.sqlNome, this.clnIntContaId.sqlNome, objConta.intId));
         }
 
         #endregion Métodos
