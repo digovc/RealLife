@@ -100,7 +100,7 @@ module RealLifeUi
             objConta.strSenha = this.encriptar(this.cmpStrSenha.txt.strValor);
         }
 
-        public criarContaValidar(): boolean
+        public contaSalvarValidar(): boolean
         {
             if (Utils.getBooStrVazia(this.cmpStrEmail.txt.strValor))
             {
@@ -123,7 +123,7 @@ module RealLifeUi
                 return false;
             }
 
-            if (!this.criarContaValidarCmpStrGameTag())
+            if (!this.contaSalvarValidarCmpStrGameTag())
             {
                 this.cmpStrGameTag.txt.receberFoco();
                 return false;
@@ -153,7 +153,7 @@ module RealLifeUi
             return true;
         }
 
-        private criarContaValidarCmpStrGameTag(): boolean
+        private contaSalvarValidarCmpStrGameTag(): boolean
         {
             // TODO: Implementar critérios para criação da gametag.
 

@@ -80,6 +80,24 @@ namespace RealLife
             this.setEventos();
         }
 
+        private RespostaDominio contaSalvar(SolicitacaoDominio objSolicitacao)
+        {
+            this.objConta = objSolicitacao.getObjArgumento<ContaDominio>();
+
+            if (this.objConta == null)
+            {
+                throw new Exception("Objeto 'conta' nulo.");
+            }
+
+            TblConta.i.contaSalvar(this.objConta);
+
+            this.objSessao.intJogadorId = this.objConta.intId;
+
+            TblSessao.i.salvar(this.objSessao);
+
+            return new RespostaDominio(objSolicitacao).addArgumento(this.objConta, this.objSessao);
+        }
+
         private RespostaDominio entrar(SolicitacaoDominio objSolicitacao)
         {
             this.objConta = objSolicitacao.getObjArgumento<ContaDominio>();
@@ -193,7 +211,7 @@ namespace RealLife
             switch (objSolicitacao.enmMetodo)
             {
                 case SolicitacaoDominio.EnmMetodo.CONTA_SALVAR:
-                    return this.salvarConta(objSolicitacao);
+                    return this.contaSalvar(objSolicitacao);
 
                 case SolicitacaoDominio.EnmMetodo.LOGIN_ENTRAR:
                     return this.entrar(objSolicitacao);
@@ -250,24 +268,6 @@ namespace RealLife
             TblPedComponente.i.salvarAparencia(objPersonagem, objSessao, arrObjPedComponente);
 
             return new RespostaDominio(objSolicitacao).addArgumento(true);
-        }
-
-        private RespostaDominio salvarConta(SolicitacaoDominio objSolicitacao)
-        {
-            this.objConta = objSolicitacao.getObjArgumento<ContaDominio>();
-
-            if (this.objConta == null)
-            {
-                throw new Exception("Objeto 'conta' nulo.");
-            }
-
-            TblConta.i.salvarConta(this.objConta);
-
-            this.objSessao.intJogadorId = this.objConta.intId;
-
-            TblSessao.i.salvar(this.objSessao);
-
-            return new RespostaDominio(objSolicitacao).addArgumento(this.objConta, this.objSessao);
         }
 
         private void setEventos()

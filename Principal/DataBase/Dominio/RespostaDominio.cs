@@ -79,7 +79,7 @@ namespace RealLife.DataBase.Dominio
                 return this;
             }
 
-            var lstObjArgumento = new List<object>(this.arrObjArgumento);
+            var lstObjArgumento = new List<object>(arrObjArgumento);
 
             foreach (var objArgumento in arrObjArgumento)
             {

@@ -129,7 +129,7 @@ module RealLifeUi
 
         private contaSalvarValidar(): boolean
         {
-            if (!this.divLoginContaCadastro.criarContaValidar())
+            if (!this.divLoginContaCadastro.contaSalvarValidar())
             {
                 return false;
             }

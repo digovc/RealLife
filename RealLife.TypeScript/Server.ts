@@ -105,8 +105,6 @@ module RealLife
 
             var strJson = arrObjArgumento[0];
 
-            Log.i.debug(strJson);
-
             if (UtilsRealLife.getBooStrVazia(strJson))
             {
                 return;

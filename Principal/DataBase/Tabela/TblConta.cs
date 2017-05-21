@@ -140,15 +140,15 @@ namespace RealLife.DataBase.Tabela
             }
         }
 
-        internal void salvarConta(ContaDominio objConta)
+        internal void contaSalvar(ContaDominio objConta)
         {
             try
             {
                 this.bloquearThread();
 
-                this.criarContaValidar(objConta);
+                this.contaSalvarValidar(objConta);
 
-                this.criarContaPreparar(objConta);
+                this.contaSalvarPreparar(objConta);
 
                 this.salvar(objConta);
 
@@ -171,12 +171,12 @@ namespace RealLife.DataBase.Tabela
             return intOrdem;
         }
 
-        private void criarContaPreparar(ContaDominio objConta)
+        private void contaSalvarPreparar(ContaDominio objConta)
         {
             objConta.strEmail = objConta.strEmail.ToLower();
         }
 
-        private void criarContaValidar(ContaDominio objConta)
+        private void contaSalvarValidar(ContaDominio objConta)
         {
             if (objConta == null)
             {

@@ -73,14 +73,15 @@ module RealLifeShared
                 return null;
             }
 
-            var jsn = this.arrObjArgumento[intIndex].toString();
+            return this.arrObjArgumento[intIndex];
+            //var jsn = this.arrObjArgumento[intIndex].toString();
 
-            if (jsn == null || jsn == "")
-            {
-                return null;
-            }
+            //if (jsn == null || jsn == "")
+            //{
+            //    return null;
+            //}
 
-            return JSON.parse(jsn);
+            //return JSON.parse(jsn);
         }
 
         // #endregion Métodos

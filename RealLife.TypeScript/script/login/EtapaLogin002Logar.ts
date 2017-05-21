@@ -76,6 +76,8 @@ module RealLife
 
             Screen.i.notificar(strNotificacao);
 
+            this.objScript.destruir();
+
             new ScriptOpenWorld().iniciar();
         }
 
@@ -93,7 +95,7 @@ module RealLife
             Server.i.enviar(new SolicitacaoDominio(EnmMetodo.CONTA_SALVAR, ((objResposta) => this.contaSalvarRetorno(objResposta)), objConta));
         }
 
-        public contaSalvarRetorno(objResposta: RespostaDominio): void
+        private contaSalvarRetorno(objResposta: RespostaDominio): void
         {
             if (Screen.i.notificarErro(objResposta))
             {
@@ -121,13 +123,6 @@ module RealLife
             super.destruir();
 
             this.pagLogin.destruir();
-        }
-
-        public entrarSucesso(): void
-        {
-            this.objScript.destruir();
-
-            new ScriptOpenWorld().iniciar();
         }
 
         protected inicializar(): void
